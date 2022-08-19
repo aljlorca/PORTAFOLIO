@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block contenido %}
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="1" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'css/herramientas.png' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Respuesta oportuna</h5>
+            <p>Entender sus requerimientos
+              Aprender de sus experiencias</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'css/herramientass.png' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Cotizamos tus requerimientos</h5>
+            <p>Cotizaciones completas y en tiempo pactado</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'css/herramientasss.png' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Entrega On Time</h5>
+            <p>Recibe tu pedido en tiempo y lugar pactado</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Siguiente</span>
+    </a>
+  </div>
+
+  <hr>
+    <h2 class="text-center">PRODUCTOS RECOMENDADOS</h2>
+    <hr>
+    <div class="container">
+      <div class="row text-center">
+        {% for p in producto %}
+          {% if p.oferta == 1 %}
+          <div class="col-md-4 pb-1 pb-md-0">
+            <div class="card" style="background-color: #DADADA;">
+              {% if p.imagen %}
+              <div>
+                <img src="{{ p.imagen.url }}" class="card-img-top" alt="imagen">
+              </div>
+              {% else %}
+              <div>
+                <img src="{% static '/images/default.jpg' %}" class="card-img-top" alt="imagen">
+              </div>
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ p.nombre }}</h5>
+                <p class="card-text">{{ p.descripcion }}</p>
+                <p class="card-text">${{ p.precio | intcomma}}</p>
+                <a href="{% url 'carro:agregar_home' p.id %}" class="btn btn-primary">Añadir al carrito</a>
+              </div>
+            </div>        
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    
+    
+{% endblock %}

@@ -1,0 +1,5 @@
+create user C##FERME identified by 1133;
+grant connect, resource to C##FERME;
+alter user C##FERME default tablespace users quota unlimited on users;
+
+

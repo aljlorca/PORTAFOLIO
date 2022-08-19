@@ -1,0 +1,9 @@
+django
+cx_oracle
+pillow
+django-admin-interface 
+django-crispy-forms
+django-rest-framework
+django-pwa 
+
+## para importar la base de datos debes usar el comando python manage.py import

@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+
+{% block scripts %}
+<script>
+    function eliminar_factura(id){
+        Swal.fire({
+            "title":'¿Desea eliminar la factura seleccionada?',
+            "text": 'una vez eliminado no se puede deshacer el cambio',
+            "icon": 'question',
+            "showCancelButton": true,
+            "cancelButtonText": "Cancelar",
+            "confirmButtonText": "Aceptar",
+            "reverseButtons": true,
+            "confirmButtonColor": "#dc3545",
+            "cancelButtonColor": "#198754"
+        })
+        .then(function(result){
+            
+            if(result.isConfirmed){
+                window.location.href= "/eliminarfactura/"+id+"/"
+            }
+
+
+        })
+
+    }
+
+
+</script>
+{% endblock %}
+
+{% block contenido %}
+<div class="col-12 col-md-6 offset-md-3 ">
+    <div class="row p-3 mb-2">    
+        <div class="card">
+                <div class="card-body"> 
+                <h1>Listado de Facturas</h1>
+                <table class="table table-stripped table-hover table-responsive-sm clearfix">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>N° Factura</th>
+                            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Opciones</th>
+                        </tr>
+                        {% for f in factura %}
+                        
+                        <tr>
+                            <td>{{ f.id }}</td>
+                            <td>{{ f.fecha }}</td>
+                            <td>{{ f.total }}</td>
+                            <td>
+                                <a href="{% url 'modificar_factura' f.id %}" class="btn btn-info">Modificar</a>
+                                <a href="#" onclick="eliminar_factura({{ f.id }})" class="btn btn-danger">Eliminar</a>
+                            </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+                <hr>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
