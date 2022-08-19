@@ -57,26 +57,23 @@
                         </tr>
                             {% for p in producto %}
                         <tr>                        
-                            <td>{{ p.0 }}</td>
-                            <td>{{ p.1 | title }}</td>
-                            <td>{{ p.3 | intcomma }}</td>
-                            <td>{{ p.4 | date}}</td>
-                            <td>{{ p.5 }}</td>
-                            {% for f in familias %}
-                            {% if p.9 == f.0 %}
+                            <td>{{ p.id }}</td>
+                            <td>{{ p.nombre | title }}</td>
+                            <td>{{ p.precio | intcomma }}</td>
+                            <td>{{ p.stock}}</td>
+                            <td>{{ p.destacado }}</td>
+
                             <td>
-                                <div value="{{ f.0 }}">{{ f.1 }}</div>
+                                <div value="{{ f.familia }}">{{ f.1 }}</div>
                             </td>
-                            {% endif %}
-                            {% endfor %}
-                            {% if p.8 %}
+                            {% if p.destacado %}
                             <td>Si</td>
                             {% else %}
                             <td>No</td>
                             {% endif %}
                             <td>
-                                <a href="{% url 'modificar_producto' p.0 %}" class="btn btn-info">Modificar</a>
-                                <a href="#" onclick="eliminar_producto({{ p.0 }})" class="btn btn-danger">Eliminar</a>
+                                <a href="{% url 'modificar_producto' p.id %}" class="btn btn-info">Modificar</a>
+                                <a href="#" onclick="eliminar_producto({{ p.id }})" class="btn btn-danger">Eliminar</a>
                             </td>
                         </tr>                    
                     </tbody>

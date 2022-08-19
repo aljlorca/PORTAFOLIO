@@ -44,7 +44,7 @@ class Usuario(AbstractBaseUser):
     direccion = models.CharField('Dirección', max_length=300,default='',null=True)
     usuario_activo = models.BooleanField(default=True)
     usuario_administrador = models.BooleanField(default=False)
-    cargo = models.ForeignKey(cargo, on_delete=models.CASCADE,default=1,null=True)
+    cargo = models.ForeignKey(cargo, on_delete=models.CASCADE,null=True)
     objects = UsuarioManager()
 
     USERNAME_FIELD = 'username'

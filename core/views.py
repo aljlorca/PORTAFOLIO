@@ -66,12 +66,12 @@ def agregar_producto(request):
 #Funcion listar prodcutos
 def listar_productos(request):
     data = {
-        'familias':listar_familia(),
-        'producto':lista_prodcuto(),
+        'familias':familia.objects.all(),
+        'producto':producto.objects.all(),
     }
     return render(request, 'core/producto/listar.html',data)
-#Procedimiento listar productos
-def lista_prodcuto():
+#Procedimiento listar productos''''
+'''def lista_prodcuto():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
@@ -79,7 +79,7 @@ def lista_prodcuto():
     lista = []
     for fila in out_cur:
         lista.append(fila)
-    return lista
+    return lista'''
 #Procedimiento para modificar producto
 def modificar_producto(request, id):
     product = get_object_or_404(producto, id=id)
