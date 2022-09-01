@@ -110,4 +110,69 @@ begin
   "cargo_id_cargo": "'||cargo_id_cargo||'"}' request from administrador;
 end ADMINISTRADOR_LISTAR;
 ------------------------------------------------------------------------------------------------
+-------------------------------SP Cliente_Externo----------------------------------------------
+create or replace PROCEDURE CLIENTE_EXTERNO_ELIMINAR (v_rut_CLIENTE_EXTERNO Integer) is
+begin 
+    DELETE CLIENTE_EXTERNO
+    WHERE rut_CLIENTE_EXTERNO = v_rut_CLIENTE_EXTERNO;
+    commit;
+
+end CLIENTE_EXTERNO_ELIMINAR;
+
+
+create or replace PROCEDURE CLIENTE_EXTERNO_AGREGAR (
+v_rut_CLIENTE_EXTERNO Integer, 
+v_nombre_CLIENTE_EXTERNO varchar2,
+v_direccion_CLIENTE_EXTERNO VARCHAR2,
+v_telefono_CLIENTE_EXTERNO INTEGER, 
+v_correo_CLIENTE_EXTERNO VARCHAR2, 
+v_contrasena_CLIENTE_EXTERNO VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+  insert into CLIENTE_EXTERNO(rut_CLIENTE_EXTERNO,
+  nombre_CLIENTE_EXTERNO,
+  direccion_CLIENTE_EXTERNO,
+  telefono_CLIENTE_EXTERNO,
+  correo_CLIENTE_EXTERNO,
+  contrasena_CLIENTE_EXTERNO,
+  cargo_id_cargo) values(v_rut_CLIENTE_EXTERNO,v_nombre_CLIENTE_EXTERNO,v_direccion_CLIENTE_EXTERNO,v_telefono_CLIENTE_EXTERNO,v_correo_CLIENTE_EXTERNO,v_contrasena_CLIENTE_EXTERNO,v_id_cargo);
+  commit;
+
+end CLIENTE_EXTERNO_AGREGAR;
+
+
+create or replace PROCEDURE CLIENTE_EXTERNO_MODIFICAR (v_rut_CLIENTE_EXTERNO Integer,v_nombre_CLIENTE_EXTERNO varchar2,
+v_direccion_CLIENTE_EXTERNO VARCHAR2,
+v_telefono_CLIENTE_EXTERNO INTEGER, 
+v_correo_CLIENTE_EXTERNO VARCHAR2, 
+v_contrasena_CLIENTE_EXTERNO VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+    UPDATE CLIENTE_EXTERNO
+    SET nombre_CLIENTE_EXTERNO = v_nombre_CLIENTE_EXTERNO,
+    direccion_CLIENTE_EXTERNO = v_direccion_CLIENTE_EXTERNO,
+    telefono_CLIENTE_EXTERNO = v_telefono_CLIENTE_EXTERNO, 
+    correo_CLIENTE_EXTERNO = v_correo_CLIENTE_EXTERNO,
+    contrasena_CLIENTE_EXTERNO = v_contrasena_CLIENTE_EXTERNO,
+    cargo_id_cargo = v_id_cargo
+    WHERE rut_CLIENTE_EXTERNO = v_rut_CLIENTE_EXTERNO;
+    commit;
+
+end CLIENTE_EXTERNO_MODIFICAR;
+
+ 
+
+ CREATE OR REPLACE EDITIONABLE PROCEDURE CLIENTE_EXTERNO_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+
+begin
+  open cur_listar for select '{"rut_CLIENTE_EXTERNO": '|| rut_CLIENTE_EXTERNO||', 
+  "nombre_CLIENTE_EXTERNO": "'||nombre_CLIENTE_EXTERNO||',
+  "direccion_CLIENTE_EXTERNO": "'||direccion_CLIENTE_EXTERNO||',
+  "telefono_CLIENTE_EXTERNO": "'||telefono_CLIENTE_EXTERNO||',
+  "correo_CLIENTE_EXTERNO": "'||correo_CLIENTE_EXTERNO||',
+  "contrasena_CLIENTE_EXTERNO": "'||contrasena_CLIENTE_EXTERNO||',
+  "cargo_id_cargo": "'||cargo_id_cargo||'"}' request from CLIENTE_EXTERNO;
+end CLIENTE_EXTERNO_LISTAR;
+--------------------------------------------------------------------------------------------------------------------------
 '''
