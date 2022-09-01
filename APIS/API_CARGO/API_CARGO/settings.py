@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'API',
+    'cx_Oracle'
 ]
 
 MIDDLEWARE = [
@@ -72,14 +74,24 @@ WSGI_APPLICATION = 'API_CARGO.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'localhost:1521/xe',
+        'USER': 'C##MERCADOCHILE',
+        'PASSWORD': '1133', 
+    },  
+    
+}
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
