@@ -52,7 +52,6 @@ class CargoView(View):
             return JsonResponse(datos)
         else:
             cargos = list(lista_cargo())
-            print(cargos)
             if len(cargos) > 0:
                 datos={'message':"Success",'cargos':cargos}
             else:

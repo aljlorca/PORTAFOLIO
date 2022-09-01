@@ -4,7 +4,7 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from .models import ClienteInterno, Cargo
+from .models import ClienteInterno
 import json
 
 # Create your views here.
@@ -17,7 +17,7 @@ def agregar_cliente_interno(rut_cliente_interno,nombre_cliente_interno,direccion
 def modificar_cliente_interno(rut_cliente_interno,nombre_cliente_interno,direccion_cliente_interno,telefono_cliente_interno,correo_cliente_interno,contrasena_cliente_interno,cargo_id_cargo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('CLIENTE_INTERNO_MODIFICAR',[rut_cliente_interno,nombre_cliente_interno,direccion_cliente_interno,telefono_cliente_interno,correo_cliente_interno,contrasena_cliente_interno,cargo_id_cargo])
+    cursor.callproc('cliente_interno_modificar',[rut_cliente_interno,nombre_cliente_interno,direccion_cliente_interno,telefono_cliente_interno,correo_cliente_interno,contrasena_cliente_interno,cargo_id_cargo])
 
 def eliminar_cliente_interno(rut_cliente_interno):
     django_cursor = connection.cursor()
@@ -45,16 +45,15 @@ class ClienteInternoView(View):
 
     def get(self, request, rut_cliente_interno=0):
         if(rut_cliente_interno > 0):
-            clientes=list(ClienteInterno.objects.filter(rut_cliente_interno=rut_cliente_interno).values())
-            if len(clientes) > 0:
-                cliente = clientes[0]
-                datos={'message':"Success",'Cliente':cliente}
+            clientes_internos=list(ClienteInterno.objects.filter(rut_cliente_interno=rut_cliente_interno).values())
+            if len(clientes_internos) > 0:
+                cliente_interno = clientes_internos[0]
+                datos={'message':"Success",'Cliente':cliente_interno}
             else:
                 datos={'message':"ERROR: Cliente Externo No Encontrado"}
             return JsonResponse(datos)
         else:
             clientes = list(lista_cliente_interno())
-            print(clientes)
             if len(clientes) > 0:
                 datos={'message':"Success",'Clientes':clientes}
             else:
@@ -71,8 +70,6 @@ class ClienteInternoView(View):
     def put(self, request,rut_cliente_interno):
         jd = json.loads(request.body)
         clientes = list(ClienteInterno.objects.filter(rut_cliente_interno=rut_cliente_interno).values())
-        print(jd)
-        print(clientes)
         if len(clientes) > 0:
             modificar_cliente_interno(rut_cliente_interno=jd['rut_cliente_interno'],nombre_cliente_interno=jd['nombre_cliente_interno'],direccion_cliente_interno=jd['direccion_cliente_interno'],telefono_cliente_interno=jd['telefono_cliente_interno'],correo_cliente_interno=jd['correo_cliente_interno'],contrasena_cliente_interno=jd['contrasena_cliente_interno'],cargo_id_cargo=jd['cargo_id_cargo'],)
             datos={'message':"Success"}
