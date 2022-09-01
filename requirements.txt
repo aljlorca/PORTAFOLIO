@@ -1,3 +1,37 @@
 Django == 3.2.4
 cx_oracle
 virtualenv
+
+
+
+##################################################################
+##### PROCEDIMIENTOS DE ALMACENADO PARA FUNCIONAMIENTO DE API ####
+##################################################################
+'''
+create or replace PROCEDURE CARGO_ELIMINAR (v_id_cargo Integer) is
+begin 
+    DELETE cargo
+    WHERE id = v_id_cargo;
+    commit;
+
+end CARGO_ELIMINAR;
+
+
+create or replace PROCEDURE CARGO_AGREGAR (v_nombre varchar2) is
+begin 
+  insert into CARGO(id, nombre_cargo) values(ISEQ$$_76678.nextval,v_nombre);
+  commit;
+
+end CARGO_AGREGAR;
+
+
+create or replace PROCEDURE CARGO_MODIFICAR (v_id Integer,v_nombre_cargo VARCHAR2) is
+begin 
+    UPDATE cargo
+    SET nombre_cargo = v_nombre_cargo
+    WHERE id = v_id;
+    commit;
+
+end CARGO_MODIFICAR;
+
+'''

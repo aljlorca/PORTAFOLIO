@@ -50,7 +50,6 @@ class CargoView(View):
     def post(self, request):
         #print(request.body)
         jd = json.loads(request.body)
-        print(jd)
         agregar_cargo(nombre=jd['nombre_cargo'])
         datos={'message':"Success"}
         return JsonResponse(datos)
