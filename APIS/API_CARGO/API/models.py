@@ -12,7 +12,7 @@ from django.db import models ,connection
 
 
 class Cargo(models.Model):
-    id_cargo = models.BigIntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     nombre_cargo = models.CharField(max_length=50)
 
 
