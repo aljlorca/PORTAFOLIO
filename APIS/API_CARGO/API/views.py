@@ -23,6 +23,18 @@ def eliminar_cargo(id):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     cursor.callproc('CARGO_ELIMINAR',[id])
+
+def lista_prodcuto():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc('CARGO_LISTAR', [out_cur])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
     
 
 class CargoView(View):
@@ -40,7 +52,8 @@ class CargoView(View):
                 datos={'message':"ERROR: Cargo No Encontrado"}
             return JsonResponse(datos)
         else:
-            cargos = list(Cargo.objects.values())
+            cargos = list(lista_prodcuto())
+            print(cargos)
             if len(cargos) > 0:
                 datos={'message':"Success",'cargos':cargos}
             else:

@@ -4,9 +4,9 @@ virtualenv
 
 
 
-##################################################################
-##### PROCEDIMIENTOS DE ALMACENADO PARA FUNCIONAMIENTO DE API ####
-##################################################################
+#########################################################################
+##### PROCEDIMIENTOS DE ALMACENADO PARA FUNCIONAMIENTO DE LAS API'S #####
+#########################################################################
 '''
 create or replace PROCEDURE CARGO_ELIMINAR (v_id_cargo Integer) is
 begin 
@@ -33,5 +33,14 @@ begin
     commit;
 
 end CARGO_MODIFICAR;
+
+ 
+
+ CREATE OR REPLACE EDITIONABLE PROCEDURE CARGO_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+
+begin
+  open cur_listar for select '{"id_cargo": '|| id||', "nombre_cargo": "'||nombre_cargo||'"}' from cargo;
+end CARGO_LISTAR;
 
 '''
