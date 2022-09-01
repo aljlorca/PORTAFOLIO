@@ -4,7 +4,6 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Cargo
-import cx_Oracle
 import json
 # Create your views here.
 
@@ -24,7 +23,7 @@ def eliminar_cargo(id):
     cursor = django_cursor.connection.cursor()
     cursor.callproc('CARGO_ELIMINAR',[id])
 
-def lista_prodcuto():
+def lista_cargo():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
@@ -52,7 +51,7 @@ class CargoView(View):
                 datos={'message':"ERROR: Cargo No Encontrado"}
             return JsonResponse(datos)
         else:
-            cargos = list(lista_prodcuto())
+            cargos = list(lista_cargo())
             print(cargos)
             if len(cargos) > 0:
                 datos={'message':"Success",'cargos':cargos}

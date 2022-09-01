@@ -8,6 +8,7 @@ virtualenv
 ##### PROCEDIMIENTOS DE ALMACENADO PARA FUNCIONAMIENTO DE LAS API'S #####
 #########################################################################
 '''
+------------------------- SP CARGO -----------------------------------------------------------
 create or replace PROCEDURE CARGO_ELIMINAR (v_id_cargo Integer) is
 begin 
     DELETE cargo
@@ -43,4 +44,64 @@ begin
   open cur_listar for select '{"id_cargo": '|| id||', "nombre_cargo": "'||nombre_cargo||'"}' from cargo;
 end CARGO_LISTAR;
 
+-------------------------------------------------------------------------------------------------------------------
+------------------------------------- SP ADMINISTRADOR -----------------------------------------------------------
+create or replace PROCEDURE ADMINISTRADOR_ELIMINAR (v_rut_administrador Integer) is
+begin 
+    DELETE administrador
+    WHERE administrador.rut_administrador = v_rut_administrador;
+    commit;
+
+end ADMINISTRADOR_ELIMINAR;
+
+
+create or replace PROCEDURE ADMINISTRADOR_AGREGAR (
+v_rut_administrador Integer, 
+v_nombre_administrador varchar2,
+v_direccion_administrador VARCHAR2,
+v_telefono_administrador INTEGER, 
+v_correo_administrador VARCHAR2, 
+v_contrasena_administrador VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+  insert into administrador(rut_administrador,
+  nombre_administrador,
+  direccion_administrador,
+  telefono_administrador,
+  correo_administrador,
+  contrasena_administrador,
+  cargo_id_cargo) values(v_rut_administrador,v_nombre_administrador,v_direccion_administrador,v_telefono_administrador,v_correo_administrador,v_contrasena_administrador,v_id_cargo);
+  commit;
+
+end ADMINISTRADOR_AGREGAR;
+
+
+create or replace PROCEDURE ADMINISTRADOR_MODIFICAR (v_rut_administrador Integer,v_nombre_administrador varchar2,
+v_direccion_administrador VARCHAR2,
+v_telefono_administrador INTEGER, 
+v_correo_administrador VARCHAR2, 
+v_contrasena_administrador VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+    UPDATE administrador
+    SET nombre_administrador = v_nombre_administrador,
+    direccion_administrador = v_direccion_administrador,
+    telefono_administrador=v_telefono_administrador, 
+    correo_administrador=v_correo_administrador,
+    contrasena_administrador=v_contrasena_administrador,
+    cargo_id_cargo = v_id_cargo
+    WHERE rut_administrador = v_rut_administrador;
+    commit;
+
+end ADMINISTRADOR_MODIFICAR;
+
+ 
+##############MODIFICAR ESTE SP
+ CREATE OR REPLACE EDITIONABLE PROCEDURE ADMINISTRADOR_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+
+begin
+  open cur_listar for select '{"rut_administrador": '|| rut_administrador||', "nombre_administrador": "'||nombre_cargo||'"}' from cargo;
+end ADMINISTRADOR_LISTAR;
+------------------------------------------------------------------------------------------------
 '''
