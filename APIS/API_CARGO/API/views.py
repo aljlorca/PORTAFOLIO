@@ -3,6 +3,8 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+
+from API_ADMINISTRADOR.API.models import Administrador
 from .models import Cargo
 import json
 # Create your views here.
@@ -51,7 +53,7 @@ class CargoView(View):
                 datos={'message':"ERROR: Cargo No Encontrado"}
             return JsonResponse(datos)
         else:
-            cargos = list(lista_cargo())
+            cargos = list(Cargo.objects.values())
             if len(cargos) > 0:
                 datos={'message':"Success",'cargos':cargos}
             else:

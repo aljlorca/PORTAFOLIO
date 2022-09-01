@@ -51,7 +51,7 @@ class AdministradorView(View):
                 datos={'message':"ERROR: Administrador No Encontrado"}
             return JsonResponse(datos)
         else:
-            Administradores = list(lista_administrador())
+            Administradores = list(Administrador.objects.values())
             print(Administradores)
             if len(Administradores) > 0:
                 datos={'message':"Success",'Administradores':Administradores}

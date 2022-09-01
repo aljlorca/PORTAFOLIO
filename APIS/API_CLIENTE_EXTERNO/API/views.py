@@ -53,7 +53,7 @@ class ClienteExternoView(View):
                 datos={'message':"ERROR: Cliente Externo No Encontrado"}
             return JsonResponse(datos)
         else:
-            clientes = list(lista_cliente_externo())
+            clientes = list(ClienteExterno.objects.values())
             print(clientes)
             if len(clientes) > 0:
                 datos={'message':"Success",'Clientes':clientes}

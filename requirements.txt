@@ -101,13 +101,7 @@ end ADMINISTRADOR_MODIFICAR;
 is
 
 begin
-  open cur_listar for select '{"rut_administrador": '|| rut_administrador||', 
-  "nombre_administrador": "'||nombre_administrador||',
-  "direccion_administrador": "'||direccion_administrador||',
-  "telefono_administrador": "'||telefono_administrador||',
-  "correo_administrador": "'||correo_administrador||',
-  "contrasena_administrador": "'||contrasena_administrador||',
-  "cargo_id_cargo": "'||cargo_id_cargo||'"}' request from administrador;
+  open cur_listar for select '{"rut_administrador": '|| rut_administrador||', "nombre_administrador": "'||nombre_administrador||',"direccion_administrador": "'||direccion_administrador||',"telefono_administrador": "'||telefono_administrador||',"correo_administrador": "'||correo_administrador||',"contrasena_administrador": "'||contrasena_administrador||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from administrador;
 end ADMINISTRADOR_LISTAR;
 ------------------------------------------------------------------------------------------------
 -------------------------------SP Cliente_Externo----------------------------------------------
@@ -166,13 +160,7 @@ end CLIENTE_EXTERNO_MODIFICAR;
 is
 
 begin
-  open cur_listar for select '{"rut_CLIENTE_EXTERNO": '|| rut_CLIENTE_EXTERNO||', 
-  "nombre_CLIENTE_EXTERNO": "'||nombre_CLIENTE_EXTERNO||',
-  "direccion_CLIENTE_EXTERNO": "'||direccion_CLIENTE_EXTERNO||',
-  "telefono_CLIENTE_EXTERNO": "'||telefono_CLIENTE_EXTERNO||',
-  "correo_CLIENTE_EXTERNO": "'||correo_CLIENTE_EXTERNO||',
-  "contrasena_CLIENTE_EXTERNO": "'||contrasena_CLIENTE_EXTERNO||',
-  "cargo_id_cargo": "'||cargo_id_cargo||'"}' request from CLIENTE_EXTERNO;
+  open cur_listar for select '{"rut_CLIENTE_EXTERNO": '|| rut_CLIENTE_EXTERNO||',"nombre_CLIENTE_EXTERNO": "'||nombre_CLIENTE_EXTERNO||',"direccion_CLIENTE_EXTERNO": "'||direccion_CLIENTE_EXTERNO||',"telefono_CLIENTE_EXTERNO": "'||telefono_CLIENTE_EXTERNO||',"correo_CLIENTE_EXTERNO": "'||correo_CLIENTE_EXTERNO||',"contrasena_CLIENTE_EXTERNO": "'||contrasena_CLIENTE_EXTERNO||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from CLIENTE_EXTERNO;
 end CLIENTE_EXTERNO_LISTAR;
 --------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------SP CLIENTE_INTERNO--------------------------------------------------------------
@@ -231,13 +219,65 @@ end CLIENTE_INTERNO_MODIFICAR;
 is
 
 begin
-  open cur_listar for select '{"rut_CLIENTE_INTERNO": '|| rut_CLIENTE_INTERNO||', 
-  "nombre_CLIENTE_INTERNO": "'||nombre_CLIENTE_INTERNO||',
-  "direccion_CLIENTE_INTERNO": "'||direccion_CLIENTE_INTERNO||',
-  "telefono_CLIENTE_INTERNO": "'||telefono_CLIENTE_INTERNO||',
-  "correo_CLIENTEINTERNO": "'||correo_CLIENTE_INTERNO||',
-  "contrasena_CLIENTE_INTERNO": "'||contrasena_CLIENTE_INTERNO||',
-  "cargo_id_cargo": "'||cargo_id_cargo||'"}' request from CLIENTE_INTERNO;
+  open cur_listar for select '{"rut_CLIENTE_INTERNO": '|| rut_CLIENTE_INTERNO||', "nombre_CLIENTE_INTERNO": "'||nombre_CLIENTE_INTERNO||',"direccion_CLIENTE_INTERNO": "'||direccion_CLIENTE_INTERNO||',"telefono_CLIENTE_INTERNO": "'||telefono_CLIENTE_INTERNO||',"correo_CLIENTEINTERNO": "'||correo_CLIENTE_INTERNO||',"contrasena_CLIENTE_INTERNO": "'||contrasena_CLIENTE_INTERNO||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from CLIENTE_INTERNO;
 end CLIENTE_INTERNO_LISTAR;
 ------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP PROVEEDOR -------------------------------------------------------------------------
+create or replace PROCEDURE PROVEEDOR_ELIMINAR (v_rut_proveedor Integer) is
+begin 
+    DELETE proveedor
+    WHERE rut_proveedor = v_rut_proveedor;
+    commit;
+
+end PROVEEDOR_ELIMINAR;
+
+
+create or replace PROCEDURE PROVEEDOR_AGREGAR (
+v_rut_proveedor Integer, 
+v_nombre_proveedor varchar2,
+v_direccion_proveedor VARCHAR2,
+v_telefono_proveedor INTEGER, 
+v_correo_proveedor VARCHAR2, 
+v_contrasena_proveedor VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+  insert into proveedor(rut_proveedor,
+  nombre_proveedor,
+  direccion_proveedor,
+  telefono_proveedor,
+  correo_proveedor,
+  contrasena_proveedor,
+  cargo_id_cargo) values(v_rut_proveedor,v_nombre_proveedor,v_direccion_proveedor,v_telefono_proveedor,v_correo_proveedor,v_contrasena_proveedor,v_id_cargo);
+  commit;
+
+end PROVEEDOR_AGREGAR;
+
+
+create or replace PROCEDURE PROVEEDOR_MODIFICAR (v_rut_proveedor Integer,v_nombre_proveedor varchar2,
+v_direccion_proveedor VARCHAR2,
+v_telefono_proveedor INTEGER, 
+v_correo_proveedor VARCHAR2, 
+v_contrasena_proveedor VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+    UPDATE proveedor
+    SET nombre_proveedor = v_nombre_proveedor,
+    direccion_proveedor = v_direccion_proveedor,
+    telefono_proveedor = v_telefono_proveedor, 
+    correo_proveedor = v_correo_proveedor,
+    contrasena_proveedor = v_contrasena_proveedor,
+    cargo_id_cargo = v_id_cargo
+    WHERE rut_proveedor = v_rut_proveedor;
+    commit;
+
+end PROVEEDOR_MODIFICAR;
+
+ 
+
+ CREATE OR REPLACE EDITIONABLE PROCEDURE PROVEEDOR_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+
+begin
+  open cur_listar for select '{"rut_proveedor": '|| rut_proveedor||', "nombre_proveedor": "'||nombre_proveedor||',"direccion_proveedor": "'||direccion_proveedor||',"telefono_proveedor": "'||telefono_proveedor||',"correo_proveedor": "'||correo_proveedor||',"contrasena_proveedor": "'||contrasena_proveedor||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from proveedor;
+end PROVEEDOR_LISTAR;
 '''
