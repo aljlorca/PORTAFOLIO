@@ -175,4 +175,69 @@ begin
   "cargo_id_cargo": "'||cargo_id_cargo||'"}' request from CLIENTE_EXTERNO;
 end CLIENTE_EXTERNO_LISTAR;
 --------------------------------------------------------------------------------------------------------------------------
+------------------------------------------SP CLIENTE_INTERNO--------------------------------------------------------------
+create or replace PROCEDURE CLIENTE_INTERNO_ELIMINAR (v_rut_CLIENTE_INTERNO Integer) is
+begin 
+    DELETE CLIENTE_INTERNO
+    WHERE rut_CLIENTE_INTERNO = v_rut_CLIENTE_INTERNO;
+    commit;
+
+end CLIENTE_INTERNO_ELIMINAR;
+
+
+create or replace PROCEDURE CLIENTE_INTERNO_AGREGAR (
+v_rut_CLIENTE_INTERNO Integer, 
+v_nombre_CLIENTE_INTERNO varchar2,
+v_direccion_CLIENTE_INTERNO VARCHAR2,
+v_telefono_CLIENTE_INTERNO INTEGER, 
+v_correo_CLIENTE_INTERNO VARCHAR2, 
+v_contrasena_CLIENTE_INTERNO VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+  insert into CLIENTE_INTERNO(rut_CLIENTE_INTERNO,
+  nombre_CLIENTE_INTERNO,
+  direccion_CLIENTE_INTERNO,
+  telefono_CLIENTE_INTERNO,
+  correo_CLIENTE_INTERNO,
+  contrasena_CLIENTE_INTERNO,
+  cargo_id_cargo) values(v_rut_CLIENTE_INTERNO,v_nombre_CLIENTE_INTERNO,v_direccion_CLIENTE_INTERNO,v_telefono_CLIENTE_INTERNO,v_correo_CLIENTE_INTERNO,v_contrasena_CLIENTE_INTERNO,v_id_cargo);
+  commit;
+
+end CLIENTE_INTERNO_AGREGAR;
+
+
+create or replace PROCEDURE CLIENTE_INTERNO_MODIFICAR (v_rut_CLIENTE_INTERNO Integer,v_nombre_CLIENTE_INTERNO varchar2,
+v_direccion_CLIENTE_INTERNO VARCHAR2,
+v_telefono_CLIENTE_INTERNO INTEGER, 
+v_correo_CLIENTE_INTERNO VARCHAR2, 
+v_contrasena_CLIENTE_INTERNO VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+    UPDATE CLIENTE_INTERNO
+    SET nombre_CLIENTE_INTERNO = v_nombre_CLIENTE_INTERNO,
+    direccion_CLIENTE_INTERNO = v_direccion_CLIENTE_INTERNO,
+    telefono_CLIENTE_INTERNO = v_telefono_CLIENTE_INTERNO, 
+    correo_CLIENTE_INTERNO = v_correo_CLIENTE_INTERNO,
+    contrasena_CLIENTE_INTERNO = v_contrasena_CLIENTE_INTERNO,
+    cargo_id_cargo = v_id_cargo
+    WHERE rut_CLIENTE_INTERNO = v_rut_CLIENTE_INTERNO;
+    commit;
+
+end CLIENTE_INTERNO_MODIFICAR;
+
+
+
+ CREATE OR REPLACE EDITIONABLE PROCEDURE CLIENTE_INTERNO_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+
+begin
+  open cur_listar for select '{"rut_CLIENTE_INTERNO": '|| rut_CLIENTE_INTERNO||', 
+  "nombre_CLIENTE_INTERNO": "'||nombre_CLIENTE_INTERNO||',
+  "direccion_CLIENTE_INTERNO": "'||direccion_CLIENTE_INTERNO||',
+  "telefono_CLIENTE_INTERNO": "'||telefono_CLIENTE_INTERNO||',
+  "correo_CLIENTEINTERNO": "'||correo_CLIENTE_INTERNO||',
+  "contrasena_CLIENTE_INTERNO": "'||contrasena_CLIENTE_INTERNO||',
+  "cargo_id_cargo": "'||cargo_id_cargo||'"}' request from CLIENTE_INTERNO;
+end CLIENTE_INTERNO_LISTAR;
+------------------------------------------------------------------------------------------------------------------------------
 '''
