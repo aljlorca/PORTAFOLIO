@@ -41,7 +41,7 @@ end CARGO_MODIFICAR;
 is
 
 begin
-  open cur_listar for select '{"id_cargo": '|| id||', "nombre_cargo": "'||nombre_cargo||'"}' from cargo;
+  open cur_listar for select '{"id_cargo": '|| id||', "nombre_cargo": "'||nombre_cargo||'"}' request  from cargo;
 end CARGO_LISTAR;
 
 -------------------------------------------------------------------------------------------------------------------
@@ -96,12 +96,18 @@ begin
 end ADMINISTRADOR_MODIFICAR;
 
  
-##############MODIFICAR ESTE SP
+
  CREATE OR REPLACE EDITIONABLE PROCEDURE ADMINISTRADOR_LISTAR (cur_listar out SYS_REFCURSOR) 
 is
 
 begin
-  open cur_listar for select '{"rut_administrador": '|| rut_administrador||', "nombre_administrador": "'||nombre_cargo||'"}' from cargo;
+  open cur_listar for select '{"rut_administrador": '|| rut_administrador||', 
+  "nombre_administrador": "'||nombre_administrador||',
+  "direccion_administrador": "'||direccion_administrador||',
+  "telefono_administrador": "'||telefono_administrador||',
+  "correo_administrador": "'||correo_administrador||',
+  "contrasena_administrador": "'||contrasena_administrador||',
+  "cargo_id_cargo": "'||cargo_id_cargo||'"}' request from administrador;
 end ADMINISTRADOR_LISTAR;
 ------------------------------------------------------------------------------------------------
 '''
