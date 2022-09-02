@@ -1,4 +1,3 @@
-from multiprocessing.connection import Client
 from django.db import connection
 from django.http.response import JsonResponse
 from django.views import View
@@ -8,11 +7,10 @@ from .models import Proveedor
 import json
 
 # Create your views here.
-
-def agregar_proveedor(rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedor,cargo_id_cargo):
+def agregar_proveedor(rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedorm,cargo_id_cargo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('PROVEEDOR_AGREGAR',[rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedor,cargo_id_cargo])
+    cursor.callproc('PROVEEDOR_AGREGAR',[rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedorm,cargo_id_cargo])
 
 def modificar_proveedor(rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedor,cargo_id_cargo):
     django_cursor = connection.cursor()
@@ -21,10 +19,10 @@ def modificar_proveedor(rut_proveedor,nombre_proveedor,direccion_proveedor,telef
 
 def eliminar_proveedor(rut_proveedor):
     django_cursor = connection.cursor()
-    cursor = django_cursor.connproveedor
+    cursor = django_cursor.connection.cursor()
     cursor.callproc('PROVEEDOR_ELIMINAR',[rut_proveedor])
 
-def lista_proveedor():
+def listar_proveedor():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
@@ -34,54 +32,51 @@ def lista_proveedor():
         lista.append(fila)
     return lista
 
-
-    
-
 class ProveedorView(View):
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
-
-    def get(self, request, rut_proveedor=0):
-        if(rut_proveedor > 0):
+    
+    def get(self,request,rut_proveedor=0):
+        if(rut_proveedor>0):
             proveedores=list(Proveedor.objects.filter(rut_proveedor=rut_proveedor).values())
             if len(proveedores) > 0:
                 proveedor = proveedores[0]
-                datos={'message':"Success",'Cliente':proveedor}
+                datos={'message':'Success','Proveedor':proveedor}
             else:
-                datos={'message':"ERROR: Proveedor No Encontrado"}
+                datos={'message':'Error: Proveedor NO Encontrado'}
             return JsonResponse(datos)
         else:
             proveedores = list(Proveedor.objects.values())
-            if len(proveedores) > 0:
-                datos={'message':"Success",'Proveedores':proveedores}
+            if len(proveedores)>0:
+                datos={'message':'Success','Proveedores':proveedores}
             else:
-                datos={'message':"ERROR: Proveedores No encontrados"}
+                datos={'message':'Error: Proveedores NO Encontrados'}
             return JsonResponse(datos)
 
-    def post(self, request):
-        #print(request.body)
+
+    def post(self,request):
         jd = json.loads(request.body)
-        agregar_proveedor(rut_proveedor=jd['rut_proveedor'],nombre_proveedor=jd['nombre_proveedor'],direccion_proveedor=jd['direccion_proveedor'],telefono_proveedor=jd['telefono_proveedor'],correo_proveedor=jd['correo_proveedor'],contrasena_proveedor=jd['contrasena_proveedor'],cargo_id_cargo=jd['cargo_id_cargo'],)
-        datos={'message':"Success"}
+        agregar_proveedor(rut_proveedor=jd['rut_proveedor'],nombre_proveedor=jd['nombre_proveedor'],direccion_proveedor=jd['direccion_proveedor'],telefono_proveedor=jd['telefono_proveedor'],correo_proveedor=jd['correo_proveedor'],contrasena_proveedor=['contrasena_proveedor'],cargo_id_cargo=jd['cargo_id_cargo'])
+        datos={'message':'Success'}
         return JsonResponse(datos)
 
-    def put(self, request,rut_proveedor):
+    def put(self,request,rut_proveedor):
         jd = json.loads(request.body)
         proveedores = list(Proveedor.objects.filter(rut_proveedor=rut_proveedor).values())
         if len(proveedores) > 0:
-            modificar_proveedor(rut_proveedor=jd['rut_proveedor'],nombre_proveedor=jd['nombre_proveedor'],direccion_proveedor=jd['direccion_proveedor'],telefono_proveedor=jd['telefono_proveedor'],correo_proveedor=jd['correo_proveedor'],contrasena_proveedor=jd['contrasena_proveedor'],cargo_id_cargo=jd['cargo_id_cargo'],)
-            datos={'message':"Success"}
+            modificar_proveedor(rut_proveedor=jd['rut_proveedor'],nombre_proveedor=jd['nombre_proveedor'],direccion_proveedor=jd['direccion_proveedor'],telefono_proveedor=jd['telefono_proveedor'],correo_proveedor=jd['correo_proveedor'],contrasena_proveedor=jd['contrasena_proveedor'],cargo_id_cargo=jd['cargo_id_cargo'])
+            datos={'message':'Success'}
         else:
-            datos={'message':"ERROR: No se pudo modificar el Proveedor"}
+            datos={'message':'ERROR: Proveedor no se pudo actualizar'}
         return JsonResponse(datos)
-
-    def delete(self, request,rut_proveedor):
+    
+    def delete(self,request,rut_proveedor):
         proveedores = list(Proveedor.objects.filter(rut_proveedor=rut_proveedor).values())
         if len(proveedores) > 0:
             eliminar_proveedor(rut_proveedor)
-            datos={'message':"Success"}
+            datos={'message':'Succes'}
         else:
-            datos={'message':"ERROR: No se pudo eliminar el Proveedor"}
+            datos={'message':'ERROR: Proveedor no pudo ser eliminado'}
         return JsonResponse(datos)

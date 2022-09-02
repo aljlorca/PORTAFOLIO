@@ -52,7 +52,7 @@ class AdministradorView(View):
             return JsonResponse(datos)
         else:
             Administradores = list(Administrador.objects.values())
-            print(Administradores)
+
             if len(Administradores) > 0:
                 datos={'message':"Success",'Administradores':Administradores}
             else:
