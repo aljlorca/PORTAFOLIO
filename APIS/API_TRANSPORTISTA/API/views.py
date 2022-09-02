@@ -1,13 +1,13 @@
 from django.db import connection
+from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Transportista
-from django.http.response import JsonResponse
 import json
 # Create your views here.
 
-def agergar_transportista(rut_transportista,nombre_transportista,direccion_transportista,telefono_transportista,correo_transportista,contrasena_transportista,cargo_id_cargo):
+def agregar_transportista(rut_transportista,nombre_transportista,direccion_transportista,telefono_transportista,correo_transportista,contrasena_transportista,cargo_id_cargo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     cursor.callproc('TRANSPORTISTA_AGREGAR',[rut_transportista,nombre_transportista,direccion_transportista,telefono_transportista,correo_transportista,contrasena_transportista,cargo_id_cargo])
@@ -53,10 +53,11 @@ class TransportistaView(View):
                 datos={'message':'Success','Transportistas':transportistas}
             else:
                 datos={'message':'Error: Transportistas NO Encontrados'}
+            return JsonResponse(datos)
     
     def post(self,request):
         jd = json.loads(request.body)
-        agergar_transportista(rut_transportista=jd['rut_transportista'],nombre_transportista=jd['nombre_transportista'],direccion_transportista=jd['direccion_transportista'],telefono_transportista=jd['telefono_transportista'],correo_transportista=jd['correo_transportista'],contrasena_transportista=jd['contrasena_transportista'],cargo_id_cargo=['cargo_id_cargo'])
+        agregar_transportista(rut_transportista=jd['rut_transportista'],nombre_transportista=jd['nombre_transportista'],direccion_transportista=jd['direccion_transportista'],telefono_transportista=jd['telefono_transportista'],correo_transportista=jd['correo_transportista'],contrasena_transportista=jd['contrasena_transportista'],cargo_id_cargo=jd['cargo_id_cargo'],)
         datos={'message':'Success'}
         return JsonResponse(datos)
     
@@ -77,4 +78,5 @@ class TransportistaView(View):
             datos={'message':'Success'}
         else:
             datos={'message':'ERROR: NO fue posible eliminar al Transportista'}
+        return JsonResponse(datos)
 

@@ -280,4 +280,63 @@ is
 begin
   open cur_listar for select '{"rut_proveedor": '|| rut_proveedor||', "nombre_proveedor": "'||nombre_proveedor||',"direccion_proveedor": "'||direccion_proveedor||',"telefono_proveedor": "'||telefono_proveedor||',"correo_proveedor": "'||correo_proveedor||',"contrasena_proveedor": "'||contrasena_proveedor||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from proveedor;
 end PROVEEDOR_LISTAR;
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP TRANSPORTISTA ---------------------------------------------------------------------
+create or replace PROCEDURE PROVEEDOR_ELIMINAR (v_rut_proveedor Integer) is
+begin 
+    DELETE proveedor
+    WHERE rut_proveedor = v_rut_proveedor;
+    commit;
+
+end PROVEEDOR_ELIMINAR;
+
+
+create or replace PROCEDURE PROVEEDOR_AGREGAR (
+v_rut_proveedor Integer, 
+v_nombre_proveedor varchar2,
+v_direccion_proveedor VARCHAR2,
+v_telefono_proveedor INTEGER, 
+v_correo_proveedor VARCHAR2, 
+v_contrasena_proveedor VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+  insert into proveedor(rut_proveedor,
+  nombre_proveedor,
+  direccion_proveedor,
+  telefono_proveedor,
+  correo_proveedor,
+  contrasena_proveedor,
+  cargo_id_cargo) values(v_rut_proveedor,v_nombre_proveedor,v_direccion_proveedor,v_telefono_proveedor,v_correo_proveedor,v_contrasena_proveedor,v_id_cargo);
+  commit;
+
+end PROVEEDOR_AGREGAR;
+
+
+create or replace PROCEDURE PROVEEDOR_MODIFICAR (v_rut_proveedor Integer,v_nombre_proveedor varchar2,
+v_direccion_proveedor VARCHAR2,
+v_telefono_proveedor INTEGER, 
+v_correo_proveedor VARCHAR2, 
+v_contrasena_proveedor VARCHAR2,
+v_id_cargo INTEGER) is
+begin 
+    UPDATE proveedor
+    SET nombre_proveedor = v_nombre_proveedor,
+    direccion_proveedor = v_direccion_proveedor,
+    telefono_proveedor = v_telefono_proveedor, 
+    correo_proveedor = v_correo_proveedor,
+    contrasena_proveedor = v_contrasena_proveedor,
+    cargo_id_cargo = v_id_cargo
+    WHERE rut_proveedor = v_rut_proveedor;
+    commit;
+
+end PROVEEDOR_MODIFICAR;
+
+ 
+
+ CREATE OR REPLACE EDITIONABLE PROCEDURE PROVEEDOR_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+
+begin
+  open cur_listar for select '{"rut_proveedor": '|| rut_proveedor||', "nombre_proveedor": "'||nombre_proveedor||',"direccion_proveedor": "'||direccion_proveedor||',"telefono_proveedor": "'||telefono_proveedor||',"correo_proveedor": "'||correo_proveedor||',"contrasena_proveedor": "'||contrasena_proveedor||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from proveedor;
+end PROVEEDOR_LISTAR;
 '''
