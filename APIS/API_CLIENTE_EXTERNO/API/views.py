@@ -4,7 +4,9 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from .models import ClienteExterno, Cargo
+from .models import ClienteExterno
+from .serializers import ClienteExternoSerializer
+from rest_framework import viewsets
 import json
 
 # Create your views here.
@@ -34,8 +36,10 @@ def lista_cliente_externo():
         lista.append(fila)
     return lista
 
+class ClienteExternoViewset(viewsets.ModelViewSet):
+    queryset = ClienteExterno.objects.all()
+    serializer_class = ClienteExternoSerializer
 
-    
 
 class ClienteExternoView(View):
 

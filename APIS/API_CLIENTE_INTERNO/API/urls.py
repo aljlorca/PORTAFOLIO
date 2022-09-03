@@ -1,7 +1,12 @@
-from django.urls import path
-from .views import ClienteInternoView
+from django.urls import path,include
+from .views import ClienteInternoView,ClienteInternoViewset
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('Cliente_Interno',ClienteInternoViewset)
 
 urlpatterns = [
+    path('',include(router.urls)),
     path('cliente_interno/',ClienteInternoView.as_view(),name='cliente_interno_list'),
     path('cliente_interno/<int:rut_cliente_interno>',ClienteInternoView.as_view(),name='cliente_interno_update'),
 ]

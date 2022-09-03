@@ -4,6 +4,8 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Transportista
+from .serializers import TransportistaSerializer
+from rest_framework import viewsets
 import json
 # Create your views here.
 
@@ -31,6 +33,10 @@ def listar_proveedor():
     for fila in out_cur:
         lista.append(fila)
     return lista
+
+class TransportistaViewset(viewsets.ModelViewSet):
+    queryset = Transportista.objects.all()
+    serializer_class = TransportistaSerializer
 
 class TransportistaView(View):
     

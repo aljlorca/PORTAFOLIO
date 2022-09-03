@@ -1,10 +1,11 @@
-from multiprocessing.connection import Client
 from django.db import connection
 from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import ClienteInterno
+from rest_framework import viewsets
+from .serializers import ClienteInternoSerializer
 import json
 
 # Create your views here.
@@ -34,7 +35,10 @@ def lista_cliente_interno():
         lista.append(fila)
     return lista
 
-
+class ClienteInternoViewset(viewsets.ModelViewSet):
+    queryset = ClienteInterno.objects.all()
+    serializer_class = ClienteInternoSerializer
+    
     
 
 class ClienteInternoView(View):

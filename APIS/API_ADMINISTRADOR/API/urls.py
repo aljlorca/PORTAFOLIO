@@ -3,7 +3,7 @@ from .views import AdministradorView,AdministradorViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('administrador',AdministradorViewset)
+router.register('Administrador',AdministradorViewset)
 
 urlpatterns = [
     path('',include(router.urls)),

@@ -3,8 +3,7 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-
-from API.serializers import AdministradorSerializer
+from .serializers import AdministradorSerializer
 from .models import Administrador, Cargo
 from rest_framework import viewsets
 import json

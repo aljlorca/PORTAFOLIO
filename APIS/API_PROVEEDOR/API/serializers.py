@@ -1,4 +1,3 @@
-from sys import float_info
 from rest_framework import serializers
 from .models import Proveedor
 

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'API',
     'cx_Oracle',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [

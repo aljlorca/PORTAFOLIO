@@ -9,6 +9,9 @@ class Cargo(models.Model):
         managed = False
         db_table = 'cargo'
 
+    def __str__(self):
+        return self.nombre_cargo
+
 
 class ClienteExterno(models.Model):
     rut_cliente_externo = models.BigIntegerField(primary_key=True)
