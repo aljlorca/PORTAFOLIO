@@ -6,6 +6,6 @@ router = routers.DefaultRouter()
 router.register('cargo',CargoViewset)
 
 urlpatterns = [
-    path('cargo/',include(router.urls)),
+    path('',include(router.urls)),
     path('cargo/<int:id>',CargoView.as_view(),name='cargo_update'),
 ]
