@@ -3,8 +3,6 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-
-from API_ADMINISTRADOR.API.models import Administrador
 from .models import Cargo
 import json
 # Create your views here.
