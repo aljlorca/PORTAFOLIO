@@ -7,10 +7,10 @@ from .models import Proveedor
 import json
 
 # Create your views here.
-def agregar_proveedor(rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedorm,cargo_id_cargo):
+def agregar_proveedor(rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedor,cargo_id_cargo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('PROVEEDOR_AGREGAR',[rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedorm,cargo_id_cargo])
+    cursor.callproc('PROVEEDOR_AGREGAR',[rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedor,cargo_id_cargo])
 
 def modificar_proveedor(rut_proveedor,nombre_proveedor,direccion_proveedor,telefono_proveedor,correo_proveedor,contrasena_proveedor,cargo_id_cargo):
     django_cursor = connection.cursor()
@@ -58,7 +58,7 @@ class ProveedorView(View):
 
     def post(self,request):
         jd = json.loads(request.body)
-        agregar_proveedor(rut_proveedor=jd['rut_proveedor'],nombre_proveedor=jd['nombre_proveedor'],direccion_proveedor=jd['direccion_proveedor'],telefono_proveedor=jd['telefono_proveedor'],correo_proveedor=jd['correo_proveedor'],contrasena_proveedor=['contrasena_proveedor'],cargo_id_cargo=jd['cargo_id_cargo'])
+        agregar_proveedor(rut_proveedor=jd['rut_proveedor'],nombre_proveedor=jd['nombre_proveedor'],direccion_proveedor=jd['direccion_proveedor'],telefono_proveedor=jd['telefono_proveedor'],correo_proveedor=jd['correo_proveedor'],contrasena_proveedor=jd['contrasena_proveedor'],cargo_id_cargo=jd['cargo_id_cargo'])
         datos={'message':'Success'}
         return JsonResponse(datos)
 

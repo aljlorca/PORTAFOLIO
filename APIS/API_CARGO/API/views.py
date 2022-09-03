@@ -8,15 +8,15 @@ import json
 # Create your views here.
 
 
-def agregar_cargo(nombre):
+def agregar_cargo(nombre,descripcion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('CARGO_AGREGAR',[nombre])
+    cursor.callproc('CARGO_AGREGAR',[nombre,descripcion])
 
-def modificar_cargo(id,nombre):
+def modificar_cargo(id,nombre,descripcion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('CARGO_MODIFICAR',[id,nombre])
+    cursor.callproc('CARGO_MODIFICAR',[id,nombre,descripcion])
 
 def eliminar_cargo(id):
     django_cursor = connection.cursor()
@@ -61,14 +61,14 @@ class CargoView(View):
     def post(self, request):
         #print(request.body)
         jd = json.loads(request.body)
-        agregar_cargo(nombre=jd['nombre_cargo'])
+        agregar_cargo(nombre=jd['nombre_cargo'],descripcion=jd['descripcion'])
         datos={'message':"Success"}
         return JsonResponse(datos)
     def put(self, request,id):
         jd = json.loads(request.body)
         cargos = list(Cargo.objects.filter(id=id).values())
         if len(cargos) > 0:
-            modificar_cargo(id=jd['id_cargo'],nombre=jd['nombre_cargo'],)
+            modificar_cargo(id=jd['id'],nombre=jd['nombre_cargo'],descripcion=jd['descripcion'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se pudo modificar el Cargo"}
