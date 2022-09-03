@@ -60,7 +60,6 @@ class AdministradorView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        #print(request.body)
         jd = json.loads(request.body)
         agregar_administrador(rut_administrador=jd['rut_administrador'],nombre_administrador=jd['nombre_administrador'],direccion_administrador=jd['direccion_administrador'],telefono_administrador=jd['telefono_administrador'],correo_administrador=jd['correo_administrador'],contrasena_administrador=jd['contrasena_administrador'],cargo_id_cargo=jd['cargo_id_cargo'],)
         datos={'message':"Success"}

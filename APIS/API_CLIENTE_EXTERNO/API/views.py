@@ -54,7 +54,6 @@ class ClienteExternoView(View):
             return JsonResponse(datos)
         else:
             clientes = list(ClienteExterno.objects.values())
-            print(clientes)
             if len(clientes) > 0:
                 datos={'message':"Success",'Clientes':clientes}
             else:
@@ -62,7 +61,6 @@ class ClienteExternoView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        #print(request.body)
         jd = json.loads(request.body)
         agregar_cliente_externo(rut_cliente_externo=jd['rut_cliente_externo'],nombre_cliente_externo=jd['nombre_cliente_externo'],direccion_cliente_externo=jd['direccion_cliente_externo'],telefono_cliente_externo=jd['telefono_cliente_externo'],correo_cliente_externo=jd['correo_cliente_externo'],contrasena_cliente_externo=jd['contrasena_cliente_externo'],cargo_id_cargo=jd['cargo_id_cargo'],)
         datos={'message':"Success"}

@@ -61,7 +61,6 @@ class ClienteInternoView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        #print(request.body)
         jd = json.loads(request.body)
         agregar_cliente_interno(rut_cliente_interno=jd['rut_cliente_interno'],nombre_cliente_interno=jd['nombre_cliente_interno'],direccion_cliente_interno=jd['direccion_cliente_interno'],telefono_cliente_interno=jd['telefono_cliente_interno'],correo_cliente_interno=jd['correo_cliente_interno'],contrasena_cliente_interno=jd['contrasena_cliente_interno'],cargo_id_cargo=jd['cargo_id_cargo'],)
         datos={'message':"Success"}
