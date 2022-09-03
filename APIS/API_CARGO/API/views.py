@@ -4,6 +4,8 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Cargo
+from .serializers import CategoriaSerializer
+from rest_framework import viewsets
 import json
 # Create your views here.
 
@@ -33,7 +35,9 @@ def lista_cargo():
         lista.append(fila)
     return lista
 
-
+class CargoViewset(viewsets.ModelViewSet):
+    queryset = Cargo.objects.all()
+    serializer_class = CategoriaSerializer
     
 
 class CargoView(View):
