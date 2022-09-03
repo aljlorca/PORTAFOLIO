@@ -85,9 +85,3 @@ class CargoView(View):
         else:
             datos={'message':"ERROR: No se pudo eliminar el Cargo"}
         return JsonResponse(datos)
-
-
-
-
-
-    
