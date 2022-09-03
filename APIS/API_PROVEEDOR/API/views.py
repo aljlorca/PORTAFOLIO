@@ -4,6 +4,8 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Proveedor
+from rest_framework import viewsets
+from .serializers import ProveedorSerializers
 import json
 
 # Create your views here.
@@ -31,6 +33,10 @@ def listar_proveedor():
     for fila in out_cur:
         lista.append(fila)
     return lista
+
+class ProveedorViewset(viewsets.ModelViewSet):
+    queryset = Proveedor.objects.all()
+    serializer_class = ProveedorSerializers
 
 class ProveedorView(View):
 

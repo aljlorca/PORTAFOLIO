@@ -8,6 +8,10 @@ class Cargo(models.Model):
     class Meta:
         managed = False
         db_table = 'cargo'
+    
+    def __str__(self):
+        return self.nombre_cargo
+    
 
 class Proveedor(models.Model):
     rut_proveedor = models.BigIntegerField(primary_key=True)
