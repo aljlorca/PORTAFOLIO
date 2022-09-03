@@ -7,5 +7,6 @@ router.register('cargo',CargoViewset)
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('cargo/<int:id>',CargoView.as_view(),name='cargo_update'),
+    path('cargo_old/',CargoView.as_view(),name='cargo_list'),
+    path('cargo_old/<int:id>',CargoView.as_view(),name='cargo_update'),
 ]
