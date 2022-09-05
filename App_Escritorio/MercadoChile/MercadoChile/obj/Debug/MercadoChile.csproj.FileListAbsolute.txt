@@ -1,0 +1,19 @@
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe.config
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\bin\Debug\MercadoChile.pdb
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.dll
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\bin\Debug\RestSharp.dll
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.xml
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\bin\Debug\RestSharp.xml
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.AssemblyReference.cache
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Form1.resources
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Properties.Resources.resources
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.GenerateResource.cache
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CoreCompileInputs.cache
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CopyComplete
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Clientes.resources
+C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Cargos.resources
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
