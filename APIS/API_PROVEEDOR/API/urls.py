@@ -8,6 +8,6 @@ router.register('Proveedor',ProveedorViewset)
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('proveedor/',ProveedorView.as_view(),name='proveedor_list'),
-    path('proveedor/<int:rut_proveedor>',ProveedorView.as_view(),name='proveedor_update'),
+    path('proveedor_old/',ProveedorView.as_view(),name='proveedor_list'),
+    path('proveedor_old/<int:rut_proveedor>',ProveedorView.as_view(),name='proveedor_update'),
 ]
