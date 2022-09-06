@@ -3,7 +3,7 @@ from .views import ProveedorView,ProveedorViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('Proveedor',ProveedorViewset)
+router.register('proveedor',ProveedorViewset)
 
 
 urlpatterns = [
