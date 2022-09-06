@@ -3,7 +3,7 @@ from .views import ClienteExternoView,ClienteExternoViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('Cliente_Externo',ClienteExternoViewset)
+router.register('cliente_externo',ClienteExternoViewset)
 
 urlpatterns = [
     path('',include(router.urls)),

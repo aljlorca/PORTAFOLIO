@@ -3,7 +3,7 @@ from .views import ClienteInternoView,ClienteInternoViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('Cliente_Interno',ClienteInternoViewset)
+router.register('cliente_interno',ClienteInternoViewset)
 
 urlpatterns = [
     path('',include(router.urls)),

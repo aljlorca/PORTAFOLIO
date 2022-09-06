@@ -3,7 +3,7 @@ from .views import TransportistaView, TransportistaViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('Transportista',TransportistaViewset)
+router.register('transportista',TransportistaViewset)
 
 
 urlpatterns = [
