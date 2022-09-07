@@ -34,10 +34,6 @@ def lista_cargo():
     for fila in out_cur:
         lista.append(fila)
     return lista
-
-class CargoViewset(viewsets.ModelViewSet):
-    queryset = Cargo.objects.all()
-    serializer_class = CategoriaSerializer
     
 
 class CargoView(View):
@@ -85,3 +81,8 @@ class CargoView(View):
         else:
             datos={'message':"ERROR: No se pudo eliminar el Cargo"}
         return JsonResponse(datos)
+    
+    
+class CargoViewset(viewsets.ModelViewSet):
+    queryset = Cargo.objects.all()
+    serializer_class = CategoriaSerializer
