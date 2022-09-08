@@ -35,10 +35,6 @@ def lista_administrador():
         lista.append(fila)
     return lista
 
-
-class AdministradorViewset(viewsets.ModelViewSet):
-    queryset = Administrador.objects.all()
-    serializer_class = AdministradorSerializer
     
 
 class AdministradorView(View):
@@ -89,3 +85,14 @@ class AdministradorView(View):
             datos={'message':"ERROR: No se pudo eliminar el Adminsitrador"}
         return JsonResponse(datos)
 
+
+
+class AdministradorViewset(viewsets.ModelViewSet):
+    queryset = Administrador.objects.all()
+    serializer_class = AdministradorSerializer
+
+'''
+class AdministradorAuthViewset(viewsets.ModelViewSet):
+    queryset = Administrador.objects.all()
+    serializer_class = AdministradorAuthSerializer
+    '''
