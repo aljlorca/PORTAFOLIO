@@ -7,6 +7,6 @@ router.register('administrador',AdministradorViewset)
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('administrador/',AdministradorView.as_view(),name='administrador_list'),
-    path('administrador/<int:rut_administrador>',AdministradorView.as_view(),name='administrador_update'),
+    path('administrador_old/',AdministradorView.as_view(),name='administrador_list'),
+    path('administrador_old/<int:rut_administrador>',AdministradorView.as_view(),name='administrador_update'),
 ]
