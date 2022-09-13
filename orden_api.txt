@@ -1,0 +1,11 @@
+API LOGIN 8000
+API CLIENTE INTERNO 8001
+API CARGO 8002
+API CLIENTE EXTERNO 8003
+API ADMINISTRADOR 8004
+API PROVEEDOR 8005
+API TRANSPORTISTA 8006
+
+Para ejecutar las api en su puerto correspondiente debe de ejecutarse de la siguiente forma:
+
+python ./manage runserver numero_puerto

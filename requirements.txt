@@ -2,6 +2,7 @@ Django==3.2.4
 cx_oracle
 virtualenv
 django-cors-headers
+djangorestframework
 requests==2.28.1
 
 

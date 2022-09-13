@@ -42,10 +42,7 @@ INSTALLED_APPS = [
     'cliente_externo_services',
     'cliente_interno_services',
     'proveedor_services',
-    'transportista_serivces',
-
-
-
+    'transportista_services',
 ]
 
 MIDDLEWARE = [
