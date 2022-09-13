@@ -7,6 +7,6 @@ router.register('cliente_interno',ClienteInternoViewset)
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('cliente_interno/',ClienteInternoView.as_view(),name='cliente_interno_list'),
-    path('cliente_interno/<int:rut_cliente_interno>',ClienteInternoView.as_view(),name='cliente_interno_update'),
+    path('cliente_interno_old/',ClienteInternoView.as_view(),name='cliente_interno_list'),
+    path('cliente_interno_old/<int:rut_cliente_interno>',ClienteInternoView.as_view(),name='cliente_interno_update'),
 ]

@@ -11,8 +11,14 @@ def generate_request(url, params={}):
         return response
 
 def get_cliente_externo_rut(rut_cliente_externo):
-    url = 'http://127.0.0.1:8001/api/categoria/'
-    payload = {'rut_cliente_externo':rut_cliente_externo}
+    url = 'http://127.0.0.1:8001/api/categoria/'+rut_cliente_externo+'?format=json'
+    payload = {}
     response = requests.post(url,json=payload)
     if response.status_code == 201:
-        return response
+        data={'message':'ERROR: 201'}
+        return data
+    if response.status_code == 200:
+        data={'message':'Succes'}
+    
+
+
