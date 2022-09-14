@@ -11,14 +11,19 @@ def generate_request(url, params={}):
         return response
 
 def get_cliente_externo_rut(rut_cliente_externo):
-    url = 'http://127.0.0.1:8000/api/cliente_externo_auth/'+str(rut_cliente_externo)+'?format=json'
-    payload = {}
-    response = requests.post(url,json=payload)
-    if response.status_code == 201:
-        data={'message':'ERROR: 201'}
-        return data
+    url = 'http://127.0.0.1:8000/api/cliente_externo_auth/'+str(rut_cliente_externo)+'/?format=json'
+    response = requests.get(url)
     if response.status_code == 200:
-        data={'message':'Succes'}
+        content = response.content
+        print(content)
+        return content
+
+    if response.status_code == 404:
+        data = {
+            'message':'Cliente Externo no encontrado'
+        }
+        print(data)
+        return data
     
 
 

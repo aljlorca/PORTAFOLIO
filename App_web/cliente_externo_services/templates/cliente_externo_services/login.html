@@ -39,18 +39,18 @@
       <br>
 
       <div class="container-fluid">
-        <form>
+        <form action="" method"POST">
           <div class="mb-3">
             <label for="rut" class="form-label">Ingrese Rut</label>
-            <input class="form-control" id="rut_cliente_externo">
+            <input class="form-control" type='text' name='rut_cliente_externo'>
             <div class="form-text">Ingrese su rut sin puntos ni guión</div>
           </div>
           <div class="mb-3">
             <label for="contrasena" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contrasena_cliente_externo">
+            <input type="password" class="form-control" type='text' name='contrasena_cliente_externo'>
           </div>
           <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary" method='GET'>Ingresar</button>
+            <input type="submit" class="btn btn-primary" value="Ingresar">
             <div class="form-text">Para cambiar la contraseña por favor contactar con un administrador</div>
           </div>
         </form>
