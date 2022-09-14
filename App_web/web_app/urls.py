@@ -20,4 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('web_core.urls')),
     path('cliente_externo/',include('cliente_externo_services.urls')),
+    path('cliente_interno/',include('cliente_interno_services.urls')),
+    path('proveedor/',include('proveedor_services.urls')),
+    path('transportista/',include('transportista_services.urls')),
+    
 ]
