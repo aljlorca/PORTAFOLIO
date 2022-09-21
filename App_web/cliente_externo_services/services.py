@@ -7,7 +7,7 @@ def generate_request(url, params={}):
         if response.status_code==200:
             return response.json()
     except requests.exceptions.ConnectionError as e:
-        response = 'Error : no existe respuesta del servidor'
+        response = {'Error : no existe respuesta del servidor'}
         return response
 
 def get_cliente_externo_rut(rut_cliente_externo):
@@ -24,6 +24,3 @@ def get_cliente_externo_rut(rut_cliente_externo):
         }
         print(data)
         return data
-    
-
-
