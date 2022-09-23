@@ -1,32 +1,50 @@
-import json
-from .models import Administrador,ClienteExterno,ClienteInterno,Transportista,Proveedor
-from .serializers import AdministradorSerializer,ClienteExternoSerializer,ClienteInternoSerializer,ProveedorSerializer,TransportistaSerializer
-from rest_framework import viewsets
-
+from django.db import connection
+from django.http.response import JsonResponse
+from django.views import View
+from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
+from rest_framework import viewsets
+from rest_framework import serializers
 
+import cx_Oracle
+import json
+
+# Create your views here.
+def request_auth(rut_cliente_externo,contrasena_cliente_externo):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    cursor.callproc("dbms_output.enable")
+    cursor.callproc('CLIENTE_EXTERNO_LOGIN',[rut_cliente_externo,contrasena_cliente_externo,])
+    statusVar = cursor.var(cx_Oracle.NUMBER)
+    lineVar = cursor.var(cx_Oracle.DB_TYPE_CHAR)
+    global data
+    data=[]
+    while True:
+        cursor.callproc("dbms_output.get_line", (lineVar, statusVar))
+        if statusVar.getvalue() != 0:
+            
+            break
+        data.append(lineVar.getvalue())
+
+    return data
+        
+
+
+
+
+
+class ClienteExternoAuthView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+    def post(self, request):
+        jd = json.loads(request.body)
+        datos = request_auth(rut_cliente_externo=jd['rut_cliente_externo'],contrasena_cliente_externo=jd['contrasena_cliente_externo'])
+        datos = datos[0].strip()
+        return JsonResponse(datos,safe=False)
 
 
 
     
-class AdministradorViewset(viewsets.ModelViewSet):
-    queryset = Administrador.objects.all()
-    serializer_class = AdministradorSerializer
-
-class ClienteExternoViewset(viewsets.ModelViewSet):
-    queryset = ClienteExterno.objects.all()
-    serializer_class = ClienteExternoSerializer
-
-class ClienteInternoViewset(viewsets.ModelViewSet):
-    queryset = ClienteInterno.objects.all()
-    serializer_class = ClienteInternoSerializer
-
-class ProveedorViewset(viewsets.ModelViewSet):
-    queryset = Proveedor.objects.all()
-    serializer_class = ProveedorSerializer
-
-class TransportistaViewset(viewsets.ModelViewSet):
-    queryset = Transportista.objects.all()
-    serializer_class = TransportistaSerializer
-

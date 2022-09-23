@@ -3,7 +3,7 @@ cx_oracle
 virtualenv
 django-cors-headers
 djangorestframework
-requests==2.28.1
+requests
 
 
 #############################################################################
@@ -345,4 +345,47 @@ is
 begin
   open cur_listar for select '{"rut_proveedor": '|| rut_proveedor||', "nombre_proveedor": "'||nombre_proveedor||',"direccion_proveedor": "'||direccion_proveedor||',"telefono_proveedor": "'||telefono_proveedor||',"correo_proveedor": "'||correo_proveedor||',"contrasena_proveedor": "'||contrasena_proveedor||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from proveedor;
 end PROVEEDOR_LISTAR;
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP CONTRATO --------------------------------------------------------------------------
+
+create or replace PROCEDURE CONTRATO_ELIMINAR (v_id_contrato Integer) is
+begin 
+    DELETE contrato
+    WHERE id_contrato = v_id_contrato;
+    commit;
+
+end CONTRATO_ELIMINAR;
+
+
+create or replace PROCEDURE CONTRATO_AGREGAR (v_documento_contrato BFILE, v_fecha_contrato date,v_rut_cliente_externo integer,v_rut_administrador integer,v_tipo_contrato varchar2) is
+begin 
+  insert into CONTRATO(id_contrato,documento_contrato,fecha_contrato,cliente_externo_rut_cliente_externo,administrador_rut_administrador,tipo_contrato) 
+  values(ISEQ$$_76839.nextval,v_documento_contrato,v_fecha_contrato,v_rut_cliente_externo,v_rut_administrador,v_tipo_contrato);
+  commit;
+
+end CONTRATO_AGREGAR;
+
+
+create or replace PROCEDURE CONTRATO_MODIFICAR (v_id_contrato Integer,v_documento_contrato BFILE, v_fecha_contrato date,v_rut_cliente_externo integer,v_rut_administrador integer,v_tipo_contrato varchar2) is
+begin 
+    UPDATE contrato
+    SET contrato.documento_contrato = v_documento_contrato,
+    contrato.fecha_contrato = v_fecha_contrato,
+    contrato.cliente_externo_rut_cliente_externo = v_rut_cliente_externo,
+    contrato.administrador_rut_administrador = v_rut_administrador,
+    contrato.tipo_contrato = v_tipo_contrato
+    WHERE id_contrato = v_id_contrato;
+    commit;
+
+end CONTRATO_MODIFICAR;
+
+ 
+
+ CREATE OR REPLACE EDITIONABLE PROCEDURE CONTRATO_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+
+begin
+    open cur_listar for select '{"id_contrato": '|| id_contrato||', "documento_contrato": "'||documento_contrato||',"fecha_contrato": "'||fecha_contrato||',"rut_cliente_externo": "'||cliente_externo_rut_cliente_externo||',"rut_administrador": "'||administrador_rut_administrador||',"tipo_contrato": "'||tipo_contrato||'"}' request from contrato;
+end CONTRATO_LISTAR;
 '''
