@@ -3,7 +3,7 @@ from .views import ContratoView, ContratoViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('transportista',ContratoViewset)
+router.register('contrato',ContratoViewset)
 
 
 urlpatterns = [

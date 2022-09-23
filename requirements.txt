@@ -360,7 +360,7 @@ end CONTRATO_ELIMINAR;
 
 create or replace PROCEDURE CONTRATO_AGREGAR (v_documento_contrato BFILE, v_fecha_contrato date,v_rut_cliente_externo integer,v_rut_administrador integer,v_tipo_contrato varchar2) is
 begin 
-  insert into CONTRATO(id_contrato,documento_contrato,fecha_contrato,cliente_externo_rut_cliente_externo,administrador_rut_administrador,tipo_contrato) 
+  insert into CONTRATO(id_contrato,documento_contrato,fecha_contrato,rut_cliente_externo,rut_administrador,tipo_contrato) 
   values(ISEQ$$_76839.nextval,v_documento_contrato,v_fecha_contrato,v_rut_cliente_externo,v_rut_administrador,v_tipo_contrato);
   commit;
 
@@ -372,8 +372,8 @@ begin
     UPDATE contrato
     SET contrato.documento_contrato = v_documento_contrato,
     contrato.fecha_contrato = v_fecha_contrato,
-    contrato.cliente_externo_rut_cliente_externo = v_rut_cliente_externo,
-    contrato.administrador_rut_administrador = v_rut_administrador,
+    contrato.rut_cliente_externo = v_rut_cliente_externo,
+    contrato.rut_administrador = v_rut_administrador,
     contrato.tipo_contrato = v_tipo_contrato
     WHERE id_contrato = v_id_contrato;
     commit;
@@ -388,4 +388,6 @@ is
 begin
     open cur_listar for select '{"id_contrato": '|| id_contrato||', "documento_contrato": "'||documento_contrato||',"fecha_contrato": "'||fecha_contrato||',"rut_cliente_externo": "'||cliente_externo_rut_cliente_externo||',"rut_administrador": "'||administrador_rut_administrador||',"tipo_contrato": "'||tipo_contrato||'"}' request from contrato;
 end CONTRATO_LISTAR;
+
+
 '''
