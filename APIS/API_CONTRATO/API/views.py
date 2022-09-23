@@ -34,11 +34,11 @@ def listar_contrato():
         lista.append(fila)
     return lista
 
-class TransportistaViewset(viewsets.ModelViewSet):
+class ContratoViewset(viewsets.ModelViewSet):
     queryset = Contrato.objects.all()
     serializer_class = ContratoSerializer
 
-class TransportistaView(View):
+class ContratoView(View):
     
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
