@@ -40,7 +40,7 @@ class ClienteExterno(models.Model):
 
 class Contrato(models.Model):
     id_contrato = models.BigAutoField(primary_key=True)
-    documento_contrato = models.TextField()  # This field type is a guess.
+    documento_contrato = models.FileField() # This field type is a guess.
     fecha_contrato = models.DateField()
     rut_cliente_externo = models.ForeignKey('ClienteExterno', models.DO_NOTHING, db_column='rut_cliente_externo')
     rut_administrador = models.ForeignKey('Administrador', models.DO_NOTHING, db_column='rut_administrador')
