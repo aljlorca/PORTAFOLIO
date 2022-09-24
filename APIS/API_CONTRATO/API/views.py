@@ -4,7 +4,7 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Contrato
-from .serializers import Contrato, ContratoSerializer
+from .serializers import ContratoSerializer
 from rest_framework import viewsets
 import json
 # Create your views here.

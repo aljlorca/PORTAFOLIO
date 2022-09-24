@@ -6,10 +6,6 @@ djangorestframework
 requests
 
 
-#############################################################################
-##### REALIZAR COMANDO python .\manage.py migrate PARA UTILIZAR API AUTH ####
-#############################################################################
-
 #########################################################################
 ##### PROCEDIMIENTOS DE ALMACENADO PARA FUNCIONAMIENTO DE LAS API'S #####
 #########################################################################
@@ -388,6 +384,48 @@ is
 begin
     open cur_listar for select '{"id_contrato": '|| id_contrato||', "documento_contrato": "'||documento_contrato||',"fecha_contrato": "'||fecha_contrato||',"rut_cliente_externo": "'||cliente_externo_rut_cliente_externo||',"rut_administrador": "'||administrador_rut_administrador||',"tipo_contrato": "'||tipo_contrato||'"}' request from contrato;
 end CONTRATO_LISTAR;
+
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP PRODUCTO --------------------------------------------------------------------------
+
+create or replace PROCEDURE PRODUCTO_ELIMINAR (v_id_producto Integer) is
+begin 
+    DELETE PRODUCTO
+    WHERE id_producto = v_id_producto;
+    commit;
+
+end PRODUCTO_ELIMINAR;
+
+
+create or replace PROCEDURE PRODUCTO_AGREGAR (v_nombre_producto varchar2, v_cantidad_producto integer,rut_proveedor integer) is
+begin 
+  insert into PRODUCTO(id_producto,nombre_producto,cantidad_producto,rut_proveedor) 
+  values(ISEQ$$_76844.nextval,v_nombre_producto,v_cantidad_producto,rut_proveedor);
+  commit;
+
+end PRODUCTO_AGREGAR;
+
+
+create or replace PROCEDURE PRODUCTO_MODIFICAR (v_id_producto Integer,v_nombre_producto varchar2, v_cantidad_producto integer,v_rut_proveedor integer) is
+begin 
+    UPDATE PRODUCTO
+    SET nombre_producto = v_nombre_producto,
+    cantidad_producto = v_cantidad_producto,
+    rut_proveedor = v_rut_proveedor
+    WHERE id_producto = v_id_producto;
+    commit;
+
+end PRODUCTO_MODIFICAR;
+
+ 
+
+ CREATE OR REPLACE EDITIONABLE PROCEDURE PRODUCTO_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+
+begin
+    open cur_listar for select '{"id_producto": '|| id_producto||', "nombre_producto": "'||nombre_producto||',"cantidad_producto": "'||cantidad_producto||',"rut_proveedor": "'||rut_proveedor||',"rut_administrador": "'||'"}' request from PRODUCTO;
+end PRODUCTO_LISTAR;
 
 
 '''
