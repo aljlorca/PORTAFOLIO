@@ -13,7 +13,7 @@ class Cargo(models.Model):
         return self.nombre_cargo
 
 class ClienteInterno(models.Model):
-    rut_cliente_interno = models.BigIntegerField(primary_key=True)
+    rut_cliente_interno = models.CharField(primary_key=True)
     nombre_cliente_interno = models.CharField(max_length=120)
     direccion_cliente_interno = models.CharField(max_length=120)
     telefono_cliente_interno = models.BigIntegerField()

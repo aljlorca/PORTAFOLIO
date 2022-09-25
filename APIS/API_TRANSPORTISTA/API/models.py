@@ -15,7 +15,7 @@ class Cargo(models.Model):
 
 
 class Transportista(models.Model):
-    rut_transportista = models.BigIntegerField(primary_key=True)
+    rut_transportista = models.CharField(primary_key=True)
     nombre_transportista = models.CharField(max_length=120)
     direccion_transportista = models.CharField(max_length=120)
     telefono_transportista = models.BigIntegerField()
