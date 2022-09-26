@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import AdministradorSerializer
+from .serializers import AdministradorSerializer,AdministradorAuthSerializer
 from .models import Administrador, Cargo
 from rest_framework import viewsets
 import json
@@ -91,8 +91,6 @@ class AdministradorViewset(viewsets.ModelViewSet):
     queryset = Administrador.objects.all()
     serializer_class = AdministradorSerializer
 
-'''
 class AdministradorAuthViewset(viewsets.ModelViewSet):
     queryset = Administrador.objects.all()
     serializer_class = AdministradorAuthSerializer
-    '''
