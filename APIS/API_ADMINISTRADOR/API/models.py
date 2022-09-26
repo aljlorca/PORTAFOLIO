@@ -18,7 +18,7 @@ class Cargo(models.Model):
 
 
 class Administrador(models.Model):
-    rut_administrador = models.CharField(primary_key=True)
+    rut_administrador = models.CharField(primary_key=True,max_length=13)
     nombre_administrador = models.CharField(max_length=150)
     direccion_administrador = models.CharField(max_length=150)
     telefono_administrador = models.BigIntegerField()

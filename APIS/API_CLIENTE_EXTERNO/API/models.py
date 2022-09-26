@@ -14,7 +14,7 @@ class Cargo(models.Model):
 
 
 class ClienteExterno(models.Model):
-    rut_cliente_externo = models.CharField(primary_key=True)
+    rut_cliente_externo = models.CharField(primary_key=True,max_length=13)
     nombre_cliente_externo = models.CharField(max_length=120)
     direccion_cliente_externo = models.CharField(max_length=120)
     telefono_cliente_externo = models.BigIntegerField()

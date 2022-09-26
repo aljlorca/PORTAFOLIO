@@ -14,7 +14,7 @@ class Cargo(models.Model):
     
 
 class Proveedor(models.Model):
-    rut_proveedor = models.CharField(primary_key=True)
+    rut_proveedor = models.CharField(primary_key=True,max_length=13)
     nombre_proveedor = models.CharField(max_length=150)
     direccion_proveedor = models.CharField(max_length=150)
     telefono_proveedor = models.BigIntegerField()
