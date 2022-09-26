@@ -14,7 +14,7 @@ class Cargo(models.Model):
 
 
 class Administrador(models.Model):
-    rut_administrador = models.BigIntegerField(primary_key=True)
+    rut_administrador = models.CharField(primary_key=True,max_length=13)
     nombre_administrador = models.CharField(max_length=150)
     direccion_administrador = models.CharField(max_length=150)
     telefono_administrador = models.BigIntegerField()
@@ -28,7 +28,7 @@ class Administrador(models.Model):
 
 
 class ClienteExterno(models.Model):
-    rut_cliente_externo = models.BigIntegerField(primary_key=True)
+    rut_cliente_externo = models.CharField(primary_key=True,max_length=13)
     nombre_cliente_externo = models.CharField(max_length=120)
     direccion_cliente_externo = models.CharField(max_length=120)
     telefono_cliente_externo = models.BigIntegerField()
@@ -41,7 +41,7 @@ class ClienteExterno(models.Model):
         db_table = 'cliente_externo'
 
 class ClienteInterno(models.Model):
-    rut_cliente_interno = models.BigIntegerField(primary_key=True)
+    rut_cliente_interno = models.CharField(primary_key=True,max_length=13)
     nombre_cliente_interno = models.CharField(max_length=120)
     direccion_cliente_interno = models.CharField(max_length=120)
     telefono_cliente_interno = models.BigIntegerField()
@@ -57,7 +57,7 @@ class ClienteInterno(models.Model):
 
 
 class Proveedor(models.Model):
-    rut_proveedor = models.BigIntegerField(primary_key=True)
+    rut_proveedor = models.CharField(primary_key=True,max_length=13)
     nombre_proveedor = models.CharField(max_length=150)
     direccion_proveedor = models.CharField(max_length=150)
     telefono_proveedor = models.BigIntegerField()
@@ -71,7 +71,7 @@ class Proveedor(models.Model):
 
 
 class Transportista(models.Model):
-    rut_transportista = models.BigIntegerField(primary_key=True)
+    rut_transportista = models.CharField(primary_key=True,max_length=13)
     nombre_transportista = models.CharField(max_length=120)
     direccion_transportista = models.CharField(max_length=120)
     telefono_transportista = models.BigIntegerField()
