@@ -54,8 +54,6 @@ class ClienteInterno(models.Model):
         db_table = 'cliente_interno'
 
 
-
-
 class Proveedor(models.Model):
     rut_proveedor = models.CharField(primary_key=True,max_length=13)
     nombre_proveedor = models.CharField(max_length=150)
