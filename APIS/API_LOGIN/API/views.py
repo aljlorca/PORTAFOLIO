@@ -35,7 +35,7 @@ class ClienteExternoAuthView(View):
     def post(self, request):
         jd = json.loads(request.body)
         datos = request_cliente_externo(rut_cliente_externo=jd['rut_cliente_externo'],contrasena_cliente_externo=jd['contrasena_cliente_externo'])
-        datos = list(datos[0].strip())
+        datos = datos[0].strip()
         return JsonResponse(datos,safe=False)
 
 
@@ -67,7 +67,7 @@ class ClienteInternoAuthView(View):
     def post(self, request):
         jd = json.loads(request.body)
         datos = request_cliente_interno(rut_cliente_externo=jd['rut_cliente_interno'],contrasena_cliente_interno=jd['contrasena_cliente_interno'])
-        datos = list(datos[0].strip())
+        datos = datos[0].strip()
         return JsonResponse(datos,safe=False)
 
 
@@ -100,7 +100,7 @@ class ProveedorAuthView(View):
     def post(self, request):
         jd = json.loads(request.body)
         datos = request_proveedor(rut_proveedor=jd['rut_proveedor'],contrasena_proveedor=jd['contrasena_proveedor'])
-        datos = list(datos[0].strip())
+        datos = datos[0].strip()
         return JsonResponse(datos,safe=False)
 
 
@@ -133,5 +133,5 @@ class TransportistaAuthView(View):
     def post(self, request):
         jd = json.loads(request.body)
         datos = request_proveedor(rut_transportista=jd['rut_transportista'],contrasena_transportista=jd['contrasena_transportista'])
-        datos = list(datos[0].strip())
+        datos = datos[0].strip()
         return JsonResponse(datos,safe=False)
