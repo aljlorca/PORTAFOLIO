@@ -74,7 +74,7 @@ class ClienteInternoView(View):
         jd = json.loads(request.body)
         clientes = list(ClienteInterno.objects.filter(rut_cliente_interno=rut_cliente_interno).values())
         if len(clientes) > 0:
-            modificar_cliente_interno(rut_cliente_interno=jd['rut_cliente_interno'],nombre_cliente_interno=jd['nombre_cliente_interno'],direccion_cliente_interno=jd['direccion_cliente_interno'],telefono_cliente_interno=jd['telefono_cliente_interno'],correo_cliente_interno=jd['correo_cliente_interno'],contrasena_cliente_interno=jd['contrasena_cliente_interno'],cargo_id_cargo=jd['cargo_id_cargo'],)
+            modificar_cliente_interno(rut_cliente_interno=jd['rut_cliente_interno'],nombre_cliente_interno=jd['nombre_cliente_interno'],direccion_cliente_interno=jd['direccion_cliente_interno'],telefono_cliente_interno=jd['telefono_cliente_interno'],correo_cliente_interno=jd['correo_cliente_interno'],contrasena_cliente_interno=jd['contrasena_cliente_interno'],cargo_id_cargo=jd['cargo_id_cargo'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se pudo modificar el Cliente Interno"}

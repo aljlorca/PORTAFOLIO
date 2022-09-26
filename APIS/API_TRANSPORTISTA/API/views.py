@@ -63,7 +63,7 @@ class TransportistaView(View):
     
     def post(self,request):
         jd = json.loads(request.body)
-        agregar_transportista(rut_transportista=jd['rut_transportista'],nombre_transportista=jd['nombre_transportista'],direccion_transportista=jd['direccion_transportista'],telefono_transportista=jd['telefono_transportista'],correo_transportista=jd['correo_transportista'],contrasena_transportista=jd['contrasena_transportista'],cargo_id_cargo=jd['cargo_id_cargo'],)
+        agregar_transportista(rut_transportista=jd['rut_transportista'],nombre_transportista=jd['nombre_transportista'],direccion_transportista=jd['direccion_transportista'],telefono_transportista=jd['telefono_transportista'],correo_transportista=jd['correo_transportista'],contrasena_transportista=jd['contrasena_transportista'],cargo_id_cargo=jd['cargo_id_cargo'])
         datos={'message':'Success'}
         return JsonResponse(datos)
     
@@ -71,7 +71,7 @@ class TransportistaView(View):
         jd = json.loads(request.body)
         transportistas = list(Transportista.objects.filter(rut_transportista=rut_transportista).values())
         if len(transportistas)>0:
-            modificar_transportista(rut_transportista=jd['rut_transportista'],nombre_transportista=jd['nombre_transportista'],direccion_transportista=jd['direccion_transportista'],telefono_transportista=jd['telefono_transportista'],correo_transportista=jd['correo_transportista'],contrasena_transportista=jd['contrasena_transportista'],cargo_id_cargo=['cargo_id_cargo'])
+            modificar_transportista(rut_transportista=jd['rut_transportista'],nombre_transportista=jd['nombre_transportista'],direccion_transportista=jd['direccion_transportista'],telefono_transportista=jd['telefono_transportista'],correo_transportista=jd['correo_transportista'],contrasena_transportista=jd['contrasena_transportista'],cargo_id_cargo=jd['cargo_id_cargo'],)
             datos={'message':'Success'}
         else:
             datos={'message':'ERROR: Transportista NO fue posible actualizar sus datos'}
