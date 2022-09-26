@@ -427,5 +427,95 @@ begin
     open cur_listar for select '{"id_producto": '|| id_producto||', "nombre_producto": "'||nombre_producto||',"cantidad_producto": "'||cantidad_producto||',"rut_proveedor": "'||rut_proveedor||',"rut_administrador": "'||'"}' request from PRODUCTO;
 end PRODUCTO_LISTAR;
 
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP LOGIN -----------------------------------------------------------------------------
+
+create or replace PROCEDURE                   "CLIENTE_EXTERNO_LOGIN" 
+(
+    v_username varchar2,
+    v_password varchar2
+)
+as
+    uname varchar2(120);
+    pass varchar2(120);
+    begin
+      select rut_cliente_externo,contrasena_cliente_externo
+      into uname,pass 
+      from cliente_externo 
+      where rut_cliente_externo=v_username and contrasena_cliente_externo=v_password;
+        DBMS_OUTPUT.PUT_LINE('{"cargo":"Cliente Externo"}');
+
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('{"message":"ERROR: CLIENTE NO EXISTE"}');
+
+end CLIENTE_EXTERNO_LOGIN;
+
+
+create or replace PROCEDURE                   "CLIENTE_INTERNO_LOGIN" 
+(
+    v_username varchar2,
+    v_password varchar2
+)
+as
+    uname varchar2(120);
+    pass varchar2(120);
+    begin
+      select rut_cliente_interno,contrasena_cliente_interno
+      into uname,pass 
+      from cliente_interno
+      where rut_cliente_interno=v_username and contrasena_cliente_interno=v_password;
+        DBMS_OUTPUT.PUT_LINE('{"cargo":"Cliente Interno"}');
+
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('{"message":"ERROR: CLIENTE NO EXISTE"}');
+
+end CLIENTE_INTERNO_LOGIN;
+
+
+create or replace PROCEDURE                   "PROVEEDOR_LOGIN" 
+(
+    v_username varchar2,
+    v_password varchar2
+)
+as
+    uname varchar2(120);
+    pass varchar2(120);
+    begin
+      select rut_proveedor,contrasena_proveedor
+      into uname,pass 
+      from proveedor 
+      where rut_proveedor=v_username and contrasena_proveedor=v_password;
+        DBMS_OUTPUT.PUT_LINE('{"cargo":"Proveedor"}');
+
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('{"message":"ERROR: PROVEEDOR NO EXISTE"}');
+
+end PROVEEDOR_LOGIN;
+
+
+create or replace PROCEDURE                   "TRANSPORTISTA_LOGIN" 
+(
+    v_username varchar2,
+    v_password varchar2
+)
+as
+    uname varchar2(120);
+    pass varchar2(120);
+    begin
+      select rut_transportista,contrasena_transportista
+      into uname,pass 
+      from transportista 
+      where rut_transportista=v_username and contrasena_transportista=v_password;
+        DBMS_OUTPUT.PUT_LINE('{"cargo":"Transportista"}');
+
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('{"message":"ERROR: PROVEEDOR NO EXISTE"}');
+
+end TRANSPORTISTA_LOGIN;
+
 
 '''
