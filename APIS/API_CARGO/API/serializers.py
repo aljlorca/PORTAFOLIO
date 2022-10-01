@@ -1,7 +1,17 @@
 from rest_framework import serializers
 from .models import Cargo
 
-class CategoriaSerializer(serializers.ModelSerializer):
+class CargoSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Cargo
+        fields = ['id_cargo','nombre_cargo']
+
+
+
+
+class CargoHistoricoSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Cargo
         fields = '__all__'

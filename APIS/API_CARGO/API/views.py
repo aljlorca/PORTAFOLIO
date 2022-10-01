@@ -5,7 +5,7 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Cargo
-from .serializers import CategoriaSerializer
+from .serializers import CargoSerializer,CargoHistoricoSerializer
 from rest_framework import viewsets
 import json
 import cx_Oracle
@@ -16,19 +16,21 @@ def agregar_cargo(nombre):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('CARGO_AGREGAR',[nombre,'1',salida])
+    estado_fila = '1'
+    cursor.callproc('CARGO_AGREGAR',[nombre,estado_fila,salida])
+    return salida
 
-def modificar_cargo(id,nombre):
+def modificar_cargo(id_cargo,nombre):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('CARGO_MODIFICAR',[id,nombre,salida])
+    cursor.callproc('CARGO_MODIFICAR',[id_cargo,nombre,salida])
 
-def eliminar_cargo(id):
+def eliminar_cargo(id_cargo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('CARGO_ELIMINAR',[id,salida])
+    cursor.callproc('CARGO_ELIMINAR',[id_cargo,salida])
 
 def lista_cargo():
     django_cursor = connection.cursor()
@@ -65,38 +67,36 @@ class CargoView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        salida = agregar_cargo(nombre=jd['nombre_cargo'])
-        if salida == 1:
-            datos={'message':"Success"}
-        else :
-            datos={'message':"ERROR: No fue posible agregar el cargo"}
+        agregar_cargo(nombre=jd['nombre_cargo'])
+        datos = {'message':'Success'}
         return JsonResponse(datos)
+        
+
     def put(self, request,id_cargo):
         jd = json.loads(request.body)
-        cargos = list(Cargo.objects.filter(id=id_cargo).values())
+        cargos = list(Cargo.objects.filter(id_cargo=id_cargo).values())
         if len(cargos) > 0:
-            salida = modificar_cargo(id_cargo=jd['id_cargo'],nombre_cargo=jd['nombre_cargo'])
-            if salida == 1 :
-                datos={'message':"Success"}
-            else:
-                datos={'message':"ERROR: no fue posible modificar el cargo"}
+            modificar_cargo(id_cargo=jd['id_cargo'],nombre=jd['nombre_cargo'])
+            datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra el cargo"}
         return JsonResponse(datos)
 
     def delete(self, request,id_cargo):
-        cargos = list(Cargo.objects.filter(id=id_cargo).values())
+        cargos = list(Cargo.objects.filter(id_cargo=id_cargo).values())
         if len(cargos) > 0:
             salida = eliminar_cargo(id_cargo)
-            if salida == 1: 
-                datos={'message':"Success"}
-            if salida == 0:
-                datos={'message':"ERROR: no fue posible eliminar el cargo"}
+            datos={'message':"Success"}
         else:
-            datos={'message':"ERROR: No se pudo encontrar el cargo"}
+            datos={'message':"ERROR: no fue posible eliminar el cargo"}
         return JsonResponse(datos)
     
     
 class CargoViewset(viewsets.ModelViewSet):
+    queryset = Cargo.objects.filter(estado_fila='1')
+    serializer_class = CargoSerializer
+
+
+class CargoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Cargo.objects.all()
-    serializer_class = CategoriaSerializer
+    serializer_class = CargoHistoricoSerializer

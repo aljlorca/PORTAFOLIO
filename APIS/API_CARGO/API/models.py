@@ -12,9 +12,9 @@ from django.db import models ,connection
 
 
 class Cargo(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    id_cargo = models.BigAutoField(primary_key=True)
     nombre_cargo = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=50, blank=True, null=True)
+    estado_fila = models.CharField(max_length=1)
 
     class Meta:
         managed = False

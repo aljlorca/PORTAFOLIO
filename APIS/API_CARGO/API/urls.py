@@ -1,9 +1,10 @@
 from django.urls import path,include
-from .views import CargoView,CargoViewset
+from .views import CargoView,CargoViewset,CargoHistoricoViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('cargo',CargoViewset)
+router.register('cargo',CargoViewset,CargoHistoricoViewset)
+router.register('cargo_historico',CargoHistoricoViewset)
 
 urlpatterns = [
     path('',include(router.urls)),
