@@ -11,40 +11,73 @@ requests
 #########################################################################
 '''
 ------------------------- SP CARGO -----------------------------------------------------------
-create or replace PROCEDURE CARGO_ELIMINAR (v_id_cargo Integer) is
+create sequence sec_cargo
+  start with 1
+  increment by 1
+  maxvalue 99999
+  minvalue 1;
+  
+  
+  
+create or replace PROCEDURE CARGO_ELIMINAR (v_id_cargo Integer, v_salida out number) is
 begin 
-    DELETE cargo
-    WHERE id = v_id_cargo;
+    UPDATE cargo
+    SET estado_fila = '0'
+    WHERE id_cargo = v_id_cargo;
     commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
 
 end CARGO_ELIMINAR;
 
 
-create or replace PROCEDURE CARGO_AGREGAR (v_nombre varchar2) is
+create or replace PROCEDURE CARGO_AGREGAR 
+(
+    v_nombre varchar2,
+    v_estado_fila char,
+    v_salida out number
+
+) is
 begin 
-  insert into CARGO(id, nombre_cargo) values(ISEQ$$_76678.nextval,v_nombre);
+  insert into CARGO(id_cargo, nombre_cargo,estado_fila) values(sec_cargo.nextval,v_nombre,v_estado_fila);
   commit;
+  v_salida:=1;
+  
+  exception when others then v_salida:=0;
 
 end CARGO_AGREGAR;
 
 
-create or replace PROCEDURE CARGO_MODIFICAR (v_id Integer,v_nombre_cargo VARCHAR2) is
+create or replace PROCEDURE CARGO_MODIFICAR (
+    v_id Integer,
+    v_nombre_cargo VARCHAR2,
+    v_salida out number
+
+) is
 begin 
     UPDATE cargo
     SET nombre_cargo = v_nombre_cargo
-    WHERE id = v_id;
+    WHERE id_cargo = v_id;
     commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
 
 end CARGO_MODIFICAR;
 
  
 
- CREATE OR REPLACE EDITIONABLE PROCEDURE CARGO_LISTAR (cur_listar out SYS_REFCURSOR) 
+CREATE OR REPLACE EDITIONABLE PROCEDURE CARGO_LISTAR (cur_listar out SYS_REFCURSOR) 
 is
-
 begin
-  open cur_listar for select '{"id_cargo": '|| id||', "nombre_cargo": "'||nombre_cargo||'"}' request  from cargo;
+  open cur_listar for select * from cargo;
 end CARGO_LISTAR;
+
+
 
 -------------------------------------------------------------------------------------------------------------------
 ------------------------------------- SP ADMINISTRADOR -----------------------------------------------------------

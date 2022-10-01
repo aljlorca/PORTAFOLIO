@@ -1,3 +1,4 @@
+from asyncio import DatagramProtocol
 from django.db import connection
 from django.http.response import JsonResponse
 from django.views import View
@@ -7,23 +8,27 @@ from .models import Cargo
 from .serializers import CategoriaSerializer
 from rest_framework import viewsets
 import json
+import cx_Oracle
 # Create your views here.
 
 
-def agregar_cargo(nombre,descripcion):
+def agregar_cargo(nombre):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('CARGO_AGREGAR',[nombre,descripcion])
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('CARGO_AGREGAR',[nombre,'1',salida])
 
-def modificar_cargo(id,nombre,descripcion):
+def modificar_cargo(id,nombre):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('CARGO_MODIFICAR',[id,nombre,descripcion])
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('CARGO_MODIFICAR',[id,nombre,salida])
 
 def eliminar_cargo(id):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('CARGO_ELIMINAR',[id])
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('CARGO_ELIMINAR',[id,salida])
 
 def lista_cargo():
     django_cursor = connection.cursor()
@@ -41,9 +46,9 @@ class CargoView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id=0):
+    def get(self, request, id_cargo=0):
         if(id > 0):
-            cargos=list(Cargo.objects.filter(id=id).values())
+            cargos=list(Cargo.objects.filter(id=id_cargo).values())
             if len(cargos) > 0:
                 cargo = cargos[0]
                 datos={'message':"Success",'cargo':cargo}
@@ -60,26 +65,35 @@ class CargoView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_cargo(nombre=jd['nombre_cargo'],descripcion=jd['descripcion'])
-        datos={'message':"Success"}
-        return JsonResponse(datos)
-    def put(self, request,id):
-        jd = json.loads(request.body)
-        cargos = list(Cargo.objects.filter(id=id).values())
-        if len(cargos) > 0:
-            modificar_cargo(id=jd['id'],nombre=jd['nombre_cargo'],descripcion=jd['descripcion'])
+        salida = agregar_cargo(nombre=jd['nombre_cargo'])
+        if salida == 1:
             datos={'message':"Success"}
+        else :
+            datos={'message':"ERROR: No fue posible agregar el cargo"}
+        return JsonResponse(datos)
+    def put(self, request,id_cargo):
+        jd = json.loads(request.body)
+        cargos = list(Cargo.objects.filter(id=id_cargo).values())
+        if len(cargos) > 0:
+            salida = modificar_cargo(id_cargo=jd['id_cargo'],nombre_cargo=jd['nombre_cargo'])
+            if salida == 1 :
+                datos={'message':"Success"}
+            else:
+                datos={'message':"ERROR: no fue posible modificar el cargo"}
         else:
-            datos={'message':"ERROR: No se pudo modificar el Cargo"}
+            datos={'message':"ERROR: No se encuentra el cargo"}
         return JsonResponse(datos)
 
-    def delete(self, request,id):
-        cargos = list(Cargo.objects.filter(id=id).values())
+    def delete(self, request,id_cargo):
+        cargos = list(Cargo.objects.filter(id=id_cargo).values())
         if len(cargos) > 0:
-            eliminar_cargo(id)
-            datos={'message':"Success"}
+            salida = eliminar_cargo(id_cargo)
+            if salida == 1: 
+                datos={'message':"Success"}
+            if salida == 0:
+                datos={'message':"ERROR: no fue posible eliminar el cargo"}
         else:
-            datos={'message':"ERROR: No se pudo eliminar el Cargo"}
+            datos={'message':"ERROR: No se pudo encontrar el cargo"}
         return JsonResponse(datos)
     
     
