@@ -80,300 +80,96 @@ end CARGO_LISTAR;
 
 
 -------------------------------------------------------------------------------------------------------------------
-------------------------------------- SP ADMINISTRADOR -----------------------------------------------------------
-create or replace PROCEDURE ADMINISTRADOR_ELIMINAR (v_rut_administrador Integer) is
+------------------------------------- SP usuarios -----------------------------------------------------------------
+create sequence sec_usuario
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE USUARIO_ELIMINAR (v_correo varchar2, v_salida out number) is
 begin 
-    DELETE administrador
-    WHERE administrador.rut_administrador = v_rut_administrador;
+    UPDATE usuario
+    SET usuario_vigente = '0'
+    WHERE correo_usuario = v_correo;
     commit;
+    v_salida:=1;
 
-end ADMINISTRADOR_ELIMINAR;
+  exception when others then v_salida:=0;
+
+end USUARIO_ELIMINAR;
 
 
-create or replace PROCEDURE ADMINISTRADOR_AGREGAR (
-v_rut_administrador Integer, 
-v_nombre_administrador varchar2,
-v_direccion_administrador VARCHAR2,
-v_telefono_administrador INTEGER, 
-v_correo_administrador VARCHAR2, 
-v_contrasena_administrador VARCHAR2,
-v_id_cargo INTEGER) is
+create or replace PROCEDURE USUARIO_AGREGAR 
+(
+    v_numero_identeificacion_usuario varchar2,
+    v_nombre_usuario varchar2,
+    v_direccion_usuario varchar2,
+    v_telefono_usuario varchar2,
+    v_correo_usuario varchar2,
+    v_contrasena_usuario varchar2,
+    v_usuario_vigente char,
+    v_fecha_creacion_usuario Date,
+    v_administrador_usuario char,
+    v_id_cargo Integer,
+    v_id_empresa Integer,
+    v_id_ciudad Integer,
+    v_salida OUT NUMBER
+
+) is
 begin 
-  insert into administrador(rut_administrador,
-  nombre_administrador,
-  direccion_administrador,
-  telefono_administrador,
-  correo_administrador,
-  contrasena_administrador,
-  cargo_id_cargo) values(v_rut_administrador,v_nombre_administrador,v_direccion_administrador,v_telefono_administrador,v_correo_administrador,v_contrasena_administrador,v_id_cargo);
+  insert into USUARIO(id_usuario,NUMERO_IDENTIFICACION_USUARIO,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,usuario_vigente,fecha_creacion_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad) 
+  values(sec_usuario.nextval,v_numero_identeificacion_usuario,v_nombre_usuario,v_direccion_usuario,v_telefono_usuario,v_correo_usuario,v_contrasena_usuario,v_usuario_vigente,v_fecha_creacion_usuario,v_administrador_usuario,v_id_cargo,v_id_empresa,v_id_ciudad);
   commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
 
-end ADMINISTRADOR_AGREGAR;
+end USUARIO_AGREGAR;
 
 
-create or replace PROCEDURE ADMINISTRADOR_MODIFICAR (v_rut_administrador Integer,v_nombre_administrador varchar2,
-v_direccion_administrador VARCHAR2,
-v_telefono_administrador INTEGER, 
-v_correo_administrador VARCHAR2, 
-v_contrasena_administrador VARCHAR2,
-v_id_cargo INTEGER) is
+create or replace PROCEDURE USUARIO_MODIFICAR (
+    v_numero_identeificacion_usuario varchar2,
+    v_nombre_usuario varchar2,
+    v_direccion_usuario varchar2,
+    v_telefono_usuario varchar2,
+    v_correo_usuario varchar2,
+    v_contrasena_usuario varchar2,
+    v_administrador_usuario char,
+    v_id_cargo Integer,
+    v_id_empresa Integer,
+    v_id_ciudad Integer,
+    v_salida OUT NUMBER
+
+) is
 begin 
-    UPDATE administrador
-    SET nombre_administrador = v_nombre_administrador,
-    direccion_administrador = v_direccion_administrador,
-    telefono_administrador=v_telefono_administrador, 
-    correo_administrador=v_correo_administrador,
-    contrasena_administrador=v_contrasena_administrador,
-    cargo_id_cargo = v_id_cargo
-    WHERE rut_administrador = v_rut_administrador;
+    UPDATE usuario
+    SET nombre_usuario = v_nombre_usuario,
+    direccion_usuario = v_direccion_usuario,
+    telefono_usuario = v_telefono_usuario,
+    correo_usuario = v_correo_usuario,
+    contrasena_usuario = v_contrasena_usuario,
+    administrador_usuario = v_administrador_usuario,
+    id_cargo = v_id_cargo,
+    id_empresa = v_id_empresa,
+    id_ciudad = v_id_ciudad
+    WHERE NUMERO_IDENTIFICACION_USUARIO = v_numero_identeificacion_usuario;
     commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
 
-end ADMINISTRADOR_MODIFICAR;
+
+end USUARIO_MODIFICAR;
 
  
 
- CREATE OR REPLACE EDITIONABLE PROCEDURE ADMINISTRADOR_LISTAR (cur_listar out SYS_REFCURSOR) 
+CREATE OR REPLACE EDITIONABLE PROCEDURE USUARIO_LISTAR (cur_listar out SYS_REFCURSOR) 
 is
-
 begin
-  open cur_listar for select '{"rut_administrador": '|| rut_administrador||', "nombre_administrador": "'||nombre_administrador||',"direccion_administrador": "'||direccion_administrador||',"telefono_administrador": "'||telefono_administrador||',"correo_administrador": "'||correo_administrador||',"contrasena_administrador": "'||contrasena_administrador||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from administrador;
-end ADMINISTRADOR_LISTAR;
-------------------------------------------------------------------------------------------------
--------------------------------SP Cliente_Externo----------------------------------------------
-create or replace PROCEDURE CLIENTE_EXTERNO_ELIMINAR (v_rut_CLIENTE_EXTERNO Integer) is
-begin 
-    DELETE CLIENTE_EXTERNO
-    WHERE rut_CLIENTE_EXTERNO = v_rut_CLIENTE_EXTERNO;
-    commit;
-
-end CLIENTE_EXTERNO_ELIMINAR;
-
-
-create or replace PROCEDURE CLIENTE_EXTERNO_AGREGAR (
-v_rut_CLIENTE_EXTERNO Integer, 
-v_nombre_CLIENTE_EXTERNO varchar2,
-v_direccion_CLIENTE_EXTERNO VARCHAR2,
-v_telefono_CLIENTE_EXTERNO INTEGER, 
-v_correo_CLIENTE_EXTERNO VARCHAR2, 
-v_contrasena_CLIENTE_EXTERNO VARCHAR2,
-v_id_cargo INTEGER) is
-begin 
-  insert into CLIENTE_EXTERNO(rut_CLIENTE_EXTERNO,
-  nombre_CLIENTE_EXTERNO,
-  direccion_CLIENTE_EXTERNO,
-  telefono_CLIENTE_EXTERNO,
-  correo_CLIENTE_EXTERNO,
-  contrasena_CLIENTE_EXTERNO,
-  cargo_id_cargo) values(v_rut_CLIENTE_EXTERNO,v_nombre_CLIENTE_EXTERNO,v_direccion_CLIENTE_EXTERNO,v_telefono_CLIENTE_EXTERNO,v_correo_CLIENTE_EXTERNO,v_contrasena_CLIENTE_EXTERNO,v_id_cargo);
-  commit;
-
-end CLIENTE_EXTERNO_AGREGAR;
-
-
-create or replace PROCEDURE CLIENTE_EXTERNO_MODIFICAR (v_rut_CLIENTE_EXTERNO Integer,v_nombre_CLIENTE_EXTERNO varchar2,
-v_direccion_CLIENTE_EXTERNO VARCHAR2,
-v_telefono_CLIENTE_EXTERNO INTEGER, 
-v_correo_CLIENTE_EXTERNO VARCHAR2, 
-v_contrasena_CLIENTE_EXTERNO VARCHAR2,
-v_id_cargo INTEGER) is
-begin 
-    UPDATE CLIENTE_EXTERNO
-    SET nombre_CLIENTE_EXTERNO = v_nombre_CLIENTE_EXTERNO,
-    direccion_CLIENTE_EXTERNO = v_direccion_CLIENTE_EXTERNO,
-    telefono_CLIENTE_EXTERNO = v_telefono_CLIENTE_EXTERNO, 
-    correo_CLIENTE_EXTERNO = v_correo_CLIENTE_EXTERNO,
-    contrasena_CLIENTE_EXTERNO = v_contrasena_CLIENTE_EXTERNO,
-    cargo_id_cargo = v_id_cargo
-    WHERE rut_CLIENTE_EXTERNO = v_rut_CLIENTE_EXTERNO;
-    commit;
-
-end CLIENTE_EXTERNO_MODIFICAR;
-
- 
-
- CREATE OR REPLACE EDITIONABLE PROCEDURE CLIENTE_EXTERNO_LISTAR (cur_listar out SYS_REFCURSOR) 
-is
-
-begin
-  open cur_listar for select '{"rut_CLIENTE_EXTERNO": '|| rut_CLIENTE_EXTERNO||',"nombre_CLIENTE_EXTERNO": "'||nombre_CLIENTE_EXTERNO||',"direccion_CLIENTE_EXTERNO": "'||direccion_CLIENTE_EXTERNO||',"telefono_CLIENTE_EXTERNO": "'||telefono_CLIENTE_EXTERNO||',"correo_CLIENTE_EXTERNO": "'||correo_CLIENTE_EXTERNO||',"contrasena_CLIENTE_EXTERNO": "'||contrasena_CLIENTE_EXTERNO||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from CLIENTE_EXTERNO;
-end CLIENTE_EXTERNO_LISTAR;
---------------------------------------------------------------------------------------------------------------------------
-------------------------------------------SP CLIENTE_INTERNO--------------------------------------------------------------
-create or replace PROCEDURE CLIENTE_INTERNO_ELIMINAR (v_rut_CLIENTE_INTERNO Integer) is
-begin 
-    DELETE CLIENTE_INTERNO
-    WHERE rut_CLIENTE_INTERNO = v_rut_CLIENTE_INTERNO;
-    commit;
-
-end CLIENTE_INTERNO_ELIMINAR;
-
-
-create or replace PROCEDURE CLIENTE_INTERNO_AGREGAR (
-v_rut_CLIENTE_INTERNO Integer, 
-v_nombre_CLIENTE_INTERNO varchar2,
-v_direccion_CLIENTE_INTERNO VARCHAR2,
-v_telefono_CLIENTE_INTERNO INTEGER, 
-v_correo_CLIENTE_INTERNO VARCHAR2, 
-v_contrasena_CLIENTE_INTERNO VARCHAR2,
-v_id_cargo INTEGER) is
-begin 
-  insert into CLIENTE_INTERNO(rut_CLIENTE_INTERNO,
-  nombre_CLIENTE_INTERNO,
-  direccion_CLIENTE_INTERNO,
-  telefono_CLIENTE_INTERNO,
-  correo_CLIENTE_INTERNO,
-  contrasena_CLIENTE_INTERNO,
-  cargo_id_cargo) values(v_rut_CLIENTE_INTERNO,v_nombre_CLIENTE_INTERNO,v_direccion_CLIENTE_INTERNO,v_telefono_CLIENTE_INTERNO,v_correo_CLIENTE_INTERNO,v_contrasena_CLIENTE_INTERNO,v_id_cargo);
-  commit;
-
-end CLIENTE_INTERNO_AGREGAR;
-
-
-create or replace PROCEDURE CLIENTE_INTERNO_MODIFICAR (v_rut_CLIENTE_INTERNO Integer,v_nombre_CLIENTE_INTERNO varchar2,
-v_direccion_CLIENTE_INTERNO VARCHAR2,
-v_telefono_CLIENTE_INTERNO INTEGER, 
-v_correo_CLIENTE_INTERNO VARCHAR2, 
-v_contrasena_CLIENTE_INTERNO VARCHAR2,
-v_id_cargo INTEGER) is
-begin 
-    UPDATE CLIENTE_INTERNO
-    SET nombre_CLIENTE_INTERNO = v_nombre_CLIENTE_INTERNO,
-    direccion_CLIENTE_INTERNO = v_direccion_CLIENTE_INTERNO,
-    telefono_CLIENTE_INTERNO = v_telefono_CLIENTE_INTERNO, 
-    correo_CLIENTE_INTERNO = v_correo_CLIENTE_INTERNO,
-    contrasena_CLIENTE_INTERNO = v_contrasena_CLIENTE_INTERNO,
-    cargo_id_cargo = v_id_cargo
-    WHERE rut_CLIENTE_INTERNO = v_rut_CLIENTE_INTERNO;
-    commit;
-
-end CLIENTE_INTERNO_MODIFICAR;
-
-
-
- CREATE OR REPLACE EDITIONABLE PROCEDURE CLIENTE_INTERNO_LISTAR (cur_listar out SYS_REFCURSOR) 
-is
-
-begin
-  open cur_listar for select '{"rut_CLIENTE_INTERNO": '|| rut_CLIENTE_INTERNO||', "nombre_CLIENTE_INTERNO": "'||nombre_CLIENTE_INTERNO||',"direccion_CLIENTE_INTERNO": "'||direccion_CLIENTE_INTERNO||',"telefono_CLIENTE_INTERNO": "'||telefono_CLIENTE_INTERNO||',"correo_CLIENTEINTERNO": "'||correo_CLIENTE_INTERNO||',"contrasena_CLIENTE_INTERNO": "'||contrasena_CLIENTE_INTERNO||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from CLIENTE_INTERNO;
-end CLIENTE_INTERNO_LISTAR;
-------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------SP PROVEEDOR -------------------------------------------------------------------------
-create or replace PROCEDURE PROVEEDOR_ELIMINAR (v_rut_proveedor Integer) is
-begin 
-    DELETE proveedor
-    WHERE rut_proveedor = v_rut_proveedor;
-    commit;
-
-end PROVEEDOR_ELIMINAR;
-
-
-create or replace PROCEDURE PROVEEDOR_AGREGAR (
-v_rut_proveedor Integer, 
-v_nombre_proveedor varchar2,
-v_direccion_proveedor VARCHAR2,
-v_telefono_proveedor INTEGER, 
-v_correo_proveedor VARCHAR2, 
-v_contrasena_proveedor VARCHAR2,
-v_id_cargo INTEGER) is
-begin 
-  insert into proveedor(rut_proveedor,
-  nombre_proveedor,
-  direccion_proveedor,
-  telefono_proveedor,
-  correo_proveedor,
-  contrasena_proveedor,
-  cargo_id_cargo) values(v_rut_proveedor,v_nombre_proveedor,v_direccion_proveedor,v_telefono_proveedor,v_correo_proveedor,v_contrasena_proveedor,v_id_cargo);
-  commit;
-
-end PROVEEDOR_AGREGAR;
-
-
-create or replace PROCEDURE PROVEEDOR_MODIFICAR (v_rut_proveedor Integer,v_nombre_proveedor varchar2,
-v_direccion_proveedor VARCHAR2,
-v_telefono_proveedor INTEGER, 
-v_correo_proveedor VARCHAR2, 
-v_contrasena_proveedor VARCHAR2,
-v_id_cargo INTEGER) is
-begin 
-    UPDATE proveedor
-    SET nombre_proveedor = v_nombre_proveedor,
-    direccion_proveedor = v_direccion_proveedor,
-    telefono_proveedor = v_telefono_proveedor, 
-    correo_proveedor = v_correo_proveedor,
-    contrasena_proveedor = v_contrasena_proveedor,
-    cargo_id_cargo = v_id_cargo
-    WHERE rut_proveedor = v_rut_proveedor;
-    commit;
-
-end PROVEEDOR_MODIFICAR;
-
- 
-
- CREATE OR REPLACE EDITIONABLE PROCEDURE PROVEEDOR_LISTAR (cur_listar out SYS_REFCURSOR) 
-is
-
-begin
-  open cur_listar for select '{"rut_proveedor": '|| rut_proveedor||', "nombre_proveedor": "'||nombre_proveedor||',"direccion_proveedor": "'||direccion_proveedor||',"telefono_proveedor": "'||telefono_proveedor||',"correo_proveedor": "'||correo_proveedor||',"contrasena_proveedor": "'||contrasena_proveedor||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from proveedor;
-end PROVEEDOR_LISTAR;
-------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------SP TRANSPORTISTA ---------------------------------------------------------------------
-create or replace PROCEDURE PROVEEDOR_ELIMINAR (v_rut_proveedor Integer) is
-begin 
-    DELETE proveedor
-    WHERE rut_proveedor = v_rut_proveedor;
-    commit;
-
-end PROVEEDOR_ELIMINAR;
-
-
-create or replace PROCEDURE PROVEEDOR_AGREGAR (
-v_rut_proveedor Integer, 
-v_nombre_proveedor varchar2,
-v_direccion_proveedor VARCHAR2,
-v_telefono_proveedor INTEGER, 
-v_correo_proveedor VARCHAR2, 
-v_contrasena_proveedor VARCHAR2,
-v_id_cargo INTEGER) is
-begin 
-  insert into proveedor(rut_proveedor,
-  nombre_proveedor,
-  direccion_proveedor,
-  telefono_proveedor,
-  correo_proveedor,
-  contrasena_proveedor,
-  cargo_id_cargo) values(v_rut_proveedor,v_nombre_proveedor,v_direccion_proveedor,v_telefono_proveedor,v_correo_proveedor,v_contrasena_proveedor,v_id_cargo);
-  commit;
-
-end PROVEEDOR_AGREGAR;
-
-
-create or replace PROCEDURE PROVEEDOR_MODIFICAR (v_rut_proveedor Integer,v_nombre_proveedor varchar2,
-v_direccion_proveedor VARCHAR2,
-v_telefono_proveedor INTEGER, 
-v_correo_proveedor VARCHAR2, 
-v_contrasena_proveedor VARCHAR2,
-v_id_cargo INTEGER) is
-begin 
-    UPDATE proveedor
-    SET nombre_proveedor = v_nombre_proveedor,
-    direccion_proveedor = v_direccion_proveedor,
-    telefono_proveedor = v_telefono_proveedor, 
-    correo_proveedor = v_correo_proveedor,
-    contrasena_proveedor = v_contrasena_proveedor,
-    cargo_id_cargo = v_id_cargo
-    WHERE rut_proveedor = v_rut_proveedor;
-    commit;
-
-end PROVEEDOR_MODIFICAR;
-
- 
-
- CREATE OR REPLACE EDITIONABLE PROCEDURE PROVEEDOR_LISTAR (cur_listar out SYS_REFCURSOR) 
-is
-
-begin
-  open cur_listar for select '{"rut_proveedor": '|| rut_proveedor||', "nombre_proveedor": "'||nombre_proveedor||',"direccion_proveedor": "'||direccion_proveedor||',"telefono_proveedor": "'||telefono_proveedor||',"correo_proveedor": "'||correo_proveedor||',"contrasena_proveedor": "'||contrasena_proveedor||',"cargo_id_cargo": "'||cargo_id_cargo||'"}' request from proveedor;
-end PROVEEDOR_LISTAR;
+  open cur_listar for select * from usuario;
+end USUARIO_LISTAR;
 
 ------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP CONTRATO --------------------------------------------------------------------------
@@ -462,93 +258,15 @@ end PRODUCTO_LISTAR;
 
 ------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP LOGIN -----------------------------------------------------------------------------
-
-create or replace PROCEDURE                   "CLIENTE_EXTERNO_LOGIN" 
+create or replace PROCEDURE                   "LOGIN" 
 (
-    v_username varchar2,
-    v_password varchar2
+    v_correo varchar2,
+    v_contrasena varchar2,
+    cur out SYS_REFCURSOR
 )
-as
-    uname varchar2(120);
-    pass varchar2(120);
-    begin
-      select rut_cliente_externo,contrasena_cliente_externo
-      into uname,pass 
-      from cliente_externo 
-      where rut_cliente_externo=v_username and contrasena_cliente_externo=v_password;
-        DBMS_OUTPUT.PUT_LINE('{"cargo":"Cliente Externo"}');
-
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('{"message":"ERROR: CLIENTE NO EXISTE"}');
-
-end CLIENTE_EXTERNO_LOGIN;
-
-
-create or replace PROCEDURE                   "CLIENTE_INTERNO_LOGIN" 
-(
-    v_username varchar2,
-    v_password varchar2
-)
-as
-    uname varchar2(120);
-    pass varchar2(120);
-    begin
-      select rut_cliente_interno,contrasena_cliente_interno
-      into uname,pass 
-      from cliente_interno
-      where rut_cliente_interno=v_username and contrasena_cliente_interno=v_password;
-        DBMS_OUTPUT.PUT_LINE('{"cargo":"Cliente Interno"}');
-
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('{"message":"ERROR: CLIENTE NO EXISTE"}');
-
-end CLIENTE_INTERNO_LOGIN;
-
-
-create or replace PROCEDURE                   "PROVEEDOR_LOGIN" 
-(
-    v_username varchar2,
-    v_password varchar2
-)
-as
-    uname varchar2(120);
-    pass varchar2(120);
-    begin
-      select rut_proveedor,contrasena_proveedor
-      into uname,pass 
-      from proveedor 
-      where rut_proveedor=v_username and contrasena_proveedor=v_password;
-        DBMS_OUTPUT.PUT_LINE('{"cargo":"Proveedor"}');
-
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('{"message":"ERROR: PROVEEDOR NO EXISTE"}');
-
-end PROVEEDOR_LOGIN;
-
-
-create or replace PROCEDURE                   "TRANSPORTISTA_LOGIN" 
-(
-    v_username varchar2,
-    v_password varchar2
-)
-as
-    uname varchar2(120);
-    pass varchar2(120);
-    begin
-      select rut_transportista,contrasena_transportista
-      into uname,pass 
-      from transportista 
-      where rut_transportista=v_username and contrasena_transportista=v_password;
-        DBMS_OUTPUT.PUT_LINE('{"cargo":"Transportista"}');
-
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('{"message":"ERROR: PROVEEDOR NO EXISTE"}');
-
-end TRANSPORTISTA_LOGIN;
-
+is
+begin
+    open cur for select nombre_usuario,id_cargo,correo_usuario,fecha_sesion_usuario from usuario where correo_usuario = v_correo and contrasena_usuario = v_contrasena;
+end LOGIN;
 
 '''
