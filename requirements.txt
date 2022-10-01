@@ -269,4 +269,7 @@ begin
     open cur for select nombre_usuario,id_cargo,correo_usuario,fecha_sesion_usuario from usuario where correo_usuario = v_correo and contrasena_usuario = v_contrasena;
 end LOGIN;
 
+
+
+
 '''
