@@ -267,9 +267,93 @@ create or replace PROCEDURE                   "LOGIN"
 is
 begin
     open cur for select nombre_usuario,id_cargo,correo_usuario,fecha_sesion_usuario from usuario where correo_usuario = v_correo and contrasena_usuario = v_contrasena;
+
 end LOGIN;
 
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP empresa -----------------------------------------------------------------------------
 
 
+create sequence sec_empresa
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE EMPRESA_ELIMINAR (v_id_empresa varchar2, v_salida out number) is
+begin 
+    UPDATE empresa
+    SET estado_fila = '0'
+    WHERE v_id_empresa = id_empresa;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end EMPRESA_ELIMINAR;
+
+
+create or replace PROCEDURE EMPRESA_AGREGAR 
+(
+    v_rut_empresa varchar2,
+    v_duns_empresa varchar2,
+    v_razon_social_empresa varchar2,
+    v_direccion_empresa varchar2,
+    v_giro_empresa varchar2,
+    v_id_tipo_empresa integer,
+    v_id_ciudad integer,
+    v_estado_fila char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into EMPRESA(id_empresa,rut_empresa,duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,estado_fila) 
+  values(sec_empresa.nextval,v_rut_empresa,v_duns_empresa,v_razon_social_empresa,v_direccion_empresa,v_giro_empresa,v_id_tipo_empresa,v_id_ciudad,v_estado_fila);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end EMPRESA_AGREGAR;
+
+
+create or replace PROCEDURE EMPRESA_MODIFICAR (
+    v_id_empresa integer,
+    v_rut_empresa varchar2,
+    v_duns_empresa varchar2,
+    v_razon_social_empresa varchar2,
+    v_direccion_empresa varchar2,
+    v_giro_empresa varchar2,
+    v_id_tipo_empresa integer,
+    v_id_ciudad integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE empresa
+    SET rut_empresa = v_rut_empresa,
+    duns_empresa = v_duns_empresa,
+    razon_social_empresa = v_razon_social_empresa,
+    direccion_empresa = v_direccion_empresa,
+    giro_empresa = v_giro_empresa,
+    id_tipo_empresa = v_id_tipo_empresa,
+    id_ciudad = v_id_ciudad
+    WHERE id_empresa = v_id_empresa;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end EMPRESA_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE EMPRESA_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from empresa;
+end EMPRESA_LISTAR;
 
 '''
