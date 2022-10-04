@@ -356,4 +356,79 @@ begin
   open cur_listar for select * from empresa;
 end EMPRESA_LISTAR;
 
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP pedido -----------------------------------------------------------------------------
+
+
+create sequence sec_pedido
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE PEDIDO_ELIMINAR (v_id_pedido varchar2, v_salida out number) is
+begin 
+    UPDATE pedido
+    SET estado_fila = '0'
+    WHERE v_id_pedido = id_pedido;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end PEDIDO_ELIMINAR;
+
+
+create or replace PROCEDURE PEDIDO_AGREGAR 
+(
+    v_fecha_pedido date,
+    v_id_venta_externa integer,
+    v_id_producto integer,
+    v_estado_fila char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into pedido(id_pedido,fecha_pedido,id_venta_externa,id_producto,estado_fila) 
+  values(sec_pedido.nextval,v_fecha_pedido,v_id_venta_externa,v_id_producto,v_estado_fila);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end PEDIDO_AGREGAR;
+
+
+create or replace PROCEDURE PEDIDO_MODIFICAR (
+    v_id_pedido integer,
+    v_fecha_pedido date,
+    v_id_venta_externa integer,
+    v_id_producto integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE pedido
+    SET fecha_pedido = v_fecha_pedido,
+    id_venta_externa = v_id_venta_externa,
+    id_producto = v_id_producto
+    WHERE id_pedido = v_id_pedido;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end PEDIDO_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE PEDIDO_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from pedido;
+end PEDIDO_LISTAR;
+
 '''

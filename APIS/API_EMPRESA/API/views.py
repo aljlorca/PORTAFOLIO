@@ -77,7 +77,7 @@ class EmpresaView(View):
             modificar_empresa(rut_empresa=jd['rut_empresa'],duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'])
             datos={'message':"Success"}
         else:
-            datos={'message':"ERROR: No se encuentra el usuario"}
+            datos={'message':"ERROR: No se encuentra la empresa"}
         return JsonResponse(datos)
 
     def delete(self, request,id_empresa):
@@ -87,11 +87,11 @@ class EmpresaView(View):
             eliminar_empresa(id_empresa=jd['id_empresa'])
             datos={'message':"Success"}
         else:
-            datos={'message':"ERROR: no fue posible eliminar el cargo"}
+            datos={'message':"ERROR: no fue posible eliminar la empresa"}
         return JsonResponse(datos)
 
 class EmpresaViewset(viewsets.ModelViewSet):
-    queryset = Empresa.objects.filter(usuario_vigente='1')
+    queryset = Empresa.objects.filter(estado_fila='1')
     serializer_class = EmpresaSerializer
 
 
