@@ -589,5 +589,73 @@ begin
   open cur_listar for select * from reporte;
 end REPORTE_LISTAR;
 
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP tipo empresa -----------------------------------------------------------------------------
+
+
+create sequence sec_tipo_empresa
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE TIPO_EMPRESA_ELIMINAR (v_id_tipo_empresa integer, v_salida out number) is
+begin 
+    UPDATE tipo_empresa
+    SET estado_fila = '0'
+    WHERE id_tipo_empresa = v_id_tipo_empresa;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end TIPO_EMPRESA_ELIMINAR;
+
+
+create or replace PROCEDURE TIPO_EMPRESA_AGREGAR 
+(
+    v_tipo_empresa varchar2,
+    v_estado_fila char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into tipo_empresa(id_tipo_empresa,tipo_empresa,estado_fila) 
+  values(sec_tipo_empresa.nextval,v_tipo_empresa,v_estado_fila);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end TIPO_EMPRESA_AGREGAR;
+
+
+create or replace PROCEDURE TIPO_EMPRESA_MODIFICAR 
+(
+    v_id_tipo_empresa integer,
+    v_tipo_empresa varchar2,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE tipo_empresa
+    SET tipo_empresa = v_tipo_empresa
+    WHERE id_tipo_empresa = v_id_tipo_empresa;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end TIPO_EMPRESA_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE TIPO_EMPRESA_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from tipo_empresa;
+end TIPO_EMPRESA_LISTAR;
 
 '''
