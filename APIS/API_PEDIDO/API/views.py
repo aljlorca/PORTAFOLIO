@@ -41,7 +41,7 @@ def lista_pedido():
     return lista
     
 
-class EmpresaView(View):
+class PedidoView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
