@@ -658,4 +658,158 @@ begin
   open cur_listar for select * from tipo_empresa;
 end TIPO_EMPRESA_LISTAR;
 
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP resumen venta -----------------------------------------------------------------------------
+
+create sequence sec_resumen_venta
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE RESUMEN_VENTA_ELIMINAR (v_id_resumen integer, v_salida out number) is
+begin 
+    UPDATE resumen_venta
+    SET estado_fila = '0'
+    WHERE id_resumen = v_id_resumen;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end RESUMEN_VENTA_ELIMINAR;
+
+
+create or replace PROCEDURE RESUMEN_VENTA_AGREGAR 
+(
+    v_monto_neto_venta integer,
+    v_descripcion_resumen varchar2,
+    v_id_venta_externa integer,
+    v_estado_fila char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into resumen_venta(id_resumen,monto_neto_venta,descripcion_resumen,id_venta_externa,estado_fila) 
+  values(sec_resumen_venta.nextval,v_monto_neto_venta,v_descripcion_resumen,v_id_venta_externa,v_estado_fila);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end RESUMEN_VENTA_AGREGAR;
+
+
+create or replace PROCEDURE RESUMEN_VENTA_MODIFICAR 
+(
+    v_id_resumen integer,
+    v_monto_neto_venta integer,
+    v_descripcion_resumen varchar2,
+    v_id_venta_externa integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE resumen_venta
+    SET monto_neto_venta = v_monto_neto_venta,
+    descripcion_resumen = v_descripcion_resumen,
+    id_venta_externa= v_id_venta_externa
+    WHERE id_resumen = v_id_resumen;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end RESUMEN_VENTA_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE RESUMEN_VENTA_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from resumen_venta;
+end RESUMEN_VENTA_LISTAR;
+
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP saldo -----------------------------------------------------------------------------
+
+create sequence sec_saldo
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE SALDO_ELIMINAR (v_id_saldo integer, v_salida out number) is
+begin 
+    UPDATE saldo
+    SET estado_fila = '0'
+    WHERE id_saldo = v_id_saldo;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end SALDO_ELIMINAR;
+
+
+create or replace PROCEDURE SALDO_AGREGAR 
+(
+    v_descripcion_saldo varchar2,
+    v_monto_bruto_saldo integer,
+    v_iva_saldo integer,
+    v_monto_neto_saldo integer,
+    v_id_venta_externa integer,
+    v_estado_fila char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into saldo(id_saldo,descripcion_saldo,monto_bruto_saldo,iva_saldo,monto_neto_saldo,id_venta_externa,estado_fila) 
+  values(sec_saldo.nextval,v_descripcion_saldo,v_monto_bruto_saldo,v_iva_saldo,v_monto_neto_saldo,v_id_venta_externa,v_estado_fila);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end SALDO_AGREGAR;
+
+
+create or replace PROCEDURE SALDO_MODIFICAR 
+(
+    v_id_saldo integer,
+    v_descripcion_saldo varchar2,
+    v_monto_bruto_saldo integer,
+    v_iva_saldo integer,
+    v_monto_neto_saldo integer,
+    v_id_venta_externa integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE saldo
+    SET descripcion_saldo = v_descripcion_saldo,
+    monto_bruto_saldo = v_monto_bruto_saldo,
+    iva_saldo= v_iva_saldo,
+    monto_neto_saldo = v_monto_neto_saldo,
+    id_venta_externa = v_id_venta_externa
+    WHERE id_saldo = v_id_saldo;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end SALDO_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE SALDO_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from saldo;
+end SALDO_LISTAR;
 '''

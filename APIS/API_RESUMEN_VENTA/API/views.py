@@ -87,7 +87,7 @@ class ResumenVentaView(View):
             eliminar_resumen_venta(id_resumen=jd['id_resumen'])
             datos={'message':"Success"}
         else:
-            datos={'message':"ERROR: no fue posibResumenVentale eliminar el resumen de venta"}
+            datos={'message':"ERROR: no fue posible eliminar el resumen de venta"}
         return JsonResponse(datos)
 
 class ResumenVentaViewset(viewsets.ModelViewSet):
