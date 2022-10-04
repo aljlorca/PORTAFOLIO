@@ -281,7 +281,7 @@ create sequence sec_empresa
   minvalue 1;
 
 
-create or replace PROCEDURE EMPRESA_ELIMINAR (v_id_empresa varchar2, v_salida out number) is
+create or replace PROCEDURE EMPRESA_ELIMINAR (v_id_empresa integer, v_salida out number) is
 begin 
     UPDATE empresa
     SET estado_fila = '0'
@@ -368,7 +368,7 @@ create sequence sec_pedido
   minvalue 1;
 
 
-create or replace PROCEDURE PEDIDO_ELIMINAR (v_id_pedido varchar2, v_salida out number) is
+create or replace PROCEDURE PEDIDO_ELIMINAR (v_id_pedido integer, v_salida out number) is
 begin 
     UPDATE pedido
     SET estado_fila = '0'
@@ -430,5 +430,164 @@ is
 begin
   open cur_listar for select * from pedido;
 end PEDIDO_LISTAR;
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP postulacion -----------------------------------------------------------------------------
+
+create sequence sec_postulacion
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE POSTULACION_ELIMINAR (v_id_postulacion integer, v_salida out number) is
+begin 
+    UPDATE postulacion
+    SET estado_fila = '0'
+    WHERE v_id_postulacion = id_postulacion;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end POSTULACION_ELIMINAR;
+
+
+create or replace PROCEDURE POSTULACION_AGREGAR 
+(
+    v_descripcion varchar2,
+    v_estado varchar2,
+    v_id_venta_externa integer,
+    v_empresa integer,
+    v_estado_fila char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into postulacion(id_postulacion,descripcion,estado,id_venta_externa,id_empresa,estado_fila) 
+  values(sec_postulacion.nextval,v_descripcion,v_estado,v_id_venta_externa,v_empresa,v_estado_fila);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end POSTULACION_AGREGAR;
+
+
+create or replace PROCEDURE POSTULACION_MODIFICAR 
+(
+    v_id_postulacion integer,
+    v_descripcion varchar2,
+    v_estado varchar2,
+    v_id_venta_externa integer,
+    v_empresa integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE postulacion
+    SET descripcion = v_descripcion,
+    estado = v_estado,
+    id_venta_externa = v_id_venta_externa,
+    id_empresa = v_empresa
+    WHERE id_postulacion = v_id_postulacion;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end POSTULACION_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE POSTULACION_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from postulacion;
+end POSTULACION_LISTAR;
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP reporte -----------------------------------------------------------------------------
+
+create sequence sec_reporte
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE REPORTE_ELIMINAR (v_id_reporte integer, v_salida out number) is
+begin 
+    UPDATE reporte
+    SET estado_fila = '0'
+    WHERE v_id_reporte = id_reporte;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end REPORTE_ELIMINAR;
+
+
+create or replace PROCEDURE REPORTE_AGREGAR 
+(
+    v_descripcion_reporte varchar2,
+    v_productos_entregados_reporte varchar2,
+    v_productos_perdidos_reporte varchar2,
+    v_productos_restantes_reporte varchar2,
+    v_id_venta_externa integer,
+    v_id_empresa integer,
+    v_estado_fila char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into reporte(id_reporte,descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta_externa,id_empresa,estado_fila) 
+  values(sec_reporte.nextval,v_descripcion_reporte,v_productos_entregados_reporte,v_productos_perdidos_reporte,v_productos_restantes_reporte,v_id_venta_externa,v_id_empresa,v_estado_fila);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end REPORTE_AGREGAR;
+
+
+create or replace PROCEDURE REPORTE_MODIFICAR 
+(
+    v_id_reporte integer,
+    v_descripcion_reporte varchar2,
+    v_productos_entregados_reporte varchar2,
+    v_productos_perdidos_reporte varchar2,
+    v_productos_restantes_reporte varchar2,
+    v_id_venta_externa integer,
+    v_id_empresa integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE reporte
+    SET descripcion_reporte = v_descripcion_reporte,
+    productos_entregados_reporte = v_productos_entregados_reporte,
+    productos_perdidos_reporte = v_productos_perdidos_reporte,
+    productos_restantes_reporte = v_productos_restantes_reporte,
+    id_venta_externa = v_id_venta_externa,
+    id_empresa = v_id_empresa
+    WHERE id_reporte = v_id_reporte;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end REPORTE_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE REPORTE_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from reporte;
+end REPORTE_LISTAR;
+
 
 '''
