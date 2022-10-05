@@ -979,3 +979,82 @@ is
 begin
   open cur_listar for select * from venta_interna where estado_fila = '1';
 end VENTA_INTERNA_LISTAR;
+
+
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP contrato -----------------------------------------------------------------------------
+
+create sequence sec_contrato
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE CONTRATO_ELIMINAR (v_id_contrato integer, v_salida out number) is
+begin 
+    UPDATE contrato
+    SET estado_fila = '0'
+    WHERE id_contrato = v_id_contrato;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end CONTRATO_ELIMINAR;
+
+
+create or replace PROCEDURE CONTRATO_AGREGAR 
+(
+    v_documento_contrato varchar2,
+    v_fecha_contrato date,
+    v_tipo_contrato varchar2,
+    v_id_empresa integer,
+    v_estado_fila char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into contrato(id_contrato,documento_contrato,fecha_contrato,tipo_contrato,id_empresa,estado_fila) 
+  values(sec_contrato.nextval,v_documento_contrato,v_fecha_contrato,v_tipo_contrato,v_id_empresa,v_estado_fila);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end CONTRATO_AGREGAR;
+
+
+create or replace PROCEDURE CONTRATO_MODIFICAR 
+(
+    v_id_contrato integer,
+    v_documento_contrato varchar2,
+    v_fecha_contrato date,
+    v_tipo_contrato varchar2,
+    v_id_empresa integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE contrato
+    SET documento_contrato = v_documento_contrato,
+    fecha_contrato = v_fecha_contrato,
+    tipo_contrato = v_tipo_contrato,
+    id_empresa = v_id_empresa
+    WHERE id_contrato = v_id_contrato;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end CONTRATO_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE CONTRATO_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from contrato;
+end CONTRATO_LISTAR;

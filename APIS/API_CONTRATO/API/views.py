@@ -4,26 +4,30 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Contrato
-from .serializers import ContratoSerializer
+from .serializers import ContratoSerializer,ContratoHistoricoSerializer
 from rest_framework import viewsets
 import json
+import cx_Oracle
 # Create your views here.
 
 def agregar_contrato(documento_contrato,fecha_contrato,tipo_contrato,id_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    
-    cursor.callproc('CONTRATO_AGREGAR',[documento_contrato,fecha_contrato,rut_cliente_externo,rut_administrador,tipo_contrato])
+    salida = cursor.var(cx_Oracle.NUMBER)
+    estado_fila = '1'
+    cursor.callproc('CONTRATO_AGREGAR',[documento_contrato,fecha_contrato,tipo_contrato,id_empresa,estado_fila,salida])
 
-def modificar_contrato(id_contrato,documento_contrato,fecha_contrato,rut_cliente_externo,rut_administrador,tipo_contrato):
+def modificar_contrato(id_contrato,documento_contrato,fecha_contrato,tipo_contrato,id_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('CONTRATO_MODIFICAR',[id_contrato,documento_contrato,fecha_contrato,rut_cliente_externo,rut_administrador,tipo_contrato])
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('CONTRATO_MODIFICAR',[id_contrato,documento_contrato,fecha_contrato,tipo_contrato,id_empresa,salida])
 
 def eliminar_contrato(id_contrato):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('CONTRATO_ELIMINAR',[id_contrato])
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('CONTRATO_ELIMINAR',[id_contrato,salida])
 
 def listar_contrato():
     django_cursor = connection.cursor()
@@ -34,10 +38,6 @@ def listar_contrato():
     for fila in out_cur:
         lista.append(fila)
     return lista
-
-class ContratoViewset(viewsets.ModelViewSet):
-    queryset = Contrato.objects.all()
-    serializer_class = ContratoSerializer
 
 class ContratoView(View):
     
@@ -64,7 +64,7 @@ class ContratoView(View):
     
     def post(self,request):
         jd = json.loads(request.body)
-        agregar_contrato(documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],rut_cliente_externo=jd['rut_cliente_externo'],rut_administrador=jd['rut_administrador'],tipo_contrato=jd['tipo_contrato'],)
+        agregar_contrato(documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
         datos={'message':'Success'}
         return JsonResponse(datos)
     
@@ -72,7 +72,7 @@ class ContratoView(View):
         jd = json.loads(request.body)
         contratos = list(Contrato.objects.filter(id_contrato=id_contrato).values())
         if len(contratos)>0:
-            modificar_contrato(id_contrato=jd['id_contrato'],documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],rut_cliente_externo=jd['rut_cliente_externo'],rut_administrador=jd['rut_administrador'],tipo_contrato=jd['tipo_contrato'],)
+            modificar_contrato(id_contrato=jd['id_contrato'],documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
             datos={'message':'Success'}
         else:
             datos={'message':'ERROR: Contrato NO fue posible actualizar sus datos'}
@@ -87,3 +87,10 @@ class ContratoView(View):
             datos={'message':'ERROR: NO fue posible eliminar el Contrato'}
         return JsonResponse(datos)
 
+class ContratoViewset(viewsets.ModelViewSet):
+    queryset = Contrato.objects.filter(estado_fila='1')
+    serializer_class = ContratoSerializer
+
+class ContratoHistoricoViewset(viewsets.ModelViewSet):
+    queryset = Contrato.objects.all()
+    serializer_class = ContratoHistoricoSerializer
