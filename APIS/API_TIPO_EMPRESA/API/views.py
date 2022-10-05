@@ -47,7 +47,7 @@ class TipoEmpresaView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_tipo_empresa=0):
-        if(id > 0):
+        if(id_tipo_empresa > 0):
             tipos=list(TipoEmpresa.objects.filter(id_tipo_empresa=id_tipo_empresa).values())
             if len(tipos) > 0:
                 tipo = tipos[0]

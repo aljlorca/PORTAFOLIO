@@ -49,7 +49,7 @@ class CargoView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_cargo=0):
-        if(id > 0):
+        if(id_cargo > 0):
             cargos=list(Cargo.objects.filter(id=id_cargo).values())
             if len(cargos) > 0:
                 cargo = cargos[0]

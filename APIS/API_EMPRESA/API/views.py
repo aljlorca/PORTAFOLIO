@@ -47,7 +47,7 @@ class EmpresaView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_empresa=0):
-        if(id > 0):
+        if(id_empresa > 0):
             empresas=list(Empresa.objects.filter(id_empresa=id_empresa).values())
             if len(empresas) > 0:
                 empresa = empresas[0]

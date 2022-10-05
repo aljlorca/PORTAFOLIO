@@ -50,7 +50,7 @@ class VentaExternaView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_venta_externa=0):
-        if(id > 0):
+        if(id_venta_externa > 0):
             ventas=list(VentaExterna.objects.filter(id_venta_externa=id_venta_externa).values())
             if len(ventas) > 0:
                 venta = ventas[0]

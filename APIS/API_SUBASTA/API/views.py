@@ -50,7 +50,7 @@ class SubastaView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_subasta_transportista=0):
-        if(id > 0):
+        if(id_subasta_transportista > 0):
             subastas=list(Subasta.objects.filter(id_subasta_transportista=id_subasta_transportista).values())
             if len(subastas) > 0:
                 subasta = subastas[0]

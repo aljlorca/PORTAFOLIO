@@ -47,7 +47,7 @@ class PedidoView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_pedido=0):
-        if(id > 0):
+        if(id_pedido > 0):
             pedidos=list(Pedido.objects.filter(id_pedido=id_pedido).values())
             if len(pedidos) > 0:
                 pedido = pedidos[0]

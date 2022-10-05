@@ -47,7 +47,7 @@ class ResumenVentaView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_resumen=0):
-        if(id > 0):
+        if(id_resumen > 0):
             resumenes=list(ResumenVenta.objects.filter(id_resumen=id_resumen).values())
             if len(resumenes) > 0:
                 resumen = resumenes[0]

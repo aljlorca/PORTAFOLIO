@@ -49,7 +49,7 @@ class UsuarioView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_usuario=0):
-        if(id > 0):
+        if(id_usuario > 0):
             usuarios=list(Usuario.objects.filter(id_usuario=id_usuario).values())
             if len(usuarios) > 0:
                 usuario = usuarios[0]

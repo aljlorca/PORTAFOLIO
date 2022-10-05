@@ -50,7 +50,7 @@ class VentaInternaView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_venta_interna=0):
-        if(id > 0):
+        if(id_venta_interna > 0):
             ventas=list(VentaInterna.objects.filter(id_venta_interna=id_venta_interna).values())
             if len(ventas) > 0:
                 venta = ventas[0]

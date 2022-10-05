@@ -3,3 +3,4 @@ cx_oracle
 virtualenv
 djangorestframework
 requests
+pillow

@@ -47,7 +47,7 @@ class ReporteView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_reporte=0):
-        if(id > 0):
+        if(id_reporte > 0):
             reportes=list(Reporte.objects.filter(id_reporte=id_reporte).values())
             if len(reportes) > 0:
                 reporte = reportes[0]
