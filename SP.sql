@@ -63,10 +63,10 @@ end CARGO_MODIFICAR;
 
  
 
-CREATE OR REPLACE EDITIONABLE PROCEDURE CARGO_LISTAR (cur_listar out SYS_REFCURSOR) 
+create or replace PROCEDURE CARGO_LISTAR (cur_listar out SYS_REFCURSOR) 
 is
 begin
-  open cur_listar for select * from cargo;
+  open cur_listar for select * from cargo where estado_fila = '1';
 end CARGO_LISTAR;
 
 
@@ -891,3 +891,91 @@ is
 begin
   open cur_listar for select * from venta_externa;
 end VENTA_EXTERNA_LISTAR;
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP venta interna -----------------------------------------------------------------------------
+
+create sequence sec_venta_interna
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE VENTA_INTERNA_ELIMINAR (v_id_venta_interna integer, v_salida out number) is
+begin 
+    UPDATE venta_interna
+    SET estado_fila = '0'
+    WHERE id_venta_interna = v_id_venta_interna;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end VENTA_INTERNA_ELIMINAR;
+
+
+create or replace PROCEDURE VENTA_INTERNA_AGREGAR 
+(
+    v_descripcion varchar2,
+    v_monto_bruto integer,
+    v_iva integer,
+    v_monto_neto integer,
+    v_fecha date,
+    v_id_saldo integer,
+    v_id_empresa integer,
+    v_estado_fila char,
+    v_id_usuario integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into venta_interna(id_venta_interna,descripcion_venta_interna,monto_bruto_venta_interna,iva_venta_interna,monto_neto_venta_interna,fecha_venta_interna,id_saldo,id_empresa,estado_fila,id_usuario) 
+  values(sec_venta_interna.nextval,v_descripcion,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_id_saldo,v_id_empresa,v_estado_fila,v_id_usuario);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end VENTA_INTERNA_AGREGAR;
+
+
+create or replace PROCEDURE VENTA_INTERNA_MODIFICAR 
+(
+    v_id_venta_interna integer,
+    v_descripcion varchar2,
+    v_monto_bruto integer,
+    v_iva integer,
+    v_monto_neto integer,
+    v_fecha date,
+    v_id_saldo integer,
+    v_id_empresa integer,
+    v_id_usuario integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE venta_interna
+    SET descripcion_venta_interna = v_descripcion,
+    monto_bruto_venta_interna = v_monto_bruto,
+    iva_venta_interna = v_iva,
+    monto_neto_venta_interna = v_monto_neto,
+    fecha_venta_interna = v_fecha,
+    id_saldo = v_id_saldo,
+    id_empresa = v_id_empresa,
+    id_usuario = v_id_usuario
+    WHERE id_venta_interna = v_id_venta_interna;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+end VENTA_INTERNA_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE VENTA_INTERNA_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from venta_interna where estado_fila = '1';
+end VENTA_INTERNA_LISTAR;

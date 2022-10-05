@@ -61,9 +61,9 @@ class VentaExternaView(View):
         else:
             ventas = list(VentaExterna.objects.values())
             if len(ventas) > 0:
-                datos={'message':"Success","subasta":ventas}
+                datos={'message':"Success","venta_externa":ventas}
             else:
-                datos={'message':"ERROR: subastas de ventas No encontradas"}
+                datos={'message':"ERROR: ventas de ventas No encontradas"}
             return JsonResponse(datos)
 
     def post(self, request):
@@ -73,9 +73,9 @@ class VentaExternaView(View):
         return JsonResponse(datos)
         
 
-    def put(self, request,id_subasta_transportista):
+    def put(self, request,id_venta_externa):
         jd = json.loads(request.body)
-        ventas = list(VentaExterna.objects.filter(id_subasta_transportista=id_subasta_transportista).values())
+        ventas = list(VentaExterna.objects.filter(id_venta_externa=id_venta_externa).values())
         if len(ventas) > 0:
             modificar_venta_externa(id_venta_externa=jd['id_venta_externa'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],id_empresa=jd['id_empresa'])
             datos={'message':"Success"}
