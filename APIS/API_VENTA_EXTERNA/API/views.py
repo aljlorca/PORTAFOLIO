@@ -20,12 +20,12 @@ def agregar_venta_externa(descripcion_venta,estado_venta,monto_bruto_venta,iva,m
     cursor.callproc('VENTA_EXTERNA_AGREGAR',[descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,id_empresa,estado_fila,salida])
     return salida
 
-def modificar_venta_externa(id_subasta_transportista,monto,id_venta_externa,id_empresa):
+def modificar_venta_externa(id_venta_externa,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,id_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    fecha_subasta = datetime.date.today()
-    cursor.callproc('VENTA_EXTERNA_MODIFICAR',[id_subasta_transportista,monto,id_venta_externa,id_empresa,fecha_subasta,salida])
+    fecha_venta = datetime.date.today()
+    cursor.callproc('VENTA_EXTERNA_MODIFICAR',[id_venta_externa,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,id_empresa,salida])
 
 def eliminar_venta_externa(id_subasta_transportista):
     django_cursor = connection.cursor()
