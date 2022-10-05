@@ -164,88 +164,73 @@ begin
 end USUARIO_LISTAR;
 
 ------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------SP CONTRATO --------------------------------------------------------------------------
-
-create or replace PROCEDURE CONTRATO_ELIMINAR (v_id_contrato Integer) is
-begin 
-    DELETE contrato
-    WHERE id_contrato = v_id_contrato;
-    commit;
-
-end CONTRATO_ELIMINAR;
-
-
-create or replace PROCEDURE CONTRATO_AGREGAR (v_documento_contrato BFILE, v_fecha_contrato date,v_rut_cliente_externo integer,v_rut_administrador integer,v_tipo_contrato varchar2) is
-begin 
-  insert into CONTRATO(id_contrato,documento_contrato,fecha_contrato,rut_cliente_externo,rut_administrador,tipo_contrato) 
-  values(ISEQ$$_76839.nextval,v_documento_contrato,v_fecha_contrato,v_rut_cliente_externo,v_rut_administrador,v_tipo_contrato);
-  commit;
-
-end CONTRATO_AGREGAR;
-
-
-create or replace PROCEDURE CONTRATO_MODIFICAR (v_id_contrato Integer,v_documento_contrato BFILE, v_fecha_contrato date,v_rut_cliente_externo integer,v_rut_administrador integer,v_tipo_contrato varchar2) is
-begin 
-    UPDATE contrato
-    SET contrato.documento_contrato = v_documento_contrato,
-    contrato.fecha_contrato = v_fecha_contrato,
-    contrato.rut_cliente_externo = v_rut_cliente_externo,
-    contrato.rut_administrador = v_rut_administrador,
-    contrato.tipo_contrato = v_tipo_contrato
-    WHERE id_contrato = v_id_contrato;
-    commit;
-
-end CONTRATO_MODIFICAR;
-
- 
-
- CREATE OR REPLACE EDITIONABLE PROCEDURE CONTRATO_LISTAR (cur_listar out SYS_REFCURSOR) 
-is
-
-begin
-    open cur_listar for select '{"id_contrato": '|| id_contrato||', "documento_contrato": "'||documento_contrato||',"fecha_contrato": "'||fecha_contrato||',"rut_cliente_externo": "'||cliente_externo_rut_cliente_externo||',"rut_administrador": "'||administrador_rut_administrador||',"tipo_contrato": "'||tipo_contrato||'"}' request from contrato;
-end CONTRATO_LISTAR;
-
-
-------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP PRODUCTO --------------------------------------------------------------------------
+
+create sequence sec_producto
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
 
 create or replace PROCEDURE PRODUCTO_ELIMINAR (v_id_producto Integer) is
 begin 
-    DELETE PRODUCTO
+    UPDATE PRODUCTO
+    SET estado_fila = '0'
     WHERE id_producto = v_id_producto;
     commit;
 
 end PRODUCTO_ELIMINAR;
 
 
-create or replace PROCEDURE PRODUCTO_AGREGAR (v_nombre_producto varchar2, v_cantidad_producto integer,rut_proveedor integer) is
+create or replace PROCEDURE PRODUCTO_AGREGAR 
+(
+    v_nombre_producto varchar2, 
+    v_cantidad_producto integer,
+    v_id_empresa integer,
+    v_estado_fila char,
+    v_imagen_producto varchar2,
+    v_salida OUT NUMBER
+) 
+is
 begin 
-  insert into PRODUCTO(id_producto,nombre_producto,cantidad_producto,rut_proveedor) 
-  values(ISEQ$$_76844.nextval,v_nombre_producto,v_cantidad_producto,rut_proveedor);
+  insert into PRODUCTO(id_producto,nombre_producto,cantidad_producto,id_empresa,estado_fila,imagen_producto) 
+  values(sec_producto.nextval,v_nombre_producto,v_cantidad_producto,v_id_empresa,v_estado_fila,v_imagen_producto);
   commit;
-
+  v_salida:=1;
+  exception when others then v_salida:=0;
 end PRODUCTO_AGREGAR;
 
 
-create or replace PROCEDURE PRODUCTO_MODIFICAR (v_id_producto Integer,v_nombre_producto varchar2, v_cantidad_producto integer,v_rut_proveedor integer) is
+ create or replace PROCEDURE PRODUCTO_MODIFICAR (
+    v_id_producto integer,
+    v_nombre_producto varchar2, 
+    v_cantidad_producto integer,
+    v_id_empresa integer,
+    v_imagen_producto varchar2,
+    v_salida OUT NUMBER
+
+) is
 begin 
-    UPDATE PRODUCTO
+    UPDATE producto
     SET nombre_producto = v_nombre_producto,
     cantidad_producto = v_cantidad_producto,
-    rut_proveedor = v_rut_proveedor
+    id_empresa = v_id_empresa,
+    imagen_producto = v_imagen_producto
     WHERE id_producto = v_id_producto;
     commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
 
 end PRODUCTO_MODIFICAR;
-
- 
 
  CREATE OR REPLACE EDITIONABLE PROCEDURE PRODUCTO_LISTAR (cur_listar out SYS_REFCURSOR) 
 is
 
 begin
-    open cur_listar for select '{"id_producto": '|| id_producto||', "nombre_producto": "'||nombre_producto||',"cantidad_producto": "'||cantidad_producto||',"rut_proveedor": "'||rut_proveedor||',"rut_administrador": "'||'"}' request from PRODUCTO;
+    open cur_listar for select * from PRODUCTO;
 end PRODUCTO_LISTAR;
 
 ------------------------------------------------------------------------------------------------------------------------------
@@ -1234,7 +1219,7 @@ create sequence sec_CIUDAD
 
 
 
- create or replace PROCEDURE         "CIUDAD_ELIMINAR"(
+create or replace PROCEDURE         "CIUDAD_ELIMINAR"(
 
 v_id_ciudad INTEGER,
 v_salida out number

@@ -4,25 +4,31 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Producto
-from .serializers import ProductoSerializer
+from .serializers import ProductoSerializer,ProductoHistoricoSerializer
 from rest_framework import viewsets
 import json
+import cx_Oracle
 # Create your views here.
 
-def agregar_producto(nombre_producto,cantidad_producto,rut_proveedor):
+def agregar_producto(nombre_producto,cantidad_prioducto,id_empresa,imagen_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('PRODUCTO_AGREGAR',[nombre_producto,cantidad_producto,rut_proveedor])
+    salida = cursor.var(cx_Oracle.NUMBER)
+    estado_fila = '1'
+    cursor.callproc('PRODUCTO_AGREGAR',[nombre_producto,cantidad_prioducto,id_empresa,estado_fila,imagen_producto,salida])
 
-def modificar_producto(id_producto,nombre_producto,cantidad_producto,rut_proveedor):
+def modificar_producto(id_producto,nombre_producto,cantidad_prioducto,id_empresa,imagen_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('PRODUCTO_MODIFICAR',[id_producto,nombre_producto,cantidad_producto,rut_proveedor])
+    salida = cursor.var(cx_Oracle.NUMBER)
+    estado_fila = '1'
+    cursor.callproc('PRODUCTO_MODIFICAR',[id_producto,nombre_producto,cantidad_prioducto,id_empresa,imagen_producto,salida])
 
 def eliminar_producto(id_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('PRODUCTO_ELIMINAR',[id_producto])
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('PRODUCTO_ELIMINAR',[id_producto,salida])
 
 def listar_producto():
     django_cursor = connection.cursor()
@@ -34,9 +40,6 @@ def listar_producto():
         lista.append(fila)
     return lista
 
-class ProductoViewset(viewsets.ModelViewSet):
-    queryset = Producto.objects.all()
-    serializer_class = ProductoSerializer
 
 class ProductoView(View):
     
@@ -63,7 +66,7 @@ class ProductoView(View):
     
     def post(self,request):
         jd = json.loads(request.body)
-        agregar_producto(nombre_producto=jd['nombre_producto'],cantidad_producto=jd['cantidad_producto'],rut_proveedor=jd['rut_proveedor'],)
+        agregar_producto(nombre_producto=jd['nombre_producto'],cantidad_prioducto=jd['cantidad_prioducto'],id_empresa=jd['id_empresa'],imagen_producto=jd['imagen_producto'])
         datos={'message':'Success'}
         return JsonResponse(datos)
     
@@ -71,7 +74,7 @@ class ProductoView(View):
         jd = json.loads(request.body)
         productos = list(Producto.objects.filter(id_producto=id_producto).values())
         if len(productos)>0:
-            modificar_producto(id_producto=jd['id_producto'],nombre_producto=jd['nombre_producto'],cantidad_producto=jd['cantidad_producto'],rut_proveedor=jd['rut_proveedor'],)
+            modificar_producto(id_producto=jd['id_producto'],nombre_producto=jd['nombre_producto'],cantidad_prioducto=jd['cantidad_prioducto'],id_empresa=jd['id_empresa'],imagen_producto=jd['imagen_producto'])
             datos={'message':'Success'}
         else:
             datos={'message':'ERROR: Producto NO fue posible actualizar sus datos'}
@@ -85,3 +88,13 @@ class ProductoView(View):
         else:
             datos={'message':'ERROR: NO fue posible eliminar el Producto'}
         return JsonResponse(datos)
+
+
+
+class ProductoViewset(viewsets.ModelViewSet):
+    queryset = Producto.objects.filter(estado_fila = '1')
+    serializer_class = ProductoSerializer
+
+class ProductoHistoricoViewset(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoHistoricoSerializer
