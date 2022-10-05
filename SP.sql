@@ -1,7 +1,7 @@
-#########################################################################
-##### PROCEDIMIENTOS DE ALMACENADO PARA FUNCIONAMIENTO DE LAS API'S #####
-#########################################################################
-'''
+---------------------------------------------------------------------
+----PROCEDIMIENTOS DE ALMACENADO PARA FUNCIONAMIENTO DE LAS APIS ----
+---------------------------------------------------------------------
+
 ------------------------- SP CARGO -----------------------------------------------------------
 create sequence sec_cargo
   start with 1
@@ -891,4 +891,3 @@ is
 begin
   open cur_listar for select * from venta_externa;
 end VENTA_EXTERNA_LISTAR;
-'''

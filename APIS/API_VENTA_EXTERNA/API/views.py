@@ -27,11 +27,11 @@ def modificar_venta_externa(id_venta_externa,descripcion_venta,estado_venta,mont
     fecha_venta = datetime.date.today()
     cursor.callproc('VENTA_EXTERNA_MODIFICAR',[id_venta_externa,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,id_empresa,salida])
 
-def eliminar_venta_externa(id_subasta_transportista):
+def eliminar_venta_externa(id_venta_externa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('VENTA_EXTERNA_ELIMINAR',[id_subasta_transportista,salida])
+    cursor.callproc('VENTA_EXTERNA_ELIMINAR',[id_venta_externa,salida])
 
 def lista_venta_externa():
     django_cursor = connection.cursor()
@@ -49,48 +49,48 @@ class VentaExternaView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id_subasta_transportista=0):
+    def get(self, request, id_venta_externa=0):
         if(id > 0):
-            subastas=list(Subasta.objects.filter(id_subasta_transportista=id_subasta_transportista).values())
-            if len(subastas) > 0:
-                subasta = subastas[0]
-                datos={'message':"Success","subasta":subasta}
+            ventas=list(VentaExterna.objects.filter(id_venta_externa=id_venta_externa).values())
+            if len(ventas) > 0:
+                venta = ventas[0]
+                datos={'message':"Success","venta_externa":venta}
             else:
-                datos={'message':"ERROR: subasta No Encontrada"}
+                datos={'message':"ERROR: venta No Encontrada"}
             return JsonResponse(datos)
         else:
-            subastas = list(Subasta.objects.values())
-            if len(subastas) > 0:
-                datos={'message':"Success","subasta":subastas}
+            ventas = list(VentaExterna.objects.values())
+            if len(ventas) > 0:
+                datos={'message':"Success","subasta":ventas}
             else:
-                datos={'message':"ERROR: subastas de venta No encontradas"}
+                datos={'message':"ERROR: subastas de ventas No encontradas"}
             return JsonResponse(datos)
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_subasta(monto=jd['monto'],id_venta_externa=jd['id_venta_externa'],id_empresa=jd['id_empresa'])
+        agregar_venta_externa(descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],id_empresa=jd['id_empresa'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_subasta_transportista):
         jd = json.loads(request.body)
-        subasteas = list(Subasta.objects.filter(id_subasta_transportista=id_subasta_transportista).values())
-        if len(subasteas) > 0:
-            modificar_subasta(id_subasta_transportista=jd['id_subasta_transportista'],monto=jd['monto'],id_venta_externa=jd['id_venta_externa'],id_empresa=jd['id_empresa'])
+        ventas = list(VentaExterna.objects.filter(id_subasta_transportista=id_subasta_transportista).values())
+        if len(ventas) > 0:
+            modificar_venta_externa(id_venta_externa=jd['id_venta_externa'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],id_empresa=jd['id_empresa'])
             datos={'message':"Success"}
         else:
-            datos={'message':"ERROR: No se encuentra la subasta"}
+            datos={'message':"ERROR: No se encuentra la venta"}
         return JsonResponse(datos)
 
-    def delete(self, request,id_subasta_transportista):
-        subastas = list(Subasta.objects.filter(id_subasta_transportista=id_subasta_transportista).values())
+    def delete(self, request,id_venta_externa):
+        ventas = list(VentaExterna.objects.filter(id_venta_externa=id_venta_externa).values())
         jd = json.loads(request.body)
-        if len(subastas) > 0:
-            eliminar_subasta(id_subasta_transportista=jd['id_subasta_transportista'])
+        if len(ventas) > 0:
+            eliminar_venta_externa(id_venta_externa=jd['id_venta_externa'])
             datos={'message':"Success"}
         else:
-            datos={'message':"ERROR: no fue posible eliminar la subasta"}
+            datos={'message':"ERROR: no fue posible eliminar la venta"}
         return JsonResponse(datos)
 
 class VentaExternaViewset(viewsets.ModelViewSet):
