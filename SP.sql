@@ -1058,3 +1058,250 @@ is
 begin
   open cur_listar for select * from contrato;
 end CONTRATO_LISTAR;
+
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP PAIS  -----------------------------------------------------------------------------
+
+create sequence sec_pais
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+
+create or replace PROCEDURE         "PAIS_ELIMINAR"
+(
+    v_id_pais VARCHAR2,
+    v_salida out number
+
+) IS 
+BEGIN
+  UPDATE pais 
+  set estado_fila = '0'
+  where v_id_pais = id_pais;
+  commit;
+  v_salida:=1;
+  
+   exception when others then v_salida:=0;
+
+
+END PAIS_ELIMINAR;
+
+
+create or replace PROCEDURE         "PAIS_AGREGAR"(
+v_nombre_pais varchar2,
+v_estado_fila char,
+V_salida out number
+) is 
+BEGIN 
+insert into pais(id_pais,nombre_pais,estado_fila)
+values(SEC_PAIS.nextval ,v_nombre_pais,v_estado_fila);
+commit;
+  v_salida:=1; 
+
+  exception when others then v_salida:=0;
+end PAIS_AGREGAR;
+
+
+
+
+create or replace PROCEDURE         "PAIS_MODIFICAR" (
+    v_id_pais integer,
+    v_nombre_pais varchar2,
+    v_estado_fila char,
+    v_salida out number
+
+)is 
+BEGIN
+    update pais
+    set nombre_pais = v_nombre_pais
+    where id_pais = v_id_pais;
+    commit;
+    v_salida:=1;
+
+    exception when others then v_salida:=0;
+    
+END PAIS_MODIFICAR;
+
+
+create or replace PROCEDURE         "PAIS_LISTAR" (cur_listar out SYS_REFCURSOR)
+is 
+BEGIN
+  open cur_listar for select * from pais where estado_fila = '1';
+END PAIS_LISTAR;
+
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP REGION  ---------------------------------------------------------------------------
+
+
+create sequence sec_REGION
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE         "REGION_ELIMINAR"(
+
+v_id_region Integer,
+v_salida out number
+)IS
+BEGIN
+    update region
+    SET estado_fila = '0'
+    where v_id_region = id_region;
+    commit;
+    v_salida:=1;
+  
+   exception when others then v_salida:=0;
+    
+
+END REGION_ELIMINAR;
+
+
+
+create or replace PROCEDURE         "REGION_AGREGAR"(
+v_nombre_region varchar2,
+v_id_pais varchar2,
+v_estado_fila char,
+v_salida out number
+)
+IS 
+BEGIN
+insert into region(id_region,nombre_region,id_pais,estado_fila)
+values (sec_region.NEXTVAL,v_nombre_region,v_id_pais,v_estado_fila);
+commit;
+  v_salida:=1; 
+
+  exception when others then v_salida:=0;
+END REGION_AGREGAR;
+
+
+
+
+create or replace PROCEDURE         "REGION_MODIFICAR" (
+    v_id_region integer,
+    v_nombre_region varchar2,
+    v_id_pais integer,
+    v_estado_fila char,
+    v_salida out number
+
+
+
+
+
+)
+IS
+BEGIN
+  update REGION
+    set nombre_region = v_nombre_region
+    where id_region = v_id_region;
+    commit;
+    v_salida:=1;
+
+    exception when others then v_salida:=0;
+END REGION_MODIFICAR;
+
+
+
+create or replace PROCEDURE        "POSTULACION_LISTAR" (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from postulacion where estado_fila = '1';
+end POSTULACION_LISTAR;
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP CIUDAD  ---------------------------------------------------------------------------
+
+
+create sequence sec_CIUDAD
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+
+
+
+
+
+ create or replace PROCEDURE         "CIUDAD_ELIMINAR"(
+
+v_id_ciudad INTEGER,
+v_salida out number
+
+
+
+)IS 
+BEGIN
+  update ciudad
+    SET estado_fila = '0'
+    where v_id_ciudad = id_ciudad;
+    commit;
+    v_salida:=1;
+    exception when others then v_salida:=0;
+    
+    
+    
+END CIUDAD_ELIMINAR;
+
+
+
+
+
+create or replace PROCEDURE         "CIUDAD_AGREGAR"(
+
+    v_nombre_ciudad varchar2,
+    v_codigo_postal varchar2,
+    v_id_region  varchar2,
+    v_estado_fila char,
+    V_salida out number
+    ) is 
+BEGIN
+insert into ciudad(id_ciudad,nombre_ciudad,codigo_postal,id_region,estado_fila)
+values (SEC_CIUDAD.nextval , v_nombre_ciudad,v_codigo_postal,v_id_region,v_estado_fila);
+commit;
+    v_salida:=1; 
+    
+    exception when others then v_salida:=0;
+END CIUDAD_AGREGAR;
+
+
+
+
+create or replace PROCEDURE          "CIUDAD_MODIFICAR"(
+
+v_id_ciudad integer,
+v_nombre_ciudad varchar2,
+v_codigo_postal varchar2,
+v_id_region integer,
+v_estado_fila char,
+V_salida out number
+
+
+)is
+BEGIN
+  update ciudad
+    set nombre_ciudad = v_nombre_ciudad
+    where id_ciudad = v_id_ciudad;
+    commit;
+    v_salida:=1;
+
+    exception when others then v_salida:=0;
+END CIUDAD_MODIFICAR;
+
+
+create or replace PROCEDURE           "CIUDAD_LISTAR" (cur_listar out SYS_REFCURSOR)
+IS
+BEGIN
+  open cur_listar for select * from ciudad where estado_fila = '1';
+END CIUDAD_LISTAR;
