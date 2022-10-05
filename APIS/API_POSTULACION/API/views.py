@@ -47,7 +47,7 @@ class PostulacionView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_postulacion=0):
-        if(id > 0):
+        if(id_postulacion > 0):
             postulaciones=list(Postulacion.objects.filter(id_postulacion=id_postulacion).values())
             if len(postulaciones) > 0:
                 postulacion = postulaciones[0]

@@ -9,9 +9,10 @@ from rest_framework import viewsets
 import json
 # Create your views here.
 
-def agregar_contrato(documento_contrato,fecha_contrato,rut_cliente_externo,rut_administrador,tipo_contrato):
+def agregar_contrato(documento_contrato,fecha_contrato,tipo_contrato,id_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
+    
     cursor.callproc('CONTRATO_AGREGAR',[documento_contrato,fecha_contrato,rut_cliente_externo,rut_administrador,tipo_contrato])
 
 def modificar_contrato(id_contrato,documento_contrato,fecha_contrato,rut_cliente_externo,rut_administrador,tipo_contrato):

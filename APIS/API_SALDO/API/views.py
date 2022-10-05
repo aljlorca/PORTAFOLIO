@@ -47,7 +47,7 @@ class SaldoView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id_saldo=0):
-        if(id > 0):
+        if(id_saldo > 0):
             saldos=list(Saldo.objects.filter(id_saldo=id_saldo).values())
             if len(saldos) > 0:
                 saldo = saldos[0]
