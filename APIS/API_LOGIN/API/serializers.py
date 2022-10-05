@@ -12,3 +12,10 @@ class UsuarioHistoricoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = '__all__'
+
+
+
+class UsuarioDesktopAuthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ['correo_usuario','contrasena_usuario','administrador_usuario']
