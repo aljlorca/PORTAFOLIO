@@ -1,33 +1,14 @@
 from rest_framework import serializers
-from .models import Administrador, ClienteExterno,ClienteInterno,Proveedor,Transportista
-from rest_framework.authtoken.models import Token
+from .models import Usuario
 
-class AdministradorSerializer(serializers.ModelSerializer):
+
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Administrador
-        fields = ['rut_administrador', 'contrasena_administrador']
+        model = Usuario
+        fields = ['id_usuario','numero_identificacion_usuario','nombre_usuario','direccion_usuario','telefono_usuario','correo_usuario','fecha_creacion_usuario','fecha_sesion_usuario','administrador_usuario','id_cargo','id_empresa','id_ciudad',]
 
 
-class ClienteExternoSerializer(serializers.ModelSerializer):
+class UsuarioHistoricoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ClienteExterno
-        fields = ['rut_cliente_externo', 'contrasena_cliente_externo']
-
-
-class ClienteInternoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ClienteInterno
-        fields = ['rut_cliente_interno', 'contrasena_cliente_interno']
-
-
-class ProveedorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Proveedor
-        fields = ['rut_proveedor', 'contrasena_proveedor']
-
-
-class TransportistaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Transportista
-        fields = ['rut_transportista', 'contrasena_transportista']
-
+        model = Usuario
+        fields = '__all__'
