@@ -7,9 +7,6 @@ class PaisSerializer(serializers.ModelSerializer):
         model = Pais
         fields = ['id_pais','nombre_pais']
 
-
-
-
 class PaisHistoricoSerializer(serializers.ModelSerializer):
 
     class Meta:
