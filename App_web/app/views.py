@@ -11,3 +11,6 @@ def productos(request):
 
 def contacto(request):
     return render(request, 'app/contacto.html')
+
+def login(request):
+    return render(request, 'app/login.html')
