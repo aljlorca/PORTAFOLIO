@@ -2,6 +2,15 @@ from django.db import models
 
 # Create your models here.
 
+class Cargo(models.Model):
+    id_cargo = models.BigAutoField(primary_key=True)
+    nombre_cargo = models.CharField(max_length=50)
+    estado_fila = models.CharField(max_length=1)
+
+    class Meta:
+        managed = False
+        db_table = 'cargo'
+        
 class Pais(models.Model):
     id_pais = models.BigIntegerField(primary_key=True)
     nombre_pais = models.CharField(max_length=50)
