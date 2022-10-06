@@ -10,23 +10,16 @@ import cx_Oracle
 import json
 
 # Create your views here.
-def request_cliente_externo(rut_cliente_externo,contrasena_cliente_externo):
+def request_usuario(correo_usuario,contrasena_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc("dbms_output.enable")
-    cursor.callproc('CLIENTE_EXTERNO_LOGIN',[rut_cliente_externo,contrasena_cliente_externo,])
-    statusVar = cursor.var(cx_Oracle.NUMBER)
-    lineVar = cursor.var(cx_Oracle.DB_TYPE_CHAR)
-    global data
-    data=[]
-    while True:
-        cursor.callproc("dbms_output.get_line", (lineVar, statusVar))
-        if statusVar.getvalue() != 0:
-            
-            break
-        data.append(lineVar.getvalue())
-
-    return data
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc('LOGIN', [correo_usuario,contrasena_usuario,out_cur])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+    
 
 class ClienteExternoAuthView(View):
     @method_decorator(csrf_exempt)
@@ -36,9 +29,14 @@ class ClienteExternoAuthView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        datos = request_cliente_externo(rut_cliente_externo=jd['rut_cliente_externo'],contrasena_cliente_externo=jd['contrasena_cliente_externo'])
-        datos = datos[0].strip()
-        return JsonResponse(datos,safe=False)
+        usuarios = request_usuario(correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'])
+        if len(usuarios) > 0:
+            usuario = usuarios[0]
+            datos={'message':"Success",'usuario':usuario}
+        else:
+            datos={'message':"ERROR: usuario No Encontrado"}
+
+        return JsonResponse(datos)
 
 class UsuarioHistoricoViewset(viewsets.ModelViewSet):
     queryset = Usuario.objects.filter(administrador_usuario = '1')
