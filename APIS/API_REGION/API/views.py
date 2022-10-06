@@ -20,7 +20,7 @@ def agregar_region(nombre_region,id_pais):
     cursor.callproc('REGION_AGREGAR',[nombre_region,id_pais,estado_fila,salida])
     return salida
 
-def modificar_pais(id_region,nombre_region,id_pais):
+def modificar_region(id_region,nombre_region,id_pais):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
@@ -67,7 +67,7 @@ class RegionView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_region(nombre_pais=jd['nombre_pais'],id_pais=jd['id_pais'])
+        agregar_region(nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
 
@@ -75,7 +75,7 @@ class RegionView(View):
         jd = json.loads(request.body)
         regiones = list(Region.objects.filter(id_region=id_region).values())
         if len(regiones) > 0:
-            modificar_pais(id_region=jd['id_region'],nombre_pais=jd['nombre_pais'],id_pais=jd['id_pais'])
+            modificar_region(id_region=jd['id_region'],nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra la region"}
