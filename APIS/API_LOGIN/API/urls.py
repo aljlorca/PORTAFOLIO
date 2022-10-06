@@ -4,7 +4,7 @@ from .views import UsuarioAuthView,UsuarioHistoricoViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('usuario',UsuarioHistoricoViewset)
+router.register('usuario_desktop',UsuarioHistoricoViewset)
 
 urlpatterns = [
     path('',include(router.urls)),
