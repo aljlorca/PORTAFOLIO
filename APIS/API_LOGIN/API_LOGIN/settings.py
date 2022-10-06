@@ -37,11 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'API',
     'cx_Oracle',
-    'API', 
     'rest_framework',
-    'rest_framework.authtoken',
-    #'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +50,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 
 ]
 
@@ -76,8 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'API_LOGIN.wsgi.application'
 
-
-#CORS_ORIGIN_WHITELIST = ["*"]
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

@@ -4,10 +4,10 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Usuario
-from rest_framework import viewsets
 from .serializers import UsuarioDesktopAuthSerializer
-import cx_Oracle
+from rest_framework import viewsets
 import json
+import cx_Oracle
 
 # Create your views here.
 def request_usuario(correo_usuario,contrasena_usuario):
@@ -21,7 +21,7 @@ def request_usuario(correo_usuario,contrasena_usuario):
     return lista
     
 
-class ClienteExternoAuthView(View):
+class UsuarioAuthView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)

@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from .models import Usuario
 
+class UsuarioDesktopAuthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ['correo_usuario','contrasena_usuario','administrador_usuario']
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,10 +16,3 @@ class UsuarioHistoricoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = '__all__'
-
-
-
-class UsuarioDesktopAuthSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario
-        fields = ['correo_usuario','contrasena_usuario','administrador_usuario']
