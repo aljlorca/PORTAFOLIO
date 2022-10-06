@@ -1,21 +1,21 @@
-API CARGO         |python ./manage runserver 8000
-API CIUDAD        | python ./manage runserver 8001
-API CONTRATO      | python ./manage runserver 8002
-API EMPRESA       | python ./manage runserver 8003
-API LOGIN         | python ./manage runserver 8004
-API PAIS          | python ./manage runserver 8005
-API PEDIDO        | python ./manage runserver 8006
-API POSTULACION   | python ./manage runserver 8007
-API PRODUCTO      | python ./manage runserver 8008
-API REGION        | python ./manage runserver 8009
-API REPORTE       | python ./manage runserver 8010
-API RESUMEN VENTA | python ./manage runserver 8011
-API SALDO         | python ./manage runserver 8012
-API SUBASTA       | python ./manage runserver 8013
-API TIPO EMPRESA  | python ./manage runserver 8014
-API USUARIO       | python ./manage runserver 8015
-API VENTA EXTERNA | python ./manage runserver 8016
-API VENTA INTERNA | python ./manage runserver 8017
+API CARGO         | python .\manage runserver 8000
+API CIUDAD        | python .\manage runserver 8001
+API CONTRATO      | python .\manage runserver 8002
+API EMPRESA       | python .\manage runserver 8003
+API LOGIN         | python .\manage runserver 8004
+API PAIS          | python .\manage runserver 8005
+API PEDIDO        | python .\manage runserver 8006
+API POSTULACION   | python .\manage runserver 8007
+API PRODUCTO      | python .\manage runserver 8008
+API REGION        | python .\manage runserver 8009
+API REPORTE       | python .\manage runserver 8010
+API RESUMEN VENTA | python .\manage runserver 8011
+API SALDO         | python .\manage runserver 8012
+API SUBASTA       | python .\manage runserver 8013
+API TIPO EMPRESA  | python .\manage runserver 8014
+API USUARIO       | python .\manage runserver 8015
+API VENTA EXTERNA | python .\manage runserver 8016
+API VENTA INTERNA | python .\manage runserver 8017
 
 Para ejecutar las api en su puerto correspondiente debe de ejecutarse de la siguiente forma:
 
