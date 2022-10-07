@@ -27,6 +27,8 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'app/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Template Stylesheet -->
+    {% block css %}
+    {% endblock %}
     <link href="{% static 'app/css/style.css' %}" rel="stylesheet">
 </head>
 
@@ -168,7 +170,9 @@
     <script src="{% static 'app/lib/easing/easing.min.js' %}"></script>
     <script src="{% static 'app/lib/waypoints/waypoints.min.js' %}"></script>
     <script src="{% static 'app/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    {% block js %}
 
+    {% endblock %}
     <!-- Template Javascript -->
     <script src="{% static 'app/js/main.js' %}"></script>
 </body>
