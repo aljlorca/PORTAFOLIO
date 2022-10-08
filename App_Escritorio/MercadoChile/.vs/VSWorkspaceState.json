@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MercadoChile"
+    "\\MercadoChile",
+    "\\MercadoChile\\Modelos",
+    "\\MercadoChile\\Template"
   ],
-  "SelectedNode": "\\MercadoChile\\Clientes.cs",
+  "SelectedNode": "\\MercadoChile.sln",
   "PreviewInSolutionExplorer": false
 }

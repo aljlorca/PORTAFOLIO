@@ -1,0 +1,6 @@
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Datos\bin\Debug\Datos.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Datos\bin\Debug\Datos.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Datos\obj\Debug\Datos.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Datos\obj\Debug\Datos.pdb

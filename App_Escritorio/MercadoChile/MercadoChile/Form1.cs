@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using MercadoChile.Modelos;
+
 
 namespace MercadoChile
 {
@@ -18,10 +20,11 @@ namespace MercadoChile
     {
         DBApi dBApi = new DBApi();
 
-        private string url = "http://127.0.0.1:8000/api/cargo/?format=json";
+        private string url = "http://127.0.0.1:8000/api/cargo/cargo/?format=json";
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -29,7 +32,7 @@ namespace MercadoChile
             string respuesta1 = await GetHttp();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
             comboBox1.DataSource = lista1;
-            comboBox1.DisplayMember = "id";
+            comboBox1.DisplayMember = "nombre_cargo";
             comboBox1.ValueMember = "id";
         }
         private async Task<string> GetHttp() 
@@ -43,8 +46,8 @@ namespace MercadoChile
         public class Cargo 
         {
             public int id { get; set; }
-            "public string nombre_cargo { get; set; }"
-            "public string descripcion { get; set; }"
+            public string nombre_cargo { get; set; }
+            public string descripcion { get; set; }
         }
 
         private void button1_Click(object sender, EventArgs e)

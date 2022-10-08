@@ -27,7 +27,7 @@ namespace MercadoChile
             string respuesta1 = await GetHttp();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
             cmbCargo.DataSource = lista1;
-            cmbCargo.DisplayMember = "id";
+            cmbCargo.DisplayMember = "nombre_cargo";
             cmbCargo.ValueMember = "id";
 
             int indice = cmbCargo.SelectedIndex;

@@ -15,5 +15,567 @@ C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile
 C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
 C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Clientes.resources
 C:\Users\MiniBalto\source\repos\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Cargos.resources
-D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
-D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.AssemblyReference.cache
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.SuggestedBindingRedirects.cache
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Cargos.resources
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Form1.resources
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Properties.Resources.resources
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.GenerateResource.cache
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CoreCompileInputs.cache
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe.config
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\MercadoChile.pdb
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\RestSharp.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\RestSharp.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CopyComplete
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Buffers.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Memory.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Buffers.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Memory.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Iniciosesion.resources
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyModel.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.pdb
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.pdb
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Platform.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.pdb
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.xml
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.pdb
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe.config
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\MercadoChile.pdb
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyModel.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\RestSharp.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Buffers.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Memory.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Platform.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.dll
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.pdb
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.pdb
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\RestSharp.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Buffers.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Memory.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.pdb
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.pdb
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.AssemblyReference.cache
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.SuggestedBindingRedirects.cache
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Cargos.resources
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Clientes.resources
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Form1.resources
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.inicioSesion.resources
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Properties.Resources.resources
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Proveedor.resources
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Transportista.resources
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.GenerateResource.cache
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CoreCompileInputs.cache
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CopyComplete
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
+C:\Users\PC Gaming\Desktop\curso js\MercadoChile\MercadoChile\bin\Debug\FontAwesome.Sharp.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe.config
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\MercadoChile.pdb
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\FontAwesome.Sharp.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.DotNet.PlatformAbstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyModel.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\RestSharp.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Buffers.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Memory.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Platform.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.pdb
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.pdb
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\RestSharp.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Buffers.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Memory.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.pdb
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.pdb
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.xml
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.AssemblyReference.cache
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.SuggestedBindingRedirects.cache
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Cargos.resources
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Clientes.resources
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Form1.resources
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.inicioSesion.resources
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Properties.Resources.resources
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Proveedor.resources
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Transportista.resources
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.GenerateResource.cache
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CoreCompileInputs.cache
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CopyComplete
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\bin\Debug\RutChile.dll
+D:\Usuarios\sebac\Descargas\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Contrato.resources
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe.config
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\MercadoChile.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyModel.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\RestSharp.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\RutChile.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Buffers.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Memory.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Platform.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.dll
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\RestSharp.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Buffers.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Memory.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.AssemblyReference.cache
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Cargos.resources
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Clientes.resources
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Form1.resources
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.inicioSesion.resources
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Properties.Resources.resources
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Contrato.resources
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Proveedor.resources
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Transportista.resources
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.GenerateResource.cache
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CoreCompileInputs.cache
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CopyComplete
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
+C:\Users\MiniBalto\Desktop\MercadoChile  3.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Usuario.resources
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Contrato.resources
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\sebac\Desktop\MercadoChile\MercadoChile\bin\Debug\RutChile.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.AssemblyReference.cache
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Cargos.resources
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Usuario.resources
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Form1.resources
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.inicioSesion.resources
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Properties.Resources.resources
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Contrato.resources
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.GenerateResource.cache
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CoreCompileInputs.cache
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe.config
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\MercadoChile.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyModel.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Negocio.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\RestSharp.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\RutChile.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Buffers.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Memory.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Platform.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.dll
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Negocio.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authentication.Core.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Mvc.Core.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.ObjectPool.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Microsoft.Net.Http.Headers.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Newtonsoft.Json.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\RestSharp.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Buffers.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Memory.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.pdb
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CopyComplete
