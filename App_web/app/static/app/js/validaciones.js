@@ -21,22 +21,16 @@ var usuario = document.getElementById('email');
 btn.addEventListener('click', function(evt){
 
       if(clave.value === ''){
-
-          console.log('el campo contraseña es obligatorio')
-          evt.preventDefault();
-          return false;
+        alert('el campo contraseña es obligatorio');
+       
 
       }else if(usuario.value === ''){
-
-      console.log('el campo de usuario es obligatorio')
-          evt.preventDefault();
-          return false;
+        alert('el campo de usuario es obligatorio');
+      
 
       }else if(usuario.value.length > 30){
-
-        console.log('El nombre del usuario es demasiado largo')
-          evt.preventDefault();
-          return false;
+        alert('El nombre del usuario es demasiado largo');
+     
 
       }
 
