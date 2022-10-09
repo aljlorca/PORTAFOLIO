@@ -235,7 +235,7 @@ end PRODUCTO_LISTAR;
 
 ------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP LOGIN -----------------------------------------------------------------------------
-create or replace PROCEDURE                   "LOGIN" 
+reate or replace PROCEDURE                   "LOGIN" 
 (
     v_correo varchar2,
     v_contrasena varchar2,
@@ -243,9 +243,12 @@ create or replace PROCEDURE                   "LOGIN"
 )
 is
 begin
-    open cur for select nombre_usuario,id_cargo,correo_usuario,fecha_sesion_usuario from usuario where correo_usuario = v_correo and contrasena_usuario = v_contrasena;
-
+    open cur for select u.nombre_usuario,c.nombre_cargo,u.correo_usuario,u.fecha_sesion_usuario from usuario u, cargo c where u.id_cargo = c.id_cargo and correo_usuario = v_correo and contrasena_usuario = v_contrasena;
+    update usuario 
+    set fecha_sesion_usuario = sysdate
+    where correo_usuario=v_correo;
 end LOGIN;
+
 
 ------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP empresa -----------------------------------------------------------------------------
