@@ -1,3 +1,4 @@
+from pydoc import render_doc
 from django.shortcuts import render
 from sklearn.utils import resample
 
@@ -14,3 +15,19 @@ def contacto(request):
 
 def login(request):
     return render(request, 'app/login.html')
+
+def transportista(request):
+    return render(request, 'app/carrito.html')
+
+def productor(request):
+    return render(request, 'app/productores.html')
+
+def cliente_interno(request):
+    return render(request, 'app/clienteinterno.html')
+
+def cliente_externo(request):
+    return render(request, 'app/clienteexterno.html')
+
+def checkout(request):
+    return render(request, 'app/checkout.html')
+    
