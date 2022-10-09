@@ -6,6 +6,8 @@ class CargoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cargo
         fields = ['id_cargo','nombre_cargo']
+    order_by = (
+        ('id_cargo',))
 
 
 
