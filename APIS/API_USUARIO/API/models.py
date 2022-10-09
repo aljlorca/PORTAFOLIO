@@ -11,6 +11,7 @@ class Cargo(models.Model):
         managed = False
         db_table = 'cargo'
 
+
 class Pais(models.Model):
     id_pais = models.BigIntegerField(primary_key=True)
     nombre_pais = models.CharField(max_length=50)
