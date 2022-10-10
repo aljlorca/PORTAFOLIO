@@ -57,6 +57,12 @@ namespace MercadoChile
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cmbElimNom = new System.Windows.Forms.ComboBox();
+            this.cmbElimCorreo = new System.Windows.Forms.ComboBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.btnModificar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -94,12 +100,6 @@ namespace MercadoChile
             this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label8 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cmbElimNom = new System.Windows.Forms.ComboBox();
-            this.cmbElimCorreo = new System.Windows.Forms.ComboBox();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -120,6 +120,7 @@ namespace MercadoChile
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1039, 598);
             this.tabControl1.TabIndex = 20;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.button1_Click);
             // 
             // tabPage1
             // 
@@ -390,6 +391,70 @@ namespace MercadoChile
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Eliminar Cliente";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(317, 173);
+            this.label17.Name = "label17";
+            this.label17.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label17.Size = new System.Drawing.Size(138, 25);
+            this.label17.TabIndex = 40;
+            this.label17.Text = "Correo Cliente";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(306, 242);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(147, 25);
+            this.label18.TabIndex = 39;
+            this.label18.Text = "Nombre Cliente";
+            // 
+            // cmbElimNom
+            // 
+            this.cmbElimNom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbElimNom.FormattingEnabled = true;
+            this.cmbElimNom.Location = new System.Drawing.Point(500, 246);
+            this.cmbElimNom.Name = "cmbElimNom";
+            this.cmbElimNom.Size = new System.Drawing.Size(214, 21);
+            this.cmbElimNom.TabIndex = 38;
+            // 
+            // cmbElimCorreo
+            // 
+            this.cmbElimCorreo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbElimCorreo.FormattingEnabled = true;
+            this.cmbElimCorreo.Location = new System.Drawing.Point(500, 177);
+            this.cmbElimCorreo.Name = "cmbElimCorreo";
+            this.cmbElimCorreo.Size = new System.Drawing.Size(214, 21);
+            this.cmbElimCorreo.TabIndex = 37;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.Location = new System.Drawing.Point(474, 466);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(250, 40);
+            this.btnEliminar.TabIndex = 36;
+            this.btnEliminar.Text = "Eliminar Cliente";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(509, 66);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(147, 25);
+            this.label19.TabIndex = 35;
+            this.label19.Text = "Eliminar Cliente";
             // 
             // tabPage4
             // 
@@ -749,70 +814,6 @@ namespace MercadoChile
             this.label8.Size = new System.Drawing.Size(130, 25);
             this.label8.TabIndex = 93;
             this.label8.Text = "Listar Cliente ";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(317, 173);
-            this.label17.Name = "label17";
-            this.label17.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label17.Size = new System.Drawing.Size(138, 25);
-            this.label17.TabIndex = 40;
-            this.label17.Text = "Correo Cliente";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(306, 242);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(147, 25);
-            this.label18.TabIndex = 39;
-            this.label18.Text = "Nombre Cliente";
-            // 
-            // cmbElimNom
-            // 
-            this.cmbElimNom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbElimNom.FormattingEnabled = true;
-            this.cmbElimNom.Location = new System.Drawing.Point(500, 246);
-            this.cmbElimNom.Name = "cmbElimNom";
-            this.cmbElimNom.Size = new System.Drawing.Size(214, 21);
-            this.cmbElimNom.TabIndex = 38;
-            // 
-            // cmbElimCorreo
-            // 
-            this.cmbElimCorreo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbElimCorreo.FormattingEnabled = true;
-            this.cmbElimCorreo.Location = new System.Drawing.Point(500, 177);
-            this.cmbElimCorreo.Name = "cmbElimCorreo";
-            this.cmbElimCorreo.Size = new System.Drawing.Size(214, 21);
-            this.cmbElimCorreo.TabIndex = 37;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
-            this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(474, 466);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(250, 40);
-            this.btnEliminar.TabIndex = 36;
-            this.btnEliminar.Text = "Eliminar Cliente";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(509, 66);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(147, 25);
-            this.label19.TabIndex = 35;
-            this.label19.Text = "Eliminar Cliente";
             // 
             // Usuario
             // 

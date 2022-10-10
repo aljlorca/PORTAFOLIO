@@ -4,7 +4,8 @@
     "\\MercadoChile",
     "\\MercadoChile\\Login",
     "\\MercadoChile\\Modelos",
-    "\\MercadoChile\\Template"
+    "\\MercadoChile\\Template",
+    "\\Negocio"
   ],
   "SelectedNode": "\\MercadoChile.sln",
   "PreviewInSolutionExplorer": false
