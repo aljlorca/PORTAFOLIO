@@ -56,14 +56,8 @@ namespace MercadoChile
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cmbElimNom = new System.Windows.Forms.ComboBox();
-            this.cmbElimCorreo = new System.Windows.Forms.ComboBox();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -89,7 +83,6 @@ namespace MercadoChile
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.DgvClientes = new System.Windows.Forms.DataGridView();
             this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,9 +93,9 @@ namespace MercadoChile
             this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).BeginInit();
@@ -112,7 +105,6 @@ namespace MercadoChile
             // 
             this.tabControl1.AccessibleName = "";
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabControl1.Location = new System.Drawing.Point(12, 2);
@@ -247,6 +239,7 @@ namespace MercadoChile
             this.cmbCargo.Name = "cmbCargo";
             this.cmbCargo.Size = new System.Drawing.Size(214, 21);
             this.cmbCargo.TabIndex = 35;
+            this.cmbCargo.Text = "Seleccionar";
             // 
             // btnCrear
             // 
@@ -376,88 +369,9 @@ namespace MercadoChile
             this.label1.TabIndex = 18;
             this.label1.Text = "Creacion de Cliente";
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.cmbElimNom);
-            this.tabPage3.Controls.Add(this.cmbElimCorreo);
-            this.tabPage3.Controls.Add(this.btnEliminar);
-            this.tabPage3.Controls.Add(this.label19);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1031, 572);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Eliminar Cliente";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(317, 173);
-            this.label17.Name = "label17";
-            this.label17.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label17.Size = new System.Drawing.Size(138, 25);
-            this.label17.TabIndex = 40;
-            this.label17.Text = "Correo Cliente";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(306, 242);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(147, 25);
-            this.label18.TabIndex = 39;
-            this.label18.Text = "Nombre Cliente";
-            // 
-            // cmbElimNom
-            // 
-            this.cmbElimNom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbElimNom.FormattingEnabled = true;
-            this.cmbElimNom.Location = new System.Drawing.Point(500, 246);
-            this.cmbElimNom.Name = "cmbElimNom";
-            this.cmbElimNom.Size = new System.Drawing.Size(214, 21);
-            this.cmbElimNom.TabIndex = 38;
-            // 
-            // cmbElimCorreo
-            // 
-            this.cmbElimCorreo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbElimCorreo.FormattingEnabled = true;
-            this.cmbElimCorreo.Location = new System.Drawing.Point(500, 177);
-            this.cmbElimCorreo.Name = "cmbElimCorreo";
-            this.cmbElimCorreo.Size = new System.Drawing.Size(214, 21);
-            this.cmbElimCorreo.TabIndex = 37;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
-            this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(474, 466);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(250, 40);
-            this.btnEliminar.TabIndex = 36;
-            this.btnEliminar.Text = "Eliminar Cliente";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(509, 66);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(147, 25);
-            this.label19.TabIndex = 35;
-            this.label19.Text = "Eliminar Cliente";
-            // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button2);
             this.tabPage4.Controls.Add(this.btnModificar);
             this.tabPage4.Controls.Add(this.groupBox1);
             this.tabPage4.Controls.Add(this.DgvClientes);
@@ -470,6 +384,22 @@ namespace MercadoChile
             this.tabPage4.Text = "Listar Cliente";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(112, 436);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(250, 40);
+            this.button2.TabIndex = 98;
+            this.button2.Text = "Eliminar Cliente";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // btnModificar
             // 
             this.btnModificar.FlatAppearance.BorderSize = 0;
@@ -477,7 +407,7 @@ namespace MercadoChile
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(156, 372);
+            this.btnModificar.Location = new System.Drawing.Point(123, 338);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(216, 40);
             this.btnModificar.TabIndex = 97;
@@ -525,7 +455,7 @@ namespace MercadoChile
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(378, 100);
+            this.btnEdit.Location = new System.Drawing.Point(380, 158);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(216, 40);
             this.btnEdit.TabIndex = 68;
@@ -558,6 +488,7 @@ namespace MercadoChile
             this.cmbCiudadEdit.Name = "cmbCiudadEdit";
             this.cmbCiudadEdit.Size = new System.Drawing.Size(214, 21);
             this.cmbCiudadEdit.TabIndex = 85;
+            //this.cmbCiudadEdit.SelectedIndexChanged += new System.EventHandler(this.cmbCiudadEdit_SelectedIndexChanged);
             // 
             // cmbRegionEdit
             // 
@@ -727,20 +658,6 @@ namespace MercadoChile
             this.label36.TabIndex = 73;
             this.label36.Text = "Nueva Contraseña";
             // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(38, 131);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(10, 10);
-            this.button1.TabIndex = 95;
-            this.button1.Tag = "";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // DgvClientes
             // 
             this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -816,6 +733,20 @@ namespace MercadoChile
             this.label8.TabIndex = 93;
             this.label8.Text = "Listar Cliente ";
             // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(38, 131);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(10, 10);
+            this.button1.TabIndex = 95;
+            this.button1.Tag = "";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -829,8 +760,6 @@ namespace MercadoChile
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -843,7 +772,6 @@ namespace MercadoChile
         #endregion
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox txtConUsua;
         private System.Windows.Forms.TextBox txtCorUsua;
         private System.Windows.Forms.TextBox txtTelUsua;
@@ -905,11 +833,6 @@ namespace MercadoChile
         private System.Windows.Forms.DataGridViewTextBoxColumn cnEmpresa;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCiudad;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox cmbElimNom;
-        private System.Windows.Forms.ComboBox cmbElimCorreo;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button button2;
     }
 }

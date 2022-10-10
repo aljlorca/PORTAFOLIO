@@ -1,4 +1,5 @@
-﻿using MercadoChile.Modelos;
+﻿using Amazon.Runtime.Internal;
+using MercadoChile.Modelos;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows.Forms;
@@ -89,27 +91,15 @@ namespace MercadoChile
             List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
             List<Empresa> lista5 = JsonConvert.DeserializeObject<List<Empresa>>(respuesta5);
             cmbCargo.DataSource = lista1;
-
             cmbPais.DataSource = lista2;
-
             cmbEmpresa.DataSource = lista5;
-
             lista1.RemoveAt(0);
             cmbCargo.DisplayMember = "nombre_cargo";
             cmbCargo.ValueMember = "id_cargo";
-
             cmbPais.DisplayMember = "nombre_pais";
             cmbPais.ValueMember = "id_pais";
-
-
             cmbEmpresa.DisplayMember = "razon_social_empresa";
             cmbEmpresa.ValueMember = "id_empresa";
-            cmbElimCorreo.DataSource = lista;
-            cmbElimCorreo.DisplayMember = "correo_usuario";
-            cmbElimCorreo.ValueMember = "id_usuario";
-            cmbElimNom.DataSource = lista;
-            cmbElimNom.DisplayMember = "nombre_usuario";
-            cmbElimNom.ValueMember = "id_usuario";
         }
         private async void cmbPais_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -119,7 +109,6 @@ namespace MercadoChile
             cmbRegion.DisplayMember = "nombre_region";
             cmbRegion.ValueMember = "id_region";
             cmbRegion.DataSource = lista3.Where(x => x.id_pais == id_pais).ToList();
-
 
         }
         private async void cmbRegion_SelectionChangeCommitted(object sender, EventArgs e)
@@ -131,8 +120,6 @@ namespace MercadoChile
             cmbCiudad.DisplayMember = "nombre_ciudad";
             cmbCiudad.ValueMember = "id_ciudad";
             cmbCiudad.DataSource = lista3.Where(x => x.id_region == id_region).ToList();
-
-
         }
 
 
@@ -186,6 +173,7 @@ namespace MercadoChile
             return await sr.ReadToEndAsync();
         }
 
+
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
             string respuesta = await GetHttp();
@@ -193,32 +181,50 @@ namespace MercadoChile
 
             foreach (var list in lista)
             {
-                if (list.correo_usuario == cmbElimCorreo.Text)
+                if (list.correo_usuario == txtCorEdit.Text)
                 {
-                    if (list.id_cargo == 1)
+
+                    int id = list.id_usuario;
+
+                    Usuarios post = new Usuarios()
                     {
-                        MessageBox.Show("xD");
+
+                        correo_usuario = txtCorEdit.Text,
+
+                    };
+                    var data = JsonSerializer.Serialize<Usuarios>(post);
+                    HttpRequestMessage request = new HttpRequestMessage
+                    {
+
+                        Content = new StringContent(data, Encoding.UTF8, "application/json"),
+                        Method = HttpMethod.Delete,
+                        RequestUri = new Uri(baseUri, id.ToString()),
+                    };
+                    var httpClient = new HttpClient();
+
+                    if (MessageBox.Show("Desea Eliminar" + txtCorEdit, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        await httpClient.SendAsync(request);
+                        this.Hide();
                     }
                     else
                     {
+                        txtRutEdit.Text = "";
+                        txtNomEdit.Text = "";
+                        txtDirEdit.Text = "";
+                        txtTeleEdit.Text = "";
+                        txtCorEdit.Text = "";
+                        txtConEdit.Text = "";
 
-                        int id = list.id_usuario;
-                        Uri myUri = new Uri(baseUri, id.ToString());
-                        var client = new HttpClient();
-
-                        var httpResponse1 = await client.DeleteAsync(myUri);
-
-                        if (httpResponse1.IsSuccessStatusCode)
-                        {
-                            var result = await httpResponse1.Content.ReadAsStringAsync();
-                            MessageBox.Show(result.ToString());
-                            this.Hide();
-
-                        }
+                        cmbCargo.Text = "";
+                        cmbEmpresa.Text = "";
+                        cmbCiudad.Text = "";
                     }
 
-                }
 
+
+
+                }
             }
         }
         private async void btnEditar_Click(object sender, EventArgs e)
@@ -308,6 +314,7 @@ namespace MercadoChile
 
                 };
                 var data = JsonSerializer.Serialize<Usuarios>(post2);
+
 
                 HttpContent content =
                     new StringContent(data, System.Text.Encoding.UTF8, "application/json");
@@ -420,8 +427,11 @@ namespace MercadoChile
             cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells[6].Value.ToString();
             cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[7].Value.ToString();
             cmbCiudadEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();
-
-
+            string respuesta2 = await GetHttp2();
+            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
+            cmbPaisEdit.DataSource = lista2;
+            cmbPaisEdit.DisplayMember = "nombre_pais";
+            cmbPaisEdit.ValueMember = "id_pais";
         }
 
     }
