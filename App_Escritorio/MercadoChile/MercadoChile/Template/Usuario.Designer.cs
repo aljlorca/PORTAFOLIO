@@ -460,9 +460,9 @@ namespace MercadoChile
             // 
             this.tabPage4.Controls.Add(this.btnModificar);
             this.tabPage4.Controls.Add(this.groupBox1);
-            this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Controls.Add(this.DgvClientes);
             this.tabPage4.Controls.Add(this.label8);
+            this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1031, 572);
@@ -483,6 +483,7 @@ namespace MercadoChile
             this.btnModificar.TabIndex = 97;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // groupBox1
             // 
@@ -509,9 +510,9 @@ namespace MercadoChile
             this.groupBox1.Controls.Add(this.label39);
             this.groupBox1.Controls.Add(this.label38);
             this.groupBox1.Controls.Add(this.label36);
-            this.groupBox1.Location = new System.Drawing.Point(395, 242);
+            this.groupBox1.Location = new System.Drawing.Point(378, 242);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(627, 329);
+            this.groupBox1.Size = new System.Drawing.Size(644, 329);
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificar Usuario";
@@ -530,6 +531,7 @@ namespace MercadoChile
             this.btnEdit.TabIndex = 68;
             this.btnEdit.Text = "Editar Cliente";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // cmbEmpresaEdit
             // 
@@ -719,11 +721,11 @@ namespace MercadoChile
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(6, 168);
+            this.label36.Location = new System.Drawing.Point(0, 168);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(92, 20);
+            this.label36.Size = new System.Drawing.Size(141, 20);
             this.label36.TabIndex = 73;
-            this.label36.Text = "Contraseña";
+            this.label36.Text = "Nueva Contraseña";
             // 
             // button1
             // 
@@ -731,13 +733,12 @@ namespace MercadoChile
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(139, 242);
+            this.button1.Location = new System.Drawing.Point(38, 131);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(250, 40);
+            this.button1.Size = new System.Drawing.Size(10, 10);
             this.button1.TabIndex = 95;
-            this.button1.Text = "Listar Clientes";
+            this.button1.Tag = "";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // DgvClientes
