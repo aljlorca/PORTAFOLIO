@@ -7,3 +7,12 @@ C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Negocio\bin\Debug\Datos
 C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Negocio\obj\Debug\Negocio.dll
 C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\Negocio\obj\Debug\Negocio.pdb
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.dll
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.pdb
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Datos.dll
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Datos.pdb
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.dll
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.pdb

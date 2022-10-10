@@ -118,18 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnEditar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAAVpJREFUWEftlz1uwkAQhU3S0aLUlLGELP91SKmCUnADCooUOQglFUegTAuIhhu4
-        yhloUqdJBZKT9+xxtDY2shCbpdiRPtk7O5731l5ZWocRhuFzHMcJOICfaxJFUQr20JhmYtUIgmCEgmPN
-        g+/gCfPDS+HC0ONDeqYYLyDZyZUlMMGVl8SJ7/sDKWkVEBxDbF6A8QPzuH9T+8LEEuk7zmWBZO1r9zzv
-        UUpaBUXrnofgq5onYiJ/E9XJAp0GiHwOcwYA98TUpAFu9L1pA6lRA8QaaDQAXrLOLQP1Xdd1ewVI3TMP
-        A7NK3xKNBrCiL7ABq0tBnx2uJ795lXNv4F+wBkoG8L0+sWn63Dw6gr2poWpWDaylVlvI5mw0sJI6bWEN
-        WAPWgDVwkwb+DiYGDBxoQD2abaVOW1BD0UtKh1NcvzGe8GCpiQk1ROuI8ShzxRu6AVc/ntdAjSQXd5xf
-        cXASW/IK1pMAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="btnCrear.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -154,6 +142,18 @@
         cXASW/IK1pMAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnEdit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAAVpJREFUWEftlz1uwkAQhU3S0aLUlLGELP91SKmCUnADCooUOQglFUegTAuIhhu4
+        yhloUqdJBZKT9+xxtDY2shCbpdiRPtk7O5731l5ZWocRhuFzHMcJOICfaxJFUQr20JhmYtUIgmCEgmPN
+        g+/gCfPDS+HC0ONDeqYYLyDZyZUlMMGVl8SJ7/sDKWkVEBxDbF6A8QPzuH9T+8LEEuk7zmWBZO1r9zzv
+        UUpaBUXrnofgq5onYiJ/E9XJAp0GiHwOcwYA98TUpAFu9L1pA6lRA8QaaDQAXrLOLQP1Xdd1ewVI3TMP
+        A7NK3xKNBrCiL7ABq0tBnx2uJ795lXNv4F+wBkoG8L0+sWn63Dw6gr2poWpWDaylVlvI5mw0sJI6bWEN
+        WAPWgDVwkwb+DiYGDBxoQD2abaVOW1BD0UtKh1NcvzGe8GCpiQk1ROuI8ShzxRu6AVc/ntdAjSQXd5xf
+        cXASW/IK1pMAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -166,4 +166,28 @@
         cXASW/IK1pMAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="cnNumeIdenUsuar.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cnNombre.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cnDireccion.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cnTelefono.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cnCorreo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cnCargo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cnEmpresa.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cnCiudad.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

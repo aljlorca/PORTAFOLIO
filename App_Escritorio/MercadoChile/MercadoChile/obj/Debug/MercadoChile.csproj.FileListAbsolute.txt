@@ -579,3 +579,15 @@ C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\
 C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.xml
 C:\Users\MiniBalto\Desktop\MercadoChile 4.0\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CopyComplete
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.AssemblyReference.cache
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.SuggestedBindingRedirects.cache
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Cargos.resources
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Usuario.resources
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Form1.resources
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.inicioSesion.resources
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Properties.Resources.resources
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Contrato.resources
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.GenerateResource.cache
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CoreCompileInputs.cache
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
