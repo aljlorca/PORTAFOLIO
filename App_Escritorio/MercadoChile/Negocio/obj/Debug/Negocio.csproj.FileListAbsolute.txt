@@ -16,3 +16,7 @@ C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CoreC
 C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.dll
 C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.pdb
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.dll.config
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\RestSharp.dll
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Newtonsoft.Json.dll
+C:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Datos.dll.config
