@@ -10,17 +10,13 @@ def login_controller(correo,contrasena):
         content = json.loads(response.content)
         if content['message'] == 'Success':
             respt = content['usuario']
-            usuario = respt[0]
-            cargo = respt[1]
-            correo = respt[2]
-            fecha = respt[3]
-            print(usuario,cargo,correo,fecha)
+            return respt
         else:
-            data ='usuario no encontrado'
-            print(data)
+            data ='ERROR:usuario no encontrado'
+            return data
 
 
     if response.status_code == 404:
-        data = {'message':'usuario no encontrado'}
-        print(data)
+        data = 'ERRROR: usuario no encontrado'
+        return data
         

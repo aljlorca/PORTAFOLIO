@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from .controllers import login_controller
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -15,8 +16,15 @@ def contacto(request):
 
 def login(request):
 
+    data = {
+    }
+    if request.method == 'POST':
+        correo = request.POST('email')
+        contrasena = request.POST('password')
+        salida = login_controller(correo,contrasena)
+        print(salida,correo,contrasena)
 
-    return render(request, 'app/login.html')
+    return render(request, 'app/login.html',data)
 
 def transportista(request):
     return render(request, 'app/carrito.html')
