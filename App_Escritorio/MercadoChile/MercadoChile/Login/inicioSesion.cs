@@ -25,14 +25,14 @@ namespace MercadoChile
     public partial class inicioSesion : Form
     {
         Form1 form1;
-        private string url = "http://127.0.0.1:8004/api/administrador_auth/";
+        private string url = "http://127.0.0.1:8004/api/usuario_desktop/";
         public inicioSesion()
         {
             InitializeComponent();
 
 
         }
-        
+
         public async Task<string> GetHttp()
         {
             WebRequest oRequest = WebRequest.Create(url);
@@ -43,21 +43,21 @@ namespace MercadoChile
 
         private async void iniciar_Click(object sender, EventArgs e)
         {
-            string rut = txtrut_admin.Text;
-            string pass = txtcontraseña_admin.Text;
+            string Correo = txtCorreo.Text;
+            string Pass = txtContraseña.Text;
             string respuesta1 = await GetHttp();
             List<Login> lista1 = JsonConvert.DeserializeObject<List<Login>>(respuesta1);
             bool logeoExitoso = false;
             foreach (var list in lista1)
             {
-                
-                if (pass == list.contrasena_administrador && rut == list.rut_administrador)
+
+                if (Pass == list.contrasena_usuario && Correo == list.correo_usuario)
                 {
                     logeoExitoso = true;
                     form1 = new Form1();
                     form1.Show();
                     this.Hide();
-                        
+
                     break;
                 }
             }
@@ -108,37 +108,37 @@ namespace MercadoChile
 
         private void txtrut_admin_Enter(object sender, EventArgs e)
         {
-            if (txtrut_admin.Text == "USUARIO")
+            if (txtCorreo.Text == "USUARIO")
             {
-                txtrut_admin.Text = "";
-                txtrut_admin.ForeColor = Color.LightGray;
+                txtCorreo.Text = "";
+                txtCorreo.ForeColor = Color.LightGray;
             }
         }
 
         private void txtrut_admin_Leave(object sender, EventArgs e)
         {
-            if (txtrut_admin.Text == "")
+            if (txtCorreo.Text == "")
             {
-                txtrut_admin.Text = "USUARIO";
-                txtrut_admin.ForeColor = Color.DimGray;
+                txtCorreo.Text = "USUARIO";
+                txtCorreo.ForeColor = Color.DimGray;
             }
         }
 
         private void txtcontraseña_admin_Enter(object sender, EventArgs e)
         {
-            if (txtcontraseña_admin.Text == "**********")
+            if (txtContraseña.Text == "**********")
             {
-                txtcontraseña_admin.Text = "";
-                txtcontraseña_admin.ForeColor = Color.LightGray;
+                txtContraseña.Text = "";
+                txtContraseña.ForeColor = Color.LightGray;
             }
         }
 
         private void txtcontraseña_admin_Leave(object sender, EventArgs e)
         {
-            if (txtcontraseña_admin.Text == "**********")
+            if (txtContraseña.Text == "**********")
             {
-                txtcontraseña_admin.Text = "";
-                txtcontraseña_admin.ForeColor = Color.LightGray;
+                txtContraseña.Text = "";
+                txtContraseña.ForeColor = Color.LightGray;
             }
         }
 
@@ -147,6 +147,6 @@ namespace MercadoChile
             Application.Exit();
         }
     }
-   
+
 }
 

@@ -33,8 +33,8 @@ namespace MercadoChile
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(inicioSesion));
             this.iniciar = new System.Windows.Forms.Button();
-            this.txtrut_admin = new System.Windows.Forms.TextBox();
-            this.txtcontraseña_admin = new System.Windows.Forms.TextBox();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.txtContraseña = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,36 +63,36 @@ namespace MercadoChile
             this.iniciar.UseVisualStyleBackColor = false;
             this.iniciar.Click += new System.EventHandler(this.iniciar_Click);
             // 
-            // txtrut_admin
+            // txtCorreo
             // 
-            this.txtrut_admin.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtrut_admin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtrut_admin.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtrut_admin.ForeColor = System.Drawing.Color.DimGray;
-            this.txtrut_admin.Location = new System.Drawing.Point(395, 147);
-            this.txtrut_admin.Name = "txtrut_admin";
-            this.txtrut_admin.Size = new System.Drawing.Size(272, 26);
-            this.txtrut_admin.TabIndex = 1;
-            this.txtrut_admin.Text = "USUARIO";
-            this.txtrut_admin.TextChanged += new System.EventHandler(this.txtrut_admin_TextChanged);
-            this.txtrut_admin.Enter += new System.EventHandler(this.txtrut_admin_Enter);
-            this.txtrut_admin.Leave += new System.EventHandler(this.txtrut_admin_Leave);
+            this.txtCorreo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtCorreo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreo.ForeColor = System.Drawing.Color.DimGray;
+            this.txtCorreo.Location = new System.Drawing.Point(395, 147);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(272, 24);
+            this.txtCorreo.TabIndex = 1;
+            this.txtCorreo.Text = "USUARIO";
+            this.txtCorreo.TextChanged += new System.EventHandler(this.txtrut_admin_TextChanged);
+            this.txtCorreo.Enter += new System.EventHandler(this.txtrut_admin_Enter);
+            this.txtCorreo.Leave += new System.EventHandler(this.txtrut_admin_Leave);
             // 
-            // txtcontraseña_admin
+            // txtContraseña
             // 
-            this.txtcontraseña_admin.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtcontraseña_admin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtcontraseña_admin.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcontraseña_admin.ForeColor = System.Drawing.Color.Gray;
-            this.txtcontraseña_admin.Location = new System.Drawing.Point(395, 254);
-            this.txtcontraseña_admin.Name = "txtcontraseña_admin";
-            this.txtcontraseña_admin.PasswordChar = '*';
-            this.txtcontraseña_admin.Size = new System.Drawing.Size(271, 26);
-            this.txtcontraseña_admin.TabIndex = 2;
-            this.txtcontraseña_admin.Text = "**********";
-            this.txtcontraseña_admin.TextChanged += new System.EventHandler(this.txtcontraseña_admin_TextChanged_1);
-            this.txtcontraseña_admin.Enter += new System.EventHandler(this.txtcontraseña_admin_Enter);
-            this.txtcontraseña_admin.Leave += new System.EventHandler(this.txtcontraseña_admin_Leave);
+            this.txtContraseña.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContraseña.ForeColor = System.Drawing.Color.Gray;
+            this.txtContraseña.Location = new System.Drawing.Point(395, 254);
+            this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.PasswordChar = '*';
+            this.txtContraseña.Size = new System.Drawing.Size(271, 24);
+            this.txtContraseña.TabIndex = 2;
+            this.txtContraseña.Text = "**********";
+            this.txtContraseña.TextChanged += new System.EventHandler(this.txtcontraseña_admin_TextChanged_1);
+            this.txtContraseña.Enter += new System.EventHandler(this.txtcontraseña_admin_Enter);
+            this.txtContraseña.Leave += new System.EventHandler(this.txtcontraseña_admin_Leave);
             // 
             // panel1
             // 
@@ -120,11 +120,11 @@ namespace MercadoChile
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DimGray;
             this.label1.Location = new System.Drawing.Point(474, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 33);
+            this.label1.Size = new System.Drawing.Size(106, 31);
             this.label1.TabIndex = 7;
             this.label1.Text = "LOGIN ";
             // 
@@ -200,8 +200,8 @@ namespace MercadoChile
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txtcontraseña_admin);
-            this.Controls.Add(this.txtrut_admin);
+            this.Controls.Add(this.txtContraseña);
+            this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.iniciar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "inicioSesion";
@@ -219,8 +219,8 @@ namespace MercadoChile
         #endregion
 
         private System.Windows.Forms.Button iniciar;
-        private System.Windows.Forms.TextBox txtrut_admin;
-        private System.Windows.Forms.TextBox txtcontraseña_admin;
+        private System.Windows.Forms.TextBox txtCorreo;
+        private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;

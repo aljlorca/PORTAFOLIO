@@ -8,10 +8,11 @@ namespace MercadoChile.Modelos
 {
     public class Login
     {
-        public string rut_administrador { get; set; }
-      
-        public string contrasena_administrador { get; set; }
-   
-       
+        public string correo_usuario { get; set; }
+
+        public string contrasena_usuario { get; set; }
+        public char administrador_usuario { get; set; }
+
+
     }
 }
