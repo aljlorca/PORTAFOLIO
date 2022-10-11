@@ -23,5 +23,4 @@ def login_controller(correo,contrasena):
     if response.status_code == 404:
         data = {'message':'usuario no encontrado'}
         print(data)
-     
-    
+        
