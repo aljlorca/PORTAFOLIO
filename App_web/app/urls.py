@@ -1,4 +1,3 @@
-from unicodedata import name
 from django.urls import path
 from .views import productos, home, contacto, login, transportista, productor, cliente_interno, cliente_externo, checkout
 

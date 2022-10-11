@@ -1,8 +1,8 @@
-from pydoc import render_doc
 from django.shortcuts import render
-from sklearn.utils import resample
 
 # Create your views here.
+
+
 
 def home(request):
     return render(request, 'app/home.html')
@@ -14,6 +14,8 @@ def contacto(request):
     return render(request, 'app/contacto.html')
 
 def login(request):
+
+
     return render(request, 'app/login.html')
 
 def transportista(request):
