@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cONP6A1gjMQgRGCzyyXuaP+fcXvyMLg9tZJxHympfr7AmaccKGM1vNkjKVk5QnygXz3K7G9AT4DAyRJzYpPPhg==",
+  "dgSpecHash": "RAZv99xzQ1NGzW6XfASu3FVoG5L2lv6FljqRuDSYqW/DAIOQxMZvD8yXixvBxIKaxJ8/ytAduTgLKIki+MWG4g==",
   "success": true,
-  "projectFilePath": "C:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+  "projectFilePath": "C:\\Users\\sebac\\Desktop\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sebac\\.nuget\\packages\\castle.core\\4.2.1\\castle.core.4.2.1.nupkg.sha512",
     "C:\\Users\\sebac\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

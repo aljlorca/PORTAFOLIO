@@ -215,7 +215,8 @@ namespace MercadoChile
                         txtTeleEdit.Text = "";
                         txtCorEdit.Text = "";
                         txtConEdit.Text = "";
-
+                        cmbPaisEdit.Text = "";
+                        cmbRegionEdit.Text = "";
                         cmbCargo.Text = "";
                         cmbEmpresa.Text = "";
                         cmbCiudad.Text = "";
@@ -314,14 +315,33 @@ namespace MercadoChile
 
                 };
                 var data = JsonSerializer.Serialize<Usuarios>(post2);
-
-
                 HttpContent content =
                     new StringContent(data, System.Text.Encoding.UTF8, "application/json");
                 var valido = validarRut(txtRutUsua.Text);
                 if (IsValidEmail(txtCorUsua.Text))
                 {
-                    if (valido == true)
+                    if (cmbCiudad.Text == "Chile")
+                    {
+                        if (valido == true)
+                        {
+                            var httpResponse = await client.PostAsync(baseUri, content);
+                            if (httpResponse.IsSuccessStatusCode)
+
+                            {
+
+                                var result = await httpResponse.Content.ReadAsStringAsync();
+                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                                this.Hide();
+
+                            }
+                        }
+                        else
+
+                        {
+                            MessageBox.Show("rut malo");
+                        }
+                    }
+                    else
                     {
                         var httpResponse = await client.PostAsync(baseUri, content);
                         if (httpResponse.IsSuccessStatusCode)
@@ -333,84 +353,71 @@ namespace MercadoChile
                             this.Hide();
 
                         }
-
-
-                    }
-                    else
-
-                    {
-                        MessageBox.Show("rut malo");
                     }
                 }
-
-
             }
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            dynamic response = DBApi.Get("http://127.0.0.1:8015/api/usuario/?format=json");
+            dynamic response = DBApi.Get("http://127.0.0.1:8015/api/usuario/");
             DgvClientes.DataSource = response;
+            string respuesta1 = await GetHttp1();
+            List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
+            string respuesta2 = await GetHttp4();
+            List<Ciudad> lista2 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta2);
+            string respuesta3 = await GetHttp5();
+            List<Empresa> lista3 = JsonConvert.DeserializeObject<List<Empresa>>(respuesta3);
             this.DgvClientes.Columns[0].Visible = false;
             foreach (DataGridViewRow fila in DgvClientes.Rows)
             {
-                if (fila.Cells["cnCargo"].Value.ToString().ToUpper() == "1")
+                foreach (var fila1 in lista1)
+                {
+                    if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == fila1.id_cargo)
+                    {
+                        fila.Cells["cnCargo"].Value = fila1.nombre_cargo;
+                        break;
+                    }
+                }
+                foreach (var fila2 in lista2)
+                {
+                    if (Convert.ToInt32(fila.Cells["cnCiudad"].Value) == fila2.id_ciudad)
+                    {
+                        fila.Cells["cnCiudad"].Value = fila2.nombre_ciudad;
+                        break;
+                    }
+
+                }
+                foreach (var fila3 in lista3)
+                {
+                    if (Convert.ToInt32(fila.Cells["cnEmpresa"].Value) == fila3.id_empresa)
+                    {
+                        fila.Cells["cnEmpresa"].Value = fila3.razon_social_empresa;
+
+                        break;
+                    }
+                }
+            }
+            foreach (DataGridViewRow fila in DgvClientes.Rows)
+            {
+                if (fila.Cells["cnCargo"].Value.ToString() == "Administrador")
                 {
                     fila.Visible = false;
                     break;
                 }
-                string respuesta1 = await GetHttp1();
-                List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-                foreach (var list in lista1)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == list.id_cargo)
-                    {
-                        fila.Cells["cnCargo"].Value = list.nombre_cargo;
-                        break;
-                    }
-
-                }
-                string respuesta2 = await GetHttp4();
-                List<Ciudad> lista2 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta2);
-                foreach (var list1 in lista2)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnCiudad"].Value) == list1.id_ciudad)
-                    {
-                        fila.Cells["cnCiudad"].Value = list1.nombre_ciudad;
-                        break;
-                    }
-
-                }
-                string respuesta3 = await GetHttp5();
-                List<Empresa> lista3 = JsonConvert.DeserializeObject<List<Empresa>>(respuesta3);
-                foreach (var list3 in lista3)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnEmpresa"].Value) == list3.id_empresa)
-                    {
-                        fila.Cells["cnEmpresa"].Value = list3.razon_social_empresa;
-                        break;
-                    }
-
-                }
-
             }
         }
 
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-
             txtRutEdit.Text = DgvClientes.CurrentRow.Cells[1].Value.ToString();
             txtNomEdit.Text = DgvClientes.CurrentRow.Cells[2].Value.ToString();
             txtDirEdit.Text = DgvClientes.CurrentRow.Cells[3].Value.ToString();
             txtTeleEdit.Text = DgvClientes.CurrentRow.Cells[4].Value.ToString();
             txtCorEdit.Text = DgvClientes.CurrentRow.Cells[5].Value.ToString();
-
             string respuesta4 = await GetHttp4();
-
             string respuesta1 = await GetHttp1();
-
             string respuesta5 = await GetHttp5();
-
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
             List<Ciudad> lista3 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);
             List<Empresa> lista5 = JsonConvert.DeserializeObject<List<Empresa>>(respuesta5);
@@ -433,6 +440,5 @@ namespace MercadoChile
             cmbPaisEdit.DisplayMember = "nombre_pais";
             cmbPaisEdit.ValueMember = "id_pais";
         }
-
     }
 }
