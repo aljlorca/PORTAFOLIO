@@ -14,6 +14,7 @@ def productos(request):
 def contacto(request):
     return render(request, 'app/contacto.html')
 
+
 def login(request):
 
     data = {
@@ -24,7 +25,7 @@ def login(request):
         salida = login_controller(correo,contrasena)
         print(salida,correo,contrasena)
 
-    return render(request, 'app/login.html',data)
+    return render(request, 'app/login.html',data,salida)
 
 def transportista(request):
     return render(request, 'app/carrito.html')
