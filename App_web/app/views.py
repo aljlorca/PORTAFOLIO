@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .controllers import login_controller
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
@@ -20,10 +20,12 @@ def login(request):
     data = {
     }
     if request.method == 'POST':
-        correo = request.POST('email')
-        contrasena = request.POST('password')
+        correo = request.POST.get('correo')
+        contrasena = request.POST.get('password')
         salida = login_controller(correo,contrasena)
-        print(salida,correo,contrasena)
+        if salida['message'] == 'Success':
+            return redirect(to="http://127.0.0.1:3000/")
+        print(salida)
 
     return render(request, 'app/login.html',data,salida)
 
