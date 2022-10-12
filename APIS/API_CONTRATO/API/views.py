@@ -3,6 +3,7 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 from .models import Contrato
 from .serializers import ContratoSerializer,ContratoHistoricoSerializer
 from rest_framework import viewsets
@@ -87,9 +88,24 @@ class ContratoView(View):
             datos={'message':'ERROR: NO fue posible eliminar el Contrato'}
         return JsonResponse(datos)
 
+
 class ContratoViewset(viewsets.ModelViewSet):
     queryset = Contrato.objects.filter(estado_fila='1')
     serializer_class = ContratoSerializer
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        id_contrato = request.data['id_contrato']
+        documento_contrato = request.data['documento_contrato']
+        fecha_contrato = request.data['fecha_contrato']
+        tipo_contrato = request.data['tipo_contrato']
+        id_empresa = request.data['id_empresa']
+        estado_fila = request.data['estado_fila']
+        Contrato.objects.create(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
+        return HttpResponse({'message': 'Success'}, status=200)
 
 class ContratoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Contrato.objects.all()

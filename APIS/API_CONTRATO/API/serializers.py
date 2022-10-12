@@ -6,8 +6,7 @@ from .models import Contrato
 class ContratoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contrato
-        fields = ['id_contrato','documento_contrato','fecha_contrato','tipo_contrato','id_empresa']
-
+        fields = '__all__'
 
 class ContratoHistoricoSerializer(serializers.ModelSerializer):
     class Meta:

@@ -95,7 +95,11 @@ class ProductoView(View):
 class ProductoViewset(viewsets.ModelViewSet):
     queryset = Producto.objects.filter(estado_fila = '1')
     serializer_class = ProductoSerializer
-    
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         id_producto = request.data['id_producto']
         nombre_producto = request.data['nombre_producto']
@@ -104,7 +108,7 @@ class ProductoViewset(viewsets.ModelViewSet):
         estado_fila = request.data['estado_fila']
         imagen_producto = request.data['imagen_producto']
         Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,id_empresa=id_empresa,estado_fila=estado_fila,imagen_producto=imagen_producto)
-        return HttpResponse({'message': 'Book created'}, status=200)
+        return HttpResponse({'message': 'Success'}, status=200)
 
 
 class ProductoHistoricoViewset(viewsets.ModelViewSet):
