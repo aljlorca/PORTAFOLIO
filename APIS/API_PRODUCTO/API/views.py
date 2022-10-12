@@ -5,6 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Producto
 from .serializers import ProductoSerializer,ProductoHistoricoSerializer
+from django.http import HttpResponse
 from rest_framework import viewsets
 import json
 import cx_Oracle
@@ -94,7 +95,18 @@ class ProductoView(View):
 class ProductoViewset(viewsets.ModelViewSet):
     queryset = Producto.objects.filter(estado_fila = '1')
     serializer_class = ProductoSerializer
+    
+    def post(self, request, *args, **kwargs):
+        id_producto = request.data['id_producto']
+        nombre_producto = request.data['nombre_producto']
+        cantidad_prioducto = request.data['cantidad_prioducto']
+        id_empresa = request.data['id_empresa']
+        estado_fila = request.data['estado_fila']
+        imagen_producto = request.data['imagen_producto']
+        Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,id_empresa=id_empresa,estado_fila=estado_fila,imagen_producto=imagen_producto)
+        return HttpResponse({'message': 'Book created'}, status=200)
+
 
 class ProductoHistoricoViewset(viewsets.ModelViewSet):
-    queryset = Producto.objects.all()
+    queryset = Producto.objects.filter(estado_fila = '1')
     serializer_class = ProductoHistoricoSerializer
