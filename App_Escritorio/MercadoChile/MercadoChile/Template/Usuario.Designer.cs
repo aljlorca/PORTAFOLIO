@@ -488,7 +488,6 @@ namespace MercadoChile
             this.cmbCiudadEdit.Name = "cmbCiudadEdit";
             this.cmbCiudadEdit.Size = new System.Drawing.Size(214, 21);
             this.cmbCiudadEdit.TabIndex = 85;
-            //this.cmbCiudadEdit.SelectedIndexChanged += new System.EventHandler(this.cmbCiudadEdit_SelectedIndexChanged);
             // 
             // cmbRegionEdit
             // 
@@ -670,9 +669,9 @@ namespace MercadoChile
             this.cnCargo,
             this.cnEmpresa,
             this.cnCiudad});
-            this.DgvClientes.Location = new System.Drawing.Point(9, 28);
+            this.DgvClientes.Location = new System.Drawing.Point(123, 30);
             this.DgvClientes.Name = "DgvClientes";
-            this.DgvClientes.Size = new System.Drawing.Size(844, 208);
+            this.DgvClientes.Size = new System.Drawing.Size(809, 208);
             this.DgvClientes.TabIndex = 94;
             // 
             // cnNumeIdenUsuar
@@ -727,11 +726,11 @@ namespace MercadoChile
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(409, 2);
+            this.label8.Location = new System.Drawing.Point(406, 2);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(130, 25);
+            this.label8.Size = new System.Drawing.Size(214, 25);
             this.label8.TabIndex = 93;
-            this.label8.Text = "Listar Cliente ";
+            this.label8.Text = "Listar y Eliminar Cliente";
             // 
             // button1
             // 

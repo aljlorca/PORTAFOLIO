@@ -1,5 +1,6 @@
 ﻿using Amazon.Runtime.Internal;
 using MercadoChile.Modelos;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows.Forms;
@@ -360,7 +362,7 @@ namespace MercadoChile
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            dynamic response = DBApi.Get("http://127.0.0.1:8015/api/usuario/");
+            dynamic response = DBApi.Get("http://127.0.0.1:8015/api/usuario/?format=json");
             DgvClientes.DataSource = response;
             string respuesta1 = await GetHttp1();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
@@ -368,11 +370,25 @@ namespace MercadoChile
             List<Ciudad> lista2 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta2);
             string respuesta3 = await GetHttp5();
             List<Empresa> lista3 = JsonConvert.DeserializeObject<List<Empresa>>(respuesta3);
+            string respuesta = await GetHttp();
+            List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
             this.DgvClientes.Columns[0].Visible = false;
+            this.DgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            
             foreach (DataGridViewRow fila in DgvClientes.Rows)
             {
+                foreach (var fila1 in lista)
+                {
+                    if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == 1)
+                    {
+                        fila.Visible = false;
+                        break;
+                    }
+                }
+
                 foreach (var fila1 in lista1)
                 {
+                    
                     if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == fila1.id_cargo)
                     {
                         fila.Cells["cnCargo"].Value = fila1.nombre_cargo;
@@ -398,14 +414,25 @@ namespace MercadoChile
                     }
                 }
             }
-            foreach (DataGridViewRow fila in DgvClientes.Rows)
+            for (int i = 0; i < DgvClientes.Rows.Count; i++)
             {
-                if (fila.Cells["cnCargo"].Value.ToString() == "Administrador")
+                var dgc = DgvClientes.Rows[i].Cells["cnCargo"].Value.ToString();
+                
+                if (dgc == "Administrador")
                 {
-                    fila.Visible = false;
-                    break;
+                   Console.WriteLine(dgc);
+                   
                 }
+                break;
+
+                
             }
+
+           
+                
+                
+            
+            
         }
 
         private async void btnModificar_Click(object sender, EventArgs e)
