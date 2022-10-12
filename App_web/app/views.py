@@ -19,6 +19,7 @@ def login(request):
 
     data = {
     }
+    
     if request.method == 'POST':
         correo = request.POST.get('correo')
         contrasena = request.POST.get('password')
@@ -27,7 +28,7 @@ def login(request):
             return redirect(to="http://127.0.0.1:3000/")
         print(salida)
 
-    return render(request, 'app/login.html',data,salida)
+    return render(request, 'app/login.html',data)
 
 def transportista(request):
     return render(request, 'app/carrito.html')
