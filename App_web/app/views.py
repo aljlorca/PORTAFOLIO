@@ -25,7 +25,7 @@ def login(request):
         contrasena = request.POST.get('password')
         salida = login_controller(correo,contrasena)
         print(salida,correo,contrasena)
-        data = salida['message']
+        data = salida
         if salida['message'] == 'Success':
             respt = salida['usuario']
             if respt[1]=='Proveedor':
