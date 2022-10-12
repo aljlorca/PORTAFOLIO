@@ -1,6 +1,7 @@
 ﻿using MercadoChile.Modelos;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Newtonsoft;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -11,21 +12,23 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Security.Policy;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 using Application = System.Windows.Forms.Application;
 using MessageBox = System.Windows.Forms.MessageBox;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+using System.Text;
+using Newtonsoft.Json.Linq;
+using System.Windows.Media.Media3D;
+using System.Windows.Markup;
+using Negocio;
 
 namespace MercadoChile
 {
     public partial class inicioSesion : Form
     {
         Form1 form1;
-        private string url = "http://127.0.0.1:8004/api/usuario_desktop/";
+        private string url = "http://127.0.0.1:8004/api/usuario_auth/";
         public inicioSesion()
         {
             InitializeComponent();
@@ -33,38 +36,37 @@ namespace MercadoChile
 
         }
 
-        public async Task<string> GetHttp()
-        {
-            WebRequest oRequest = WebRequest.Create(url);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
 
         private async void iniciar_Click(object sender, EventArgs e)
         {
-            string Correo = txtCorreo.Text;
-            string Pass = txtContraseña.Text;
-            string respuesta1 = await GetHttp();
-            List<Login> lista1 = JsonConvert.DeserializeObject<List<Login>>(respuesta1);
-            bool logeoExitoso = false;
-            foreach (var list in lista1)
+            var client = new HttpClient();
+            Login post = new Login()
             {
-
-                if (Pass == list.contrasena_usuario && Correo == list.correo_usuario)
+                correo_usuario = txtCorreo.Text,
+                contrasena_usuario = txtContraseña.Text
+            };
+            var respuesta = await client.PostAsJsonAsync(url, post);
+            var cuerpo = await respuesta.Content.ReadAsStringAsync();
+            
+            if (cuerpo.ToString().Contains("Success") == true)
+            {
+                if(cuerpo.ToString().Contains("Administrador")==true)
                 {
-                    logeoExitoso = true;
                     form1 = new Form1();
                     form1.Show();
                     this.Hide();
-
-                    break;
+                }
+                else
+                {
+                    MessageBox.Show("ingrese un usuario Administrador");
                 }
             }
-            if (logeoExitoso == false)
+            else
             {
-                MessageBox.Show("datos incorrectos");
+                MessageBox.Show("ingrese un usuario");
             }
+            
+            
         }
         private void Login_Load(object sender, EventArgs e)
         {

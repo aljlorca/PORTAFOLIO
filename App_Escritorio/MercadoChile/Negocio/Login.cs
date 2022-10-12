@@ -11,7 +11,7 @@ namespace MercadoChile.Modelos
         public string correo_usuario { get; set; }
 
         public string contrasena_usuario { get; set; }
-        public char administrador_usuario { get; set; }
+        
 
 
     }

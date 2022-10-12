@@ -14,7 +14,7 @@ def productos(request):
 def contacto(request):
     return render(request, 'app/contacto.html')
 
-
+@csrf_exempt
 def login(request):
 
     data = {

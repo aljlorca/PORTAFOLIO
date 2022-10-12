@@ -671,7 +671,7 @@ namespace MercadoChile
             this.cnCiudad});
             this.DgvClientes.Location = new System.Drawing.Point(123, 30);
             this.DgvClientes.Name = "DgvClientes";
-            this.DgvClientes.Size = new System.Drawing.Size(809, 208);
+            this.DgvClientes.Size = new System.Drawing.Size(817, 208);
             this.DgvClientes.TabIndex = 94;
             // 
             // cnNumeIdenUsuar

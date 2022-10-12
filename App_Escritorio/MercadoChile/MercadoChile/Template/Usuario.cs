@@ -414,20 +414,7 @@ namespace MercadoChile
                     }
                 }
             }
-            for (int i = 0; i < DgvClientes.Rows.Count; i++)
-            {
-                var dgc = DgvClientes.Rows[i].Cells["cnCargo"].Value.ToString();
-                
-                if (dgc == "Administrador")
-                {
-                   Console.WriteLine(dgc);
-                   
-                }
-                break;
-
-                
-            }
-
+            
            
                 
                 

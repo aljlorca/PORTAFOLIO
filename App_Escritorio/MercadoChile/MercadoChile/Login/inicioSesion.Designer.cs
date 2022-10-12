@@ -205,7 +205,7 @@ namespace MercadoChile
             this.Controls.Add(this.iniciar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "inicioSesion";
-            this.Text = "  ";
+            this.Text = "|";
             this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
