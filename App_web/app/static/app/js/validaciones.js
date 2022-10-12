@@ -13,7 +13,7 @@ document.getElementById('email').addEventListener('input', function() {
 
 //Login Validacion
 var btn = document.getElementById('entrar');
-var clave = document.getElementById('contraseña');
+var clave = document.getElementById('password');
 var usuario = document.getElementById('email');
 
 
