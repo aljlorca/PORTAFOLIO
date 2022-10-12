@@ -24,8 +24,17 @@ def login(request):
         correo = request.POST.get('correo')
         contrasena = request.POST.get('password')
         salida = login_controller(correo,contrasena)
+        print(salida,correo,contrasena)
         if salida['message'] == 'Success':
-            return redirect(to="http://127.0.0.1:3000/")
+            respt = salida['usuario']
+            if respt[1]=='Proveedor':
+                return redirect(to="http://127.0.0.1:3000/productores/")
+            elif respt[1]=='Transportista':
+                return redirect(to="http://127.0.0.1:3000/")
+            elif respt[1]=='Cliente Interno':
+                return redirect(to="http://127.0.0.1:3000/cliente_interno/")
+            elif respt[1]=='Cliente Externo':
+                return redirect(to="http://127.0.0.1:3000/cliente_externo/")
         print(salida)
 
     return render(request, 'app/login.html',data)

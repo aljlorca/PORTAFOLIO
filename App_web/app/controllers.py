@@ -9,8 +9,7 @@ def login_controller(correo,contrasena):
     if response.status_code == 200:
         content = json.loads(response.content)
         if content['message'] == 'Success':
-            respt = content['usuario']
-            return respt
+            return content
         else:
             data ='ERROR:usuario no encontrado'
             return data
