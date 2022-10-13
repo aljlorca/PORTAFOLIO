@@ -1293,3 +1293,71 @@ IS
 BEGIN
   open cur_listar for select * from ciudad where estado_fila = '1';
 END CIUDAD_LISTAR;
+
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP calidad  ---------------------------------------------------------------------------
+
+create sequence sec_calidad
+  start with 1
+  increment by 1
+  maxvalue 99999
+  minvalue 1;
+  
+  
+  
+create or replace PROCEDURE CALIDAD_ELIMINAR (v_id_calidad Integer, v_salida out number) is
+begin 
+    delete calidad
+    WHERE id_calidad = v_id_calidad;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+
+end CALIDAD_ELIMINAR;
+
+
+create or replace PROCEDURE CALIDAD_AGREGAR 
+(
+    v_nombre varchar2,
+    v_salida out number
+
+) is
+begin 
+  insert into CALIDAD(id_calidad,descripcion_calidad) values(sec_cargo.nextval,v_nombre);
+  commit;
+  v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+end CALIDAD_AGREGAR;
+
+
+create or replace PROCEDURE CALIDAD_MODIFICAR (
+    v_id Integer,
+    v_nombre VARCHAR2,
+    v_salida out number
+
+) is
+begin 
+    UPDATE CALIDAD
+    SET descripcion_calidad = v_nombre
+    WHERE id_calidad = v_id;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end CALIDAD_MODIFICAR;
+
+ 
+
+create or replace PROCEDURE CALIDAD_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from CALIDAD;
+end CARGO_LISTAR;
