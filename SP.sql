@@ -1430,5 +1430,5 @@ end CARGA_MODIFICAR;
 is
 
 begin
-    open cur_listar for select * from PRODUCTO;
+    open cur_listar for select * from carga;
 end CARGA_LISTAR;
