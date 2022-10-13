@@ -906,7 +906,7 @@ begin
 end VENTA_INTERNA_ELIMINAR;
 
 
-create or replace PROCEDURE VENTA_INTERNA_AGREGAR 
+create or replace PROCEDURE                   "VENTA_INTERNA_AGREGAR" 
 (
     v_descripcion varchar2,
     v_monto_bruto integer,
@@ -914,24 +914,23 @@ create or replace PROCEDURE VENTA_INTERNA_AGREGAR
     v_monto_neto integer,
     v_fecha date,
     v_id_saldo integer,
-    v_id_empresa integer,
     v_estado_fila char,
     v_id_usuario integer,
     v_salida OUT NUMBER
 
 ) is
 begin 
-  insert into venta_interna(id_venta_interna,descripcion_venta_interna,monto_bruto_venta_interna,iva_venta_interna,monto_neto_venta_interna,fecha_venta_interna,id_saldo,id_empresa,estado_fila,id_usuario) 
-  values(sec_venta_interna.nextval,v_descripcion,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_id_saldo,v_id_empresa,v_estado_fila,v_id_usuario);
+  insert into venta_interna(id_venta_interna,descripcion_venta_interna,monto_bruto_venta_interna,iva_venta_interna,monto_neto_venta_interna,fecha_venta_interna,id_saldo,estado_fila,id_usuario) 
+  values(sec_venta_interna.nextval,v_descripcion,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_id_saldo,v_estado_fila,v_id_usuario);
   commit;
   v_salida:=1; 
-  
+
   exception when others then v_salida:=0;
 
 end VENTA_INTERNA_AGREGAR;
 
 
-create or replace PROCEDURE VENTA_INTERNA_MODIFICAR 
+create or replace PROCEDURE                   "VENTA_INTERNA_MODIFICAR" 
 (
     v_id_venta_interna integer,
     v_descripcion varchar2,
@@ -940,7 +939,6 @@ create or replace PROCEDURE VENTA_INTERNA_MODIFICAR
     v_monto_neto integer,
     v_fecha date,
     v_id_saldo integer,
-    v_id_empresa integer,
     v_id_usuario integer,
     v_salida OUT NUMBER
 
@@ -953,12 +951,11 @@ begin
     monto_neto_venta_interna = v_monto_neto,
     fecha_venta_interna = v_fecha,
     id_saldo = v_id_saldo,
-    id_empresa = v_id_empresa,
     id_usuario = v_id_usuario
     WHERE id_venta_interna = v_id_venta_interna;
     commit;
     v_salida:=1;
-  
+
   exception when others then v_salida:=0;
 
 end VENTA_INTERNA_MODIFICAR;
