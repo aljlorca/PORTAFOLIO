@@ -27,6 +27,7 @@ namespace MercadoChile
     public partial class Usuario : Form
     {
         DBApi DBApi = new DBApi();
+        #region Validadores
         public static bool IsValidEmail(string email)
         {
             try
@@ -65,6 +66,7 @@ namespace MercadoChile
             }
             return validacion;
         }
+        #endregion
 
 
         Uri baseUri = new Uri("http://127.0.0.1:8015/api/usuario_old/");
@@ -81,7 +83,7 @@ namespace MercadoChile
             InitializeComponent();
         }
 
-
+        #region ComboBox
         private async void Clientes_Carga(object sender, EventArgs e)
         {
             string respuesta = await GetHttp();
@@ -123,9 +125,9 @@ namespace MercadoChile
             cmbCiudad.ValueMember = "id_ciudad";
             cmbCiudad.DataSource = lista3.Where(x => x.id_region == id_region).ToList();
         }
+        #endregion
 
-
-
+        #region Get Url
         public async Task<string> GetHttp()
         {
 
@@ -174,8 +176,9 @@ namespace MercadoChile
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
             return await sr.ReadToEndAsync();
         }
+        #endregion
 
-
+        #region Buttons
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
             string respuesta = await GetHttp();
@@ -373,8 +376,7 @@ namespace MercadoChile
             string respuesta = await GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
             this.DgvClientes.Columns[0].Visible = false;
-            this.DgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            
+            this.DgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;    
             foreach (DataGridViewRow fila in DgvClientes.Rows)
             {
                 foreach (var fila1 in lista)
@@ -415,13 +417,7 @@ namespace MercadoChile
                 }
             }
             
-           
-                
-                
-            
-            
         }
-
         private async void btnModificar_Click(object sender, EventArgs e)
         {
             txtRutEdit.Text = DgvClientes.CurrentRow.Cells[1].Value.ToString();
@@ -456,3 +452,4 @@ namespace MercadoChile
         }
     }
 }
+#endregion

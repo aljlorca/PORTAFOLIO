@@ -256,6 +256,8 @@ namespace MercadoChile
             this.btnCrear.Text = "Crear Cliente";
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
+            
+            
             // 
             // txtConUsua
             // 

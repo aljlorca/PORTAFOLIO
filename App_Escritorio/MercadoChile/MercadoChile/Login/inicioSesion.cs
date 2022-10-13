@@ -148,6 +148,14 @@ namespace MercadoChile
         {
             Application.Exit();
         }
+
+        private void inicioSesion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                iniciar.PerformClick();
+            }
+        }
     }
 
 }
