@@ -17,29 +17,31 @@ def contacto(request):
 @csrf_exempt
 def login(request):
     
-    if request.method == 'POST':
-        correo = request.POST.get('correo')
-        contrasena = request.POST.get('password')
-        salida = login_controller(correo,contrasena)
-        print(salida,correo,contrasena)
-        data = salida['message']
-        if salida['message'] == 'Success':
-            respt = salida['usuario']
-            if respt[1]=='Proveedor':
-                return redirect(to="http://127.0.0.1:3000/productores/")
-            elif respt[1]=='Transportista':
-                return redirect(to="http://127.0.0.1:3000/")
-            elif respt[1]=='Cliente Interno':
-                return redirect(to="http://127.0.0.1:3000/cliente_interno/")
-            elif respt[1]=='Cliente Externo':
-                return redirect(to="http://127.0.0.1:3000/cliente_externo/")
-            elif respt[1]=='Administrador':
-                return redirect(to="http://127.0.0.1:3000/Administrador/")
+    try:
+        if request.method == 'POST':
+            correo = request.POST.get('correo')
+            contrasena = request.POST.get('password')
+            salida = login_controller(correo,contrasena)    
+            if salida['message'] == 'Success':
+                respt = salida['usuario']
+                if respt[1]=='Proveedor':
+                    return redirect(to="http://127.0.0.1:3000/productores/")
+                elif respt[1]=='Transportista':
+                    return redirect(to="http://127.0.0.1:3000/")
+                elif respt[1]=='Cliente Interno':
+                    return redirect(to="http://127.0.0.1:3000/cliente_interno/")
+                elif respt[1]=='Cliente Externo':
+                    return redirect(to="http://127.0.0.1:3000/cliente_externo/")
+                elif respt[1]=='Administrador':
+                    return redirect(to="http://127.0.0.1:3000/Administrador/")
         else:
-            data = {'error':data}
-            return data
-
-    return render(request, 'app/login.html',data)
+            return render(request, 'app/login.html')
+                                        
+    except:
+        return render(request, 'app/login.html',{
+                "error":'Falló al iniciar sesion Usuario o contraseña incorrectos, o Ingrese algun dato valido'})
+                    
+    
 
 def transportista(request):
     return render(request, 'app/carrito.html')
