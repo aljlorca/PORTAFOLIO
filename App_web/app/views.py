@@ -16,15 +16,13 @@ def contacto(request):
 
 @csrf_exempt
 def login(request):
-
-    data = {
-    }
     
     if request.method == 'POST':
         correo = request.POST.get('correo')
         contrasena = request.POST.get('password')
         salida = login_controller(correo,contrasena)
         print(salida,correo,contrasena)
+        data = salida['message']
         if salida['message'] == 'Success':
             respt = salida['usuario']
             if respt[1]=='Proveedor':
@@ -37,7 +35,9 @@ def login(request):
                 return redirect(to="http://127.0.0.1:3000/cliente_externo/")
             elif respt[1]=='Administrador':
                 return redirect(to="http://127.0.0.1:3000/Administrador/")
-        print(salida)
+        else:
+            data = {'error':data}
+            return data
 
     return render(request, 'app/login.html',data)
 

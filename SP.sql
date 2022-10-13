@@ -243,7 +243,7 @@ create or replace PROCEDURE                   "LOGIN"
 )
 is
 begin
-    open cur for select u.nombre_usuario,c.nombre_cargo,u.correo_usuario,u.fecha_sesion_usuario from usuario u, cargo c where u.id_cargo = c.id_cargo and correo_usuario = v_correo and contrasena_usuario = v_contrasena;
+    open cur for select u.nombre_usuario,c.nombre_cargo,u.correo_usuario,u.fecha_sesion_usuario from usuario u, cargo c where u.id_cargo = c.id_cargo and correo_usuario = v_correo and contrasena_usuario = v_contrasena and u.usuario_vigente = '1';
     update usuario 
     set fecha_sesion_usuario = sysdate
     where correo_usuario=v_correo;
