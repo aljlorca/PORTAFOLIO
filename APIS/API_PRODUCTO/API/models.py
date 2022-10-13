@@ -61,7 +61,7 @@ class Empresa(models.Model):
 class Producto(models.Model):
     id_producto = models.BigIntegerField(primary_key=True)
     nombre_producto = models.CharField(max_length=150)
-    cantidad_prioducto = models.BigIntegerField()
+    cantidad_producto = models.BigIntegerField()
     id_empresa = models.ForeignKey('Empresa', models.DO_NOTHING, db_column='id_empresa', blank=True, null=True)
     estado_fila = models.CharField(max_length=1)
     imagen_producto = models.ImageField(upload_to='productos', null=True)

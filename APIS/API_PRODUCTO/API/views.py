@@ -103,7 +103,7 @@ class ProductoViewset(viewsets.ModelViewSet):
     def post(self, request, *args, **kwargs):
         id_producto = request.data['id_producto']
         nombre_producto = request.data['nombre_producto']
-        cantidad_prioducto = request.data['cantidad_prioducto']
+        cantidad_prioducto = request.data['cantidad_producto']
         id_empresa = request.data['id_empresa']
         estado_fila = request.data['estado_fila']
         imagen_producto = request.data['imagen_producto']
