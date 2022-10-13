@@ -110,7 +110,7 @@ class ProductoViewset(viewsets.ModelViewSet):
         nombre_producto = request.data['nombre_producto']
         cantidad_prioducto = request.data['cantidad_producto']
         id_empresa = request.data['id_empresa']
-        estado_fila = request.data['estado_fila']
+        estado_fila = '1'
         imagen_producto = request.data['imagen_producto']
         id_calidad = request.data['id_calidad']
         Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,id_empresa=id_empresa,id_calidad=id_calidad,imagen_producto=imagen_producto,estado_fila=estado_fila)
