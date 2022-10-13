@@ -76,6 +76,7 @@ namespace MercadoChile
             this.txtCorreo.Text = "USUARIO";
             this.txtCorreo.TextChanged += new System.EventHandler(this.txtrut_admin_TextChanged);
             this.txtCorreo.Enter += new System.EventHandler(this.txtrut_admin_Enter);
+            this.txtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             this.txtCorreo.Leave += new System.EventHandler(this.txtrut_admin_Leave);
             // 
             // txtContraseña
@@ -92,6 +93,7 @@ namespace MercadoChile
             this.txtContraseña.Text = "**********";
             this.txtContraseña.TextChanged += new System.EventHandler(this.txtcontraseña_admin_TextChanged_1);
             this.txtContraseña.Enter += new System.EventHandler(this.txtcontraseña_admin_Enter);
+            this.txtContraseña.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             this.txtContraseña.Leave += new System.EventHandler(this.txtcontraseña_admin_Leave);
             // 
             // panel1

@@ -33,13 +33,11 @@ C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.dll
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.pdb
-C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Microsoft.Extensions.Primitives.dll
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Buffers.dll
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Memory.dll
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Microsoft.Extensions.Primitives.xml
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Buffers.xml
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Memory.xml

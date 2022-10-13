@@ -21,7 +21,6 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Windows.Media.Media3D;
 using System.Windows.Markup;
-using Negocio;
 
 namespace MercadoChile
 {
@@ -154,6 +153,15 @@ namespace MercadoChile
             if (e.KeyCode == Keys.Enter)
             {
                 iniciar.PerformClick();
+            }
+        }
+
+        private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                txtContraseña.Focus();
+                e.Handled = true;
             }
         }
     }
