@@ -65,9 +65,14 @@ class ProductoView(View):
                 datos={'message':'Error: Productos NO Encontrados'}
             return JsonResponse(datos)
     
-    def post(self,request):
-        jd = json.loads(request.body)
-        agregar_producto(nombre_producto=jd['nombre_producto'],cantidad_prioducto=jd['cantidad_prioducto'],id_empresa=jd['id_empresa'],imagen_producto=jd['imagen_producto'])
+    def post(self, request, *args, **kwargs):
+        id_producto = request.body['id_producto']
+        nombre_producto = request.body['nombre_producto']
+        cantidad_prioducto = request.body['cantidad_producto']
+        id_empresa = request.body['id_empresa']
+        estado_fila = request.body['estado_fila']
+        imagen_producto = request.body['imagen_producto']
+        Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,id_empresa=id_empresa,estado_fila=estado_fila,imagen_producto=imagen_producto,id_calidad=id_calidad)
         datos={'message':'Success'}
         return JsonResponse(datos)
     
@@ -105,10 +110,12 @@ class ProductoViewset(viewsets.ModelViewSet):
         nombre_producto = request.data['nombre_producto']
         cantidad_prioducto = request.data['cantidad_producto']
         id_empresa = request.data['id_empresa']
-        estado_fila = request.data['estado_fila']
+        estado_fila = '1'
         imagen_producto = request.data['imagen_producto']
-        Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,id_empresa=id_empresa,estado_fila=estado_fila,imagen_producto=imagen_producto)
-        return HttpResponse({'message': 'Success'}, status=200)
+        id_calidad = request.data['id_calidad']
+        Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,id_empresa=id_empresa,id_calidad=id_calidad,imagen_producto=imagen_producto,estado_fila=estado_fila)
+        datos={'message':'Success'}
+        return HttpResponse(datos, status=200)
 
 
 class ProductoHistoricoViewset(viewsets.ModelViewSet):

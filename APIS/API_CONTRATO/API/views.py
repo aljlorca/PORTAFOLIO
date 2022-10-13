@@ -103,7 +103,7 @@ class ContratoViewset(viewsets.ModelViewSet):
         fecha_contrato = request.data['fecha_contrato']
         tipo_contrato = request.data['tipo_contrato']
         id_empresa = request.data['id_empresa']
-        estado_fila = request.data['estado_fila']
+        estado_fila = '1'
         Contrato.objects.create(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
         return HttpResponse({'message': 'Success'}, status=200)
 

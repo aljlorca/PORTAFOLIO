@@ -183,19 +183,20 @@ begin
 end PRODUCTO_ELIMINAR;
 
 
-create or replace PROCEDURE PRODUCTO_AGREGAR 
+create or replace PROCEDURE                   "PRODUCTO_AGREGAR" 
 (
     v_nombre_producto varchar2, 
     v_cantidad_producto integer,
-    v_id_empresa integer,
-    v_estado_fila char,
     v_imagen_producto varchar2,
+    v_id_empresa integer,
+    v_id_calidad integer,
+    v_estado_fila char,
     v_salida OUT NUMBER
 ) 
 is
 begin 
-  insert into PRODUCTO(id_producto,nombre_producto,cantidad_producto,id_empresa,estado_fila,imagen_producto) 
-  values(sec_producto.nextval,v_nombre_producto,v_cantidad_producto,v_id_empresa,v_estado_fila,v_imagen_producto);
+  insert into PRODUCTO(id_producto,nombre_producto,cantidad_producto,imagen_producto,id_empresa,id_calidad,estado_fila) 
+  values(sec_producto.nextval,v_nombre_producto,v_cantidad_producto,v_imagen_producto,v_id_empresa,v_id_calidad,v_estado_fila);
   commit;
   v_salida:=1;
   exception when others then v_salida:=0;
@@ -206,8 +207,9 @@ end PRODUCTO_AGREGAR;
     v_id_producto integer,
     v_nombre_producto varchar2, 
     v_cantidad_producto integer,
-    v_id_empresa integer,
     v_imagen_producto varchar2,
+    v_id_empresa integer,
+    v_id_calidad integer,
     v_salida OUT NUMBER
 
 ) is
@@ -215,8 +217,9 @@ begin
     UPDATE producto
     SET nombre_producto = v_nombre_producto,
     cantidad_producto = v_cantidad_producto,
+    imagen_producto = v_imagen_producto,
     id_empresa = v_id_empresa,
-    imagen_producto = v_imagen_producto
+    id_calidad = v_id_calidad
     WHERE id_producto = v_id_producto;
     commit;
     v_salida:=1;
@@ -243,7 +246,7 @@ create or replace PROCEDURE                   "LOGIN"
 )
 is
 begin
-    open cur for select u.nombre_usuario,c.nombre_cargo,u.correo_usuario,u.fecha_sesion_usuario from usuario u, cargo c where u.id_cargo = c.id_cargo and correo_usuario = v_correo and contrasena_usuario = v_contrasena and u.usuario_vigente = '1';
+    open cur for select u.nombre_usuario,c.nombre_cargo,u.correo_usuario,u.fecha_sesion_usuario from usuario u, cargo c where u.id_cargo = c.id_cargo and u.correo_usuario = v_correo and u.contrasena_usuario = v_contrasena and u.usuario_vigente = '1';
     update usuario 
     set fecha_sesion_usuario = sysdate
     where correo_usuario=v_correo;
@@ -903,7 +906,7 @@ begin
 end VENTA_INTERNA_ELIMINAR;
 
 
-create or replace PROCEDURE VENTA_INTERNA_AGREGAR 
+create or replace PROCEDURE                   "VENTA_INTERNA_AGREGAR" 
 (
     v_descripcion varchar2,
     v_monto_bruto integer,
@@ -911,24 +914,23 @@ create or replace PROCEDURE VENTA_INTERNA_AGREGAR
     v_monto_neto integer,
     v_fecha date,
     v_id_saldo integer,
-    v_id_empresa integer,
     v_estado_fila char,
     v_id_usuario integer,
     v_salida OUT NUMBER
 
 ) is
 begin 
-  insert into venta_interna(id_venta_interna,descripcion_venta_interna,monto_bruto_venta_interna,iva_venta_interna,monto_neto_venta_interna,fecha_venta_interna,id_saldo,id_empresa,estado_fila,id_usuario) 
-  values(sec_venta_interna.nextval,v_descripcion,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_id_saldo,v_id_empresa,v_estado_fila,v_id_usuario);
+  insert into venta_interna(id_venta_interna,descripcion_venta_interna,monto_bruto_venta_interna,iva_venta_interna,monto_neto_venta_interna,fecha_venta_interna,id_saldo,estado_fila,id_usuario) 
+  values(sec_venta_interna.nextval,v_descripcion,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_id_saldo,v_estado_fila,v_id_usuario);
   commit;
   v_salida:=1; 
-  
+
   exception when others then v_salida:=0;
 
 end VENTA_INTERNA_AGREGAR;
 
 
-create or replace PROCEDURE VENTA_INTERNA_MODIFICAR 
+create or replace PROCEDURE                   "VENTA_INTERNA_MODIFICAR" 
 (
     v_id_venta_interna integer,
     v_descripcion varchar2,
@@ -937,7 +939,6 @@ create or replace PROCEDURE VENTA_INTERNA_MODIFICAR
     v_monto_neto integer,
     v_fecha date,
     v_id_saldo integer,
-    v_id_empresa integer,
     v_id_usuario integer,
     v_salida OUT NUMBER
 
@@ -950,12 +951,11 @@ begin
     monto_neto_venta_interna = v_monto_neto,
     fecha_venta_interna = v_fecha,
     id_saldo = v_id_saldo,
-    id_empresa = v_id_empresa,
     id_usuario = v_id_usuario
     WHERE id_venta_interna = v_id_venta_interna;
     commit;
     v_salida:=1;
-  
+
   exception when others then v_salida:=0;
 
 end VENTA_INTERNA_MODIFICAR;
@@ -1293,3 +1293,71 @@ IS
 BEGIN
   open cur_listar for select * from ciudad where estado_fila = '1';
 END CIUDAD_LISTAR;
+
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP calidad  ---------------------------------------------------------------------------
+
+create sequence sec_calidad
+  start with 1
+  increment by 1
+  maxvalue 99999
+  minvalue 1;
+  
+  
+  
+create or replace PROCEDURE CALIDAD_ELIMINAR (v_id_calidad Integer, v_salida out number) is
+begin 
+    delete calidad
+    WHERE id_calidad = v_id_calidad;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+
+end CALIDAD_ELIMINAR;
+
+
+create or replace PROCEDURE CALIDAD_AGREGAR 
+(
+    v_nombre varchar2,
+    v_salida out number
+
+) is
+begin 
+  insert into CALIDAD(id_calidad,descripcion_calidad) values(sec_cargo.nextval,v_nombre);
+  commit;
+  v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+end CALIDAD_AGREGAR;
+
+
+create or replace PROCEDURE CALIDAD_MODIFICAR (
+    v_id Integer,
+    v_nombre VARCHAR2,
+    v_salida out number
+
+) is
+begin 
+    UPDATE CALIDAD
+    SET descripcion_calidad = v_nombre
+    WHERE id_calidad = v_id;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end CALIDAD_MODIFICAR;
+
+ 
+
+create or replace PROCEDURE CALIDAD_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from CALIDAD;
+end CARGO_LISTAR;

@@ -58,13 +58,22 @@ class Empresa(models.Model):
         db_table = 'empresa'
         unique_together = (('rut_empresa', 'duns_empresa'),)
 
+class Calidad(models.Model):
+    id_calidad = models.BigIntegerField(primary_key=True)
+    descripcion_calidad = models.CharField(max_length=150)
+
+    class Meta:
+        managed = False
+        db_table = 'calidad'
+
 class Producto(models.Model):
-    id_producto = models.BigIntegerField(primary_key=True)
+    id_producto = models.CharField(primary_key=True, max_length=150)
     nombre_producto = models.CharField(max_length=150)
     cantidad_producto = models.BigIntegerField()
-    id_empresa = models.ForeignKey('Empresa', models.DO_NOTHING, db_column='id_empresa', blank=True, null=True)
-    estado_fila = models.CharField(max_length=1)
     imagen_producto = models.ImageField(upload_to='productos', null=True)
+    id_empresa = models.ForeignKey('Empresa', models.DO_NOTHING, db_column='id_empresa', blank=True, null=True)
+    id_calidad = models.ForeignKey('Calidad', models.DO_NOTHING, db_column='id_calidad')
+    estado_fila = models.CharField(max_length=1)
 
     class Meta:
         managed = False
