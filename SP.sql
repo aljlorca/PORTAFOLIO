@@ -183,19 +183,20 @@ begin
 end PRODUCTO_ELIMINAR;
 
 
-create or replace PROCEDURE PRODUCTO_AGREGAR 
+create or replace PROCEDURE                   "PRODUCTO_AGREGAR" 
 (
     v_nombre_producto varchar2, 
     v_cantidad_producto integer,
-    v_id_empresa integer,
-    v_estado_fila char,
     v_imagen_producto varchar2,
+    v_id_empresa integer,
+    v_id_calidad integer,
+    v_estado_fila char,
     v_salida OUT NUMBER
 ) 
 is
 begin 
-  insert into PRODUCTO(id_producto,nombre_producto,cantidad_producto,id_empresa,estado_fila,imagen_producto) 
-  values(sec_producto.nextval,v_nombre_producto,v_cantidad_producto,v_id_empresa,v_estado_fila,v_imagen_producto);
+  insert into PRODUCTO(id_producto,nombre_producto,cantidad_producto,imagen_producto,id_empresa,id_calidad,estado_fila) 
+  values(sec_producto.nextval,v_nombre_producto,v_cantidad_producto,v_imagen_producto,v_id_empresa,v_id_calidad,v_estado_fila);
   commit;
   v_salida:=1;
   exception when others then v_salida:=0;
@@ -206,8 +207,9 @@ end PRODUCTO_AGREGAR;
     v_id_producto integer,
     v_nombre_producto varchar2, 
     v_cantidad_producto integer,
-    v_id_empresa integer,
     v_imagen_producto varchar2,
+    v_id_empresa integer,
+    v_id_calidad integer,
     v_salida OUT NUMBER
 
 ) is
@@ -215,8 +217,9 @@ begin
     UPDATE producto
     SET nombre_producto = v_nombre_producto,
     cantidad_producto = v_cantidad_producto,
+    imagen_producto = v_imagen_producto,
     id_empresa = v_id_empresa,
-    imagen_producto = v_imagen_producto
+    id_calidad = v_id_calidad
     WHERE id_producto = v_id_producto;
     commit;
     v_salida:=1;
