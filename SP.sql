@@ -1361,3 +1361,74 @@ is
 begin
   open cur_listar for select * from CALIDAD;
 end CARGO_LISTAR;
+
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP carga  ---------------------------------------------------------------------------
+
+create sequence sec_carga
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE CARGA_ELIMINAR (v_id_carga Integer) is
+begin 
+    DELETE CARGA
+    WHERE id_carga = v_id_carga;
+    commit;
+
+end CARGA_ELIMINAR;
+
+
+create or replace PROCEDURE CARGA_AGREGAR
+(
+    v_capacidad_carga varchar2, 
+    v_refrigeracion integer,
+    v_tamano_carga varchar2,
+    v_idsubasta_transportista integer,
+    id_usuario integer,
+    v_salida OUT NUMBER
+) 
+is
+begin 
+  insert into CARGA(ID_CARGA,CAPACIDAD_CARGA,REFRIGERACION,TAMANO_CARGA,ID_SUBASTA_TRANSPORTISTA,ID_USUARIO) 
+  values(sec_producto.nextval,v_capacidad_carga,v_refrigeracion,v_tamano_carga,v_idsubasta_transportista,id_usuario);
+  commit;
+  v_salida:=1;
+  exception when others then v_salida:=0;
+end CARGA_AGREGAR;
+
+
+ create or replace PROCEDURE CARGA_MODIFICAR (
+    v_id_carga integer,
+    v_capacidad_carga varchar2, 
+    v_refrigeracion integer,
+    v_tamano_carga varchar2,
+    v_idsubasta_transportista integer,
+    id_usuario integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE carga
+    SET CAPACIDAD_CARGA = v_capacidad_carga,
+    REFRIGERACION = v_refrigeracion,
+    TAMANO_CARGA = v_tamano_carga,
+    ID_SUBASTA_TRANSPORTISTA = v_idsubasta_transportista,
+    ID_USUARIO = id_usuario
+    WHERE id_carga = v_id_carga;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end CARGA_MODIFICAR;
+
+ CREATE OR REPLACE EDITIONABLE PROCEDURE CARGA_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+
+begin
+    open cur_listar for select * from PRODUCTO;
+end CARGA_LISTAR;

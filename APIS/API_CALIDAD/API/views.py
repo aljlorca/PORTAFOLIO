@@ -5,7 +5,7 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Calidad
-from .serializers import CalidadSerializer,CalidadHistoricoSerializer
+from .serializers import CalidadSerializer
 from rest_framework import viewsets
 import json
 import cx_Oracle
@@ -92,10 +92,6 @@ class CalidadView(View):
     
     
 class CalidadViewset(viewsets.ModelViewSet):
-    queryset = Calidad.objects.filter(estado_fila='1')
+    queryset = Calidad.objects.all()
     serializer_class = CalidadSerializer
 
-
-class CalidadHistoricoViewset(viewsets.ModelViewSet):
-    queryset = Calidad.objects.all()
-    serializer_class = CalidadHistoricoSerializer

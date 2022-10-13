@@ -106,6 +106,19 @@ class ContratoViewset(viewsets.ModelViewSet):
         estado_fila = '1'
         Contrato.objects.create(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
         return HttpResponse({'message': 'Success'}, status=200)
+    def put(self, request, *args, **kwargs):
+        id_contrato = request.data['id_contrato']
+        documento_contrato = request.data['documento_contrato']
+        fecha_contrato = request.data['fecha_contrato']
+        tipo_contrato = request.data['tipo_contrato']
+        id_empresa = request.data['id_empresa']
+        estado_fila = '1'
+        Contrato.objects.update(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
+        return HttpResponse({'message': 'Success'}, status=200)
+    def delete(self, request, *args, **kwargs):
+        id_contrato = request.data['id_contrato']
+        eliminar_contrato(id_contrato)
+        return HttpResponse({'message': 'Success'}, status=200)
 
 class ContratoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Contrato.objects.all()
