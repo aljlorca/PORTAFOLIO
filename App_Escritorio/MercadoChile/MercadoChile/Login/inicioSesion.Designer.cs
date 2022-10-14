@@ -76,6 +76,7 @@ namespace MercadoChile
             this.txtCorreo.Text = "USUARIO";
             this.txtCorreo.TextChanged += new System.EventHandler(this.txtrut_admin_TextChanged);
             this.txtCorreo.Enter += new System.EventHandler(this.txtrut_admin_Enter);
+            this.txtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             this.txtCorreo.Leave += new System.EventHandler(this.txtrut_admin_Leave);
             // 
             // txtContraseña
@@ -92,6 +93,7 @@ namespace MercadoChile
             this.txtContraseña.Text = "**********";
             this.txtContraseña.TextChanged += new System.EventHandler(this.txtcontraseña_admin_TextChanged_1);
             this.txtContraseña.Enter += new System.EventHandler(this.txtcontraseña_admin_Enter);
+            this.txtContraseña.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             this.txtContraseña.Leave += new System.EventHandler(this.txtcontraseña_admin_Leave);
             // 
             // panel1
@@ -204,9 +206,11 @@ namespace MercadoChile
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.iniciar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "inicioSesion";
             this.Text = "|";
             this.Load += new System.EventHandler(this.Login_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inicioSesion_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

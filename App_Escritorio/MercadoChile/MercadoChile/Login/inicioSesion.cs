@@ -21,7 +21,6 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Windows.Media.Media3D;
 using System.Windows.Markup;
-using Negocio;
 
 namespace MercadoChile
 {
@@ -147,6 +146,23 @@ namespace MercadoChile
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void inicioSesion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                iniciar.PerformClick();
+            }
+        }
+
+        private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                txtContraseña.Focus();
+                e.Handled = true;
+            }
         }
     }
 
