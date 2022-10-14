@@ -65,7 +65,7 @@ class CargaView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_carga(capacidad_carga=jd['capacidad_carga'],capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
+        agregar_carga(capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
@@ -74,7 +74,7 @@ class CargaView(View):
         jd = json.loads(request.body)
         cargas = list(Carga.objects.filter(id_carga=id_carga).values())
         if len(cargas) > 0:
-            modificar_carga(id_carga=jd['id_carga'],capacidad_carga=jd['capacidad_carga'],capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
+            modificar_carga(id_carga=jd['id_carga'],capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra la carga"}

@@ -256,8 +256,6 @@ namespace MercadoChile
             this.btnCrear.Text = "Crear Cliente";
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
-            
-            
             // 
             // txtConUsua
             // 
@@ -498,6 +496,7 @@ namespace MercadoChile
             this.cmbRegionEdit.Name = "cmbRegionEdit";
             this.cmbRegionEdit.Size = new System.Drawing.Size(214, 21);
             this.cmbRegionEdit.TabIndex = 84;
+            this.cmbRegionEdit.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             // 
             // label30
             // 
@@ -516,6 +515,7 @@ namespace MercadoChile
             this.cmbPaisEdit.Name = "cmbPaisEdit";
             this.cmbPaisEdit.Size = new System.Drawing.Size(214, 21);
             this.cmbPaisEdit.TabIndex = 83;
+            this.cmbPaisEdit.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
             // 
             // label37
             // 

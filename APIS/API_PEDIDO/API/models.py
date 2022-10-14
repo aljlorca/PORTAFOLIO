@@ -92,6 +92,14 @@ class Usuario(models.Model):
         db_table = 'usuario'
         unique_together = (('numero_identificacion_usuario', 'telefono_usuario', 'correo_usuario'),)
 
+class Calidad(models.Model):
+    id_calidad = models.BigIntegerField(primary_key=True)
+    descripcion_calidad = models.CharField(max_length=150)
+
+    class Meta:
+        managed = False
+        db_table = 'calidad'
+        
 class Producto(models.Model):
     id_producto = models.CharField(primary_key=True, max_length=150)
     nombre_producto = models.CharField(max_length=150)

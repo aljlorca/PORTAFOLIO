@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MercadoChile.Modelos
 {
-    public class Empresa
+    public class Empresas
     {
         public int id_empresa { get; set; }
         public string duns_empresa { get; set; }

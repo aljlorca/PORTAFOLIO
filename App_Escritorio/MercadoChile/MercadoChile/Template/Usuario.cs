@@ -93,7 +93,7 @@ namespace MercadoChile
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
             List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
-            List<Empresa> lista5 = JsonConvert.DeserializeObject<List<Empresa>>(respuesta5);
+            List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             cmbCargo.DataSource = lista1;
             cmbPais.DataSource = lista2;
             cmbEmpresa.DataSource = lista5;
@@ -113,6 +113,10 @@ namespace MercadoChile
             cmbRegion.DisplayMember = "nombre_region";
             cmbRegion.ValueMember = "id_region";
             cmbRegion.DataSource = lista3.Where(x => x.id_pais == id_pais).ToList();
+            cmbRegionEdit.DisplayMember = "nombre_region";
+            cmbRegionEdit.ValueMember = "id_region";
+            cmbRegionEdit.DataSource = lista3.Where(x => x.id_pais == id_pais).ToList();
+
 
         }
         private async void cmbRegion_SelectionChangeCommitted(object sender, EventArgs e)
@@ -124,6 +128,9 @@ namespace MercadoChile
             cmbCiudad.DisplayMember = "nombre_ciudad";
             cmbCiudad.ValueMember = "id_ciudad";
             cmbCiudad.DataSource = lista3.Where(x => x.id_region == id_region).ToList();
+            cmbCiudadEdit.DisplayMember = "nombre_ciudad";
+            cmbCiudadEdit.ValueMember = "id_ciudad";
+            cmbCiudadEdit.DataSource = lista3.Where(x => x.id_region == id_region).ToList();
         }
         #endregion
 
@@ -253,7 +260,8 @@ namespace MercadoChile
                         int cargo = (int)cmbCargoEdit.SelectedValue;
                         int empresa = (int)cmbEmpresaEdit.SelectedValue;
                         int ciudad = (int)cmbCiudadEdit.SelectedValue;
-
+                        int pais = (int)cmbPaisEdit.SelectedValue;
+                        int region = (int)cmbRegionEdit.SelectedValue;
                         Uri myUri = new Uri(baseUri, id.ToString());
                         var client = new HttpClient();
                         Usuarios post = new Usuarios()
@@ -268,6 +276,8 @@ namespace MercadoChile
                             id_cargo = cargo,
                             id_empresa = empresa,
                             id_ciudad = ciudad,
+                            id_pais = pais,
+                            id_region = region,
                         };
                         var data = JsonSerializer.Serialize<Usuarios>(post);
                         HttpContent content =
@@ -299,6 +309,8 @@ namespace MercadoChile
                 int cargo = (int)cmbCargo.SelectedValue;
                 int empresa = (int)cmbEmpresa.SelectedValue;
                 int ciudad = (int)cmbCiudad.SelectedValue;
+                int pais = (int)cmbPais.SelectedValue;
+                int region = (int)cmbRegion.SelectedValue;
                 var client = new HttpClient();
 
 
@@ -314,10 +326,9 @@ namespace MercadoChile
                     administrador_usuario = '0',
                     id_cargo = cargo,
                     id_empresa = empresa,
-                    id_ciudad = ciudad
-
-
-
+                    id_ciudad = ciudad,
+                    id_region = region,
+                    id_pais = pais,
                 };
                 var data = JsonSerializer.Serialize<Usuarios>(post2);
                 HttpContent content =
@@ -372,7 +383,7 @@ namespace MercadoChile
             string respuesta2 = await GetHttp4();
             List<Ciudad> lista2 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta2);
             string respuesta3 = await GetHttp5();
-            List<Empresa> lista3 = JsonConvert.DeserializeObject<List<Empresa>>(respuesta3);
+            List<Empresas> lista3 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta3);
             string respuesta = await GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
             this.DgvClientes.Columns[0].Visible = false;
@@ -425,22 +436,20 @@ namespace MercadoChile
             txtDirEdit.Text = DgvClientes.CurrentRow.Cells[3].Value.ToString();
             txtTeleEdit.Text = DgvClientes.CurrentRow.Cells[4].Value.ToString();
             txtCorEdit.Text = DgvClientes.CurrentRow.Cells[5].Value.ToString();
-            string respuesta4 = await GetHttp4();
+            
             string respuesta1 = await GetHttp1();
             string respuesta5 = await GetHttp5();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            List<Ciudad> lista3 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);
-            List<Empresa> lista5 = JsonConvert.DeserializeObject<List<Empresa>>(respuesta5);
+            
+            List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             lista1.RemoveAt(0);
             cmbCargoEdit.DataSource = lista1;
-            cmbCiudadEdit.DataSource = lista3;
+           
             cmbEmpresaEdit.DataSource = lista5;
             cmbCargoEdit.DisplayMember = "nombre_cargo";
             cmbCargoEdit.ValueMember = "id_cargo";
             cmbEmpresaEdit.DisplayMember = "razon_social_empresa";
             cmbEmpresaEdit.ValueMember = "id_empresa";
-            cmbCiudadEdit.DisplayMember = "nombre_ciudad";
-            cmbCiudadEdit.ValueMember = "id_ciudad";
             cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells[6].Value.ToString();
             cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[7].Value.ToString();
             cmbCiudadEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();
