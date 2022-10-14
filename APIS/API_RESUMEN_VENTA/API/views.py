@@ -22,7 +22,7 @@ def modificar_resumen_venta(id_resumen,monto_neto_venta,descripcion_resumen,id_v
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('RESUMEN_VENTA_MODIFICAR',[id_resumen,monto_neto_venta,descripcion_resumen,id_ventaid_venta,salida])
+    cursor.callproc('RESUMEN_VENTA_MODIFICAR',[id_resumen,monto_neto_venta,descripcion_resumen,id_venta,salida])
 
 def eliminar_resumen_venta(id_resumen):
     django_cursor = connection.cursor()
