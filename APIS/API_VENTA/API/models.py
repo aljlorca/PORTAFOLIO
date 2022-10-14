@@ -69,6 +69,8 @@ class Cargo(models.Model):
         managed = False
         db_table = 'cargo'
 
+
+
 class Usuario(models.Model):
     id_usuario = models.BigIntegerField(primary_key=True)
     numero_identificacion_usuario = models.CharField(max_length=20)
@@ -92,20 +94,7 @@ class Usuario(models.Model):
         db_table = 'usuario'
         unique_together = (('numero_identificacion_usuario', 'telefono_usuario', 'correo_usuario'),)
 
-class Producto(models.Model):
-    id_producto = models.CharField(primary_key=True, max_length=150)
-    nombre_producto = models.CharField(max_length=150)
-    cantidad_producto = models.BigIntegerField()
-    precio_producto = models.BigIntegerField()
-    imagen_producto = models.CharField(max_length=150, blank=True, null=True)
-    id_calidad = models.ForeignKey('Calidad', models.DO_NOTHING, db_column='id_calidad')
-    saldo_producto = models.CharField(max_length=1)
-    estado_fila = models.CharField(max_length=1)
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
 
-    class Meta:
-        managed = False
-        db_table = 'producto'
 
 class Venta(models.Model):
     id_venta = models.BigIntegerField(primary_key=True)
@@ -122,15 +111,3 @@ class Venta(models.Model):
     class Meta:
         managed = False
         db_table = 'venta'
-
-class Pedido(models.Model):
-    id_pedido = models.BigIntegerField(primary_key=True)
-    fecha_pedido = models.DateField()
-    id_venta = models.ForeignKey('Venta', models.DO_NOTHING, db_column='id_venta')
-    estado_fila = models.CharField(max_length=1)
-    id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='id_producto')
-
-    class Meta:
-        managed = False
-        db_table = 'pedido'
-
