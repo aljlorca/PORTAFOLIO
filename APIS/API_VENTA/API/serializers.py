@@ -4,7 +4,7 @@ from .models import Venta
 class VentaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Venta
-        fields = ['id_venta_externa','descripcion_venta','estado_venta','monto_bruto_venta','iva','monto_neto_venta','fecha_venta','id_empresa']
+        fields = ['id_venta','descripcion_venta','estado_venta','monto_bruto_venta','iva','monto_neto_venta','fecha_venta','tipo_venta','id_usuario']
 
 
 
