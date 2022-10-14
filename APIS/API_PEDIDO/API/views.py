@@ -10,19 +10,19 @@ import json
 import cx_Oracle
 
 # Create your views here.
-def agregar_pedido(fecha_pedido,id_venta_externa,id_producto):
+def agregar_pedido(fecha_pedido,id_venta,id_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('PEDIDO_AGREGAR',[fecha_pedido,id_venta_externa,id_producto,estado_fila,salida])
+    cursor.callproc('PEDIDO_AGREGAR',[fecha_pedido,id_venta,id_producto,estado_fila,salida])
     return salida
 
-def modificar_pedido(id_pedido,fecha_pedido,id_venta_externa,id_producto):
+def modificar_pedido(id_pedido,fecha_pedido,id_venta,id_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('PEDIDO_MODIFICAR',[id_pedido,fecha_pedido,id_venta_externa,id_producto,salida])
+    cursor.callproc('PEDIDO_MODIFICAR',[id_pedido,fecha_pedido,id_venta,id_producto,salida])
 
 def eliminar_pedido(id_pedido):
     django_cursor = connection.cursor()
@@ -65,7 +65,7 @@ class PedidoView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_pedido(fecha_pedido=jd['fecha_pedido'],id_venta_externa=jd['id_venta_externa'],id_producto=jd['id_producto'])
+        agregar_pedido(fecha_pedido=jd['fecha_pedido'],id_venta=jd['id_venta'],id_producto=jd['id_producto'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
@@ -74,7 +74,7 @@ class PedidoView(View):
         jd = json.loads(request.body)
         empresas = list(Pedido.objects.filter(id_pedido=id_pedido).values())
         if len(empresas) > 0:
-            modificar_pedido(id_pedido=jd['id_pedido'],fecha_pedido=jd['fecha_pedido'],id_venta_externa=jd['id_venta_externa'],id_producto=jd['id_producto'])
+            modificar_pedido(id_pedido=jd['id_pedido'],fecha_pedido=jd['fecha_pedido'],id_venta=jd['id_venta'],id_producto=jd['id_producto'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra el pedido"}
