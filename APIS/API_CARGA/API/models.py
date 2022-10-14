@@ -127,7 +127,7 @@ class Carga(models.Model):
     capacidad_carga = models.CharField(max_length=300)
     refrigeracion = models.CharField(max_length=1)
     tamano_carga = models.CharField(max_length=150)
-    id_subasta_transportista = models.ForeignKey('Subasta', models.DO_NOTHING, db_column='id_subasta_transportista')
+    id_subasta = models.ForeignKey('Subasta', models.DO_NOTHING, db_column='id_subasta_transportista')
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
 
     class Meta:

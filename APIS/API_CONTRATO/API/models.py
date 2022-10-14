@@ -61,7 +61,7 @@ class Empresa(models.Model):
 
 class Contrato(models.Model):
     id_contrato = models.BigIntegerField(primary_key=True)
-    documento_contrato = models.CharField(max_length=125)
+    documento_contrato = models.FileField(max_length=125,upload_to='documentos')
     fecha_contrato = models.DateField()
     tipo_contrato = models.CharField(max_length=50)
     id_empresa = models.ForeignKey('Empresa', models.DO_NOTHING, db_column='id_empresa')

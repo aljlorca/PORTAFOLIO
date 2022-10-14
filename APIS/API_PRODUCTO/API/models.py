@@ -108,7 +108,7 @@ class Producto(models.Model):
     nombre_producto = models.CharField(max_length=150)
     cantidad_producto = models.BigIntegerField()
     precio_producto = models.BigIntegerField()
-    imagen_producto = models.CharField(max_length=150, blank=True, null=True)
+    imagen_producto = models.ImageField(max_length=150, blank=True, null=True, upload_to='productos')
     id_calidad = models.ForeignKey('Calidad', models.DO_NOTHING, db_column='id_calidad')
     saldo_producto = models.CharField(max_length=1)
     estado_fila = models.CharField(max_length=1)
