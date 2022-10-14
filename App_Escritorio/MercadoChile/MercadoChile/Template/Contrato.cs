@@ -21,8 +21,8 @@ namespace MercadoChile.Template
 
     public partial class Contrato : Form
     {
-        private string url = "http://127.0.0.1:8002/api/contrato/";
-        private string url5 = "http://127.0.0.1:8003/api/empresa/";
+        private string url = "http://127.0.0.1:8004/api/contrato/";
+        private string url5 = "http://127.0.0.1:8005/api/empresa/";
         public Contrato()
         {
             InitializeComponent();

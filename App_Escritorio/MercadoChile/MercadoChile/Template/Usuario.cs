@@ -69,13 +69,13 @@ namespace MercadoChile
         #endregion
 
 
-        Uri baseUri = new Uri("http://127.0.0.1:8015/api/usuario_old/");
-        private string url = "http://127.0.0.1:8015/api/usuario/";
-        private string url1 = "http://127.0.0.1:8000/api/cargo/";
-        private string url2 = "http://127.0.0.1:8005/api/pais/";
-        private string url3 = "http://127.0.0.1:8009/api/region/";
-        private string url4 = "http://127.0.0.1:8001/api/ciudad/";
-        private string url5 = "http://127.0.0.1:8003/api/empresa/";
+        Uri baseUri = new Uri("http://127.0.0.1:8016/api/usuario_old/");
+        private string url = "http://127.0.0.1:8016/api/usuario/";
+        private string url1 = "http://127.0.0.1:8002/api/cargo/";
+        private string url2 = "http://127.0.0.1:8007/api/pais/";
+        private string url3 = "http://127.0.0.1:8011/api/region/";
+        private string url4 = "http://127.0.0.1:8003/api/ciudad/";
+        private string url5 = "http://127.0.0.1:8005/api/empresa/";
 
 
         public Usuario()
