@@ -4,7 +4,7 @@ from .models import Postulacion
 class PostulacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Postulacion
-        fields = ['id_postulacion','descripcion','estado','id_venta_externa','id_empresa']
+        fields = ['id_postulacion','descripcion','estado','id_venta','id_usuario']
 
 
 
