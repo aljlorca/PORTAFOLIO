@@ -11,20 +11,20 @@ import cx_Oracle
 import datetime
 
 # Create your views here.
-def agregar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad):
+def agregar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     usuario_vigente = '1'
     fecha_creacion_usuario = datetime.date.today()
-    cursor.callproc('USUARIO_AGREGAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,usuario_vigente,fecha_creacion_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,salida])
+    cursor.callproc('USUARIO_AGREGAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,usuario_vigente,fecha_creacion_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais,salida])
     return salida
 
-def modificar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad):
+def modificar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('USUARIO_MODIFICAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,salida])
+    cursor.callproc('USUARIO_MODIFICAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais,salida])
 
 def eliminar_usuario(correo_usuario):
     django_cursor = connection.cursor()
@@ -67,7 +67,7 @@ class UsuarioView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'])
+        agregar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
@@ -76,7 +76,7 @@ class UsuarioView(View):
         jd = json.loads(request.body)
         usuarios = list(Usuario.objects.filter(id_usuario=id_usuario).values())
         if len(usuarios) > 0:
-            modificar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'])
+            modificar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra el usuario"}
