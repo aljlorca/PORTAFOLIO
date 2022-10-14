@@ -19,6 +19,8 @@ namespace MercadoChile.Modelos
         public char administrador_usuario { get; set; }
         public int id_cargo { get; set; }
         public int id_empresa { get; set; }
+        public int id_pais { get; set; }
+        public int id_region { get; set; }
         public int id_ciudad { get; set; }
     }
 }
