@@ -31,7 +31,7 @@ namespace MercadoChile.Template
         private async void Cargar_Empresa(object sender, EventArgs e)
         {
             string respuesta5 = await GetHttp5();
-            List<Empresa> lista5 = JsonConvert.DeserializeObject<List<Empresa>>(respuesta5);
+            List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             cmb_TipoEmpresa.DataSource = lista5;
             cmb_TipoEmpresa.DisplayMember = "razon_social_empresa";
             cmb_TipoEmpresa.ValueMember = "id_empresa";

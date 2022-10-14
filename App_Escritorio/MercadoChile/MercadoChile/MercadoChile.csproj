@@ -251,6 +251,12 @@
     <Compile Include="Template\Cargos.Designer.cs">
       <DependentUpon>Cargos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Template\Empresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Template\Empresa.Designer.cs">
+      <DependentUpon>Empresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Template\Usuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +285,9 @@
     </Compile>
     <EmbeddedResource Include="Template\Cargos.resx">
       <DependentUpon>Cargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\Empresa.resx">
+      <DependentUpon>Empresa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Template\Usuario.resx">
       <DependentUpon>Usuario.cs</DependentUpon>

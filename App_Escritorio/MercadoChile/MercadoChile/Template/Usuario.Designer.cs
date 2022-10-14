@@ -84,16 +84,19 @@ namespace MercadoChile
             this.label38 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.DgvClientes = new System.Windows.Forms.DataGridView();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnFeha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cnRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -110,7 +113,7 @@ namespace MercadoChile
             this.tabControl1.Location = new System.Drawing.Point(12, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1039, 598);
+            this.tabControl1.Size = new System.Drawing.Size(1044, 610);
             this.tabControl1.TabIndex = 20;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.button1_Click);
             // 
@@ -143,7 +146,7 @@ namespace MercadoChile
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1031, 572);
+            this.tabPage1.Size = new System.Drawing.Size(1264, 648);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Crear Cliente";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -152,7 +155,7 @@ namespace MercadoChile
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(302, 465);
+            this.label23.Location = new System.Drawing.Point(431, 478);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(90, 25);
             this.label23.TabIndex = 44;
@@ -162,7 +165,7 @@ namespace MercadoChile
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(302, 415);
+            this.label22.Location = new System.Drawing.Point(431, 428);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(75, 25);
             this.label22.TabIndex = 43;
@@ -172,7 +175,7 @@ namespace MercadoChile
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(302, 381);
+            this.label21.Location = new System.Drawing.Point(431, 394);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(73, 25);
             this.label21.TabIndex = 42;
@@ -182,7 +185,7 @@ namespace MercadoChile
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(302, 336);
+            this.label20.Location = new System.Drawing.Point(431, 349);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(50, 25);
             this.label20.TabIndex = 41;
@@ -192,7 +195,7 @@ namespace MercadoChile
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(302, 291);
+            this.label11.Location = new System.Drawing.Point(431, 304);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(66, 25);
             this.label11.TabIndex = 40;
@@ -201,7 +204,7 @@ namespace MercadoChile
             // cmbEmpresa
             // 
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(471, 465);
+            this.cmbEmpresa.Location = new System.Drawing.Point(600, 478);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(214, 21);
             this.cmbEmpresa.TabIndex = 39;
@@ -209,7 +212,7 @@ namespace MercadoChile
             // cmbCiudad
             // 
             this.cmbCiudad.FormattingEnabled = true;
-            this.cmbCiudad.Location = new System.Drawing.Point(471, 419);
+            this.cmbCiudad.Location = new System.Drawing.Point(600, 432);
             this.cmbCiudad.Name = "cmbCiudad";
             this.cmbCiudad.Size = new System.Drawing.Size(214, 21);
             this.cmbCiudad.TabIndex = 38;
@@ -217,7 +220,7 @@ namespace MercadoChile
             // cmbRegion
             // 
             this.cmbRegion.FormattingEnabled = true;
-            this.cmbRegion.Location = new System.Drawing.Point(471, 381);
+            this.cmbRegion.Location = new System.Drawing.Point(600, 394);
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(214, 21);
             this.cmbRegion.TabIndex = 37;
@@ -226,7 +229,7 @@ namespace MercadoChile
             // cmbPais
             // 
             this.cmbPais.FormattingEnabled = true;
-            this.cmbPais.Location = new System.Drawing.Point(471, 340);
+            this.cmbPais.Location = new System.Drawing.Point(600, 353);
             this.cmbPais.Name = "cmbPais";
             this.cmbPais.Size = new System.Drawing.Size(214, 21);
             this.cmbPais.TabIndex = 36;
@@ -235,7 +238,7 @@ namespace MercadoChile
             // cmbCargo
             // 
             this.cmbCargo.FormattingEnabled = true;
-            this.cmbCargo.Location = new System.Drawing.Point(471, 295);
+            this.cmbCargo.Location = new System.Drawing.Point(600, 308);
             this.cmbCargo.Name = "cmbCargo";
             this.cmbCargo.Size = new System.Drawing.Size(214, 21);
             this.cmbCargo.TabIndex = 35;
@@ -249,7 +252,7 @@ namespace MercadoChile
             this.btnCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrear.Image = ((System.Drawing.Image)(resources.GetObject("btnCrear.Image")));
             this.btnCrear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCrear.Location = new System.Drawing.Point(424, 524);
+            this.btnCrear.Location = new System.Drawing.Point(553, 537);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(250, 40);
             this.btnCrear.TabIndex = 34;
@@ -259,42 +262,42 @@ namespace MercadoChile
             // 
             // txtConUsua
             // 
-            this.txtConUsua.Location = new System.Drawing.Point(471, 248);
+            this.txtConUsua.Location = new System.Drawing.Point(600, 261);
             this.txtConUsua.Name = "txtConUsua";
             this.txtConUsua.Size = new System.Drawing.Size(214, 20);
             this.txtConUsua.TabIndex = 32;
             // 
             // txtCorUsua
             // 
-            this.txtCorUsua.Location = new System.Drawing.Point(471, 208);
+            this.txtCorUsua.Location = new System.Drawing.Point(600, 221);
             this.txtCorUsua.Name = "txtCorUsua";
             this.txtCorUsua.Size = new System.Drawing.Size(214, 20);
             this.txtCorUsua.TabIndex = 31;
             // 
             // txtTelUsua
             // 
-            this.txtTelUsua.Location = new System.Drawing.Point(471, 170);
+            this.txtTelUsua.Location = new System.Drawing.Point(600, 183);
             this.txtTelUsua.Name = "txtTelUsua";
             this.txtTelUsua.Size = new System.Drawing.Size(214, 20);
             this.txtTelUsua.TabIndex = 30;
             // 
             // txtDirecUsua
             // 
-            this.txtDirecUsua.Location = new System.Drawing.Point(471, 131);
+            this.txtDirecUsua.Location = new System.Drawing.Point(600, 144);
             this.txtDirecUsua.Name = "txtDirecUsua";
             this.txtDirecUsua.Size = new System.Drawing.Size(214, 20);
             this.txtDirecUsua.TabIndex = 29;
             // 
             // txtNombreUsua
             // 
-            this.txtNombreUsua.Location = new System.Drawing.Point(471, 92);
+            this.txtNombreUsua.Location = new System.Drawing.Point(600, 105);
             this.txtNombreUsua.Name = "txtNombreUsua";
             this.txtNombreUsua.Size = new System.Drawing.Size(214, 20);
             this.txtNombreUsua.TabIndex = 28;
             // 
             // txtRutUsua
             // 
-            this.txtRutUsua.Location = new System.Drawing.Point(471, 52);
+            this.txtRutUsua.Location = new System.Drawing.Point(600, 65);
             this.txtRutUsua.Name = "txtRutUsua";
             this.txtRutUsua.Size = new System.Drawing.Size(214, 20);
             this.txtRutUsua.TabIndex = 27;
@@ -303,7 +306,7 @@ namespace MercadoChile
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(290, 243);
+            this.label7.Location = new System.Drawing.Point(419, 256);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(114, 25);
             this.label7.TabIndex = 25;
@@ -313,7 +316,7 @@ namespace MercadoChile
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(290, 203);
+            this.label6.Location = new System.Drawing.Point(419, 216);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 25);
             this.label6.TabIndex = 24;
@@ -323,7 +326,7 @@ namespace MercadoChile
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(290, 165);
+            this.label5.Location = new System.Drawing.Point(419, 178);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 25);
             this.label5.TabIndex = 23;
@@ -333,7 +336,7 @@ namespace MercadoChile
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(290, 126);
+            this.label4.Location = new System.Drawing.Point(419, 139);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 25);
             this.label4.TabIndex = 22;
@@ -343,7 +346,7 @@ namespace MercadoChile
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(290, 87);
+            this.label3.Location = new System.Drawing.Point(419, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(147, 25);
             this.label3.TabIndex = 21;
@@ -353,7 +356,7 @@ namespace MercadoChile
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(290, 47);
+            this.label2.Location = new System.Drawing.Point(419, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 25);
             this.label2.TabIndex = 20;
@@ -363,7 +366,7 @@ namespace MercadoChile
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(414, 3);
+            this.label1.Location = new System.Drawing.Point(543, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(184, 25);
             this.label1.TabIndex = 18;
@@ -379,7 +382,7 @@ namespace MercadoChile
             this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1031, 572);
+            this.tabPage4.Size = new System.Drawing.Size(1036, 584);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Listar Cliente";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -668,13 +671,40 @@ namespace MercadoChile
             this.cnDireccion,
             this.cnTelefono,
             this.cnCorreo,
+            this.cnFeha,
             this.cnCargo,
             this.cnEmpresa,
-            this.cnCiudad});
-            this.DgvClientes.Location = new System.Drawing.Point(123, 30);
+            this.cnCiudad,
+            this.cnRegion,
+            this.cnPais});
+            this.DgvClientes.Location = new System.Drawing.Point(3, 28);
             this.DgvClientes.Name = "DgvClientes";
-            this.DgvClientes.Size = new System.Drawing.Size(817, 208);
+            this.DgvClientes.Size = new System.Drawing.Size(1019, 208);
             this.DgvClientes.TabIndex = 94;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(515, 2);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(214, 25);
+            this.label8.TabIndex = 93;
+            this.label8.Text = "Listar y Eliminar Cliente";
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(38, 131);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(10, 10);
+            this.button1.TabIndex = 95;
+            this.button1.Tag = "";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // cnNumeIdenUsuar
             // 
@@ -706,6 +736,12 @@ namespace MercadoChile
             this.cnCorreo.HeaderText = "Correo";
             this.cnCorreo.Name = "cnCorreo";
             // 
+            // cnFeha
+            // 
+            this.cnFeha.DataPropertyName = "fecha_creacion_usuario";
+            this.cnFeha.HeaderText = "Fecha Creacion";
+            this.cnFeha.Name = "cnFeha";
+            // 
             // cnCargo
             // 
             this.cnCargo.DataPropertyName = "id_cargo";
@@ -724,35 +760,23 @@ namespace MercadoChile
             this.cnCiudad.HeaderText = "Ciudad";
             this.cnCiudad.Name = "cnCiudad";
             // 
-            // label8
+            // cnRegion
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(406, 2);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(214, 25);
-            this.label8.TabIndex = 93;
-            this.label8.Text = "Listar y Eliminar Cliente";
+            this.cnRegion.DataPropertyName = "id_region";
+            this.cnRegion.HeaderText = "Region";
+            this.cnRegion.Name = "cnRegion";
             // 
-            // button1
+            // cnPais
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(38, 131);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(10, 10);
-            this.button1.TabIndex = 95;
-            this.button1.Tag = "";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cnPais.DataPropertyName = "id_pais";
+            this.cnPais.HeaderText = "Pais";
+            this.cnPais.Name = "cnPais";
             // 
             // Usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1050, 600);
+            this.ClientSize = new System.Drawing.Size(1063, 617);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Usuario";
@@ -825,15 +849,18 @@ namespace MercadoChile
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView DgvClientes;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNumeIdenUsuar;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnDireccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnTelefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCorreo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnFeha;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCargo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnEmpresa;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCiudad;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnRegion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnPais;
     }
 }

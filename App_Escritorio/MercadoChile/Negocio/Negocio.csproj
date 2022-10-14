@@ -69,11 +69,12 @@
   <ItemGroup>
     <Compile Include="Cargo.cs" />
     <Compile Include="Ciudad.cs" />
-    <Compile Include="Empresa.cs" />
+    <Compile Include="Empresas.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Pais.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regiones.cs" />
+    <Compile Include="tipoEmpresa.cs" />
     <Compile Include="Usuarios.cs" />
   </ItemGroup>
   <ItemGroup>

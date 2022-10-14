@@ -58,29 +58,29 @@
             this.cmbRegionEdit = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
             this.cmbPaisEdit = new System.Windows.Forms.ComboBox();
-            this.cmbCargoEdit = new System.Windows.Forms.ComboBox();
+            this.cmbTipoEmpEdit = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
-            this.txtRutEdit = new System.Windows.Forms.TextBox();
-            this.txtTeleEdit = new System.Windows.Forms.TextBox();
+            this.txtDunsEdit = new System.Windows.Forms.TextBox();
+            this.txtGiroEdit = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.txtDirEdit = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.txtNomEdit = new System.Windows.Forms.TextBox();
+            this.txtRazonEdit = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.DgvEmpresa = new System.Windows.Forms.DataGridView();
-            this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.cnDunsEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnRazonSocial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnGiroEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnTipoEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -99,6 +99,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1039, 598);
             this.tabControl1.TabIndex = 21;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.button1_Click);
             // 
             // tabPage1
             // 
@@ -183,6 +184,7 @@
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(214, 21);
             this.cmbRegion.TabIndex = 37;
+            this.cmbRegion.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             // 
             // cmbPais
             // 
@@ -191,6 +193,7 @@
             this.cmbPais.Name = "cmbPais";
             this.cmbPais.Size = new System.Drawing.Size(214, 21);
             this.cmbPais.TabIndex = 36;
+            this.cmbPais.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
             // 
             // cmbEmpresa
             // 
@@ -214,6 +217,7 @@
             this.btnCrear.TabIndex = 34;
             this.btnCrear.Text = "Crear Cliente";
             this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // txtGiroEmp
             // 
@@ -322,6 +326,7 @@
             this.btnEliminar.TabIndex = 98;
             this.btnEliminar.Text = "Eliminar Empresa";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnModificar
             // 
@@ -336,6 +341,7 @@
             this.btnModificar.TabIndex = 97;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // groupBox1
             // 
@@ -344,14 +350,14 @@
             this.groupBox1.Controls.Add(this.cmbRegionEdit);
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.cmbPaisEdit);
-            this.groupBox1.Controls.Add(this.cmbCargoEdit);
+            this.groupBox1.Controls.Add(this.cmbTipoEmpEdit);
             this.groupBox1.Controls.Add(this.label31);
-            this.groupBox1.Controls.Add(this.txtRutEdit);
-            this.groupBox1.Controls.Add(this.txtTeleEdit);
+            this.groupBox1.Controls.Add(this.txtDunsEdit);
+            this.groupBox1.Controls.Add(this.txtGiroEdit);
             this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.txtDirEdit);
             this.groupBox1.Controls.Add(this.label32);
-            this.groupBox1.Controls.Add(this.txtNomEdit);
+            this.groupBox1.Controls.Add(this.txtRazonEdit);
             this.groupBox1.Controls.Add(this.label40);
             this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.label39);
@@ -377,6 +383,7 @@
             this.btnEdit.TabIndex = 68;
             this.btnEdit.Text = "Editar Empresa";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // cmbCiudadEdit
             // 
@@ -412,15 +419,15 @@
             this.cmbPaisEdit.Size = new System.Drawing.Size(214, 21);
             this.cmbPaisEdit.TabIndex = 83;
             // 
-            // cmbCargoEdit
+            // cmbTipoEmpEdit
             // 
-            this.cmbCargoEdit.DisplayMember = "1";
-            this.cmbCargoEdit.FormattingEnabled = true;
-            this.cmbCargoEdit.Location = new System.Drawing.Point(142, 165);
-            this.cmbCargoEdit.Name = "cmbCargoEdit";
-            this.cmbCargoEdit.Size = new System.Drawing.Size(214, 21);
-            this.cmbCargoEdit.TabIndex = 82;
-            this.cmbCargoEdit.ValueMember = "0";
+            this.cmbTipoEmpEdit.DisplayMember = "1";
+            this.cmbTipoEmpEdit.FormattingEnabled = true;
+            this.cmbTipoEmpEdit.Location = new System.Drawing.Point(142, 165);
+            this.cmbTipoEmpEdit.Name = "cmbTipoEmpEdit";
+            this.cmbTipoEmpEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbTipoEmpEdit.TabIndex = 82;
+            this.cmbTipoEmpEdit.ValueMember = "0";
             // 
             // label31
             // 
@@ -432,19 +439,19 @@
             this.label31.TabIndex = 89;
             this.label31.Text = "Region";
             // 
-            // txtRutEdit
+            // txtDunsEdit
             // 
-            this.txtRutEdit.Location = new System.Drawing.Point(143, 28);
-            this.txtRutEdit.Name = "txtRutEdit";
-            this.txtRutEdit.Size = new System.Drawing.Size(214, 20);
-            this.txtRutEdit.TabIndex = 81;
+            this.txtDunsEdit.Location = new System.Drawing.Point(143, 28);
+            this.txtDunsEdit.Name = "txtDunsEdit";
+            this.txtDunsEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtDunsEdit.TabIndex = 81;
             // 
-            // txtTeleEdit
+            // txtGiroEdit
             // 
-            this.txtTeleEdit.Location = new System.Drawing.Point(143, 130);
-            this.txtTeleEdit.Name = "txtTeleEdit";
-            this.txtTeleEdit.Size = new System.Drawing.Size(214, 20);
-            this.txtTeleEdit.TabIndex = 76;
+            this.txtGiroEdit.Location = new System.Drawing.Point(143, 130);
+            this.txtGiroEdit.Name = "txtGiroEdit";
+            this.txtGiroEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtGiroEdit.TabIndex = 76;
             // 
             // label35
             // 
@@ -473,12 +480,12 @@
             this.label32.TabIndex = 88;
             this.label32.Text = "Pais";
             // 
-            // txtNomEdit
+            // txtRazonEdit
             // 
-            this.txtNomEdit.Location = new System.Drawing.Point(142, 64);
-            this.txtNomEdit.Name = "txtNomEdit";
-            this.txtNomEdit.Size = new System.Drawing.Size(214, 20);
-            this.txtNomEdit.TabIndex = 74;
+            this.txtRazonEdit.Location = new System.Drawing.Point(142, 64);
+            this.txtRazonEdit.Name = "txtRazonEdit";
+            this.txtRazonEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtRazonEdit.TabIndex = 74;
             // 
             // label40
             // 
@@ -524,66 +531,18 @@
             // 
             this.DgvEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cnNumeIdenUsuar,
-            this.cnNombre,
+            this.cnDunsEmpresa,
+            this.cnRazonSocial,
             this.cnDireccion,
-            this.cnTelefono,
-            this.cnCorreo,
-            this.cnCargo,
-            this.cnEmpresa,
-            this.cnCiudad});
-            this.DgvEmpresa.Location = new System.Drawing.Point(123, 30);
+            this.cnGiroEmp,
+            this.cnTipoEmpresa,
+            this.cnCiudad,
+            this.cnRegion,
+            this.cnPais});
+            this.DgvEmpresa.Location = new System.Drawing.Point(197, 30);
             this.DgvEmpresa.Name = "DgvEmpresa";
-            this.DgvEmpresa.Size = new System.Drawing.Size(817, 208);
+            this.DgvEmpresa.Size = new System.Drawing.Size(701, 208);
             this.DgvEmpresa.TabIndex = 94;
-            // 
-            // cnNumeIdenUsuar
-            // 
-            this.cnNumeIdenUsuar.DataPropertyName = "numero_identificacion_usuario";
-            this.cnNumeIdenUsuar.HeaderText = "Numero Identificacion Usuario";
-            this.cnNumeIdenUsuar.Name = "cnNumeIdenUsuar";
-            // 
-            // cnNombre
-            // 
-            this.cnNombre.DataPropertyName = "nombre_usuario";
-            this.cnNombre.HeaderText = "Nombre Usuario";
-            this.cnNombre.Name = "cnNombre";
-            // 
-            // cnDireccion
-            // 
-            this.cnDireccion.DataPropertyName = "direccion_usuario";
-            this.cnDireccion.HeaderText = "Direccion Usuario";
-            this.cnDireccion.Name = "cnDireccion";
-            // 
-            // cnTelefono
-            // 
-            this.cnTelefono.DataPropertyName = "telefono_usuario";
-            this.cnTelefono.HeaderText = "Telefono Usuario";
-            this.cnTelefono.Name = "cnTelefono";
-            // 
-            // cnCorreo
-            // 
-            this.cnCorreo.DataPropertyName = "correo_usuario";
-            this.cnCorreo.HeaderText = "Correo";
-            this.cnCorreo.Name = "cnCorreo";
-            // 
-            // cnCargo
-            // 
-            this.cnCargo.DataPropertyName = "id_cargo";
-            this.cnCargo.HeaderText = "Cargo Usuario";
-            this.cnCargo.Name = "cnCargo";
-            // 
-            // cnEmpresa
-            // 
-            this.cnEmpresa.DataPropertyName = "id_empresa";
-            this.cnEmpresa.HeaderText = "Empresa";
-            this.cnEmpresa.Name = "cnEmpresa";
-            // 
-            // cnCiudad
-            // 
-            this.cnCiudad.DataPropertyName = "id_ciudad";
-            this.cnCiudad.HeaderText = "Ciudad";
-            this.cnCiudad.Name = "cnCiudad";
             // 
             // label8
             // 
@@ -609,6 +568,54 @@
             this.button1.Tag = "";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // cnDunsEmpresa
+            // 
+            this.cnDunsEmpresa.DataPropertyName = "duns_empresa";
+            this.cnDunsEmpresa.HeaderText = "Duns Empresa";
+            this.cnDunsEmpresa.Name = "cnDunsEmpresa";
+            // 
+            // cnRazonSocial
+            // 
+            this.cnRazonSocial.DataPropertyName = "razon_social_empresa";
+            this.cnRazonSocial.HeaderText = "Razon Social";
+            this.cnRazonSocial.Name = "cnRazonSocial";
+            // 
+            // cnDireccion
+            // 
+            this.cnDireccion.DataPropertyName = "direccion_empresa";
+            this.cnDireccion.HeaderText = "Direccion Empresa";
+            this.cnDireccion.Name = "cnDireccion";
+            // 
+            // cnGiroEmp
+            // 
+            this.cnGiroEmp.DataPropertyName = "giro_empresa";
+            this.cnGiroEmp.HeaderText = "Giro Empresa";
+            this.cnGiroEmp.Name = "cnGiroEmp";
+            // 
+            // cnTipoEmpresa
+            // 
+            this.cnTipoEmpresa.DataPropertyName = "id_tipo_empresa";
+            this.cnTipoEmpresa.HeaderText = "Tipo Empresa";
+            this.cnTipoEmpresa.Name = "cnTipoEmpresa";
+            // 
+            // cnCiudad
+            // 
+            this.cnCiudad.DataPropertyName = "id_ciudad";
+            this.cnCiudad.HeaderText = "Ciudad";
+            this.cnCiudad.Name = "cnCiudad";
+            // 
+            // cnRegion
+            // 
+            this.cnRegion.DataPropertyName = "id_region";
+            this.cnRegion.HeaderText = "Region";
+            this.cnRegion.Name = "cnRegion";
+            // 
+            // cnPais
+            // 
+            this.cnPais.DataPropertyName = "id_pais";
+            this.cnPais.HeaderText = "Pais";
+            this.cnPais.Name = "cnPais";
+            // 
             // Empresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -618,6 +625,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Empresa";
             this.Text = "Empresa";
+            this.Load += new System.EventHandler(this.Empresa_Carga);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -658,31 +666,31 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.DataGridView DgvEmpresa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnNumeIdenUsuar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnDireccion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnTelefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnCorreo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnCargo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnEmpresa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnCiudad;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cmbCiudadEdit;
         private System.Windows.Forms.ComboBox cmbRegionEdit;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox cmbPaisEdit;
-        private System.Windows.Forms.ComboBox cmbCargoEdit;
+        private System.Windows.Forms.ComboBox cmbTipoEmpEdit;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox txtRutEdit;
-        private System.Windows.Forms.TextBox txtTeleEdit;
+        private System.Windows.Forms.TextBox txtDunsEdit;
+        private System.Windows.Forms.TextBox txtGiroEdit;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox txtDirEdit;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox txtNomEdit;
+        private System.Windows.Forms.TextBox txtRazonEdit;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnDunsEmpresa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnRazonSocial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnDireccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnGiroEmp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnTipoEmpresa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnCiudad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnRegion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnPais;
     }
 }

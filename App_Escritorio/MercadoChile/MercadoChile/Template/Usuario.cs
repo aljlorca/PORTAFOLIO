@@ -376,16 +376,20 @@ namespace MercadoChile
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            dynamic response = DBApi.Get("http://127.0.0.1:8015/api/usuario/?format=json");
+            dynamic response = DBApi.Get("http://127.0.0.1:8016/api/usuario/?format=json");
             DgvClientes.DataSource = response;
             string respuesta1 = await GetHttp1();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            string respuesta2 = await GetHttp4();
-            List<Ciudad> lista2 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta2);
-            string respuesta3 = await GetHttp5();
-            List<Empresas> lista3 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta3);
+            string respuesta4 = await GetHttp4();
+            List<Ciudad> lista4 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);
+            string respuesta5 = await GetHttp5();
+            List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             string respuesta = await GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
+            string respuesta2 = await GetHttp2();
+            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
+            string respuesta3 = await GetHttp3();
+            List<Regiones> lista3 = JsonConvert.DeserializeObject<List<Regiones>>(respuesta3);
             this.DgvClientes.Columns[0].Visible = false;
             this.DgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;    
             foreach (DataGridViewRow fila in DgvClientes.Rows)
@@ -399,6 +403,7 @@ namespace MercadoChile
                     }
                 }
 
+
                 foreach (var fila1 in lista1)
                 {
                     
@@ -408,7 +413,7 @@ namespace MercadoChile
                         break;
                     }
                 }
-                foreach (var fila2 in lista2)
+                foreach (var fila2 in lista4)
                 {
                     if (Convert.ToInt32(fila.Cells["cnCiudad"].Value) == fila2.id_ciudad)
                     {
@@ -417,7 +422,25 @@ namespace MercadoChile
                     }
 
                 }
-                foreach (var fila3 in lista3)
+                foreach (var fila1 in lista2)
+                {
+
+                    if (Convert.ToInt32(fila.Cells["cnPais"].Value) == fila1.id_pais)
+                    {
+                        fila.Cells["cnPais"].Value = fila1.nombre_pais;
+                        break;
+                    }
+                }
+                foreach (var fila1 in lista3)
+                {
+
+                    if (Convert.ToInt32(fila.Cells["cnRegion"].Value) == fila1.id_region)
+                    {
+                        fila.Cells["cnRegion"].Value = fila1.nombre_region;
+                        break;
+                    }
+                }
+                foreach (var fila3 in lista5)
                 {
                     if (Convert.ToInt32(fila.Cells["cnEmpresa"].Value) == fila3.id_empresa)
                     {
@@ -440,7 +463,8 @@ namespace MercadoChile
             string respuesta1 = await GetHttp1();
             string respuesta5 = await GetHttp5();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            
+            string respuesta2 = await GetHttp2();
+            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             lista1.RemoveAt(0);
             cmbCargoEdit.DataSource = lista1;
@@ -450,14 +474,16 @@ namespace MercadoChile
             cmbCargoEdit.ValueMember = "id_cargo";
             cmbEmpresaEdit.DisplayMember = "razon_social_empresa";
             cmbEmpresaEdit.ValueMember = "id_empresa";
-            cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells[6].Value.ToString();
-            cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[7].Value.ToString();
-            cmbCiudadEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();
-            string respuesta2 = await GetHttp2();
-            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
             cmbPaisEdit.DataSource = lista2;
             cmbPaisEdit.DisplayMember = "nombre_pais";
             cmbPaisEdit.ValueMember = "id_pais";
+            cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells[7].Value.ToString();
+            cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();
+            cmbCiudadEdit.Text = DgvClientes.CurrentRow.Cells[9].Value.ToString();
+            cmbRegionEdit.Text = DgvClientes.CurrentRow.Cells[10].Value.ToString();
+            cmbPaisEdit.Text = DgvClientes.CurrentRow.Cells[11].Value.ToString();
+            
+            
         }
     }
 }
