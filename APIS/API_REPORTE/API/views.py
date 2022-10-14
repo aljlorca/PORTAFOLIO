@@ -10,19 +10,19 @@ import json
 import cx_Oracle
 
 # Create your views here.
-def agregar_reporte(descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta_externa,id_empresa):
+def agregar_reporte(descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('REPORTE_AGREGAR',[descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta_externa,id_empresa,estado_fila,salida])
+    cursor.callproc('REPORTE_AGREGAR',[descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,estado_fila,id_venta,id_usuario,salida])
     return salida
 
-def modificar_reporte(id_reporte,descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta_externa,id_empresa):
+def modificar_reporte(id_reporte,descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('REPORTE_MODIFICAR',[id_reporte,descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta_externa,id_empresa,salida])
+    cursor.callproc('REPORTE_MODIFICAR',[id_reporte,descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta,id_usuario,salida])
 
 def eliminar_reporte(id_reporte):
     django_cursor = connection.cursor()
@@ -65,7 +65,7 @@ class ReporteView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_reporte(descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta_externa=jd['id_venta_externa'],id_empresa=jd['id_empresa'])
+        agregar_reporte(descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
@@ -74,7 +74,7 @@ class ReporteView(View):
         jd = json.loads(request.body)
         reportes = list(Reporte.objects.filter(id_reporte=id_reporte).values())
         if len(reportes) > 0:
-            modificar_reporte(id_reporte=jd['id_reporte'],descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta_externa=jd['id_venta_externa'],id_empresa=jd['id_empresa'])
+            modificar_reporte(id_reporte=jd['id_reporte'],descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra el reporte"}

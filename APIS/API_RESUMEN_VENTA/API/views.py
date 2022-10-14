@@ -10,19 +10,19 @@ import json
 import cx_Oracle
 
 # Create your views here.
-def agregar_resumen_venta(monto_neto_venta,descripcion_resumen,id_venta_externa):
+def agregar_resumen_venta(monto_neto_venta,descripcion_resumen,id_venta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('RESUMEN_VENTA_AGREGAR',[monto_neto_venta,descripcion_resumen,id_venta_externa,estado_fila,salida])
+    cursor.callproc('RESUMEN_VENTA_AGREGAR',[monto_neto_venta,descripcion_resumen,id_venta,estado_fila,salida])
     return salida
 
-def modificar_resumen_venta(id_resumen,monto_neto_venta,descripcion_resumen,id_venta_externa):
+def modificar_resumen_venta(id_resumen,monto_neto_venta,descripcion_resumen,id_venta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('RESUMEN_VENTA_MODIFICAR',[id_resumen,monto_neto_venta,descripcion_resumen,id_venta_externa,salida])
+    cursor.callproc('RESUMEN_VENTA_MODIFICAR',[id_resumen,monto_neto_venta,descripcion_resumen,id_ventaid_venta,salida])
 
 def eliminar_resumen_venta(id_resumen):
     django_cursor = connection.cursor()
@@ -65,7 +65,7 @@ class ResumenVentaView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_resumen_venta(monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta_externa=jd['id_venta_externa'])
+        agregar_resumen_venta(monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta=jd['id_venta'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
@@ -74,7 +74,7 @@ class ResumenVentaView(View):
         jd = json.loads(request.body)
         resumenes = list(ResumenVenta.objects.filter(id_resumen=id_resumen).values())
         if len(resumenes) > 0:
-            modificar_resumen_venta(id_resumen=jd['id_resumen'],monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta_externa=jd['id_venta_externa'])
+            modificar_resumen_venta(id_resumen=jd['id_resumen'],monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta=jd['id_venta'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra el resumen de venta"}
