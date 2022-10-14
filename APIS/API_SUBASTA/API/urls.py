@@ -11,7 +11,7 @@ urlpatterns = [
 
     path('',include(router.urls)),
     path('subasta_old/',SubastaView.as_view(),name='subasta_list'),
-    path('subasta_old/<int:id_subasta_transportista>',SubastaView.as_view(),name='subasta_update'),
+    path('subasta_old/<int:id_subasta>',SubastaView.as_view(),name='subasta_update'),
     
 ]
 

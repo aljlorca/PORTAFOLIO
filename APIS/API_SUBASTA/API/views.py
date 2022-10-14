@@ -11,27 +11,27 @@ import cx_Oracle
 import datetime
 
 # Create your views here.
-def agregar_subasta(monto,id_venta_externa,id_empresa):
+def agregar_subasta(monto_subasta,id_venta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     fecha_subasta = datetime.date.today()
     estado_fila = '1'
-    cursor.callproc('SUBASTA_AGREGAR',[monto,id_venta_externa,id_empresa,fecha_subasta,estado_fila,salida])
+    cursor.callproc('SUBASTA_AGREGAR',[monto_subasta,id_venta,fecha_subasta,estado_fila,id_usuario,salida])
     return salida
 
-def modificar_subasta(id_subasta_transportista,monto,id_venta_externa,id_empresa):
+def modificar_subasta(id_subasta,monto_subasta,id_venta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     fecha_subasta = datetime.date.today()
-    cursor.callproc('SUBASTA_MODIFICAR',[id_subasta_transportista,monto,id_venta_externa,id_empresa,fecha_subasta,salida])
+    cursor.callproc('SUBASTA_MODIFICAR',[id_subasta,monto_subasta,id_venta,fecha_subasta,id_usuario,salida])
 
-def eliminar_subasta(id_subasta_transportista):
+def eliminar_subasta(id_subasta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('SUBASTA_ELIMINAR',[id_subasta_transportista,salida])
+    cursor.callproc('SUBASTA_ELIMINAR',[id_subasta,salida])
 
 def lista_subasta():
     django_cursor = connection.cursor()
@@ -49,9 +49,9 @@ class SubastaView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id_subasta_transportista=0):
-        if(id_subasta_transportista > 0):
-            subastas=list(Subasta.objects.filter(id_subasta_transportista=id_subasta_transportista).values())
+    def get(self, request, id_subasta=0):
+        if(id_subasta > 0):
+            subastas=list(Subasta.objects.filter(id_subasta=id_subasta).values())
             if len(subastas) > 0:
                 subasta = subastas[0]
                 datos={'message':"Success","subasta":subasta}
@@ -68,26 +68,26 @@ class SubastaView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_subasta(monto=jd['monto'],id_venta_externa=jd['id_venta_externa'],id_empresa=jd['id_empresa'])
+        agregar_subasta(monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
 
-    def put(self, request,id_subasta_transportista):
+    def put(self, request,id_subasta):
         jd = json.loads(request.body)
-        subasteas = list(Subasta.objects.filter(id_subasta_transportista=id_subasta_transportista).values())
+        subasteas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
         if len(subasteas) > 0:
-            modificar_subasta(id_subasta_transportista=jd['id_subasta_transportista'],monto=jd['monto'],id_venta_externa=jd['id_venta_externa'],id_empresa=jd['id_empresa'])
+            modificar_subasta(id_subasta=jd['id_subasta'],monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra la subasta"}
         return JsonResponse(datos)
 
-    def delete(self, request,id_subasta_transportista):
-        subastas = list(Subasta.objects.filter(id_subasta_transportista=id_subasta_transportista).values())
+    def delete(self, request,id_subasta):
+        subastas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
         jd = json.loads(request.body)
         if len(subastas) > 0:
-            eliminar_subasta(id_subasta_transportista=jd['id_subasta_transportista'])
+            eliminar_subasta(id_subasta=jd['id_subasta'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: no fue posible eliminar la subasta"}
