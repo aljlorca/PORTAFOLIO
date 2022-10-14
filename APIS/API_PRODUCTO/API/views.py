@@ -109,28 +109,28 @@ class ProductoViewset(viewsets.ModelViewSet):
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        id_producto = request.body['id_producto']
-        nombre_producto = request.body['nombre_producto']
-        cantidad_prioducto = request.body['cantidad_producto']
-        precio_producto = request.body['precio_producto']
-        imagen_producto = request.body['imagen_producto']
-        id_calidad = request.body['id_calidad']
-        saldo_producto = request.body['saldo_producto']
-        estado_fila = request.body['estado_fila']
-        id_usuario = request.body['id_usuario']
+        id_producto = request.data['id_producto']
+        nombre_producto = request.data['nombre_producto']
+        cantidad_prioducto = request.data['cantidad_producto']
+        precio_producto = request.data['precio_producto']
+        imagen_producto = request.data['imagen_producto']
+        id_calidad = request.data['id_calidad']
+        saldo_producto = request.data['saldo_producto']
+        estado_fila = request.data['estado_fila']
+        id_usuario = request.data['id_usuario']
         Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
         datos={'message':'Success'}
         return HttpResponse(datos, status=200)
     def put(self, request, *args, **kwargs):
-        id_producto = request.body['id_producto']
-        nombre_producto = request.body['nombre_producto']
-        cantidad_prioducto = request.body['cantidad_producto']
-        precio_producto = request.body['precio_producto']
-        imagen_producto = request.body['imagen_producto']
-        id_calidad = request.body['id_calidad']
-        saldo_producto = request.body['saldo_producto']
-        estado_fila = request.body['estado_fila']
-        id_usuario = request.body['id_usuario']
+        id_producto = request.data['id_producto']
+        nombre_producto = request.data['nombre_producto']
+        cantidad_prioducto = request.data['cantidad_producto']
+        precio_producto = request.data['precio_producto']
+        imagen_producto = request.data['imagen_producto']
+        id_calidad = request.data['id_calidad']
+        saldo_producto = request.data['saldo_producto']
+        estado_fila = request.data['estado_fila']
+        id_usuario = request.data['id_usuario']
         Producto.objects.update(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
         return HttpResponse({'message': 'Success'}, status=200)
     def delete(self, request, *args, **kwargs):
