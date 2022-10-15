@@ -1,3 +1,4 @@
+from urllib import response
 import requests
 import json
 
@@ -13,10 +14,23 @@ def login_controller(correo,contrasena):
         else:
             data ='ERROR:usuario no encontrado'
             return data
-
-
     if response.status_code == 404:
         data = 'ERRROR: usuario no encontrado'
         return data
 
+def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario):
+    url= 'http://127.0.0.1:8010/api/producto/'
+    body ={"id_producto":id_producto,"nombre_producto":nombre_producto,"cantidad_producto":cantidad_producto,"precio_producto":precio_producto,"imagen_producto":imagen_producto,"id_calidad":id_calidad,"saldo_producto":saldo_producto,"estado_fila":estado_fila,"id_usuario":id_usuario}
+    response = requests.post(url,json=body)
+
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        if content['message'] == 'Success':
+            return content
+        else:
+            data ='ERROR:usuario no encontrado'
+            return data
+    if response.status_code == 404:
+        data = 'ERRROR: usuario no encontrado'
+        return data
 
