@@ -84,8 +84,6 @@ namespace MercadoChile
             this.label38 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.DgvClientes = new System.Windows.Forms.DataGridView();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,6 +95,8 @@ namespace MercadoChile
             this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -146,7 +146,7 @@ namespace MercadoChile
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1264, 648);
+            this.tabPage1.Size = new System.Drawing.Size(1036, 584);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Crear Cliente";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -500,6 +500,7 @@ namespace MercadoChile
             this.cmbRegionEdit.Size = new System.Drawing.Size(214, 21);
             this.cmbRegionEdit.TabIndex = 84;
             this.cmbRegionEdit.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
+            this.cmbRegionEdit.TextUpdate += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             // 
             // label30
             // 
@@ -519,6 +520,7 @@ namespace MercadoChile
             this.cmbPaisEdit.Size = new System.Drawing.Size(214, 21);
             this.cmbPaisEdit.TabIndex = 83;
             this.cmbPaisEdit.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
+            this.cmbPaisEdit.TextUpdate += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
             // 
             // label37
             // 
@@ -682,30 +684,6 @@ namespace MercadoChile
             this.DgvClientes.Size = new System.Drawing.Size(1019, 208);
             this.DgvClientes.TabIndex = 94;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(515, 2);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(214, 25);
-            this.label8.TabIndex = 93;
-            this.label8.Text = "Listar y Eliminar Cliente";
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(38, 131);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(10, 10);
-            this.button1.TabIndex = 95;
-            this.button1.Tag = "";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // cnNumeIdenUsuar
             // 
             this.cnNumeIdenUsuar.DataPropertyName = "numero_identificacion_usuario";
@@ -771,6 +749,30 @@ namespace MercadoChile
             this.cnPais.DataPropertyName = "id_pais";
             this.cnPais.HeaderText = "Pais";
             this.cnPais.Name = "cnPais";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(515, 2);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(214, 25);
+            this.label8.TabIndex = 93;
+            this.label8.Text = "Listar y Eliminar Cliente";
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(38, 131);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(10, 10);
+            this.button1.TabIndex = 95;
+            this.button1.Tag = "";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Usuario
             // 

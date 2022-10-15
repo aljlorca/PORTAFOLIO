@@ -149,7 +149,7 @@ namespace MercadoChile
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            AbrirForm(new Publiacion());
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

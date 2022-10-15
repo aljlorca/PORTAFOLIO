@@ -68,14 +68,14 @@ class ProductoView(View):
     def post(self, request, *args, **kwargs):
         id_producto = request.body['id_producto']
         nombre_producto = request.body['nombre_producto']
-        cantidad_prioducto = request.body['cantidad_producto']
+        cantidad_producto = request.body['cantidad_producto']
         precio_producto = request.body['precio_producto']
         imagen_producto = request.body['imagen_producto']
         id_calidad = request.body['id_calidad']
         saldo_producto = request.body['saldo_producto']
         estado_fila = request.body['estado_fila']
         id_usuario = request.body['id_usuario']
-        Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
+        Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
         datos={'message':'Success'}
         return JsonResponse(datos)
     
@@ -83,7 +83,7 @@ class ProductoView(View):
         jd = json.loads(request.body)
         productos = list(Producto.objects.filter(id_producto=id_producto).values())
         if len(productos)>0:
-            modificar_producto(id_producto=jd['id_producto'],nombre_producto=jd['nombre_producto'],cantidad_prioducto=jd['cantidad_prioducto'],id_empresa=jd['id_empresa'],imagen_producto=jd['imagen_producto'])
+            modificar_producto(id_producto=jd['id_producto'],nombre_producto=jd['nombre_producto'],cantidad_producto=jd['cantidad_producto'],id_empresa=jd['id_empresa'],imagen_producto=jd['imagen_producto'])
             datos={'message':'Success'}
         else:
             datos={'message':'ERROR: Producto NO fue posible actualizar sus datos'}
@@ -111,27 +111,27 @@ class ProductoViewset(viewsets.ModelViewSet):
     def post(self, request, *args, **kwargs):
         id_producto = request.data['id_producto']
         nombre_producto = request.data['nombre_producto']
-        cantidad_prioducto = request.data['cantidad_producto']
+        cantidad_producto = request.data['cantidad_producto']
         precio_producto = request.data['precio_producto']
         imagen_producto = request.data['imagen_producto']
         id_calidad = request.data['id_calidad']
         saldo_producto = request.data['saldo_producto']
         estado_fila = request.data['estado_fila']
         id_usuario = request.data['id_usuario']
-        Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
+        Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
         datos={'message':'Success'}
         return HttpResponse(datos, status=200)
     def put(self, request, *args, **kwargs):
         id_producto = request.data['id_producto']
         nombre_producto = request.data['nombre_producto']
-        cantidad_prioducto = request.data['cantidad_producto']
+        cantidad_producto = request.data['cantidad_producto']
         precio_producto = request.data['precio_producto']
         imagen_producto = request.data['imagen_producto']
         id_calidad = request.data['id_calidad']
         saldo_producto = request.data['saldo_producto']
         estado_fila = request.data['estado_fila']
         id_usuario = request.data['id_usuario']
-        Producto.objects.update(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_prioducto=cantidad_prioducto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
+        Producto.objects.update(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
         return HttpResponse({'message': 'Success'}, status=200)
     def delete(self, request, *args, **kwargs):
         id_contrato = request.data['id_contrato']
