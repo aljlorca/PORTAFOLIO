@@ -822,4 +822,4 @@ C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\D
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
 C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Empresa.resources
-C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Publiacion.resources
+C:\Users\sebac\Desktop\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Publicacion.resources

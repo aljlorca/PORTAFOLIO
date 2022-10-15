@@ -666,6 +666,7 @@ namespace MercadoChile
             // 
             // DgvClientes
             // 
+            this.DgvClientes.AllowUserToAddRows = false;
             this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cnNumeIdenUsuar,
@@ -754,7 +755,7 @@ namespace MercadoChile
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(515, 2);
+            this.label8.Location = new System.Drawing.Point(373, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(214, 25);
             this.label8.TabIndex = 93;

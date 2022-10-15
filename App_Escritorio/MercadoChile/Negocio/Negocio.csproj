@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calidad.cs" />
     <Compile Include="Cargo.cs" />
     <Compile Include="Ciudad.cs" />
     <Compile Include="Empresas.cs" />
@@ -85,6 +86,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>

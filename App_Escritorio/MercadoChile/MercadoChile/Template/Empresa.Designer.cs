@@ -529,6 +529,7 @@
             // 
             // DgvEmpresa
             // 
+            this.DgvEmpresa.AllowUserToAddRows = false;
             this.DgvEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cnDunsEmpresa,
