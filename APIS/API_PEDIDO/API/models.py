@@ -135,9 +135,9 @@ class Venta(models.Model):
 class Pedido(models.Model):
     id_pedido = models.BigIntegerField(primary_key=True)
     fecha_pedido = models.DateField()
-    id_venta = models.ForeignKey('Venta', models.DO_NOTHING, db_column='id_venta')
+    id_venta = models.ForeignKey('Venta', models.DO_NOTHING, db_column='id_venta',null=True)
     estado_fila = models.CharField(max_length=1)
-    id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='id_producto')
+    id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='id_producto',null=True)
 
     class Meta:
         managed = False
