@@ -8,7 +8,7 @@ namespace Negocio
 {
     public class Calidad
     {
-        public int id_calida { get; set; }
+        public int id_calidad { get; set; }
         public string descripcion_calidad { get; set; }
     }
 }

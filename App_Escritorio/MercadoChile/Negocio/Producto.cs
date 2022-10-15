@@ -15,7 +15,7 @@ namespace Negocio
         public string imagen_producto { get; set; }
         public string saldo_producto { get; set; }
         public string estado_fila { get; set; }
-        public int id_calidad { get; set; }
-        public int id_usuario { get; set; } 
+        public string id_calidad { get; set; }
+        public string id_usuario { get; set; } 
     }
 }
