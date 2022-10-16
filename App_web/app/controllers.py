@@ -20,11 +20,10 @@ def login_controller(correo,contrasena):
 def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario):
     url= 'http://127.0.0.1:8010/api/producto/'
     body ={"id_producto":id_producto,"nombre_producto":nombre_producto,"cantidad_producto":cantidad_producto,"precio_producto":precio_producto,"imagen_producto":imagen_producto,"id_calidad":id_calidad,"saldo_producto":saldo_producto,"estado_fila":estado_fila,"id_usuario":id_usuario}
-    response = requests.post(url,json=body)
+    response = requests.post(url, files=body)
 
     if response.status_code == 200:
         content = json.loads(response.content)
-        
         return content
         
             
