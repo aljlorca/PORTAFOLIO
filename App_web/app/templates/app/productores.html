@@ -23,6 +23,7 @@
             
         </div>
         <div class="col-lg7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+            {{error}}
             <form method="POST" enctype="multipart/form-data">
                 <div class="row g-3">
                     <div class="col-12">
@@ -45,7 +46,7 @@
                     </div>
                     <div class="col-12">
                         <div class="form-floating">
-                            <input type="file" class="form-control" name="imagen-producto" placeholder="imagen" >
+                            <input type="file" class="form-control" name="imagen-producto" accept="image/png, .jpeg, .jpg" multiple placeholder="imagen" >
                             <label for="imagen-producto">imagen</label>
                         </div>
                     </div>

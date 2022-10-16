@@ -75,14 +75,14 @@ namespace MercadoChile.Template
             DgvProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             foreach (DataGridViewRow fila in DgvProducto.Rows)
             {
-                foreach (var fila1 in lista4)
+                /*foreach (var fila1 in lista4)
                 {
                     if (Convert.ToInt32(fila.Cells["nId"].Value) == fila1.id_pedido)
                     {
                         fila.Visible = false;
                         break;
                     }
-                }
+                }*/
 
                 string urlss = fila.Cells["cnImagen"].Value.ToString();
                 WebClient wc = new WebClient();

@@ -1,4 +1,3 @@
-from urllib import response
 import requests
 import json
 
@@ -25,12 +24,11 @@ def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto
 
     if response.status_code == 200:
         content = json.loads(response.content)
-        if content['message'] == 'Success':
-            return content
-        else:
-            data ='ERROR:usuario no encontrado'
-            return data
+        
+        return content
+        
+            
     if response.status_code == 404:
-        data = 'ERRROR: usuario no encontrado'
+        data = 'ERRROR: Fallo conexion'
         return data
 

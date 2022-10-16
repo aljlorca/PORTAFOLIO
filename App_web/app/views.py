@@ -47,24 +47,22 @@ def transportista(request):
 
 @csrf_exempt
 def productores(request):
-    try:
-        if request.method == 'POST':
-            id_producto = request.POST.get('1')
+    if request.method == 'POST':
+            id_producto = 3
             nombre_producto = request.POST.get('nombre-producto')
             cantidad_producto = request.POST.get('cantidad-producto')
             precio_producto = request.POST.get('precio-producto')
-            imagen_producto = request.POST.get('imagen-producto')
+            imagen_producto =  request.FILES['imagen-producto'].read().decode('latin1')
             id_calidad = request.POST.get('calidad-producto')
             saldo_producto = request.POST.get('saldo-producto')
-            estado_fila= request.POST.get('1')
-            id_usuario = request.POST.get('1')
-            salida = crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario)
-            if salida['message'] =='Success':
-                return redirect(to="http://127.0.0.1:3000/")
-            else:
-                return render(request, 'app/productores.html')
-    except:
-        return render(request, 'app/productores.html')
+            estado_fila= '1'
+            id_usuario = 1
+            print(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario)
+            crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario)
+            return render(request, 'app/productores.html')
+
+    return render(request, 'app/productores.html',{
+                "error":'Falló al iniciar sesion Usuario o contraseña incorrectos, o Ingrese algun dato valido'})
 
 def cliente_interno(request):
     return render(request, 'app/clienteinterno.html')
