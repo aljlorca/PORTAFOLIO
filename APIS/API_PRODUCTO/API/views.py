@@ -3,6 +3,7 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from requests import Response
 from .models import Producto
 from .serializers import ProductoSerializer,ProductoHistoricoSerializer
 from django.http import HttpResponse
@@ -120,7 +121,7 @@ class ProductoViewset(viewsets.ModelViewSet):
         id_usuario = request.data['id_usuario']
         Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
         datos={'message':'Success'}
-        return HttpResponse(datos, status=200)
+        return Response(datos, status=200)
     def put(self, request, *args, **kwargs):
         id_producto = request.data['id_producto']
         nombre_producto = request.data['nombre_producto']
@@ -132,11 +133,11 @@ class ProductoViewset(viewsets.ModelViewSet):
         estado_fila = request.data['estado_fila']
         id_usuario = request.data['id_usuario']
         Producto.objects.update(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
-        return HttpResponse({'message': 'Success'}, status=200)
+        return Response({'message': 'Success'}, status=200)
     def delete(self, request, *args, **kwargs):
         id_contrato = request.data['id_contrato']
         eliminar_producto(id_contrato)
-        return HttpResponse({'message': 'Success'}, status=200)
+        return Response({'message': 'Success'}, status=200)
 
 class ProductoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Producto.objects.filter(estado_fila = '1')
