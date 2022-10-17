@@ -3,6 +3,7 @@ from .controllers import *
 from django.views.decorators.csrf import csrf_exempt
 from asgiref.sync import sync_to_async
 import asyncio
+
 # Create your views here.
 
 
@@ -77,6 +78,9 @@ def cliente_externo(request):
 
 def checkout(request):
     return render(request, 'app/checkout.html')
+
+def postulacion(request):
+    return render(request, 'app/postulacion.html')
 
 
     

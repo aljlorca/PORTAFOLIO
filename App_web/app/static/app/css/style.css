@@ -383,3 +383,6 @@
     color: var(--primary);
 }
 
+.descripcion{
+    width: 200px;
+}
