@@ -10,19 +10,19 @@ import json
 import cx_Oracle
 
 # Create your views here.
-def agregar_postulacion(descripcion,estado,id_venta,id_usuario):
+def agregar_postulacion(descripcion_postulacion,estado_postulacion,id_venta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('POSTULACION_AGREGAR',[descripcion,estado,id_venta,id_usuario,estado_fila,salida])
+    cursor.callproc('POSTULACION_AGREGAR',[descripcion_postulacion,estado_postulacion,id_venta,id_usuario,estado_fila,salida])
     return salida
 
-def modificar_postulacion(id_postulacion,descripcion,estado,id_venta,id_usuario):
+def modificar_postulacion(id_postulacion,descripcion_postulacion,estado_postulacion,id_venta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('POSTULACION_MODIFICAR',[id_postulacion,descripcion,estado,id_venta,id_usuario,salida])
+    cursor.callproc('POSTULACION_MODIFICAR',[id_postulacion,descripcion_postulacion,estado_postulacion,id_venta,id_usuario,salida])
 
 def eliminar_postulacion(id_postulacion):
     django_cursor = connection.cursor()
@@ -65,7 +65,7 @@ class PostulacionView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_postulacion(descripcion=jd['descripcion'],estado=jd['estado'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
+        agregar_postulacion(descripcion_postulacion=jd['descripcion_postulacion'],estado_postulacion=jd['estado_postulacion'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
@@ -74,7 +74,7 @@ class PostulacionView(View):
         jd = json.loads(request.body)
         postulaciones = list(Postulacion.objects.filter(id_postulacion=id_postulacion).values())
         if len(postulaciones) > 0:
-            modificar_postulacion(id_postulacion=jd['id_postulacion'],descripcion=jd['descripcion'],estado=jd['estado'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
+            modificar_postulacion(id_postulacion=jd['id_postulacion'],descripcion_postulacion=jd['descripcion_postulacion'],estado_postulacion=jd['estado_postulacion'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra la postulacion"}

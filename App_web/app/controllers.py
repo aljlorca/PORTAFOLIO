@@ -1,5 +1,6 @@
 import requests
 import json
+from .models import Producto
 
 def login_controller(correo,contrasena):
     url = 'http://127.0.0.1:8004/api/usuario_auth/'
@@ -17,17 +18,19 @@ def login_controller(correo,contrasena):
         data = 'ERRROR: usuario no encontrado'
         return data
 
-def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario):
-    url= 'http://127.0.0.1:8010/api/producto/'
-    body ={"id_producto":id_producto,"nombre_producto":nombre_producto,"cantidad_producto":cantidad_producto,"precio_producto":precio_producto,"imagen_producto":imagen_producto,"id_calidad":id_calidad,"saldo_producto":saldo_producto,"estado_fila":estado_fila,"id_usuario":id_usuario}
-    response = requests.post(url, files=body)
+def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario): 
 
-    if response.status_code == 200:
-        content = json.loads(response.content)
-        return content
-        
-            
-    if response.status_code == 404:
-        data = 'ERRROR: Fallo conexion'
-        return data
+    url= 'http://127.0.0.1:8010/api/producto/'
+    files = {"imagen_producto":open(imagen_producto, 'rb')}
+    body ={"id_producto":id_producto,"nombre_producto":nombre_producto,"cantidad_producto":cantidad_producto,"precio_producto":precio_producto,"id_calidad":id_calidad,"saldo_producto":saldo_producto,"estado_fila":estado_fila,"id_usuario":id_usuario}
+    response = requests.post(url,data=body, files=files)
+    print(body)
+
+def subasta_controller(monto,id_venta,id_usuario):
+    url = 'http://127.0.0.1:8014/api/subasta_old/'
+    body = {"monto_subasta": monto,"id_venta":id_venta,"id_usuario":id_usuario}
+    response = requests.post(url,json=body)
+    print (response)
+
+
 
