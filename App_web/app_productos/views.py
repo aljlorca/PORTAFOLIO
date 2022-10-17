@@ -5,9 +5,13 @@ import requests
 
 
 def productos(request):
-    response = requests.get('z')
+    response = requests.get('http://127.0.0.1:8010/api/producto/')
+    
+    
     
     return render(request, 'app/productos.html')
+
+
 
 
 
