@@ -24,5 +24,10 @@ def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto
     body ={"id_producto":id_producto,"nombre_producto":nombre_producto,"cantidad_producto":cantidad_producto,"precio_producto":precio_producto,"imagen_producto":(open(imagen_producto,'rb')),"id_calidad":id_calidad,"saldo_producto":saldo_producto,"estado_fila":estado_fila,"id_usuario":id_usuario}
     response = requests.post(url, files=body, )
 
+def postulacion_controller(descripcion,estado,id_venta,id_usuario):
+    url = 'http://127.0.0.1:8009/api/postulacion_old'
+    body = {"descripcion_postulacion": descripcion,"estado_postulacion": estado,"id_venta": id_venta,"id_usuario": id_usuario}
+    response = requests.post(url,json=body)
+    print (response)
 
 

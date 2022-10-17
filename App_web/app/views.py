@@ -17,6 +17,9 @@ def productos(request):
 def contacto(request):
     return render(request, 'app/contacto.html')
 
+def transportista(request):
+    return render(request, 'app/contacto.html')
+
 @csrf_exempt
 def login(request):
     try:
@@ -45,8 +48,7 @@ def login(request):
                     
     
 
-def transportista(request):
-    return render(request, 'app/carrito.html')
+
 
 @csrf_exempt
 def productores(request):
@@ -79,8 +81,15 @@ def cliente_externo(request):
 def checkout(request):
     return render(request, 'app/checkout.html')
 
+@csrf_exempt
 def postulacion(request):
+    if request.method == 'POST':
+            descripcion = request.POST.get('descripcion')
+            estado = request.POST.get('estado')
+            id_venta = ('')
+            id_usuario = '1'
+            return render(request, 'app/postulacion.html')
+
     return render(request, 'app/postulacion.html')
 
 
-    
