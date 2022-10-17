@@ -86,11 +86,10 @@ def checkout(request):
 @csrf_exempt
 def postulacion(request):
     if request.method == 'POST':
-            monto = request.POST.get('descripcion')
-            fecha = 'Pendiente'
+            monto = request.POST.get('monto')
             id_venta = ''
             id_usuario = '1'
-            postulacion_controller(monto,fecha,id_venta,id_usuario)
+            subasta_controller(monto,id_venta,id_usuario)
             return render(request, 'app/postulacion.html')
 
     return render(request, 'app/postulacion.html')
