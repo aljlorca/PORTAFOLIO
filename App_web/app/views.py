@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from .controllers import *
 from django.views.decorators.csrf import csrf_exempt
+from asgiref.sync import sync_to_async
+import asyncio
 # Create your views here.
 
 
@@ -52,13 +54,16 @@ def productores(request):
             nombre_producto = request.POST.get('nombre-producto')
             cantidad_producto = request.POST.get('cantidad-producto')
             precio_producto = request.POST.get('precio-producto')
-            imagen_producto =  request.FILES['imagen-producto'].read().decode('latin1')
+            imagen_producto =  request.FILES['imagen-producto']
             id_calidad = request.POST.get('calidad-producto')
             saldo_producto = request.POST.get('saldo-producto')
             estado_fila= '1'
             id_usuario = 1
-            print(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario)
-            crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario)
+            Producto.objects.create(id_producto=id_producto,imagen_producto=imagen_producto)
+            producto = list(Producto.objects.filter(id_producto=id_producto).values())
+            print(id_producto)
+            #print(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario)
+
             return render(request, 'app/productores.html')
 
     return render(request, 'app/productores.html',{
