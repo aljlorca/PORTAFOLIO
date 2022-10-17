@@ -29,8 +29,8 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
+                        {%for p in pedidos%}
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            {%for p in pedidos%}
                             <div class="product-item">
                                 <div class="position-relative bg-light overflow-hidden">
                                     <img class="img-fluid w-100" src="{% static 'app/img/product-1.jpg' %}" alt="">
@@ -50,8 +50,8 @@
                                     </small>
                                 </div>
                             </div>
-                            {%endfor%}
                         </div>
+                        {%endfor%}
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
                             <a class="btn btn-primary rounded-pill py-3 px-5" href="">Browse More Products</a>
                         </div>
