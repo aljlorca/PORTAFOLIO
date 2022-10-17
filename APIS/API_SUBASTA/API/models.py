@@ -114,7 +114,7 @@ class Venta(models.Model):
 class Subasta(models.Model):
     id_subasta = models.BigIntegerField(primary_key=True)
     monto_subasta = models.BigIntegerField()
-    id_venta = models.ForeignKey('Venta', models.DO_NOTHING, db_column='id_venta')
+    id_venta = models.ForeignKey('Venta', models.DO_NOTHING, db_column='id_venta', null=True)
     fecha_subasta = models.DateField()
     estado_fila = models.CharField(max_length=1)
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
