@@ -18,11 +18,13 @@ def login_controller(correo,contrasena):
         data = 'ERRROR: usuario no encontrado'
         return data
 
-def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario):\
-    
+def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario): 
+
     url= 'http://127.0.0.1:8010/api/producto/'
-    body ={"id_producto":id_producto,"nombre_producto":nombre_producto,"cantidad_producto":cantidad_producto,"precio_producto":precio_producto,"imagen_producto":(open('/media/'+imagen_producto,'rb')),"id_calidad":id_calidad,"saldo_producto":saldo_producto,"estado_fila":estado_fila,"id_usuario":id_usuario}
-    response = requests.post(url, files=body, )
+    files = {"imagen_producto":open(imagen_producto, 'rb')}
+    body ={"id_producto":id_producto,"nombre_producto":nombre_producto,"cantidad_producto":cantidad_producto,"precio_producto":precio_producto,"id_calidad":id_calidad,"saldo_producto":saldo_producto,"estado_fila":estado_fila,"id_usuario":id_usuario}
+    response = requests.post(url,data=body, files=files)
+    print(body)
 
 def subasta_controller(monto,id_venta,id_usuario):
     url = 'http://127.0.0.1:8014/api/subasta_old/'

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from numpy import product
 from .controllers import *
 from django.views.decorators.csrf import csrf_exempt
-
+import os 
 # Create your views here.
 
 
@@ -52,7 +52,7 @@ def login(request):
 @csrf_exempt
 def productores(request):
     if request.method == 'POST':
-            id_producto = 4567
+            id = 4567
             nombre_producto = request.POST.get('nombre-producto')
             cantidad_producto = request.POST.get('cantidad-producto')
             precio_producto = request.POST.get('precio-producto')
@@ -62,13 +62,16 @@ def productores(request):
             estado_fila= '1'
             id_usuario = 1
             try: 
-                producto=Producto.objects.get(id_producto=id_producto,imagen_producto=imagen_producto)
+                producto=Producto.objects.get(id_producto=id,imagen_producto=imagen_producto)
             except Producto.DoesNotExist:
-                producto = Producto(id_producto=id_producto,imagen_producto=imagen_producto)
+                producto = Producto(id_producto=id,imagen_producto=imagen_producto)
                 producto.save()
-            print(str(producto))
-            #print(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario)
-            #crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,producto,id_calidad,saldo_producto,estado_fila,id_usuario)
+
+            buscar = str(producto)
+            ruta_alan = '/App_web/media/'
+            ruta = ruta_alan+buscar
+            print(str(ruta))
+            crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
             return render(request, 'app/productores.html')
 
     return render(request, 'app/productores.html',{
