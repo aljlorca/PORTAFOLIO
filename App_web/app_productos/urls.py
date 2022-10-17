@@ -1,5 +1,4 @@
-from django.urls import URLPattern, path
-from matplotlib.path import Path
+from django.urls import path
 from .views import productos
 
 urlpatterns = [

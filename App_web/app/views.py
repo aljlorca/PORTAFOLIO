@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
-from numpy import product
+from .models import Producto
 from .controllers import *
 from django.views.decorators.csrf import csrf_exempt
-import os 
+
 # Create your views here.
 
 
@@ -41,15 +41,11 @@ def login(request):
     except:
         return render(request, 'app/login.html',{
                 "error":'Falló al iniciar sesion Usuario o contraseña incorrectos, o Ingrese algun dato valido'})
-                    
-    
-
-
 
 @csrf_exempt
 def productores(request):
     if request.method == 'POST':
-            id = 4567
+            id = 9999
             nombre_producto = request.POST.get('nombre-producto')
             cantidad_producto = request.POST.get('cantidad-producto')
             precio_producto = request.POST.get('precio-producto')
@@ -65,7 +61,7 @@ def productores(request):
                 producto.save()
 
             buscar = str(producto)
-            ruta_alan = '/App_web/media/'
+            ruta_alan = 'D:/DUOC/Semestre 8/Portafolio/PORTAFOLIO/App_web/media/'
             ruta = ruta_alan+buscar
             print(str(ruta))
             crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
