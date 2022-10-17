@@ -17,6 +17,7 @@ using Xamarin.Forms;
 using Image = System.Drawing.Image;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.Data.SqlTypes;
+using System.Windows.Controls;
 
 namespace MercadoChile.Template
 {
@@ -26,6 +27,7 @@ namespace MercadoChile.Template
         private string url2 = "http://127.0.0.1:8000/api/calidad/";
         private string url3 = "http://127.0.0.1:8016/api/usuario/";
         private string url4 = "http://127.0.0.1:8008/api/pedido/";
+        private string url5 = "http://127.0.0.1:8008/api/pedido_old/";
         public Publicacion()
         {
             InitializeComponent();
@@ -73,17 +75,19 @@ namespace MercadoChile.Template
             this.DgvProducto.Columns[7].Visible = false;
             cnImagen1.ImageLayout = DataGridViewImageCellLayout.Stretch;
             DgvProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvProducto.DataSource];
+            currencyManager1.SuspendBinding();
             foreach (DataGridViewRow fila in DgvProducto.Rows)
             {
-                /*foreach (var fila1 in lista4)
+                foreach (var fila1 in lista4)
                 {
-                    if (Convert.ToInt32(fila.Cells["nId"].Value) == fila1.id_pedido)
+                    if (Convert.ToInt32(fila.Cells["cnId"].Value) == fila1.id_pedido)
                     {
                         fila.Visible = false;
+                        currencyManager1.ResumeBinding();
                         break;
                     }
-                }*/
-
+                }
                 string urlss = fila.Cells["cnImagen"].Value.ToString();
                 WebClient wc = new WebClient();
                 byte[] bytes = wc.DownloadData(urlss);
@@ -100,7 +104,6 @@ namespace MercadoChile.Template
                     fila.Cells["cnProveedor"].Value = fila1.nombre_usuario;
                     break;
                 }
-
             }
         }
         private void btnSelProd_Click(object sender, EventArgs e)
@@ -116,7 +119,6 @@ namespace MercadoChile.Template
         {
             string respuesta = await GetHttp();
             List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
-
             foreach (var list in lista)
             {
                 if (list.nombre_producto == txtNomProd.Text)
@@ -133,17 +135,14 @@ namespace MercadoChile.Template
                     var data = JsonSerializer.Serialize<Pedido>(post2);
                     HttpContent content =
                         new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    var httpResponse = await client.PostAsync(url4, content);
+                    var httpResponse = await client.PostAsync(url5, content);
                     if (MessageBox.Show("Desea Publicar el Producto " + txtNomProd.Text, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         if (httpResponse.IsSuccessStatusCode)
-
                         {
-
                             var result = await httpResponse.Content.ReadAsStringAsync();
                             var postResult = JsonSerializer.Deserialize<Pedido>(result);
                             this.Hide();
-
                         }
                     }
                     else
@@ -160,14 +159,4 @@ namespace MercadoChile.Template
         }
     }
 }
-
-
-
-
-
-
-
-
-    
-    
 
