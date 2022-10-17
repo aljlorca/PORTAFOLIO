@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 # Create your models here.
 
 
@@ -8,4 +8,4 @@ class Producto(models.Model):
     imagen_producto = models.ImageField(max_length=150, blank=True, null=True, upload_to='productos')
 
     def __str__(self):
-        return self.imagen_producto
+        return f'{self.imagen_producto}'
