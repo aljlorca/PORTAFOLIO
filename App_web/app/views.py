@@ -66,11 +66,11 @@ def productores(request):
             except Producto.DoesNotExist:
                 producto = Producto(id_producto=id,imagen_producto=imagen_producto)
                 producto.save()
-            
-            
+
             buscar = str(producto)
-            ruta = '/D:/DUOC/Semestre 8/Portafolio/PORTAFOLIO/App_web/media/'+buscar
-            print(str(producto))
+            ruta_alan = '/App_web/media/'
+            ruta = ruta_alan+buscar
+            print(str(ruta))
             crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
             return render(request, 'app/productores.html')
 
