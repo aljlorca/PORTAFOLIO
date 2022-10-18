@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render,redirect
 from .models import Producto
 from .controllers import *
@@ -47,7 +48,7 @@ def login(request):
 @csrf_exempt
 def productores(request):
     if request.method == 'POST':
-            id = 9999
+            id = 8888
             nombre_producto = request.POST.get('nombre-producto')
             cantidad_producto = request.POST.get('cantidad-producto')
             precio_producto = request.POST.get('precio-producto')
@@ -63,14 +64,12 @@ def productores(request):
                 producto.save()
 
             buscar = str(producto)
-            ruta_alan = 'D:/DUOC/Semestre 8/Portafolio/PORTAFOLIO/App_web/media/'
-            ruta = ruta_alan+buscar
-            print(str(ruta))
+            ruta_proyecto = os.getcwd()+'/media/'
+            ruta = ruta_proyecto+buscar
             crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
             return render(request, 'app/productores.html')
 
-    return render(request, 'app/productores.html',{
-                "error":'Falló al iniciar sesion Usuario o contraseña incorrectos, o Ingrese algun dato valido'})
+    return render(request, 'app/productores.html')
 
 def cliente_interno(request):
     return render(request, 'app/clienteinterno.html')
