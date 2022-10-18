@@ -10,7 +10,6 @@ from django.contrib.sessions import *
 
 def home(request):
     data = get_session(request)
-    print(data)
     return render(request, 'app/home.html',data)
 
 def contacto(request):
