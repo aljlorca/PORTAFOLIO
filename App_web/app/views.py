@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from .models import Producto
 from .controllers import *
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib.sessions import *
 # Create your views here.
 
 
@@ -26,8 +26,6 @@ def login(request):
             salida = login_controller(correo,contrasena)    
             if salida['message'] == 'Success':
                 respt = salida['usuario']
-                request.session['email'] = respt[3]
-                print()
                 if respt[1]=='Proveedor':
                     return redirect(to="http://127.0.0.1:3000/productores/")
                 elif respt[1]=='Transportista':
