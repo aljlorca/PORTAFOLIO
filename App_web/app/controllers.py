@@ -3,7 +3,7 @@ import json
 from django.contrib.sessions import *
 from django.http import HttpResponse
 
-def login_controller(request,correo,contrasena):
+def login_controller(correo,contrasena):
     url = 'http://127.0.0.1:8006/api/usuario_auth/'
     body = {"correo_usuario": correo,"contrasena_usuario": contrasena}
     response = requests.post(url,json=body)
@@ -11,15 +11,12 @@ def login_controller(request,correo,contrasena):
     if response.status_code == 200:
         content = json.loads(response.content)
         if content['message'] == 'Success':
-            respt = content
-            user = respt['usuario']
-            request.session['user'] = user
             return content
         else:
             data ='ERROR:usuario no encontrado'
             return data
     if response.status_code == 404:
-        data = 'ERRROR: bad request'
+        data = 'ERRROR: usuario no encontrado'
         return data
 
 def logout_controller(request):

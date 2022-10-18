@@ -23,7 +23,7 @@ def login(request):
         if request.method == 'POST':
             correo = request.POST.get('correo')
             contrasena = request.POST.get('password')
-            salida = login_controller(correo,contrasena)    
+            salida = login_controller(correo,contrasena)
             if salida['message'] == 'Success':
                 respt = salida['usuario']
                 if respt[1]=='Proveedor':
@@ -38,7 +38,7 @@ def login(request):
                     return redirect(to="http://127.0.0.1:3000/Administrador/")
         else:
             return render(request, 'app/login.html')
-                                        
+
     except:
         return render(request, 'app/login.html',{
                 "error":'Falló al iniciar sesion Usuario o contraseña incorrectos, o Ingrese algun dato valido'})
