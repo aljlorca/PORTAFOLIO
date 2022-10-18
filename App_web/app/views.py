@@ -1,9 +1,11 @@
 import os
+from random import randrange
 from django.shortcuts import render,redirect
 from .models import Producto
 from .controllers import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions import *
+import datetime
 # Create your views here.
 
 
@@ -59,7 +61,11 @@ def productores(request):
     if data['cargo']!='Proveedor':
         return redirect(to="http://127.0.0.1:3000/")
     if request.method == 'POST':
-            id = 8888
+            company=request.session['company']
+            company=company.replace(' ','_')
+            fecha = datetime.datetime.now()
+            fecha=fecha.strftime("%d%m%y%H%M%S")
+            id = company+str(randrange(1,10000))+fecha
             nombre_producto = request.POST.get('nombre-producto')
             cantidad_producto = request.POST.get('cantidad-producto')
             precio_producto = request.POST.get('precio-producto')
