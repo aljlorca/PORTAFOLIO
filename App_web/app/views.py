@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-from symbol import import_as_name
-=======
 import os
->>>>>>> 83f476ee684240933d957d8c19dfab803bad259a
 from django.shortcuts import render,redirect
 from .models import Producto
 from .controllers import *
