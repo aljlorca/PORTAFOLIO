@@ -45,6 +45,7 @@ namespace MercadoChile
             this.iconCerrar = new System.Windows.Forms.PictureBox();
             this.btnslide = new System.Windows.Forms.PictureBox();
             this.PanelContenedor = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
             this.MenuVertical.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,6 +60,7 @@ namespace MercadoChile
             // MenuVertical
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.Transparent;
+            this.MenuVertical.Controls.Add(this.button6);
             this.MenuVertical.Controls.Add(this.panel1);
             this.MenuVertical.Controls.Add(this.button2);
             this.MenuVertical.Controls.Add(this.button5);
@@ -117,7 +119,7 @@ namespace MercadoChile
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.Location = new System.Drawing.Point(12, 355);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(250, 40);
+            this.button5.Size = new System.Drawing.Size(246, 40);
             this.button5.TabIndex = 4;
             this.button5.Text = "     Contrato";
             this.button5.UseVisualStyleBackColor = true;
@@ -133,7 +135,7 @@ namespace MercadoChile
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.Location = new System.Drawing.Point(3, 309);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(284, 40);
+            this.button4.Size = new System.Drawing.Size(255, 40);
             this.button4.TabIndex = 3;
             this.button4.Text = "       Comerciantes";
             this.button4.UseVisualStyleBackColor = true;
@@ -149,7 +151,7 @@ namespace MercadoChile
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.Location = new System.Drawing.Point(3, 263);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(284, 40);
+            this.button3.Size = new System.Drawing.Size(255, 40);
             this.button3.TabIndex = 2;
             this.button3.Text = "     Empresa";
             this.button3.UseVisualStyleBackColor = true;
@@ -165,7 +167,7 @@ namespace MercadoChile
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.Location = new System.Drawing.Point(3, 217);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(284, 40);
+            this.btnClientes.Size = new System.Drawing.Size(255, 40);
             this.btnClientes.TabIndex = 1;
             this.btnClientes.Text = "      Crear Clientes";
             this.btnClientes.UseVisualStyleBackColor = true;
@@ -265,6 +267,22 @@ namespace MercadoChile
             this.PanelContenedor.TabIndex = 2;
             this.PanelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelContenedor_Paint);
             // 
+            // button6
+            // 
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.Location = new System.Drawing.Point(5, 447);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(250, 40);
+            this.button6.TabIndex = 7;
+            this.button6.Text = "     Postulacion";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1300, 650);
@@ -308,6 +326,7 @@ namespace MercadoChile
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button6;
     }
 }
 

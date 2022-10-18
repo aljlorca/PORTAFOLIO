@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sebac\\Desktop\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {}
+    "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sebac\\Desktop\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {
+    "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sebac\\Desktop\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+        "projectUniqueName": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
         "projectName": "Datos",
-        "projectPath": "C:\\Users\\sebac\\Desktop\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+        "projectPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
         "packagesPath": "C:\\Users\\sebac\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sebac\\Desktop\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
+        "outputPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [

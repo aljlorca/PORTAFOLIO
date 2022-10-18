@@ -1,4 +1,5 @@
 ﻿using Amazon.Runtime.Internal;
+using Datos;
 using MercadoChile.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -27,6 +28,7 @@ namespace MercadoChile
     public partial class Usuario : Form
     {
         DBApi DBApi = new DBApi();
+        getUsuario Get = new getUsuario();
         #region Validadores
         public static bool IsValidEmail(string email)
         {
@@ -70,12 +72,7 @@ namespace MercadoChile
 
 
         Uri baseUri = new Uri("http://127.0.0.1:8016/api/usuario_old/");
-        private string url = "http://127.0.0.1:8016/api/usuario/";
-        private string url1 = "http://127.0.0.1:8002/api/cargo/";
-        private string url2 = "http://127.0.0.1:8007/api/pais/";
-        private string url3 = "http://127.0.0.1:8011/api/region/";
-        private string url4 = "http://127.0.0.1:8003/api/ciudad/";
-        private string url5 = "http://127.0.0.1:8005/api/empresa/";
+        
 
 
         public Usuario()
@@ -86,10 +83,10 @@ namespace MercadoChile
         #region ComboBox
         private async void Clientes_Carga(object sender, EventArgs e)
         {
-            string respuesta = await GetHttp();
-            string respuesta1 = await GetHttp1();
-            string respuesta2 = await GetHttp2();
-            string respuesta5 = await GetHttp5();
+            string respuesta = await Get.GetHttp();
+            string respuesta1 = await Get.GetHttp1();
+            string respuesta2 = await Get.GetHttp2();
+            string respuesta5 = await Get.GetHttp5();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
             List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
@@ -108,7 +105,7 @@ namespace MercadoChile
         private async void cmbPais_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var id_pais = Convert.ToInt32(((ComboBox)sender).SelectedValue);
-            string respuesta3 = await GetHttp3();
+            string respuesta3 = await Get.GetHttp3();
             List<Regiones> lista3 = JsonConvert.DeserializeObject<List<Regiones>>(respuesta3);
             cmbRegion.DisplayMember = "nombre_region";
             cmbRegion.ValueMember = "id_region";
@@ -123,7 +120,7 @@ namespace MercadoChile
         {
             var id_region = Convert.ToInt32(((ComboBox)sender).SelectedValue);
 
-            string respuesta4 = await GetHttp4();
+            string respuesta4 = await Get.GetHttp4();
             List<Ciudad> lista3 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);
             cmbCiudad.DisplayMember = "nombre_ciudad";
             cmbCiudad.ValueMember = "id_ciudad";
@@ -134,61 +131,12 @@ namespace MercadoChile
         }
         #endregion
 
-        #region Get Url
-        public async Task<string> GetHttp()
-        {
-
-            WebRequest oRequest = WebRequest.Create(url);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-        public async Task<string> GetHttp1()
-        {
-
-            WebRequest oRequest = WebRequest.Create(url1);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-        public async Task<string> GetHttp2()
-        {
-
-            WebRequest oRequest = WebRequest.Create(url2);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-        public async Task<string> GetHttp3()
-        {
-
-            WebRequest oRequest = WebRequest.Create(url3);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-        public async Task<string> GetHttp4()
-        {
-
-            WebRequest oRequest = WebRequest.Create(url4);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-        public async Task<string> GetHttp5()
-        {
-
-            WebRequest oRequest = WebRequest.Create(url5);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-        #endregion
+     
 
         #region Buttons
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
-            string respuesta = await GetHttp();
+            string respuesta = await Get.GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
             foreach (var list in lista)
@@ -242,7 +190,7 @@ namespace MercadoChile
         }
         private async void btnEditar_Click(object sender, EventArgs e)
         {
-            string respuesta = await GetHttp();
+            string respuesta = await Get.GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
             foreach (var list in lista)
@@ -378,17 +326,17 @@ namespace MercadoChile
         {
             dynamic response = DBApi.Get("http://127.0.0.1:8016/api/usuario/?format=json");
             DgvClientes.DataSource = response;
-            string respuesta1 = await GetHttp1();
+            string respuesta1 = await Get.GetHttp1();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            string respuesta4 = await GetHttp4();
+            string respuesta4 = await Get.GetHttp4();
             List<Ciudad> lista4 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);
-            string respuesta5 = await GetHttp5();
+            string respuesta5 = await Get.GetHttp5();
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
-            string respuesta = await GetHttp();
+            string respuesta = await Get.GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
-            string respuesta2 = await GetHttp2();
+            string respuesta2 = await Get.GetHttp2();
             List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
-            string respuesta3 = await GetHttp3();
+            string respuesta3 = await Get.GetHttp3();
             List<Regiones> lista3 = JsonConvert.DeserializeObject<List<Regiones>>(respuesta3);
             this.DgvClientes.Columns[0].Visible = false;
             this.DgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;    
@@ -460,10 +408,10 @@ namespace MercadoChile
             txtTeleEdit.Text = DgvClientes.CurrentRow.Cells[4].Value.ToString();
             txtCorEdit.Text = DgvClientes.CurrentRow.Cells[5].Value.ToString();
             
-            string respuesta1 = await GetHttp1();
-            string respuesta5 = await GetHttp5();
+            string respuesta1 = await Get.GetHttp1();
+            string respuesta5 = await Get.GetHttp5();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            string respuesta2 = await GetHttp2();
+            string respuesta2 = await Get.GetHttp2();
             List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             lista1.RemoveAt(0);
