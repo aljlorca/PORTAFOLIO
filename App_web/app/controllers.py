@@ -51,12 +51,14 @@ def get_session(request):
         cargo=request.session['cargo']
         correo=request.session['email']
         empresa=request.session['company']
+        id_usuario = request.session['id_user']
         
         data={
             'cargo':cargo,
             'usuario':usuario,
             'correo':correo,
-            'empresa':empresa,}
+            'empresa':empresa,
+            'id_user':id_usuario}
     except:
         data={'cargo':'Visita'}
         

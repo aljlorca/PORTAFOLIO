@@ -19,7 +19,7 @@ def transportista(request):
     data = get_session(request)
     if data['cargo']!='Transportista':
         return redirect(to="http://127.0.0.1:3000/")
-    return render(request, 'app/contacto.html')
+    return render(request, 'app/carrito.html')
 
 @csrf_exempt
 def login(request):
@@ -34,6 +34,7 @@ def login(request):
                 request.session['cargo'] = respt[1]
                 request.session['email'] = respt[2]
                 request.session['company'] = respt[4]
+                request.session['id_user'] = respt[5]
                 if respt[1]=='Proveedor':
                     return redirect(to="http://127.0.0.1:3000/productores/")
                 elif respt[1]=='Transportista':
@@ -66,7 +67,7 @@ def productores(request):
             id_calidad = request.POST.get('calidad-producto')
             saldo_producto = request.POST.get('saldo-producto')
             estado_fila= '1'
-            id_usuario = 1
+            id_usuario = request.session['id_user']
             try: 
                 producto=Producto.objects.get(id_producto=id,imagen_producto=imagen_producto)
             except Producto.DoesNotExist:
