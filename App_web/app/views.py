@@ -90,8 +90,12 @@ def checkout(request):
 @csrf_exempt
 def postulacion(request):
     data = get_session(request)
-    if data['cargo']!='Proveedor' and 'Cliente Interno' and 'Cliente Externo':
-        return redirect(to="http://127.0.0.1:3000/")
+    try:
+        if data['cargo']!='Transportista':
+            return redirect(to="http://127.0.0.1:3000/")
+    except:
+        pass
+
     if request.method == 'POST':
             monto = request.POST.get('monto')
             id_venta = ''

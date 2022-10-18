@@ -45,8 +45,15 @@
         <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
             <div class="col-lg-6 px-5 text-start">
                 <small><i class="fa fa-map-marker-alt me-2"></i>San Carlos de Ancud 400, La Florida, Región Metropolitana, Chile</small>
-                <small class="ms-4"><i class="fa fa-envelope me-2"></i>info@example.com</small>
+                <small class="ms-4"><i class="fa fa-envelope me-2"></i>Contacto@MercadoChile.com</small>
             </div>
+                <!-- Datos Usuario
+            {%if cargo != 'Visita'%}
+                <div class="col-lg-6 px-5 text-center">
+                    <small>{{ usuario }}</small>
+                    <small>{{ correo }}</small>
+                </div>
+            {% endif %}-->
             <div class="col-lg-6 px-5 text-end">
                 <small>Siguenos:</small>
                 <a class="text-body ms-3" href=""><i class="fab fa-facebook-f"></i></a>
@@ -73,7 +80,7 @@
                     {%if cargo == 'Proveedor'%}
                     <a href="{% url 'productores' %}" class="nav-item nav-link">Productores</a>
                     {% endif %}
-                    {%if cargo == 'Cliente Interno' and 'Cliente Externo'%}
+                    {%if cargo == 'Transportista'%}
                     <a href="{% url 'postulacion' %}" class="nav-item nav-link">Postulacion</a>
                     {% endif %}
                     <div class="nav-item dropdown">
@@ -91,7 +98,7 @@
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                         <small class="fa fa-search text-body"></small>
                     </a>
-                    {% if cargo == 'Proveedor' and 'Cliente Interno' and 'Cliente Externo' and 'Transportista' and 'Administrador' %}
+                    {% if cargo != 'Visita' %}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'logout' %}">
                         <small class="fa fa-user text-body"></small>
                     </a>
