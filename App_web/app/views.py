@@ -51,7 +51,9 @@ def login(request):
 @csrf_exempt
 
 def productores(request):
-
+    data = get_session(request)
+    if data['cargo']!='Proveedor' and 'Cliente Interno' and 'Cliente Externo':
+        return redirect(to="http://127.0.0.1:3000/")
     if request.method == 'POST':
             id = 8888
             nombre_producto = request.POST.get('nombre-producto')
@@ -74,7 +76,7 @@ def productores(request):
             crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
             
             return render(request, 'app/productores.html')
-    return render(request, 'app/productores.html')
+    return render(request, 'app/productores.html',data)
 
 def cliente_interno(request):
     return render(request, 'app/clienteinterno.html')
@@ -87,6 +89,9 @@ def checkout(request):
 
 @csrf_exempt
 def postulacion(request):
+    data = get_session(request)
+    if data['cargo']!='Proveedor' and 'Cliente Interno' and 'Cliente Externo':
+        return redirect(to="http://127.0.0.1:3000/")
     if request.method == 'POST':
             monto = request.POST.get('monto')
             id_venta = ''
@@ -94,6 +99,11 @@ def postulacion(request):
             subasta_controller(monto,id_venta,id_usuario)
             return render(request, 'app/postulacion.html')
 
-    return render(request, 'app/postulacion.html')
+    return render(request, 'app/postulacion.html',data)
+
+def logout(request):
+    mensaje = logout_controller(request)
+    data = {'message':mensaje}
+    return redirect(to="http://127.0.0.1:3000/")
 
 

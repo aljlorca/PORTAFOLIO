@@ -21,7 +21,11 @@ def login_controller(correo,contrasena):
 
 def logout_controller(request):
     try:
-        del request.session['user']
+        del request.session['username']
+        del request.session['cargo']
+        del request.session['email']
+        del request.session['company']
+
     except KeyError:
         pass
     return HttpResponse("Has cerrado Session")

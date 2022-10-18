@@ -91,9 +91,16 @@
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                         <small class="fa fa-search text-body"></small>
                     </a>
+                    {% if cargo == 'Proveedor' and 'Cliente Interno' and 'Cliente Externo' and 'Transportista' and 'Administrador' %}
+                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'logout' %}">
+                        <small class="fa fa-user text-body"></small>
+                    </a>
+                    
+                    {% else %}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'login' %}">
                         <small class="fa fa-user text-body"></small>
                     </a>
+                    {% endif %}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                         <small class="fa fa-shopping-bag text-body"></small>
                     </a>
