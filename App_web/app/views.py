@@ -9,7 +9,22 @@ from django.contrib.sessions import *
 
 
 def home(request):
-    return render(request, 'app/home.html')
+    try:
+        usuario=request.session['username']
+        cargo=request.session['cargo']
+        correo=request.session['email']
+        empresa=request.session['company']
+        
+        data={
+            'cargo':cargo,
+            'usuario':usuario,
+            'correo':correo,
+            'empresa':empresa,}
+    except:
+        data={'cargo':'Visita'}
+        pass
+
+    return render(request, 'app/home.html',data)
 
 def contacto(request):
     return render(request, 'app/contacto.html')
@@ -26,7 +41,10 @@ def login(request):
             salida = login_controller(correo,contrasena)
             if salida['message'] == 'Success':
                 respt = salida['usuario']
-                request.session['user'] = respt
+                request.session['username'] = respt[0]
+                request.session['cargo'] = respt[1]
+                request.session['email'] = respt[2]
+                request.session['company'] = respt[4]
                 if respt[1]=='Proveedor':
                     return redirect(to="http://127.0.0.1:3000/productores/")
                 elif respt[1]=='Transportista':
@@ -45,7 +63,9 @@ def login(request):
                 "error":'Falló al iniciar sesion Usuario o contraseña incorrectos, o Ingrese algun dato valido'})
 
 @csrf_exempt
+
 def productores(request):
+
     if request.method == 'POST':
             id = 8888
             nombre_producto = request.POST.get('nombre-producto')
@@ -66,8 +86,8 @@ def productores(request):
             ruta_proyecto = os.getcwd()+'/media/'
             ruta = ruta_proyecto+buscar
             crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
+            
             return render(request, 'app/productores.html')
-
     return render(request, 'app/productores.html')
 
 def cliente_interno(request):
