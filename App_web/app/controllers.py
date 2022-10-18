@@ -41,4 +41,19 @@ def subasta_controller(monto,id_venta,id_usuario):
     print (response)
 
 
-
+def get_session(request):
+    try:
+        usuario=request.session['username']
+        cargo=request.session['cargo']
+        correo=request.session['email']
+        empresa=request.session['company']
+        
+        data={
+            'cargo':cargo,
+            'usuario':usuario,
+            'correo':correo,
+            'empresa':empresa,}
+    except:
+        data={'cargo':'Visita'}
+        
+    return data

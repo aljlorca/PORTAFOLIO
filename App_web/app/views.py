@@ -9,21 +9,8 @@ from django.contrib.sessions import *
 
 
 def home(request):
-    try:
-        usuario=request.session['username']
-        cargo=request.session['cargo']
-        correo=request.session['email']
-        empresa=request.session['company']
-        
-        data={
-            'cargo':cargo,
-            'usuario':usuario,
-            'correo':correo,
-            'empresa':empresa,}
-    except:
-        data={'cargo':'Visita'}
-        pass
-
+    data = get_session(request)
+    print(data)
     return render(request, 'app/home.html',data)
 
 def contacto(request):
