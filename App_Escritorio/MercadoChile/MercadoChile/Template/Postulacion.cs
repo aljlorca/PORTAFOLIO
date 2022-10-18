@@ -16,48 +16,27 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
+using Datos;
 
 namespace MercadoChile.Template
 {
     public partial class Postulacion : Form
     {
-        private string url = "http://127.0.0.1:8014/api/subasta/";
-        private string url2 = "http://127.0.0.1:8016/api/usuario/";
-        private string url3 = "http://127.0.0.1:8017/api/venta/";
         private string url4 = "http://127.0.0.1:8001/api/carga_old/";
+        getPostulacion Get = new getPostulacion(); 
         public Postulacion()
         {
             InitializeComponent();
         }
-        public async Task<string> GetHttp()
-        {
-            WebRequest oRequest = WebRequest.Create(url);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-        public async Task<string> GetHttp2()
-        {
-            WebRequest oRequest = WebRequest.Create(url2);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-        public async Task<string> GetHttp3()
-        {
-            WebRequest oRequest = WebRequest.Create(url3);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
+        
 
         private async void btnListar_Click(object sender, EventArgs e)
         {
-            string respuesta = await GetHttp();
+            string respuesta = await Get.GetHttp();
             List<Subasta> lista = JsonConvert.DeserializeObject<List<Subasta>>(respuesta);
-            string respuesta2 = await GetHttp2();
+            string respuesta2 = await Get.GetHttp2();
             List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
-            string respuesta3 = await GetHttp3();
+            string respuesta3 = await Get.GetHttp3();
             List<Venta> lista3 = JsonConvert.DeserializeObject<List<Venta>>(respuesta3);
             DgvSubasta.DataSource = lista;
             foreach (DataGridViewRow fila in DgvSubasta.Rows)
@@ -76,9 +55,9 @@ namespace MercadoChile.Template
         }
         private async void btnPublicar_Click(object sender, EventArgs e)
         {
-            string respuesta = await GetHttp();
+            string respuesta = await Get.GetHttp();
             List<Subasta> lista = JsonConvert.DeserializeObject<List<Subasta>>(respuesta);
-            string respuesta2 = await GetHttp2();
+            string respuesta2 = await Get.GetHttp2();
             List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
             foreach (var list in lista)
             {

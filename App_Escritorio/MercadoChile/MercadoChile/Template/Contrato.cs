@@ -1,4 +1,5 @@
-﻿using iTextSharp.text;
+﻿using Datos;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
 using MercadoChile.Modelos;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +25,7 @@ namespace MercadoChile.Template
     public partial class Contrato : Form
     {
         private string url = "http://127.0.0.1:8004/api/contrato/";
-        private string url5 = "http://127.0.0.1:8005/api/empresa/";
+        getContrato Get = new getContrato();
         public Contrato()
         {
             InitializeComponent();
@@ -32,21 +33,14 @@ namespace MercadoChile.Template
 
         private async void Cargar_Empresa(object sender, EventArgs e)
         {
-            string respuesta5 = await GetHttp5();
-            List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
-            cmb_TipoEmpresa.DataSource = lista5;
+            string respuesta2 = await Get.GetHttp2();
+            List<Empresas> lista2 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta2);
+            cmb_TipoEmpresa.DataSource = lista2;
             cmb_TipoEmpresa.DisplayMember = "razon_social_empresa";
             cmb_TipoEmpresa.ValueMember = "id_empresa";
 
         }
-        public async Task<string> GetHttp5()
-        {
-
-            WebRequest oRequest = WebRequest.Create(url5);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
+       
         private async void Crear_Contrato_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
