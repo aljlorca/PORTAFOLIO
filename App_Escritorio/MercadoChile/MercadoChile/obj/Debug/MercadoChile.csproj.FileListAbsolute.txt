@@ -1075,9 +1075,6 @@ D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\System.Text.Enc
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.dll
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.dll
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.dll
-D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.dll
-D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Platform.dll
-D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.dll
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Datos.pdb
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Datos.dll.config
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Negocio.pdb
@@ -1139,8 +1136,4 @@ D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\System.Text.Enc
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\System.Text.Json.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\System.ValueTuple.xml
-D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.pdb
-D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Core.xml
-D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.pdb
-D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Xamarin.Forms.Xaml.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CopyComplete

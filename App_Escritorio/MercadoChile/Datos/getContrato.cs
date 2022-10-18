@@ -10,7 +10,7 @@ namespace Datos
 {
     public class getContrato
     {
-        private string url = "http://127.0.0.1:8004/api/contrato/";
+        
         private string url2 = "http://127.0.0.1:8005/api/empresa/";
         public async Task<string> GetHttp2()
         {

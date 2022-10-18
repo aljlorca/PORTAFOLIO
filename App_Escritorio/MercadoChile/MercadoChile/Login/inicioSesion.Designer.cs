@@ -1,5 +1,5 @@
 ﻿using System.Runtime.Remoting.Lifetime;
-using Xamarin.Forms;
+
 
 namespace MercadoChile
 {

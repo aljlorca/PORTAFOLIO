@@ -13,7 +13,7 @@ using Amazon.Runtime.Internal;
 using System.Net.Http;
 using System.Windows.Documents;
 using static MercadoChile.Form1;
-using Xamarin.Forms;
+
 using Image = System.Drawing.Image;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.Data.SqlTypes;
