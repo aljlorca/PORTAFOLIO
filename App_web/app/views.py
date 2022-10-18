@@ -16,6 +16,9 @@ def contacto(request):
     return render(request, 'app/contacto.html')
 
 def transportista(request):
+    data = get_session(request)
+    if data['cargo']!='Transportista':
+        return redirect(to="http://127.0.0.1:3000/")
     return render(request, 'app/contacto.html')
 
 @csrf_exempt
@@ -52,7 +55,7 @@ def login(request):
 
 def productores(request):
     data = get_session(request)
-    if data['cargo']!='Proveedor' and 'Cliente Interno' and 'Cliente Externo':
+    if data['cargo']!='Proveedor':
         return redirect(to="http://127.0.0.1:3000/")
     if request.method == 'POST':
             id = 8888
@@ -79,9 +82,15 @@ def productores(request):
     return render(request, 'app/productores.html',data)
 
 def cliente_interno(request):
+    data = get_session(request)
+    if data['cargo']!='Cliente Interno':
+        return redirect(to="http://127.0.0.1:3000/")
     return render(request, 'app/clienteinterno.html')
 
 def cliente_externo(request):
+    data = get_session(request)
+    if data['cargo']!='Cliente Externo':
+        return redirect(to="http://127.0.0.1:3000/")
     return render(request, 'app/clienteexterno.html')
 
 def checkout(request):
