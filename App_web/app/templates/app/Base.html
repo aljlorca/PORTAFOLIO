@@ -47,15 +47,16 @@
                 <small><i class="fa fa-map-marker-alt me-2"></i>San Carlos de Ancud 400, La Florida, Región Metropolitana, Chile</small>
                 <small class="ms-4"><i class="fa fa-envelope me-2"></i>Contacto@MercadoChile.com</small>
             </div>
-                <!-- Datos Usuario
-            {%if cargo != 'Visita'%}
-                <div class="col-lg-6 px-5 text-center">
-                    <small>{{ usuario }}</small>
-                    <small>{{ correo }}</small>
-                </div>
-            {% endif %}-->
             <div class="col-lg-6 px-5 text-end">
-                <small>Siguenos:</small>
+                <!-- Datos Usuario-->
+                {%if cargo != 'Visita'%}
+                <div class="fa"><i class="fa fa-address-card me-2 responsive">
+                    <small>{{ usuario }}:</small> 
+                    <small>{{ cargo }}</small>
+                    </i>
+                </div>
+                {% endif %}
+                <small class="ms-2">Siguenos:</small>
                 <a class="text-body ms-3" href=""><i class="fab fa-facebook-f"></i></a>
                 <a class="text-body ms-3" href=""><i class="fab fa-twitter"></i></a>
                 <a class="text-body ms-3" href=""><i class="fab fa-linkedin-in"></i></a>
@@ -100,11 +101,11 @@
                     </a>
                     {% if cargo != 'Visita' %}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'logout' %}">
-                        <small class="fa fa-user text-body">Cerrar Sesion</small>
+                        <small class="fas fa-sign-out-alt"></small>
                     </a>
                     {% else %}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'login' %}">
-                        <small class="fa fa-user text-body">Iniciar Sesion</small>
+                        <i class="fas fa-sign-in-alt text-body"></i>                        
                     </a>
                     {% endif %}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
