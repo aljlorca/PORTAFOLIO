@@ -49,8 +49,8 @@ def login(request):
                     return redirect(to="http://127.0.0.1:3000/cliente_interno/")
                 elif respt[1]=='Cliente Externo':
                     return redirect(to="http://127.0.0.1:3000/cliente_externo/")
-                elif respt[1]=='Administrador':
-                    return redirect(to="http://127.0.0.1:3000/Administrador/")
+                elif respt[1]=='Admninistrador':
+                    return redirect(to="http://127.0.0.1:3000/logout/")
         else:
             return render(request, 'app/login.html')
 
