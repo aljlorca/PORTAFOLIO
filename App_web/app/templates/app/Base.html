@@ -92,7 +92,7 @@
                             <a href="404.html" class="dropdown-item">404 Page</a>
                         </div>
                     </div>
-                    <a href="{% url 'contacto' %}" class="nav-item nav-link">Contact Us</a>
+                    <a href="{% url 'contacto' %}" class="nav-item nav-link">Contacto</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
@@ -100,12 +100,11 @@
                     </a>
                     {% if cargo != 'Visita' %}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'logout' %}">
-                        <small class="fa fa-user text-body"></small>
+                        <small class="fa fa-user text-body">Cerrar Sesion</small>
                     </a>
-                    
                     {% else %}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'login' %}">
-                        <small class="fa fa-user text-body"></small>
+                        <small class="fa fa-user text-body">Iniciar Sesion</small>
                     </a>
                     {% endif %}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
@@ -187,7 +186,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="http://127.0.0.1:3000/">MaipoGrande</a>, All Right Reserved.
+                        &copy; <a href="http://127.0.0.1:3000/">MaipoGrande</a>, Todos los derechos reservados.
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
