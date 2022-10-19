@@ -13,7 +13,6 @@ namespace Datos
         private string url = "http://127.0.0.1:8014/api/subasta/";
         private string url2 = "http://127.0.0.1:8016/api/usuario/";
         private string url3 = "http://127.0.0.1:8017/api/venta/";
-        private string url4 = "http://127.0.0.1:8001/api/carga_old/";
         public async Task<string> GetHttp()
         {
             WebRequest oRequest = WebRequest.Create(url);
