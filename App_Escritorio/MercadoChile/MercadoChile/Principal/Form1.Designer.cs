@@ -265,7 +265,6 @@ namespace MercadoChile
             this.PanelContenedor.Name = "PanelContenedor";
             this.PanelContenedor.Size = new System.Drawing.Size(1042, 600);
             this.PanelContenedor.TabIndex = 2;
-            this.PanelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelContenedor_Paint);
             // 
             // button6
             // 

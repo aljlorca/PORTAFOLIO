@@ -60,10 +60,6 @@ namespace MercadoChile
             MessageBox.Show(respuesta.ToString());
         }
 
-        private void PanelContenedor_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -151,12 +147,6 @@ namespace MercadoChile
         {
             AbrirForm(new Publicacion());
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             AbrirForm(new Postulacion());
