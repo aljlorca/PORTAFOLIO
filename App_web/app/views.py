@@ -19,8 +19,12 @@ def contacto(request):
 
 def transportista(request):
     data = get_session(request)
-    if data['cargo']!='Transportista':
-        return redirect(to="http://127.0.0.1:3000/")
+    try:
+        if data['cargo']!='Transportista':
+            return redirect(to="http://127.0.0.1:3000/")
+    except:
+        pass
+
     return render(request, 'app/carrito.html')
 
 @csrf_exempt
