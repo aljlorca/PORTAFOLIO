@@ -74,7 +74,6 @@ namespace MercadoChile
             this.txtCorreo.Size = new System.Drawing.Size(272, 24);
             this.txtCorreo.TabIndex = 1;
             this.txtCorreo.Text = "USUARIO";
-            this.txtCorreo.TextChanged += new System.EventHandler(this.txtrut_admin_TextChanged);
             this.txtCorreo.Enter += new System.EventHandler(this.txtrut_admin_Enter);
             this.txtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             this.txtCorreo.Leave += new System.EventHandler(this.txtrut_admin_Leave);
@@ -91,7 +90,6 @@ namespace MercadoChile
             this.txtContraseña.Size = new System.Drawing.Size(271, 24);
             this.txtContraseña.TabIndex = 2;
             this.txtContraseña.Text = "**********";
-            this.txtContraseña.TextChanged += new System.EventHandler(this.txtcontraseña_admin_TextChanged_1);
             this.txtContraseña.Enter += new System.EventHandler(this.txtcontraseña_admin_Enter);
             this.txtContraseña.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             this.txtContraseña.Leave += new System.EventHandler(this.txtcontraseña_admin_Leave);
@@ -106,7 +104,6 @@ namespace MercadoChile
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(259, 503);
             this.panel1.TabIndex = 5;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // pictureBox1
             // 
@@ -143,7 +140,6 @@ namespace MercadoChile
             this.textBox1.TabIndex = 8;
             this.textBox1.Text = "---------------------------------------------------------------------------------" +
     "-------";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -209,7 +205,6 @@ namespace MercadoChile
             this.KeyPreview = true;
             this.Name = "inicioSesion";
             this.Text = "|";
-            this.Load += new System.EventHandler(this.Login_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inicioSesion_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
