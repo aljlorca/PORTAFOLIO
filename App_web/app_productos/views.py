@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from .controllers import pedido_get, productos_get
-from app.controllers import get_session
 
 
 

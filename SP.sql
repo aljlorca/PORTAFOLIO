@@ -183,7 +183,7 @@ end PRODUCTO_ELIMINAR;
 create or replace PROCEDURE PRODUCTO_AGREGAR
 (
     v_nombre_producto varchar2, 
-    v_cantidad_producto integer,
+    v_cantidad_producto float,
     v_precio_producto integer,
     v_imagen_producto varchar2,
     v_id_calidad integer,
@@ -253,7 +253,7 @@ begin
     where u.id_empresa = e.id_empresa and  u.id_cargo = c.id_cargo and u.correo_usuario = v_correo and u.contrasena_usuario = v_contrasena and u.usuario_vigente = '1';
     update usuario 
     set fecha_sesion_usuario = sysdate
-    where correo_usuario=v_correo;
+    where correo_usuario=v_correo AND CONTRASENA_USUARIO = v_contrasena AND USUARIO_VIGENTE = '1';
 end LOGIN;
 
 
@@ -348,6 +348,80 @@ end EMPRESA_LISTAR;
 
 
 ------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP carrito -----------------------------------------------------------------------------
+
+
+create sequence sec_carrito
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+
+
+create or replace PROCEDURE CARRITO_ELIMINAR (v_id_carrito integer, v_salida out number) is
+begin 
+    UPDATE carrito
+    SET estado_fila = '0'
+    WHERE v_id_carrito = id_carrito;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end CARRITO_ELIMINAR;
+
+
+create or replace PROCEDURE CARRITO_AGREGAR 
+(
+    v_fecha_carrito date,
+    v_monto_carrito integer,
+    v_id_producto integer,
+    v_estado_fila char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+  insert into carrito(id_carrito,fecha_carrito,monto_carrito,id_producto,estado_fila) 
+  values(sec_carrito.nextval,v_fecha_carrito,v_monto_carrito,v_id_producto,v_estado_fila);
+  commit;
+  v_salida:=1; 
+  
+  exception when others then v_salida:=0;
+
+end CARRITO_AGREGAR;
+
+
+create or replace PROCEDURE CARRITO_MODIFICAR (
+    v_id_carrito integer,
+    v_fecha_carrito date,
+    v_monto_carrito integer,
+    v_id_producto integer,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE carrito
+    SET fecha_carrito = v_fecha_carrito,
+    monto_carrito = v_monto_carrito,
+    id_producto = v_id_producto
+    WHERE id_carrito = v_id_carrito;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+
+
+end CARRITO_MODIFICAR;
+
+ 
+
+CREATE OR REPLACE EDITIONABLE PROCEDURE CARRITO_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from carrito;
+end CARRITO_LISTAR;
+
+------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP pedido -----------------------------------------------------------------------------
 
 
@@ -360,8 +434,7 @@ create sequence sec_pedido
 
 create or replace PROCEDURE PEDIDO_ELIMINAR (v_id_pedido integer, v_salida out number) is
 begin 
-    UPDATE pedido
-    SET estado_fila = '0'
+    DELETE pedido
     WHERE v_id_pedido = id_pedido;
     commit;
     v_salida:=1;
@@ -373,16 +446,15 @@ end PEDIDO_ELIMINAR;
 
 create or replace PROCEDURE PEDIDO_AGREGAR 
 (
-    v_fecha_pedido date,
-    v_id_venta integer,
-    v_id_producto integer,
-    v_estado_fila char,
+    v_descripcion_pedido varchar2,
+    v_documento_pedido varchar2,
+    v_id_usuario integer,
     v_salida OUT NUMBER
 
 ) is
 begin 
-  insert into pedido(id_pedido,fecha_pedido,id_venta,id_producto,estado_fila) 
-  values(sec_pedido.nextval,v_fecha_pedido,v_id_venta,v_id_producto,v_estado_fila);
+  insert into pedido(id_pedido,descripcion_pedido,documento_pedido,id_usuario) 
+  values(sec_pedido.nextval,v_descripcion_pedido,v_documento_pedido,v_id_usuario);
   commit;
   v_salida:=1; 
   
@@ -393,17 +465,17 @@ end PEDIDO_AGREGAR;
 
 create or replace PROCEDURE PEDIDO_MODIFICAR (
     v_id_pedido integer,
-    v_fecha_pedido date,
-    v_id_venta integer,
-    v_id_producto integer,
+    v_descripcion_pedido varchar2,
+    v_documento_pedido varchar2,
+    v_id_usuario integer,
     v_salida OUT NUMBER
 
 ) is
 begin 
     UPDATE pedido
-    SET fecha_pedido = v_fecha_pedido,
-    id_venta = v_id_venta,
-    id_producto = v_id_producto
+    SET descripcion_pedido = v_descripcion_pedido,
+    documento_pedido = v_documento_pedido,
+    id_usuario = v_id_usuario
     WHERE id_pedido = v_id_pedido;
     commit;
     v_salida:=1;
@@ -449,13 +521,14 @@ create or replace PROCEDURE POSTULACION_AGREGAR
     v_estado_postulacion varchar2,
     v_id_venta integer,
     v_id_usuario integer,
+    v_id_producto integer,
     v_estado_fila char,
     v_salida OUT NUMBER
 
 ) is
 begin 
-  insert into postulacion(id_postulacion,descripcion_postulacion,estado_postulacion,id_venta,id_usuario,estado_fila) 
-  values(sec_postulacion.nextval,v_descripcion_postulacion,v_estado_postulacion,v_id_venta,v_id_usuario,v_estado_fila);
+  insert into postulacion(id_postulacion,descripcion_postulacion,estado_postulacion,id_venta,id_usuario,ID_PRODUCTO,estado_fila) 
+  values(sec_postulacion.nextval,v_descripcion_postulacion,v_estado_postulacion,v_id_venta,v_id_usuario,v_id_producto,v_estado_fila);
   commit;
   v_salida:=1; 
   
@@ -471,6 +544,7 @@ create or replace PROCEDURE POSTULACION_MODIFICAR
     v_estado_postulacion varchar2,
     v_id_venta integer,
     v_id_usuario integer,
+    v_id_producto integer,
     v_salida OUT NUMBER
 
 ) is
@@ -479,7 +553,8 @@ begin
     SET descripcion_postulacion = v_descripcion_postulacion,
     estado_postulacion = v_estado_postulacion,
     id_venta = v_id_venta,
-    id_usuario = v_id_usuario
+    id_usuario = v_id_usuario,
+    id_producto = v_id_producto
     WHERE id_postulacion = v_id_postulacion;
     commit;
     v_salida:=1;
@@ -676,13 +751,14 @@ create or replace PROCEDURE RESUMEN_VENTA_AGREGAR
     v_monto_neto_venta integer,
     v_descripcion_resumen varchar2,
     v_id_venta integer,
+    v_CANTIDAD_PRODUCTO_RESUMEN float,
     v_estado_fila char,
     v_salida OUT NUMBER
 
 ) is
 begin 
-  insert into resumen_venta(id_resumen,monto_neto_venta,descripcion_resumen,id_venta,estado_fila) 
-  values(sec_resumen_venta.nextval,v_monto_neto_venta,v_descripcion_resumen,v_id_venta,v_estado_fila);
+  insert into resumen_venta(id_resumen,monto_neto_venta,descripcion_resumen,id_venta,CANTIDAD_PRODUCTO_RESUMEN,estado_fila) 
+  values(sec_resumen_venta.nextval,v_monto_neto_venta,v_descripcion_resumen,v_id_venta,v_CANTIDAD_PRODUCTO_RESUMEN,v_estado_fila);
   commit;
   v_salida:=1; 
   
@@ -697,6 +773,7 @@ create or replace PROCEDURE RESUMEN_VENTA_MODIFICAR
     v_monto_neto_venta integer,
     v_descripcion_resumen varchar2,
     v_id_venta integer,
+    v_CANTIDAD_PRODUCTO_RESUMEN float,
     v_salida OUT NUMBER
 
 ) is
@@ -704,7 +781,8 @@ begin
     UPDATE resumen_venta
     SET monto_neto_venta = v_monto_neto_venta,
     descripcion_resumen = v_descripcion_resumen,
-    id_venta= v_id_venta
+    id_venta= v_id_venta,
+    CANTIDAD_PRODUCTO_RESUMEN = v_CANTIDAD_PRODUCTO_RESUMEN
     WHERE id_resumen = v_id_resumen;
     commit;
     v_salida:=1;
@@ -753,13 +831,18 @@ create or replace PROCEDURE VENTA_AGREGAR
     v_fecha date,
     v_tipo_venta char,
     v_id_usuario integer,
+    v_cantidad_venta integer,
+    v_monto_transporte integer,
+    v_monto_aduanas integer,
+    v_pago_servicio integer,
+    v_comision_venta integer,
     v_estado_fila char,
     v_salida OUT NUMBER
 
 ) is
 begin 
-  insert into venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,estado_fila,tipo_venta,id_usuario) 
-  values(sec_venta.nextval,v_descripcion,v_estado_venta,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_estado_fila,v_tipo_venta,v_id_usuario);
+  insert into venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,estado_fila,tipo_venta,id_usuario,CANTIDAD_VENTA,MONTO_TRANSPORTE,MONTO_ADUANAS,PAGO_SERVICIO,COMISION_VENTA) 
+  values(sec_venta.nextval,v_descripcion,v_estado_venta,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_estado_fila,v_tipo_venta,v_id_usuario,v_cantidad_venta,v_monto_transporte,v_monto_aduanas,v_pago_servicio,v_comision_venta);
   commit;
   v_salida:=1; 
   
@@ -778,6 +861,11 @@ create or replace PROCEDURE VENTA_MODIFICAR
     v_fecha date,
     v_tipo_venta char,
     v_id_usuario integer,
+    v_cantidad_venta integer,
+    v_monto_transporte integer,
+    v_monto_aduanas integer,
+    v_pago_servicio integer,
+    v_comision_venta integer,
     v_salida OUT NUMBER
 
 ) is
@@ -790,7 +878,12 @@ begin
     monto_neto_venta = v_monto_neto,
     fecha_venta = v_fecha,
     tipo_venta = v_tipo_venta,
-    id_usuario = v_id_usuario
+    id_usuario = v_id_usuario,
+    cantidad_venta = v_cantidad_venta,
+    monto_transporte = v_monto_transporte,
+    monto_aduanas = v_monto_aduanas,
+    pago_servicio = v_pago_servicio,
+    comision_venta = v_comision_venta
     WHERE id_venta = v_id_venta;
     commit;
     v_salida:=1;
@@ -800,11 +893,11 @@ begin
 
 end VENTA_MODIFICAR;
 
-CREATE OR REPLACE EDITIONABLE PROCEDURE VENTA_EXTERNA_LISTAR (cur_listar out SYS_REFCURSOR) 
+CREATE OR REPLACE EDITIONABLE PROCEDURE VENTA_LISTAR (cur_listar out SYS_REFCURSOR) 
 is
 begin
   open cur_listar for select * from venta;
-end VENTA_EXTERNA_LISTAR;
+end VENTA_LISTAR;
 ------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP contrato -----------------------------------------------------------------------------
 
@@ -941,7 +1034,7 @@ END PAIS_MODIFICAR;
 create or replace PROCEDURE PAIS_LISTAR (cur_listar out SYS_REFCURSOR)
 is 
 BEGIN
-  open cur_listar for select * from pais where estado_fila = '1';
+  open cur_listar for select * from pais;
 END PAIS_LISTAR;
 -----------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP REGION  ---------------------------------------------------------------------------
@@ -1006,7 +1099,7 @@ END REGION_MODIFICAR;
 create or replace PROCEDURE REGION_LISTAR (cur_listar out SYS_REFCURSOR) 
 is
 begin
-  open cur_listar for select * from region where estado_fila = '1';
+  open cur_listar for select * from region;
 end REGION_LISTAR;
 ------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP CIUDAD  ---------------------------------------------------------------------------
@@ -1084,7 +1177,8 @@ create sequence sec_calidad
   
 create or replace PROCEDURE CALIDAD_ELIMINAR (v_id_calidad Integer, v_salida out number) is
 begin 
-    delete calidad
+    UPDATE CALIDAD
+    SET ESTADO_FILA  = '0'
     WHERE id_calidad = v_id_calidad;
     commit;
     v_salida:=1;

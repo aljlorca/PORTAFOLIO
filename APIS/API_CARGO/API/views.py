@@ -1,4 +1,3 @@
-from asyncio import DatagramProtocol
 from django.db import connection
 from django.http.response import JsonResponse
 from django.views import View

@@ -103,9 +103,14 @@ class Venta(models.Model):
     iva = models.CharField(max_length=4)
     monto_neto_venta = models.BigIntegerField()
     fecha_venta = models.DateField()
-    estado_fila = models.CharField(max_length=1)
     tipo_venta = models.CharField(max_length=1)
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
+    cantidad_venta = models.FloatField()
+    monto_transporte = models.BigIntegerField(blank=True, null=True)
+    monto_aduanas = models.BigIntegerField(blank=True, null=True)
+    pago_servicio = models.BigIntegerField(blank=True, null=True)
+    comision_venta = models.BigIntegerField(blank=True, null=True)
+    estado_fila = models.CharField(max_length=1)
 
     class Meta:
         managed = False

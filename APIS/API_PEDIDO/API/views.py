@@ -1,5 +1,5 @@
 from django.db import connection
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse,HttpResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -10,19 +10,18 @@ import json
 import cx_Oracle
 
 # Create your views here.
-def agregar_pedido(fecha_pedido,id_venta,id_producto):
+def agregar_pedido(descripcion_pedido,documento_pedido,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    estado_fila = '1'
-    cursor.callproc('PEDIDO_AGREGAR',[fecha_pedido,id_venta,id_producto,estado_fila,salida])
+    cursor.callproc('PEDIDO_AGREGAR',[descripcion_pedido,documento_pedido,id_usuario,salida])
     return salida
 
-def modificar_pedido(id_pedido,fecha_pedido,id_venta,id_producto):
+def modificar_pedido(id_pedido,descripcion_pedido,documento_pedido,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('PEDIDO_MODIFICAR',[id_pedido,fecha_pedido,id_venta,id_producto,salida])
+    cursor.callproc('PEDIDO_MODIFICAR',[id_pedido,descripcion_pedido,documento_pedido,id_usuario,salida])
 
 def eliminar_pedido(id_pedido):
     django_cursor = connection.cursor()
@@ -65,7 +64,7 @@ class PedidoView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_pedido(fecha_pedido=jd['fecha_pedido'],id_venta=jd['id_venta'],id_producto=jd['id_producto'])
+        agregar_pedido(descripcion_pedido=jd['descripcion_pedido'],documento_pedido=jd['documento_pedido'],id_usuario=jd['id_usuario'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
@@ -74,7 +73,7 @@ class PedidoView(View):
         jd = json.loads(request.body)
         empresas = list(Pedido.objects.filter(id_pedido=id_pedido).values())
         if len(empresas) > 0:
-            modificar_pedido(id_pedido=jd['id_pedido'],fecha_pedido=jd['fecha_pedido'],id_venta=jd['id_venta'],id_producto=jd['id_producto'])
+            modificar_pedido(id_pedido=jd['id_pedido'],descripcion_pedido=jd['descripcion_pedido'],documento_pedido=jd['documento_pedido'],id_usuario=jd['id_usuario'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra el pedido"}
@@ -93,6 +92,29 @@ class PedidoView(View):
 class PedidoViewset(viewsets.ModelViewSet):
     queryset = Pedido.objects.filter(estado_fila='1')
     serializer_class = PedidoSerializer
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        id_pedido = request.data['id_pedido']
+        descripcion_pedido = request.data['descripcion_pedido']
+        documento_pedido = request.data['documento_pedido']
+        id_usuario = request.data['id_usuario']
+        Pedido.objects.create(id_pedido=id_pedido, descripcion_pedido=descripcion_pedido,documento_pedido=documento_pedido,id_usuario=id_usuario)
+        return HttpResponse({'message': 'Success'}, status=201)
+    def put(self, request, *args, **kwargs):
+        id_pedido = request.data['id_pedido']
+        descripcion_pedido = request.data['descripcion_pedido']
+        documento_pedido = request.data['documento_pedido']
+        id_usuario = request.data['id_usuario']
+        Pedido.objects.update(id_pedido=id_pedido, descripcion_pedido=descripcion_pedido,documento_pedido=documento_pedido,id_usuario=id_usuario)
+        return HttpResponse({'message': 'Success'}, status=200)
+    def delete(self, request, *args, **kwargs):
+        id_contrato = request.data['id_contrato']
+        eliminar_pedido(id_contrato)
+        return HttpResponse({'message': 'Success'}, status=200)
 
 
 class PedidoHistoricoViewset(viewsets.ModelViewSet):

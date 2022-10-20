@@ -82,11 +82,11 @@ class Usuario(models.Model):
     fecha_creacion_usuario = models.DateField()
     fecha_sesion_usuario = models.DateField(blank=True, null=True)
     administrador_usuario = models.CharField(max_length=1)
-    id_cargo = models.ForeignKey('Cargo', models.DO_NOTHING, db_column='id_cargo')
-    id_empresa = models.ForeignKey('Empresa', models.DO_NOTHING, db_column='id_empresa', blank=True, null=True)
-    id_ciudad = models.ForeignKey('Ciudad', models.DO_NOTHING, db_column='id_ciudad')
-    id_region = models.ForeignKey('Region', models.DO_NOTHING, db_column='id_region')
-    id_pais = models.ForeignKey('Pais', models.DO_NOTHING, db_column='id_pais')
+    id_cargo = models.ForeignKey(Cargo, models.DO_NOTHING, db_column='id_cargo')
+    id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='id_empresa', blank=True, null=True)
+    id_ciudad = models.ForeignKey(Ciudad, models.DO_NOTHING, db_column='id_ciudad')
+    id_region = models.ForeignKey(Region, models.DO_NOTHING, db_column='id_region')
+    id_pais = models.ForeignKey(Pais, models.DO_NOTHING, db_column='id_pais')
 
     class Meta:
         managed = False
@@ -104,7 +104,7 @@ class Calidad(models.Model):
 class Producto(models.Model):
     id_producto = models.CharField(primary_key=True, max_length=150)
     nombre_producto = models.CharField(max_length=150)
-    cantidad_producto = models.BigIntegerField()
+    cantidad_producto = models.FloatField()
     precio_producto = models.BigIntegerField()
     imagen_producto = models.CharField(max_length=150, blank=True, null=True)
     id_calidad = models.ForeignKey('Calidad', models.DO_NOTHING, db_column='id_calidad')
@@ -124,9 +124,14 @@ class Venta(models.Model):
     iva = models.CharField(max_length=4)
     monto_neto_venta = models.BigIntegerField()
     fecha_venta = models.DateField()
-    estado_fila = models.CharField(max_length=1)
     tipo_venta = models.CharField(max_length=1)
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
+    cantidad_venta = models.FloatField()
+    monto_transporte = models.BigIntegerField(blank=True, null=True)
+    monto_aduanas = models.BigIntegerField(blank=True, null=True)
+    pago_servicio = models.BigIntegerField(blank=True, null=True)
+    comision_venta = models.BigIntegerField(blank=True, null=True)
+    estado_fila = models.CharField(max_length=1)
 
     class Meta:
         managed = False
@@ -134,10 +139,9 @@ class Venta(models.Model):
 
 class Pedido(models.Model):
     id_pedido = models.BigIntegerField(primary_key=True)
-    fecha_pedido = models.DateField()
-    id_venta = models.ForeignKey('Venta', models.DO_NOTHING, db_column='id_venta',null=True)
-    estado_fila = models.CharField(max_length=1)
-    id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='id_producto',null=True)
+    descripcion_pedido = models.CharField(max_length=150)
+    documento_pedido = models.FileField(max_length=150, blank=True, null=True)
+    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
 
     class Meta:
         managed = False

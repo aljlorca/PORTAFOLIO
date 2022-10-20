@@ -68,6 +68,20 @@ class Cargo(models.Model):
         managed = False
         db_table = 'cargo'
 
+class Producto(models.Model):
+    id_producto = models.CharField(primary_key=True, max_length=150)
+    nombre_producto = models.CharField(max_length=150)
+    cantidad_producto = models.FloatField()
+    precio_producto = models.BigIntegerField()
+    imagen_producto = models.ImageField(max_length=150, blank=True, null=True)
+    id_calidad = models.ForeignKey('Calidad', models.DO_NOTHING, db_column='id_calidad')
+    saldo_producto = models.CharField(max_length=1)
+    estado_fila = models.CharField(max_length=1)
+    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
+
+    class Meta:
+        managed = False
+        db_table = 'producto'
 
 
 class Usuario(models.Model):
@@ -102,9 +116,14 @@ class Venta(models.Model):
     iva = models.CharField(max_length=4)
     monto_neto_venta = models.BigIntegerField()
     fecha_venta = models.DateField()
-    estado_fila = models.CharField(max_length=1)
     tipo_venta = models.CharField(max_length=1)
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
+    cantidad_venta = models.FloatField()
+    monto_transporte = models.BigIntegerField(blank=True, null=True)
+    monto_aduanas = models.BigIntegerField(blank=True, null=True)
+    pago_servicio = models.BigIntegerField(blank=True, null=True)
+    comision_venta = models.BigIntegerField(blank=True, null=True)
+    estado_fila = models.CharField(max_length=1)
 
     class Meta:
         managed = False
@@ -116,7 +135,8 @@ class Postulacion(models.Model):
     estado_postulacion = models.CharField(max_length=50)
     id_venta = models.ForeignKey('Venta', models.DO_NOTHING, db_column='id_venta', blank=True, null=True)
     estado_fila = models.CharField(max_length=1)
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
+    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario', blank=True, null=True)
+    id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='id_producto')
 
     class Meta:
         managed = False

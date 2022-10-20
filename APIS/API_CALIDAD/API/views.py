@@ -1,4 +1,3 @@
-from asyncio import DatagramProtocol
 from django.db import connection
 from django.http.response import JsonResponse
 from django.views import View
@@ -16,7 +15,8 @@ def agregar_calidad(descripcion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('CALIDAD_AGREGAR',[descripcion,salida])
+    estado_fila = '1'
+    cursor.callproc('CALIDAD_AGREGAR',[descripcion,estado_fila,salida])
     return salida
 
 def modificar_calidad(id_calidad,descripcion):

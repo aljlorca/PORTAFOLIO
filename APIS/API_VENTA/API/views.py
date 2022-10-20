@@ -11,21 +11,21 @@ import cx_Oracle
 import datetime
 
 # Create your views here.
-def agregar_venta(descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,tipo_venta,id_usuario):
+def agregar_venta(descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,tipo_venta,id_usuario,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     fecha_venta = datetime.date.today()
     estado_fila = '1'
-    cursor.callproc('VENTA_AGREGAR',[descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,estado_fila,tipo_venta,id_usuario,salida])
+    cursor.callproc('VENTA_AGREGAR',[descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,tipo_venta,id_usuario,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta,estado_fila,salida])
     return salida
 
-def modificar_venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,tipo_venta,id_usuario):
+def modificar_venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,tipo_venta,id_usuario,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     fecha_venta = datetime.date.today()
-    cursor.callproc('VENTA_MODIFICAR',[id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,tipo_venta,id_usuario,salida])
+    cursor.callproc('VENTA_MODIFICAR',[id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,tipo_venta,id_usuario,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta,salida])
 
 def eliminar_venta(id_venta):
     django_cursor = connection.cursor()
@@ -43,7 +43,6 @@ def lista_venta():
         lista.append(fila)
     return lista
     
-
 class VentaView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -68,7 +67,7 @@ class VentaView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_venta(descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'])
+        agregar_venta(descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
         datos = {'message':'Success'}
         return JsonResponse(datos)
         
@@ -77,7 +76,7 @@ class VentaView(View):
         jd = json.loads(request.body)
         ventas = list(Venta.objects.filter(id_venta=id_venta).values())
         if len(ventas) > 0:
-            modificar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],id_empresa=jd['id_empresa'])
+            modificar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra la venta"}

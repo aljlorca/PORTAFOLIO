@@ -23,7 +23,6 @@ def modificar_producto(id_producto,nombre_producto,cantidad_producto,precio_prod
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    estado_fila = '1'
     cursor.callproc('PRODUCTO_MODIFICAR',[id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,id_usuario,salida])
 
 def eliminar_producto(id_producto):
