@@ -16,6 +16,7 @@ API SUBASTA       | python .\manage.py runserver 8014
 API TIPO EMPRESA  | python .\manage.py runserver 8015
 API USUARIO       | python .\manage.py runserver 8016
 API VENTA         | python .\manage.py runserver 8017
+API CARRITO       | python .\manage.py runserver 8018
 
 Para ejecutar las api en su puerto correspondiente debe de ejecutarse de la siguiente forma:
 
