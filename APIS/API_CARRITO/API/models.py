@@ -31,6 +31,15 @@ class Ciudad(models.Model):
         managed = False
         db_table = 'ciudad'
 
+class TipoEmpresa(models.Model):
+    id_tipo_empresa = models.BigIntegerField(primary_key=True)
+    tipo_empresa = models.CharField(max_length=150)
+    estado_fila = models.CharField(max_length=1)
+
+    class Meta:
+        managed = False
+        db_table = 'tipo_empresa'
+
 class Empresa(models.Model):
     id_empresa = models.BigIntegerField(primary_key=True)
     duns_empresa = models.CharField(unique=True, max_length=9)
@@ -38,7 +47,7 @@ class Empresa(models.Model):
     direccion_empresa = models.CharField(max_length=150)
     giro_empresa = models.CharField(max_length=150)
     id_tipo_empresa = models.ForeignKey('TipoEmpresa', models.DO_NOTHING, db_column='id_tipo_empresa')
-    id_ciudad = models.ForeignKey('Ciudad', models.DO_NOTHING, db_column='id_ciudad')
+    id_ciudad = models.ForeignKey(Ciudad, models.DO_NOTHING, db_column='id_ciudad')
     estado_fila = models.CharField(max_length=1)
     id_region = models.ForeignKey('Region', models.DO_NOTHING, db_column='id_region')
     id_pais = models.ForeignKey('Pais', models.DO_NOTHING, db_column='id_pais')
@@ -89,6 +98,7 @@ class Calidad(models.Model):
         managed = False
         db_table = 'calidad'
 
+
 class Producto(models.Model):
     id_producto = models.CharField(primary_key=True, max_length=150)
     nombre_producto = models.CharField(max_length=150)
@@ -103,7 +113,6 @@ class Producto(models.Model):
     class Meta:
         managed = False
         db_table = 'producto'
-
 
 class Carrito(models.Model):
     id_carrito = models.BigIntegerField(primary_key=True)
