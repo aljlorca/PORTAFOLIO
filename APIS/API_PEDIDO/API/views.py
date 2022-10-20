@@ -90,7 +90,7 @@ class PedidoView(View):
         return JsonResponse(datos)
 
 class PedidoViewset(viewsets.ModelViewSet):
-    queryset = Pedido.objects.filter(estado_fila='1')
+    queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
 
     @method_decorator(csrf_exempt)

@@ -45,12 +45,12 @@ class TipoEmpresa(models.Model):
 
 class Empresa(models.Model):
     id_empresa = models.BigIntegerField(primary_key=True)
-    duns_empresa = models.CharField(max_length=9)
+    duns_empresa = models.CharField(unique=True, max_length=9)
     razon_social_empresa = models.CharField(max_length=70)
     direccion_empresa = models.CharField(max_length=150)
     giro_empresa = models.CharField(max_length=150)
     id_tipo_empresa = models.ForeignKey('TipoEmpresa', models.DO_NOTHING, db_column='id_tipo_empresa')
-    id_ciudad = models.ForeignKey('Ciudad', models.DO_NOTHING, db_column='id_ciudad')
+    id_ciudad = models.ForeignKey(Ciudad, models.DO_NOTHING, db_column='id_ciudad')
     estado_fila = models.CharField(max_length=1)
     id_region = models.ForeignKey('Region', models.DO_NOTHING, db_column='id_region')
     id_pais = models.ForeignKey('Pais', models.DO_NOTHING, db_column='id_pais')
@@ -59,7 +59,6 @@ class Empresa(models.Model):
         managed = False
         db_table = 'empresa'
         unique_together = (('duns_empresa'),)
-
 
 class Cargo(models.Model):
     id_cargo = models.BigIntegerField(primary_key=True)
@@ -82,60 +81,17 @@ class Usuario(models.Model):
     fecha_creacion_usuario = models.DateField()
     fecha_sesion_usuario = models.DateField(blank=True, null=True)
     administrador_usuario = models.CharField(max_length=1)
-    id_cargo = models.ForeignKey(Cargo, models.DO_NOTHING, db_column='id_cargo')
-    id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='id_empresa', blank=True, null=True)
-    id_ciudad = models.ForeignKey(Ciudad, models.DO_NOTHING, db_column='id_ciudad')
-    id_region = models.ForeignKey(Region, models.DO_NOTHING, db_column='id_region')
-    id_pais = models.ForeignKey(Pais, models.DO_NOTHING, db_column='id_pais')
+    id_cargo = models.ForeignKey('Cargo', models.DO_NOTHING, db_column='id_cargo')
+    id_empresa = models.ForeignKey('Empresa', models.DO_NOTHING, db_column='id_empresa', blank=True, null=True)
+    id_ciudad = models.ForeignKey('Ciudad', models.DO_NOTHING, db_column='id_ciudad')
+    id_region = models.ForeignKey('Region', models.DO_NOTHING, db_column='id_region')
+    id_pais = models.ForeignKey('Pais', models.DO_NOTHING, db_column='id_pais')
 
     class Meta:
         managed = False
         db_table = 'usuario'
         unique_together = (('numero_identificacion_usuario', 'telefono_usuario', 'correo_usuario'),)
 
-class Calidad(models.Model):
-    id_calidad = models.BigIntegerField(primary_key=True)
-    descripcion_calidad = models.CharField(max_length=150)
-
-    class Meta:
-        managed = False
-        db_table = 'calidad'
-        
-class Producto(models.Model):
-    id_producto = models.CharField(primary_key=True, max_length=150)
-    nombre_producto = models.CharField(max_length=150)
-    cantidad_producto = models.FloatField()
-    precio_producto = models.BigIntegerField()
-    imagen_producto = models.CharField(max_length=150, blank=True, null=True)
-    id_calidad = models.ForeignKey('Calidad', models.DO_NOTHING, db_column='id_calidad')
-    saldo_producto = models.CharField(max_length=1)
-    estado_fila = models.CharField(max_length=1)
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
-
-    class Meta:
-        managed = False
-        db_table = 'producto'
-
-class Venta(models.Model):
-    id_venta = models.BigIntegerField(primary_key=True)
-    descripcion_venta = models.CharField(max_length=500)
-    estado_venta = models.CharField(max_length=50)
-    monto_bruto_venta = models.BigIntegerField()
-    iva = models.CharField(max_length=4)
-    monto_neto_venta = models.BigIntegerField()
-    fecha_venta = models.DateField()
-    tipo_venta = models.CharField(max_length=1)
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
-    cantidad_venta = models.FloatField()
-    monto_transporte = models.BigIntegerField(blank=True, null=True)
-    monto_aduanas = models.BigIntegerField(blank=True, null=True)
-    pago_servicio = models.BigIntegerField(blank=True, null=True)
-    comision_venta = models.BigIntegerField(blank=True, null=True)
-    estado_fila = models.CharField(max_length=1)
-
-    class Meta:
-        managed = False
-        db_table = 'venta'
 
 class Pedido(models.Model):
     id_pedido = models.BigIntegerField(primary_key=True)
