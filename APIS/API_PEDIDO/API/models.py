@@ -96,11 +96,12 @@ class Usuario(models.Model):
 class Pedido(models.Model):
     id_pedido = models.BigIntegerField(primary_key=True)
     descripcion_pedido = models.CharField(max_length=150)
-    fecha_sla_pedido = models.FileField(max_length=150, blank=True, null=True)
+    fecha_sla_pedido = models.DateField()
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
-    estado_fila = models.CharField(max_legth=1)
+    estado_fila = models.CharField(max_length=1)
 
     class Meta:
         managed = False
         db_table = 'pedido'
+        
 
