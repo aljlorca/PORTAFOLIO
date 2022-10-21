@@ -108,3 +108,62 @@ def postilacion_get():
         content = json.loads(r.content)
         return content
     
+#USUARIO CONTROLLERS
+def usuario_get_id(id):
+    url = 'http://127.0.0.1:8016/api/usuario/'+id
+    try: 
+     response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
+        data = 'ERROR: Usuario no encontrado'
+        return data
+
+#PAIS CONTROLLER
+def get_pais_id(id):
+    url = 'http://127.0.0.1:8007/api/pais/'+id
+    try: 
+     response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
+        data = 'ERROR: Pais no encontrado'
+        return data
+    
+#Ciudad CONTROLLER
+def get_ciudad_id(id):
+    url = 'http://127.0.0.1:8003/api/ciudad/'+id
+    try: 
+     response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
+        data = 'ERROR: Ciudad no encontrada'
+        return data
+#Region CONTROLLER
+def get_region_id(id):
+    url = 'http://127.0.0.1:8011/api/region/'+id
+    try: 
+     response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
+        data = 'ERROR: Region no encontrada'
+        return data   
+    
