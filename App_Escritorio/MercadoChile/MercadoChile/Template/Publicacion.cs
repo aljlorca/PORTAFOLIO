@@ -25,7 +25,7 @@ namespace MercadoChile.Template
     public partial class Publicacion : Form
     {
         getPublicacion Get = new getPublicacion();
-        private string url5 = "http://127.0.0.1:8008/api/pedido_old/";
+        private string url = "http://127.0.0.1:8017/api/venta_old/";
         public Publicacion()
         {
             InitializeComponent();
@@ -33,96 +33,78 @@ namespace MercadoChile.Template
         private async void btnListar_Click(object sender, EventArgs e)
         {
             string respuesta = await Get.GetHttp();
-            List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
+            List<Pedido> lista = JsonConvert.DeserializeObject<List<Pedido>>(respuesta);
             string respuesta2 = await Get.GetHttp2();
-            List<Calidad> lista2 = JsonConvert.DeserializeObject<List<Calidad>>(respuesta2);
+            List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
             string respuesta3 = await Get.GetHttp3();
-            List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
-            string respuesta4 = await Get.GetHttp4();
-            List<Pedido> lista4 = JsonConvert.DeserializeObject<List<Pedido>>(respuesta4);
+            List<Venta> lista3 = JsonConvert.DeserializeObject<List<Venta>>(respuesta3);
             DgvProducto.DataSource = lista;
-            this.DgvProducto.Columns[1].Visible = false;
-            this.DgvProducto.Columns[7].Visible = false;
-            cnImagen1.ImageLayout = DataGridViewImageCellLayout.Stretch;
-            DgvProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvProducto.DataSource];
             currencyManager1.SuspendBinding();
             foreach (DataGridViewRow fila in DgvProducto.Rows)
             {
-                foreach (var fila1 in lista4)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnId"].Value) == fila1.id_pedido)
-                    {
-                        fila.Visible = false;
-                        currencyManager1.ResumeBinding();
-                        break;
-                    }
-                }
-                string urlss = fila.Cells["cnImagen"].Value.ToString();
-                WebClient wc = new WebClient();
-                byte[] bytes = wc.DownloadData(urlss);
-                MemoryStream ms = new MemoryStream(bytes);
-                Image img = Image.FromStream(ms);
-                DgvProducto.Rows[fila.Index].Cells["cnImagen1"].Value = img;
                 foreach (var fila1 in lista2)
                 {
-                    fila.Cells["cnCalidad"].Value = fila1.descripcion_calidad;
+                    fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
                     break;
                 }
                 foreach (var fila1 in lista3)
                 {
-                    fila.Cells["cnProveedor"].Value = fila1.nombre_usuario;
-                    break;
+                    if (Convert.ToInt32(fila.Cells["cnId"].Value) == fila1.id_venta) {
+                        fila.Visible = false;
+                        currencyManager1.ResumeBinding();
+                        break;
+                    }
+                    
                 }
             }
         }
         private void btnSelProd_Click(object sender, EventArgs e)
         {
-            txtNomProd.Text = DgvProducto.CurrentRow.Cells[2].Value.ToString();
-            txtCantidad.Text = DgvProducto.CurrentRow.Cells[3].Value.ToString();
-            txtPrecio.Text = DgvProducto.CurrentRow.Cells[4].Value.ToString();
-            txtSaldoProd.Text = DgvProducto.CurrentRow.Cells[7].Value.ToString();
-            txtCalidad.Text = DgvProducto.CurrentRow.Cells[8].Value.ToString();
-            txtProveedor.Text = DgvProducto.CurrentRow.Cells[9].Value.ToString();
+            txtDescrip.Text = DgvProducto.CurrentRow.Cells[2].Value.ToString();
+            txtFecha.Text = DgvProducto.CurrentRow.Cells[3].Value.ToString();
+            txtCliente.Text = DgvProducto.CurrentRow.Cells[9].Value.ToString();
         }
         private async void btnPublicar_Click(object sender, EventArgs e)
         {
             string respuesta = await Get.GetHttp();
-            List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
+            List<Pedido> lista = JsonConvert.DeserializeObject<List<Pedido>>(respuesta);
             foreach (var list in lista)
             {
-                if (list.nombre_producto == txtNomProd.Text)
+                if (list.descripcion_pedido == txtDescrip.Text)
                 {
-                    int id = list.id_producto;
+                    int id = list.id_pedido;
                     var client = new HttpClient();
-                    Pedido post2 = new Pedido()
+                    Venta post2 = new Venta()
                     {
-                        id_pedido = id,
-                        fecha_pedido = DateTime.Now.ToString("yyyy-MM-dd"),
-                        id_venta = "",
-                        id_producto = id,
+                        id_venta = id,
+                        descripcion_venta = txtDescrip.Text,
+                        estado_venta = "licitacion",
+                        monto_bruto_venta = 0,
+                        iva = "0",
+                        monto_neto_venta = 0,
+                        fecha_venta = txtFecha.Text,
+                        tipo_venta = "1",
+                        id_usuario = list.id_usuario
                     };
-                    var data = JsonSerializer.Serialize<Pedido>(post2);
+                    var data = JsonSerializer.Serialize<Venta>(post2);
                     HttpContent content =
                         new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    var httpResponse = await client.PostAsync(url5, content);
-                    if (MessageBox.Show("Desea Publicar el Producto " + txtNomProd.Text, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    var httpResponse = await client.PostAsync(url, content);
+                    if (MessageBox.Show("Desea Publicar el Producto " + txtDescrip.Text, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         if (httpResponse.IsSuccessStatusCode)
                         {
                             var result = await httpResponse.Content.ReadAsStringAsync();
-                            var postResult = JsonSerializer.Deserialize<Pedido>(result);
+                            var postResult = JsonSerializer.Deserialize<Venta>(result);
                             this.Hide();
                         }
                     }
                     else
                     {
-                        txtNomProd.Text = "";
-                        txtCantidad.Text = "";
-                        txtCalidad.Text = "";
-                        txtPrecio.Text = "";
-                        txtProveedor.Text = "";
-                        txtSaldoProd.Text = "";
+                        txtDescrip.Text = "";
+                        txtFecha.Text = "";
+                        txtCliente.Text = "";
                     }
                 }
             }

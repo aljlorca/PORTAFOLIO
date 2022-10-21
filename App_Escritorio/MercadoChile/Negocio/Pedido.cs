@@ -9,8 +9,8 @@ namespace Negocio
     public class Pedido
     {
         public int id_pedido { get; set; }
-        public string fecha_pedido { get; set; }
-        public string id_venta { get; set; }
-        public int id_producto { get; set; }
+        public string descripcion_pedido { get; set; }
+        public string fecha_sla_pedido { get; set; }
+        public int id_usuario { get; set; }
     }
 }

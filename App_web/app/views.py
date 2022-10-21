@@ -140,7 +140,7 @@ def checkout(request):
     return render(request, 'app/checkout.html')
 
 @csrf_exempt
-def postulacion(request):
+def ingreso_productos(request):
     data = get_session(request)
     try:
         if data['cargo']!='Transportista':
@@ -153,9 +153,9 @@ def postulacion(request):
             id_venta = ''
             id_usuario = request.session['id_user']
             subasta_controller(monto,id_venta,id_usuario)
-            return render(request, 'app/postulacion.html')
+            return render(request, 'app/Ingreso_postulacion.html')
 
-    return render(request, 'app/postulacion.html',data)
+    return render(request, 'app/Ingreso_postulacion.html',data)
 
 def logout(request):
     mensaje = logout_controller(request)
@@ -191,3 +191,6 @@ def transportista(request):
         pass
     data = {}
     return render(request, 'app/transportistas.html',data)
+
+def postulaciones(request):
+    return render(request, 'app/Postulaciones.html')
