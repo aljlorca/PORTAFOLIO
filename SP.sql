@@ -434,7 +434,8 @@ create sequence sec_pedido
 
 create or replace PROCEDURE PEDIDO_ELIMINAR (v_id_pedido integer, v_salida out number) is
 begin 
-    DELETE pedido
+    UPDATE pedido
+    set estado_fila = '0'
     WHERE v_id_pedido = id_pedido;
     commit;
     v_salida:=1;
@@ -444,20 +445,21 @@ begin
 end PEDIDO_ELIMINAR;
 
 
-create or replace PROCEDURE PEDIDO_AGREGAR 
+create or replace PROCEDURE PEDIDO_AGREGAR
 (
     v_descripcion_pedido varchar2,
-    v_documento_pedido varchar2,
+    v_fecha_sla_pedido varchar2,
     v_id_usuario integer,
+    v_estado_fila char,
     v_salida OUT NUMBER
 
 ) is
 begin 
-  insert into pedido(id_pedido,descripcion_pedido,documento_pedido,id_usuario) 
-  values(sec_pedido.nextval,v_descripcion_pedido,v_documento_pedido,v_id_usuario);
+  insert into pedido(id_pedido,descripcion_pedido,fecha_sla_pedido,id_usuario,estado_fila) 
+  values(sec_pedido.nextval,v_descripcion_pedido,v_fecha_sla_pedido,v_id_usuario,v_estado_fila);
   commit;
   v_salida:=1; 
-  
+
   exception when others then v_salida:=0;
 
 end PEDIDO_AGREGAR;
@@ -466,7 +468,7 @@ end PEDIDO_AGREGAR;
 create or replace PROCEDURE PEDIDO_MODIFICAR (
     v_id_pedido integer,
     v_descripcion_pedido varchar2,
-    v_documento_pedido varchar2,
+    v_fecha_sla_pedido varchar2,
     v_id_usuario integer,
     v_salida OUT NUMBER
 
@@ -474,15 +476,16 @@ create or replace PROCEDURE PEDIDO_MODIFICAR (
 begin 
     UPDATE pedido
     SET descripcion_pedido = v_descripcion_pedido,
-    documento_pedido = v_documento_pedido,
+    fecha_sla_pedido = v_fecha_sla_pedido,
     id_usuario = v_id_usuario
     WHERE id_pedido = v_id_pedido;
     commit;
     v_salida:=1;
-  
+
   exception when others then v_salida:=0;
 
 
+end PEDIDO_MODIFICAR;
 end PEDIDO_MODIFICAR;
 
  
@@ -821,8 +824,9 @@ begin
 
 end VENTA_ELIMINAR;
 
-create or replace PROCEDURE VENTA_AGREGAR 
+create or replace PROCEDURE                   "VENTA_AGREGAR" 
 (
+    v_id_venta integer,
     v_descripcion varchar2,
     v_estado_venta varchar2,
     v_monto_bruto integer,
@@ -842,10 +846,10 @@ create or replace PROCEDURE VENTA_AGREGAR
 ) is
 begin 
   insert into venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,estado_fila,tipo_venta,id_usuario,CANTIDAD_VENTA,MONTO_TRANSPORTE,MONTO_ADUANAS,PAGO_SERVICIO,COMISION_VENTA) 
-  values(sec_venta.nextval,v_descripcion,v_estado_venta,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_estado_fila,v_tipo_venta,v_id_usuario,v_cantidad_venta,v_monto_transporte,v_monto_aduanas,v_pago_servicio,v_comision_venta);
+  values(v_id_venta,v_descripcion,v_estado_venta,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_estado_fila,v_tipo_venta,v_id_usuario,v_cantidad_venta,v_monto_transporte,v_monto_aduanas,v_pago_servicio,v_comision_venta);
   commit;
   v_salida:=1; 
-  
+
   exception when others then v_salida:=0;
 
 end VENTA_AGREGAR;
