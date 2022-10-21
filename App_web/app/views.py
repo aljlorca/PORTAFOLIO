@@ -52,13 +52,13 @@ def login(request):
             if salida['message'] == 'ERROR: usuario No Encontrado':
                 data = {"error":'Falló al iniciar sesion Usuario o contraseña incorrectos'}
                 return render(request, 'app/login.html',data)
-
+    
     except:
         data = {"error":'error de conexion'}
         return render(request, 'app/login.html',data)
+    return render(request, 'app/login.html')
 
 @csrf_exempt
-
 def productores(request):
     data = get_session(request)
     if data['cargo']!='Proveedor':
@@ -95,12 +95,35 @@ def cliente_interno(request):
     data = get_session(request)
     if data['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
-    return render(request, 'app/clienteinterno.html')
+    return render(request, 'app/Cliente_Interno/menu.html')
+
+def cliente_ecomerce(request):
+    data = get_session(request)
+    if data['cargo']!='Cliente Interno':
+        return redirect(to="http://127.0.0.1:3000/")
+    data = {
+        'producto':productos_get(),
+    }
+
+    return render(request, 'app/Cliente_Interno/listado_productos.html',data)
+
+def detalle_producto(request, id_producto):
+
+    data = {
+        'producto':producto_get_id(id_producto)
+    }
+    return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 
 def cliente_externo(request):
-    data = get_session(request)
-    if data['cargo']!='Cliente Externo':
-        return redirect(to="http://127.0.0.1:3000/")
+    try:
+        cargo=request.session['cargo']
+        if cargo!='Cliente Externo':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        pass
+    
+
     return render(request, 'app/clienteexterno.html')
 
 def checkout(request):
@@ -149,7 +172,12 @@ def pedido(request):
 
 
 def transportista(request):
-    data = get_session(request)
-    if data['cargo']!='Transportista':
-        return redirect(to="http://127.0.0.1:3000/")
+    try:
+        cargo=request.session['cargo']
+        if cargo!='Proveedor' and 'Cliente Interno' and 'Cliente Externo':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        pass
+    data = {}
     return render(request, 'app/transportistas.html',data)

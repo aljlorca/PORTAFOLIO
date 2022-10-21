@@ -58,11 +58,28 @@ def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto
 
 def productos_get():
     url='http://127.0.0.1:8010/api/producto/'
-    r = requests.get(url)
+    try: 
+     r = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
     if r.status_code == 200:
         content = json.loads(r.content)
         return content
 
+def producto_get_id(id):
+    url='http://127.0.0.1:8010/api/producto/'+id
+    try: 
+     response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
+        data = 'ERROR: Producto no encontrado'
+        return data
 
 #SUBASTA CONTROLLERS
 def subasta_controller(monto,id_venta,id_usuario):
@@ -74,7 +91,11 @@ def subasta_controller(monto,id_venta,id_usuario):
 #PEDIDO CONTROLLERS
 def pedido_get():
     url = 'http://127.0.0.1:8008/api/pedido/'
-    r = requests.get(url)
+    try: 
+     r = requests.get(url)
+    except:
+        data = {'message':'error de conexion'}
+        return data
     if r.status_code == 200:
         content = json.loads(r.content)
         return content
