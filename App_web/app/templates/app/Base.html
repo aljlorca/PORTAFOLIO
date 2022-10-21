@@ -75,6 +75,7 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About Us</a>
+                    <a href="{% url 'postulaciones' %}" class="nav-item nav-link">Postulaciones</a>
                     {%if cargo == 'Proveedor' and 'Cliente Interno' and 'Cliente Externo'%}
                     <a href="http://127.0.0.1:3000/productos/" class="nav-item nav-link">Productos</a>
                     {% endif %}
@@ -117,7 +118,7 @@
     </div>
     <!-- Navbar End -->
 
-    <div id="contenido" class="container">
+    <div id="contenido" class="">
         
         {% block contenido %}
         {% endblock %}

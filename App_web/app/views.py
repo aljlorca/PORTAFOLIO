@@ -98,19 +98,29 @@ def cliente_interno(request):
     return render(request, 'app/Cliente_Interno/menu.html')
 
 def cliente_ecomerce(request):
-    data = get_session(request)
-    if data['cargo']!='Cliente Interno':
+    session = get_session(request)
+    if session['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
     data = {
         'producto':productos_get(),
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'id_user': session['id_user'],
+        'empresa':session['empresa'],
     }
 
     return render(request, 'app/Cliente_Interno/listado_productos.html',data)
 
 def detalle_producto(request, id_producto):
-
+    session = get_session(request)
     data = {
-        'producto':producto_get_id(id_producto)
+        'producto':producto_get_id(id_producto),
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'id_user': session['id_user'],
+        'empresa':session['empresa'],
     }
     return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 
@@ -130,7 +140,7 @@ def checkout(request):
     return render(request, 'app/checkout.html')
 
 @csrf_exempt
-def postulacion(request):
+def ingreso_productos(request):
     data = get_session(request)
     try:
         if data['cargo']!='Transportista':
@@ -143,9 +153,9 @@ def postulacion(request):
             id_venta = ''
             id_usuario = request.session['id_user']
             subasta_controller(monto,id_venta,id_usuario)
-            return render(request, 'app/postulacion.html')
+            return render(request, 'app/Ingreso_postulacion.html')
 
-    return render(request, 'app/postulacion.html',data)
+    return render(request, 'app/Ingreso_postulacion.html',data)
 
 def logout(request):
     mensaje = logout_controller(request)
@@ -181,3 +191,6 @@ def transportista(request):
         pass
     data = {}
     return render(request, 'app/transportistas.html',data)
+
+def postulaciones(request):
+    return render(request, 'app/Postulaciones.html')
