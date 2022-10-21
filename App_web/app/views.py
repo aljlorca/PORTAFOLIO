@@ -15,7 +15,7 @@ def home(request):
 def contacto(request):
     return render(request, 'app/contacto.html')
 
-def transportista(request):
+def carrito(request):
     data = get_session(request)
     try:
         if data['cargo']!='Transportista':
@@ -137,7 +137,20 @@ def cliente_externo(request):
     return render(request, 'app/clienteexterno.html')
 
 def checkout(request):
-    return render(request, 'app/checkout.html')
+    session = get_session(request)
+    user =  usuario_get_id(str(session['id_user']))
+    data = {
+        'user':user,
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'empresa':session['empresa'],
+        'country':get_pais_id(str(user['id_pais'])),
+        'ciudad' :get_ciudad_id(str(user['id_ciudad'])),
+        'region' :get_region_id(str(user['id_region'])),
+    }    
+    return render(request, 'app/checkout.html',data)
+
 
 @csrf_exempt
 def ingreso_productos(request):
