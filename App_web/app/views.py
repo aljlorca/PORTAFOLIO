@@ -131,3 +131,28 @@ def logout(request):
     return redirect(to="http://127.0.0.1:3000/")
 
 
+
+
+def pedido(request):
+    
+    try:
+        cargo=request.session['cargo']
+        if cargo!='Proveedor' and 'Cliente Interno' and 'Cliente Externo':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        pass
+
+    data = {
+        'pedidos':pedido_get(),
+        'producto':productos_get(),
+    }
+
+    return render(request, 'app/productos.html',data)
+
+
+def transportista(request):
+    data = get_session(request)
+    if data['cargo']!='Transportista':
+        return redirect(to="http://127.0.0.1:3000/")
+    return render(request, 'app/transportistas.html',data)

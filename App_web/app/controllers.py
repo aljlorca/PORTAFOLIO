@@ -63,3 +63,20 @@ def get_session(request):
         data={'cargo':'Visita'}
         
     return data
+
+
+
+
+def pedido_get():
+    url = 'http://127.0.0.1:8008/api/pedido/'
+    r = requests.get(url)
+    if r.status_code == 200:
+        content = json.loads(r.content)
+        return content
+    
+def productos_get():
+    url='http://127.0.0.1:8010/api/producto/'
+    r = requests.get(url)
+    if r.status_code == 200:
+        content = json.loads(r.content)
+        return content

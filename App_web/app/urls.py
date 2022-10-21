@@ -12,4 +12,5 @@ urlpatterns = [
     path("checkout/", checkout, name="checkout.html"),
     path("postulacion/", postulacion, name="postulacion"),
     path("logout/", logout, name="logout"),
+    path('pedido/', pedido , name="pedido"),
 ]
