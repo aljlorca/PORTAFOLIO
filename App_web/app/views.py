@@ -8,8 +8,6 @@ from django.contrib.sessions import *
 import datetime
 # Create your views here.
 
-
-
 def home(request):
     data = get_session(request)
     return render(request, 'app/home.html',data)
@@ -52,11 +50,12 @@ def login(request):
                 elif respt[1]=='Admninistrador':
                     return redirect(to="http://127.0.0.1:3000/logout/")
         else:
+            data = {"error":'Falló al iniciar sesion Usuario o contraseña incorrectos'}
             return render(request, 'app/login.html')
 
     except:
-        return render(request, 'app/login.html',{
-                "error":'Falló al iniciar sesion Usuario o contraseña incorrectos, o Ingrese algun dato valido'})
+        data = {"error":'error de conexion'}
+        return render(request, 'app/login.html',data)
 
 @csrf_exempt
 
@@ -129,8 +128,6 @@ def logout(request):
     mensaje = logout_controller(request)
     data = {'message':mensaje}
     return redirect(to="http://127.0.0.1:3000/")
-
-
 
 
 def pedido(request):
