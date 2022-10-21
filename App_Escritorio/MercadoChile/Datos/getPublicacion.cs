@@ -10,10 +10,9 @@ namespace Datos
 {
     public class getPublicacion
     {
-        private string url = "http://127.0.0.1:8010/api/producto/?format=json";
-        private string url2 = "http://127.0.0.1:8000/api/calidad/";
-        private string url3 = "http://127.0.0.1:8016/api/usuario/";
-        private string url4 = "http://127.0.0.1:8008/api/pedido/";
+        private string url = "http://127.0.0.1:8008/api/pedido/?format=json";
+        private string url2 = "http://127.0.0.1:8016/api/usuario/";
+        private string url3 = "http://127.0.0.1:8017/api/venta/";
         public async Task<string> GetHttp()
         {
             WebRequest oRequest = WebRequest.Create(url);
@@ -35,12 +34,6 @@ namespace Datos
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
             return await sr.ReadToEndAsync();
         }
-        public async Task<string> GetHttp4()
-        {
-            WebRequest oRequest = WebRequest.Create(url4);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
+        
     }
 }
