@@ -77,8 +77,8 @@
                     {%if cargo == 'Proveedor'%}
                     <a href="{% url 'postulaciones' %}" class="nav-item nav-link">Postulaciones</a>
                     {% endif %}
-                    {%if cargo == 'Proveedor' and 'Cliente Interno' and 'Cliente Externo'%}
-                    <a href="http://127.0.0.1:3000/productos/" class="nav-item nav-link">Productos</a>
+                    {%if cargo == 'Proveedor'%}
+                    <a href="{% url 'productores' %}" class="nav-item nav-link">Productos</a>
                     {% endif %}
                     {%if cargo == 'Cliente Interno'%}
                     <a href="{% url 'cliente_interno' %}" class="nav-item nav-link">Portal</a>
