@@ -193,4 +193,14 @@ def transportista(request):
     return render(request, 'app/transportistas.html',data)
 
 def postulaciones(request):
-    return render(request, 'app/Postulaciones.html')
+    session = get_session(request)
+    data = {
+        'ventas':ventas_get(),
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'id_user': session['id_user'],
+        'empresa':session['empresa'],
+    }
+    
+    return render(request, 'app/Postulaciones.html',data)
