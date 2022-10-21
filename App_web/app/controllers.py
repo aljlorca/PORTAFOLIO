@@ -12,14 +12,8 @@ def login_controller(correo,contrasena):
 
     if response.status_code == 200:
         content = json.loads(response.content)
-        if content['message'] == 'Success':
-            return content
-        else:
-            data ='ERROR:usuario no encontrado'
-            return data
-    if response.status_code == 404:
-        data = 'ERRROR: usuario no encontrado'
-        return data
+        return content
+
 
 def logout_controller(request):
     try:

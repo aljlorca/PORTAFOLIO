@@ -49,9 +49,9 @@ def login(request):
                     return redirect(to="http://127.0.0.1:3000/cliente_externo/")
                 elif respt[1]=='Admninistrador':
                     return redirect(to="http://127.0.0.1:3000/logout/")
-        else:
-            data = {"error":'Falló al iniciar sesion Usuario o contraseña incorrectos'}
-            return render(request, 'app/login.html')
+            if salida['message'] == 'ERROR: usuario No Encontrado':
+                data = {"error":'Falló al iniciar sesion Usuario o contraseña incorrectos'}
+                return render(request, 'app/login.html',data)
 
     except:
         data = {"error":'error de conexion'}
