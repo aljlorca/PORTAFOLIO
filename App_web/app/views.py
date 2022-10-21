@@ -95,7 +95,7 @@ def cliente_interno(request):
     data = get_session(request)
     if data['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
-    return render(request, 'app/Cliente_Interno/menu.html')
+    return render(request, 'app/Cliente_Interno/menu.html',data)
 
 def cliente_ecomerce(request):
     session = get_session(request)
