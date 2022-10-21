@@ -8,9 +8,14 @@ urlpatterns = [
     path('carrito/', transportista, name="carrito"),
     path("productores/", productores, name="productores"),
     path("cliente_interno/", cliente_interno, name="clienteinterno.html"),
+    path('mercado/', cliente_ecomerce , name="mercado"),
+    path('detalle_producto/<id_producto>/', detalle_producto , name="detalle_producto"),
     path("cliente_externo/", cliente_externo, name="clienteexterno.html"),
     path("checkout/", checkout, name="checkout.html"),
     path("ingreso_productos/", ingreso_productos, name="ingreso_productos"),
     path("logout/", logout, name="logout"),
+    path('pedido/', pedido , name="pedido"),
     path("postulaciones/", postulaciones, name="postulaciones"),
+
+
 ]

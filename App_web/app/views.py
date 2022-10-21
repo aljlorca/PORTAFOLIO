@@ -8,8 +8,6 @@ from django.contrib.sessions import *
 import datetime
 # Create your views here.
 
-
-
 def home(request):
     data = get_session(request)
     return render(request, 'app/home.html',data)
@@ -51,15 +49,16 @@ def login(request):
                     return redirect(to="http://127.0.0.1:3000/cliente_externo/")
                 elif respt[1]=='Admninistrador':
                     return redirect(to="http://127.0.0.1:3000/logout/")
-        else:
-            return render(request, 'app/login.html')
-
+            if salida['message'] == 'ERROR: usuario No Encontrado':
+                data = {"error":'Falló al iniciar sesion Usuario o contraseña incorrectos'}
+                return render(request, 'app/login.html',data)
+    
     except:
-        return render(request, 'app/login.html',{
-                "error":'Falló al iniciar sesion Usuario o contraseña incorrectos, o Ingrese algun dato valido'})
+        data = {"error":'error de conexion'}
+        return render(request, 'app/login.html',data)
+    return render(request, 'app/login.html')
 
 @csrf_exempt
-
 def productores(request):
     data = get_session(request)
     if data['cargo']!='Proveedor':
@@ -96,12 +95,45 @@ def cliente_interno(request):
     data = get_session(request)
     if data['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
-    return render(request, 'app/clienteinterno.html')
+    return render(request, 'app/Cliente_Interno/menu.html')
+
+def cliente_ecomerce(request):
+    session = get_session(request)
+    if session['cargo']!='Cliente Interno':
+        return redirect(to="http://127.0.0.1:3000/")
+    data = {
+        'producto':productos_get(),
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'id_user': session['id_user'],
+        'empresa':session['empresa'],
+    }
+
+    return render(request, 'app/Cliente_Interno/listado_productos.html',data)
+
+def detalle_producto(request, id_producto):
+    session = get_session(request)
+    data = {
+        'producto':producto_get_id(id_producto),
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'id_user': session['id_user'],
+        'empresa':session['empresa'],
+    }
+    return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 
 def cliente_externo(request):
-    data = get_session(request)
-    if data['cargo']!='Cliente Externo':
-        return redirect(to="http://127.0.0.1:3000/")
+    try:
+        cargo=request.session['cargo']
+        if cargo!='Cliente Externo':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        pass
+    
+
     return render(request, 'app/clienteexterno.html')
 
 def checkout(request):
@@ -129,6 +161,36 @@ def logout(request):
     mensaje = logout_controller(request)
     data = {'message':mensaje}
     return redirect(to="http://127.0.0.1:3000/")
+
+
+def pedido(request):
+    
+    try:
+        cargo=request.session['cargo']
+        if cargo!='Proveedor' and 'Cliente Interno' and 'Cliente Externo':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        pass
+
+    data = {
+        'pedidos':pedido_get(),
+        'producto':productos_get(),
+    }
+
+    return render(request, 'app/productos.html',data)
+
+
+def transportista(request):
+    try:
+        cargo=request.session['cargo']
+        if cargo!='Proveedor' and 'Cliente Interno' and 'Cliente Externo':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        pass
+    data = {}
+    return render(request, 'app/transportistas.html',data)
 
 def postulaciones(request):
     return render(request, 'app/Postulaciones.html')
