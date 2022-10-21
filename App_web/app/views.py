@@ -98,19 +98,29 @@ def cliente_interno(request):
     return render(request, 'app/Cliente_Interno/menu.html')
 
 def cliente_ecomerce(request):
-    data = get_session(request)
-    if data['cargo']!='Cliente Interno':
+    session = get_session(request)
+    if session['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
     data = {
         'producto':productos_get(),
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'id_user': session['id_user'],
+        'empresa':session['empresa'],
     }
 
     return render(request, 'app/Cliente_Interno/listado_productos.html',data)
 
 def detalle_producto(request, id_producto):
-
+    session = get_session(request)
     data = {
-        'producto':producto_get_id(id_producto)
+        'producto':producto_get_id(id_producto),
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'id_user': session['id_user'],
+        'empresa':session['empresa'],
     }
     return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 

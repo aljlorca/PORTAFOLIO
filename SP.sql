@@ -824,8 +824,9 @@ begin
 
 end VENTA_ELIMINAR;
 
-create or replace PROCEDURE VENTA_AGREGAR 
+create or replace PROCEDURE                   "VENTA_AGREGAR" 
 (
+    v_id_venta integer,
     v_descripcion varchar2,
     v_estado_venta varchar2,
     v_monto_bruto integer,
@@ -845,10 +846,10 @@ create or replace PROCEDURE VENTA_AGREGAR
 ) is
 begin 
   insert into venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,estado_fila,tipo_venta,id_usuario,CANTIDAD_VENTA,MONTO_TRANSPORTE,MONTO_ADUANAS,PAGO_SERVICIO,COMISION_VENTA) 
-  values(sec_venta.nextval,v_descripcion,v_estado_venta,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_estado_fila,v_tipo_venta,v_id_usuario,v_cantidad_venta,v_monto_transporte,v_monto_aduanas,v_pago_servicio,v_comision_venta);
+  values(v_id_venta,v_descripcion,v_estado_venta,v_monto_bruto,v_iva,v_monto_neto,v_fecha,v_estado_fila,v_tipo_venta,v_id_usuario,v_cantidad_venta,v_monto_transporte,v_monto_aduanas,v_pago_servicio,v_comision_venta);
   commit;
   v_salida:=1; 
-  
+
   exception when others then v_salida:=0;
 
 end VENTA_AGREGAR;
