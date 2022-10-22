@@ -170,7 +170,7 @@ create sequence sec_producto
   minvalue 1;
 
 
-create or replace PROCEDURE PRODUCTO_ELIMINAR (v_id_producto Integer) is
+create or replace PROCEDURE PRODUCTO_ELIMINAR (v_id_producto varchar2) is
 begin 
     UPDATE PRODUCTO
     SET estado_fila = '0'
@@ -203,7 +203,7 @@ end PRODUCTO_AGREGAR;
 
 
  create or replace PROCEDURE PRODUCTO_MODIFICAR (
-    v_id_producto integer,
+    v_id_producto varchar2,
     v_nombre_producto varchar2, 
     v_cantidad_producto integer,
     v_precio_producto integer,
@@ -375,7 +375,7 @@ create or replace PROCEDURE CARRITO_AGREGAR
 (
     v_fecha_carrito date,
     v_monto_carrito integer,
-    v_id_producto integer,
+    v_id_producto varchar2,
     v_estado_fila char,
     v_salida OUT NUMBER
 
@@ -395,7 +395,7 @@ create or replace PROCEDURE CARRITO_MODIFICAR (
     v_id_carrito integer,
     v_fecha_carrito date,
     v_monto_carrito integer,
-    v_id_producto integer,
+    v_id_producto varchar2,
     v_salida OUT NUMBER
 
 ) is
@@ -524,7 +524,7 @@ create or replace PROCEDURE POSTULACION_AGREGAR
     v_estado_postulacion varchar2,
     v_id_venta integer,
     v_id_usuario integer,
-    v_id_producto integer,
+    v_id_producto varchar2,
     v_estado_fila char,
     v_salida OUT NUMBER
 
@@ -547,7 +547,7 @@ create or replace PROCEDURE POSTULACION_MODIFICAR
     v_estado_postulacion varchar2,
     v_id_venta integer,
     v_id_usuario integer,
-    v_id_producto integer,
+    v_id_producto varchar2,
     v_salida OUT NUMBER
 
 ) is
