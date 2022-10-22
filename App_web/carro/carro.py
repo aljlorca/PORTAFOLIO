@@ -15,12 +15,13 @@ class Carro:
                 "nombre_producto":Producto['nombre_producto'],
                 "precio_producto":str(Producto['precio_producto']),
                 "cantidad":str(Producto['cantidad_producto']),
+                "contador":1
             }
         else:
             for key, value in self.carro.items():
                 if key==str(Producto['id_producto']):
-                    value["cantidad"]=value["cantidad"]+1
-                    value["precio_producto"]=int(value["precio_producto"])+Producto['precio_producto']
+                    value["cantidad"]=value["contador"]
+                    value["precio_producto"]=Producto['precio_producto']
                     break
         self.guardar_carro()
 
@@ -31,12 +32,13 @@ class Carro:
                 "nombre_producto":Producto['nombre_producto'],
                 "precio_producto":str(Producto['precio_producto']),
                 "cantidad":str(Producto['cantidad_producto']),
+                "contador":1
             }
         else:
             for key, value in self.carro.items():
                 if key==str(Producto['id_producto']):
-                    value["cantidad"]=value["cantidad"]+1
-                    value["precio_producto"]=int(value["precio_producto"])+Producto['precio_producto']
+                    value["cantidad"]=value["cantidad"]
+                    value["precio_producto"]=Producto['precio_producto']
                     break
         self.guardar_carro()
 
@@ -53,7 +55,7 @@ class Carro:
         for key, value in self.carro.items():
                 if key==str(Producto['id_producto']):
                     value["cantidad"]=value["cantidad"]-1
-                    value["precio_producto"]=int(value["precio_producto"])-Producto['precio_producto']
+                    value["precio_producto"]=Producto['precio_producto']
                     if value["cantidad"]<1:
                         self.eliminar(Producto)
                     break

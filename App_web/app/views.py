@@ -117,6 +117,8 @@ def cliente_ecomerce(request):
 
 def detalle_producto(request, id_producto):
     session = get_session(request)
+    if session['cargo']!='Cliente Interno':
+        return redirect(to="http://127.0.0.1:3000/")
     data = {
         'producto':producto_get_id(id_producto),
         'cargo': session['cargo'],
