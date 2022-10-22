@@ -42,9 +42,7 @@
                                     <span class="text-primary me-1">Fecha limite:{{v.fecha_venta}}</span>
                                 </div>
                                 <div class="text-center p-4">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Ver detalles Postulacion
-                                    </button>
+                                    <a type="button" class="btn btn-primary" href="{% url 'ingreso_postulacion' %}">ingresar postulacion</a>
                                 </div>
                             </div>
                         </div>
@@ -58,38 +56,6 @@
         </div>
     </div>
 </div>
-
-
-  
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Formulario de Postulacion</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            {% for v in ventas %}
-            <form method="post">
-                <div class="col-12">
-                    <p type="hidden" name="id_venta" value="{{venta.id_venta}}"></p>
-                    <p>{{v.descripcion_venta}}</p>
-                </div>
-                <div class="col-12">
-                    <input type="text" class="form-control" name="descripcion-postulacion" placeholder="Descripcion Postulacion">
-                    <label for="descripcion-postulacion"></label>
-                </div>
-            </form>
-            {% endfor %}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" type="submit">postular</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
 {% endblock %}
 

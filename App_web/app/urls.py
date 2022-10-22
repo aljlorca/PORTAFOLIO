@@ -16,6 +16,7 @@ urlpatterns = [
     path("logout/", logout, name="logout"),
     path('pedido/', pedido , name="pedido"),
     path("postulaciones/", postulaciones, name="postulaciones"),
-
+    path("ingreso_postulacion/", ingreso_postulacion, name="ingreso_postulacion"),
+    path("detalle_venta/<str:id_producto>/", detalle_venta, name="detalle_venta"),
 
 ]

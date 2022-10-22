@@ -77,7 +77,7 @@ def productores(request):
             precio_producto = request.POST.get('precio-producto')
             imagen_producto =  request.FILES['imagen-producto']
             id_calidad = request.POST.get('calidad-producto')
-            saldo_producto = '0'
+            saldo_producto = '1'
             estado_fila= '1'
             id_usuario = request.session['id_user']
             try: 
@@ -228,14 +228,52 @@ def postulaciones(request):
         'id_user': session['id_user'],
         'empresa':session['empresa'],
     }
-    if request.method == 'POST':
-            descripcion_postulacion = request.POST.get('descripcion-postulacion')
-            estado_postulacion = 'Pendiente'
-            id_venta = request.POST.get('id_venta')
-            id_usuario = request.session['id_user']
-            id_producto = 1
-            Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto)
-            print(Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto))
-            return render(request, 'app/Postulaciones.html')
-    
     return render(request, 'app/Postulaciones.html',data)
+
+@csrf_exempt
+def ingreso_postulacion(request):
+    data = get_session(request)
+    if request.method == 'POST':
+            company=request.session['company']
+            company=company.replace(' ','_')
+            fecha = datetime.datetime.now()
+            fecha=fecha.strftime("%d%m%y%H%M%S")
+            id_producto  = company+str(randrange(1,10000))+fecha
+            descripcion_postulacion = request.POST.get('descripcion-postulacion')
+            estado_postulacion = 'licitacion'
+            id_venta = request.session["id_venta"]
+            id_usuario = request.session['id_user']
+            nombre_producto = request.POST.get('nombre-producto')
+            cantidad_producto = request.POST.get('cantidad-producto')
+            precio_producto = request.POST.get('precio-producto')
+            imagen_producto =  request.FILES['imagen-producto']
+            id_calidad = request.POST.get('calidad-producto')
+            saldo_producto = '0'
+            estado_fila= '1'
+            try: 
+                producto=Producto.objects.get(id_producto=id_producto,imagen_producto=imagen_producto)
+            except Producto.DoesNotExist:
+                producto = Producto(id_producto=id_producto,imagen_producto=imagen_producto)
+                producto.save()
+
+            buscar = str(producto)
+            ruta_proyecto = os.getcwd()+'/media/'
+            ruta = ruta_proyecto+buscar
+            crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
+            Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto)
+    return render(request, 'app/Ingreso_postulacion.html',data)
+
+def detalle_venta(request,id_venta):
+    session = get_session(request)
+    if session['cargo']!='Proveedor':
+        return redirect(to="http://127.0.0.1:3000/")
+    data = {
+        'ventas':Ventas_get_id(id_venta),
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'id_user': session['id_user'],
+        'empresa':session['empresa'],
+    }
+    id_venta=request.session["id_venta"]
+    return render(request, 'app/Cliente_Interno/ver_producto.html', data)

@@ -100,13 +100,7 @@ def pedido_get():
         content = json.loads(r.content)
         return content
 
-#Postulacion Controllers       
-def ventas_get():
-    url='http://127.0.0.1:8017/api/venta/'
-    r = requests.get(url)
-    if r.status_code == 200:
-        content = json.loads(r.content)
-        return content
+
     
 #USUARIO CONTROLLERS
 def usuario_get_id(id):
@@ -169,8 +163,30 @@ def get_region_id(id):
 
 #Postulacion POST CONTROLLER
 def Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto):
-    url = 'http://127.0.0.1:8009/api/postulacion/'
+    url = 'http://127.0.0.1:8009/api/postulacion_old/'
     body = {"descripcion_postulacion": descripcion_postulacion,"estado_postulacion":estado_postulacion,"id_venta":id_venta,"id_usuario":id_usuario,"id_producto":id_producto}
     response = requests.post(url,json=body)
     return response
-   
+
+#Venta Controllers       
+def ventas_get():
+    url='http://127.0.0.1:8017/api/venta/'
+    r = requests.get(url)
+    if r.status_code == 200:
+        content = json.loads(r.content)
+        return content
+ 
+#Ventas ID Controller
+def Ventas_get_id(id):
+    url = 'http://127.0.0.1:8017/api/venta/'+str(id)
+    try: 
+     response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
+        data = 'ERROR: Usuario no encontrado'
+        return data
