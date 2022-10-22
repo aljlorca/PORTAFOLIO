@@ -101,8 +101,8 @@ def pedido_get():
         return content
 
 #Postulacion Controllers       
-def postilacion_get():
-    url='http://127.0.0.1:8009/api/postulacion/'
+def ventas_get():
+    url='http://127.0.0.1:8017/api/venta/'
     r = requests.get(url)
     if r.status_code == 200:
         content = json.loads(r.content)
