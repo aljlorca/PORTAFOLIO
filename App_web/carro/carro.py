@@ -9,36 +9,36 @@ class Carro:
         self.carro=carro
 
     def agregar(self, Producto):
-        if(str(Producto.id) not in self.carro.keys()):
-            self.carro[Producto.id]={
-                "producto_id":Producto.id,
-                "nombre":Producto.nombre,
-                "precio":str(Producto.precio),
-                "cantidad":1,
-                "imagen":Producto.imagen.url
+        if(str(Producto['id_producto']) not in self.carro.keys()):
+            self.carro[Producto['id_producto']]={
+                "id_producto":Producto['id_producto'],
+                "nombre_producto":Producto['nombre_producto'],
+                "precio_producto":str(Producto['precio_producto']),
+                "cantidad":str(Producto['cantidad_producto']),
+                "contador":1
             }
         else:
             for key, value in self.carro.items():
-                if key==str(Producto.id):
-                    value["cantidad"]=value["cantidad"]+1
-                    value["precio"]=int(value["precio"])+Producto.precio
+                if key==str(Producto['id_producto']):
+                    value["cantidad"]=value["contador"]
+                    value["precio_producto"]=Producto['precio_producto']
                     break
         self.guardar_carro()
 
     def agregar_home(self, Producto):
-        if(str(Producto.id) not in self.carro.keys()):
-            self.carro[Producto.id]={
-                "producto_id":Producto.id,
-                "nombre":Producto.nombre,
-                "precio":str(Producto.precio),
-                "cantidad":1,
-                "imagen":Producto.imagen.url
+        if(str(Producto['id_producto']) not in self.carro.keys()):
+            self.carro[Producto['id_producto']]={
+                "id_producto":Producto['id_producto'],
+                "nombre_producto":Producto['nombre_producto'],
+                "precio_producto":str(Producto['precio_producto']),
+                "cantidad":str(Producto['cantidad_producto']),
+                "contador":1
             }
         else:
             for key, value in self.carro.items():
-                if key==str(Producto.id):
-                    value["cantidad"]=value["cantidad"]+1
-                    value["precio"]=int(value["precio"])+Producto.precio
+                if key==str(Producto['id_producto']):
+                    value["cantidad"]=value["cantidad"]
+                    value["precio_producto"]=Producto['precio_producto']
                     break
         self.guardar_carro()
 
@@ -47,16 +47,15 @@ class Carro:
         self.session.modified=True
 
     def eliminar(self, Producto):
-        Producto.id=str(Producto.id)
-        if Producto.id in self.carro:
-            del self.carro[Producto.id]
+        if str(Producto['id_producto']) in self.carro:
+            del self.carro[Producto['id_producto']]
             self.guardar_carro()
     
     def restar_producto(self, Producto):
         for key, value in self.carro.items():
-                if key==str(Producto.id):
+                if key==str(Producto['id_producto']):
                     value["cantidad"]=value["cantidad"]-1
-                    value["precio"]=int(value["precio"])-Producto.precio
+                    value["precio_producto"]=Producto['precio_producto']
                     if value["cantidad"]<1:
                         self.eliminar(Producto)
                     break

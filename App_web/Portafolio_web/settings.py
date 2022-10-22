@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'carro',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
