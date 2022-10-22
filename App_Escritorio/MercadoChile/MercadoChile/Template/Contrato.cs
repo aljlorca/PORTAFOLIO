@@ -47,10 +47,13 @@ namespace MercadoChile.Template
             ofd.Title = "Seleccione un Contrato";
             ofd.Filter = "Archivos permitidos|*.pdf";
             string theDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+            
             Console.WriteLine(theDate);
             
             if (ofd.ShowDialog().Equals(DialogResult.OK))
             {
+                string id = cmb_TipoEmpresa.Text + dateTimePicker1.Value.ToString();
+                Console.WriteLine(id);
                 string mensajeRespuesta = "";
                 int tipoRespuesta = 2;
                 string nombreCompletoArchivo = ofd.FileName;
@@ -67,7 +70,7 @@ namespace MercadoChile.Template
                     {
                         string nombreArchivo = Path.GetFileName(nombreCompletoArchivo);
                         MultipartFormDataContent frm = new MultipartFormDataContent();
-                        frm.Add(new StringContent(txt_Id.Text),"id_contrato");
+                        frm.Add(new StringContent(id),"id_contrato");
                         frm.Add(new ByteArrayContent(arrContenido), "documento_contrato", nombreArchivo);
                         frm.Add(new StringContent(theDate), "fecha_contrato");
                         frm.Add(new StringContent(txt_TipoContrato.Text), "tipo_contrato");
