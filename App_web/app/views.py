@@ -74,7 +74,7 @@ def productores(request):
             precio_producto = request.POST.get('precio-producto')
             imagen_producto =  request.FILES['imagen-producto']
             id_calidad = request.POST.get('calidad-producto')
-            saldo_producto = request.POST.get('saldo-producto')
+            saldo_producto = '0'
             estado_fila= '1'
             id_usuario = request.session['id_user']
             try: 
@@ -215,5 +215,14 @@ def postulaciones(request):
         'id_user': session['id_user'],
         'empresa':session['empresa'],
     }
+    if request.method == 'POST':
+            descripcion_postulacion = request.POST.get('descripcion-postulacion')
+            estado_postulacion = 'Pendiente'
+            id_venta = request.POST.get('id_venta')
+            id_usuario = request.session['id_user']
+            id_producto = 1
+            Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto)
+            print(Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto))
+            return render(request, 'app/Postulaciones.html')
     
     return render(request, 'app/Postulaciones.html',data)

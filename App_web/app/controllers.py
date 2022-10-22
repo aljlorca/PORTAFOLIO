@@ -166,4 +166,11 @@ def get_region_id(id):
     if response.status_code == 404:
         data = 'ERROR: Region no encontrada'
         return data   
-    
+
+#Postulacion POST CONTROLLER
+def Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto):
+    url = 'http://127.0.0.1:8009/api/postulacion/'
+    body = {"descripcion_postulacion": descripcion_postulacion,"estado_postulacion":estado_postulacion,"id_venta":id_venta,"id_usuario":id_usuario,"id_producto":id_producto}
+    response = requests.post(url,json=body)
+    return response
+   
