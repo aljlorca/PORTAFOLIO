@@ -17,25 +17,49 @@
 <div class="container-xxl py-6">
     <div class="container">
         <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h1 class="display-5 mb-3">Postulacion Subasta</h1>
-            
+            <h1 class="display-5 mb-3">Ingreso Postulacion</h1>
         </div>
+        
         <div class="col-lg7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-            <form method="POST">
+            {{error}}
+            <form method="POST" enctype="multipart/form-data">
                 <div class="row g-3">
                     <div class="col-12">
                         <div class="form-floating">
-                            <input type="number" class="form-control" name="monto" placeholder="monto" >
-                            <label for="monto">monto</label>
+                        <input type="text" class="form-control" name="descripcion-postulacion" placeholder="descripcion-postulacion" >
+                        <label for="descripcion-postulacion">Descripcion Postulacion </label>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-floating">
-                            <input type="date" class="form-control" name="fecha-subasta" placeholder="fecha">
-                            <label for="fecha">fecha</label>
+                            <input type="text" class="form-control" name="nombre-producto" placeholder="Nombre Producto">
+                            <label for="nombre-producto">Nombre Producto</label>
                         </div>
                     </div>
-                
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" name="cantidad-producto" placeholder="Cantidad">
+                            <label for="cantidad-producto">Cantidad</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" name="precio-producto" placeholder="Precio">
+                            <label for="precio-producto">Precio</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="file" class="form-control" name="imagen-producto" accept="image/png, .jpeg, .jpg" multiple placeholder="imagen" >
+                            <label for="imagen-producto">imagen</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" name="calidad-producto" placeholder="Calidad" >
+                            <label for="calidad-producto">Calidad</label>
+                        </div>
+                    </div>
                     <div class="col-12">
                         <input class="btn btn-primary rounded-pill py-3 px-5" type="submit">
                     </div>
