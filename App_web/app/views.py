@@ -1,3 +1,4 @@
+import imp
 import os
 from random import randrange
 from django.shortcuts import render,redirect
@@ -6,6 +7,8 @@ from .controllers import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions import *
 import datetime
+from carro.context_processor import *
+import carro
 # Create your views here.
 
 def home(request):
@@ -18,12 +21,12 @@ def contacto(request):
 def carrito(request):
     data = get_session(request)
     try:
-        if data['cargo']!='Transportista':
+        if data['cargo']!='Cliente Interno':
             return redirect(to="http://127.0.0.1:3000/")
     except:
         pass
 
-    return render(request, 'app/carrito.html')
+    return render(request, 'app/carro/carrito.html',data)
 
 @csrf_exempt
 def login(request):
@@ -137,6 +140,14 @@ def cliente_externo(request):
     return render(request, 'app/clienteexterno.html')
 
 def checkout(request):
+    try:
+        cargo=request.session['cargo']
+        if cargo!='Cliente Interno':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
+
     session = get_session(request)
     user =  usuario_get_id(str(session['id_user']))
     data = {
@@ -149,7 +160,7 @@ def checkout(request):
         'ciudad' :get_ciudad_id(str(user['id_ciudad'])),
         'region' :get_region_id(str(user['id_region'])),
     }    
-    return render(request, 'app/checkout.html',data)
+    return render(request, 'app/carro/checkout.html',data)
 
 
 @csrf_exempt

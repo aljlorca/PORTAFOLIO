@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'carro',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +67,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'carro.context_processor.importe_total_carro',
-                'carro.context_processor.importe_cant_carro',
             ],
         },
     },

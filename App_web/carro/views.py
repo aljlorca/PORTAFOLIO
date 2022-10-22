@@ -2,20 +2,21 @@ import requests
 import carro
 from django.shortcuts import render
 from .carro import Carro
-from core.models import producto
+from app.controllers import producto_get_id
 from django.shortcuts import redirect
+
 
 def eliminar_producto(request, producto_id):
     carro=Carro(request)
-    Producto=producto.objects.get(id=producto_id)
+    Producto=producto_get_id(producto_id)
     carro.eliminar(Producto=Producto)
-    return redirect("cart")
+    return redirect("http://127.0.0.1:3000/carrito/")
 
 def restar_producto(request, producto_id):
     carro=Carro(request)
-    Producto=producto.objects.get(id=producto_id)
+    Producto=producto_get_id(producto_id)
     carro.restar_producto(Producto=Producto)
-    return redirect("cart")
+    return redirect("http://127.0.0.1:3000/carrito/")
 
 def limpiar_carro(request):
     carro=Carro(request)
@@ -31,14 +32,14 @@ def limpiar_carro_producto(request):
 #definirlos en "carro" debido a la redireccion que se le debe de dar
 def agregar_producto(request, producto_id):
     carro=Carro(request)
-    Producto=producto.objects.get(id=producto_id)
-    carro.agregar(Producto=Producto)
-    return redirect("cart")
+    producto = producto_get_id(producto_id)
+    carro.agregar(Producto=producto)
+    return redirect("carrito")
 
 def agregar_home(request,producto_id):
     carro=Carro(request)
-    Producto = producto.objects.get(id=producto_id)
-    carro.agregar(Producto=Producto)
-    return redirect("home")
+    producto = producto_get_id(producto_id)
+    carro.agregar(Producto=producto)
+    return redirect("http://127.0.0.1:3000/mercado/")
 
 

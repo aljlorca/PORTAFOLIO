@@ -1,0 +1,118 @@
+{% extends 'app/Base.html' %}
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+{% load static %}
+<link href="{% static 'app/css/style_checkout.css' %}" rel="stylesheet">
+{% load humanize %}
+{% block contenido %}
+
+<!-- Checkout Start -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Datos de envio</span></h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>Nombre completo</label>
+                        <input class="form-control"  type="text" placeholder="{{user.nombre_usuario}}" disabled>
+                        
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Correo</label>
+                        <input class="form-control" type="text" placeholder="{{user.correo_usuario}}" disabled>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Número de Telefono</label>
+                        <input class="form-control" type="text" placeholder="{{user.telefono_usuario}}" disabled>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Direccion</label>
+                        <input class="form-control" type="text" placeholder="{{user.direccion_usuario}}" disabled>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Pais</label>
+                        <input class="form-control" type="text" placeholder="{{country.nombre_pais}}" disabled>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Ciudad</label>
+                        <input class="form-control" type="text" placeholder="{{ciudad.nombre_ciudad}}"disabled>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Region</label>
+                        <input class="form-control" type="text" placeholder="{{region.nombre_region}}" disabled>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Codigo Postal</label>
+                        <input class="form-control" type="text" placeholder="{{ciudad.codigo_postal}}" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Resumen Carrito</span></h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="border-bottom">
+                    <h6 class="mb-3">Frutas</h6>
+                    {% if request.session.carro.items %}
+                    {% for key, value in request.session.carro.items %}
+                    <div class="d-flex justify-content-between">
+                        <p>{{value.nombre_producto}}</p>
+                        <p>$ {{value.precio_producto | intcomma}}</p>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="d-flex justify-content-between">
+                        <p>Sin productos</p>
+                        <p>$</p>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Precio Total:</h5>
+                        <h5>$ {{importe_total_carro | intcomma}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-5">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Payment</span></h5>
+                <div class="bg-light p-30">
+                    <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            <label class="custom-control-label" for="paypal">Seras redireccionado a Transbank</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-block btn-primary font-weight-bold py-3">Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Checkout End -->
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+
+
+{% endblock %}

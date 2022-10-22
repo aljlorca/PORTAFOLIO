@@ -68,7 +68,7 @@ def productos_get():
         return content
 
 def producto_get_id(id):
-    url='http://127.0.0.1:8010/api/producto/'+id
+    url='http://127.0.0.1:8010/api/producto/'+str(id)
     try: 
      response = requests.get(url)
     except:
@@ -110,7 +110,7 @@ def postilacion_get():
     
 #USUARIO CONTROLLERS
 def usuario_get_id(id):
-    url = 'http://127.0.0.1:8016/api/usuario/'+id
+    url = 'http://127.0.0.1:8016/api/usuario/'+str(id)
     try: 
      response = requests.get(url)
     except:
@@ -125,7 +125,7 @@ def usuario_get_id(id):
 
 #PAIS CONTROLLER
 def get_pais_id(id):
-    url = 'http://127.0.0.1:8007/api/pais/'+id
+    url = 'http://127.0.0.1:8007/api/pais/'+str(id)
     try: 
      response = requests.get(url)
     except:
@@ -140,7 +140,7 @@ def get_pais_id(id):
     
 #Ciudad CONTROLLER
 def get_ciudad_id(id):
-    url = 'http://127.0.0.1:8003/api/ciudad/'+id
+    url = 'http://127.0.0.1:8003/api/ciudad/'+str(id)
     try: 
      response = requests.get(url)
     except:
@@ -154,7 +154,7 @@ def get_ciudad_id(id):
         return data
 #Region CONTROLLER
 def get_region_id(id):
-    url = 'http://127.0.0.1:8011/api/region/'+id
+    url = 'http://127.0.0.1:8011/api/region/'+str(id)
     try: 
      response = requests.get(url)
     except:
