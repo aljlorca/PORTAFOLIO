@@ -30,14 +30,16 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
+                        {% for v in ventas %}
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="product-item">
-                                <div class="position-relative bg-light overflow-hidden">
-                                    <img class="img-fluid w-100" src="{% static 'app/img/product-5.jpg' %}" alt="">
+                                <div class="text-center p-4">
+                                    <span class="text me-1">{{v.estado_venta}}</span>
                                     <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
                                 </div>
                                 <div class="text-center p-4">
-                                    <span class="text-primary me-1">Postulacion</span>
+                                    <span class="text-primary me-1">{{v.descripcion_venta}}</span>
+                                    <span class="text-primary me-1">Fecha limite:{{v.fecha_venta}}</span>
                                 </div>
                                 <div class="text-center p-4">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -46,6 +48,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
                             <a class="btn btn-primary rounded-pill py-3 px-5" href="">Browse More Products</a>
                         </div>
@@ -59,18 +62,29 @@
 
   
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Formulario de Postulacion</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+            {% for v in ventas %}
+            <form method="post">
+                <div class="col-12">
+                    <p type="hidden" name="id_venta" value="{{venta.id_venta}}"></p>
+                    <p>{{v.descripcion_venta}}</p>
+                </div>
+                <div class="col-12">
+                    <input type="text" class="form-control" name="descripcion-postulacion" placeholder="Descripcion Postulacion">
+                    <label for="descripcion-postulacion"></label>
+                </div>
+            </form>
+            {% endfor %}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <a type="button" class="btn btn-primary" href="{% url 'productores' %}">Postular</a>
+          <button type="button" class="btn btn-primary" type="submit">postular</button>
         </div>
       </div>
     </div>
