@@ -18,5 +18,6 @@ urlpatterns = [
     path("postulaciones/", postulaciones, name="postulaciones"),
     path("ingreso_postulacion/", ingreso_postulacion, name="ingreso_postulacion"),
     path("detalle_venta/<str:id_producto>/", detalle_venta, name="detalle_venta"),
+    path("listado_ventas/", listado_ventas, name="listado_ventas"),
 
 ]

@@ -213,13 +213,8 @@ def pedido(request):
             fecha_sla = request.POST.get('fecha-sla')
             id_usuario = request.session['id_user']
             data = pedido_post(descripcion,fecha_sla,id_usuario)
-            
-        
-
     except:
         data={'error':'no fue posible crear el pedido'}
-
-
     return render(request, 'app/cliente_externo/pedido.html',data)
 
 
@@ -312,4 +307,22 @@ def detalle_venta(request,id_venta):
     id_venta=request.session["id_venta"]
     return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 
+
+def listado_ventas(request):
+    data = get_session(request)
+
+    try:
+        cargo=request.session['cargo']
+        if cargo!='Cliente Externo':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
+
+    try:
+        data['venta'] = ventas_get()
+
+    except:
+        data={'error':'error de conexion'}
+    return render(request, 'app/cliente_externo/listado_ventas.html',data)
 
