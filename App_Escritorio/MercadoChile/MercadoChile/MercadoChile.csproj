@@ -292,6 +292,12 @@
     <Compile Include="Template\Postulacion.Designer.cs">
       <DependentUpon>Postulacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Template\Procesos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Template\Procesos.Designer.cs">
+      <DependentUpon>Procesos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Template\Publicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -332,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Template\Postulacion.resx">
       <DependentUpon>Postulacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\Procesos.resx">
+      <DependentUpon>Procesos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Template\Publicacion.resx">
       <DependentUpon>Publicacion.cs</DependentUpon>

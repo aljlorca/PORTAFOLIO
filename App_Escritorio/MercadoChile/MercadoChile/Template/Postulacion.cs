@@ -17,20 +17,22 @@ using System.Windows.Forms;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 using Datos;
+using static System.Net.WebRequestMethods;
 
 namespace MercadoChile.Template
 {
     public partial class Postulacion : Form
     {
-        private string url4 = "http://127.0.0.1:8001/api/carga_old/";
-        getPostulacion Get = new getPostulacion(); 
+        private string url = "http://127.0.0.1:8001/api/carga_old/";
+        private string url2 = "http://127.0.0.1:8001/api/subasta_old/";
+        getPostulacion Get = new getPostulacion();
         public Postulacion()
         {
             InitializeComponent();
         }
-        
 
-        private async void btnListar_Click(object sender, EventArgs e)
+
+        private async void btnListarSub_Click(object sender, EventArgs e)
         {
             string respuesta = await Get.GetHttp();
             List<Subasta> lista = JsonConvert.DeserializeObject<List<Subasta>>(respuesta);
@@ -53,7 +55,7 @@ namespace MercadoChile.Template
                 }
             }
         }
-        private async void btnPublicar_Click(object sender, EventArgs e)
+        private async void btnPublicar_Click_1(object sender, EventArgs e)
         {
             string respuesta = await Get.GetHttp();
             List<Subasta> lista = JsonConvert.DeserializeObject<List<Subasta>>(respuesta);
@@ -66,7 +68,7 @@ namespace MercadoChile.Template
                     if (list.monto_subasta == Convert.ToInt32(txtMonto.Text))
                     {
                         int id_subasta = list.id_subasta;
-                        if(list2.nombre_usuario == txtTransportista.Text)
+                        if (list2.nombre_usuario == txtTransportista.Text)
                         {
                             int id_usuario = list2.id_usuario;
                             var client = new HttpClient();
@@ -77,11 +79,11 @@ namespace MercadoChile.Template
                                 tamano_carga = txtTamaño.Text,
                                 id_subasta = id_subasta,
                                 id_usuario = id_usuario,
-                            }; 
+                            };
                             var data = JsonSerializer.Serialize<Carga>(post2);
                             HttpContent content =
                                 new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                            var httpResponse = await client.PostAsync(url4, content);
+                            var httpResponse = await client.PostAsync(url, content);
                             if (MessageBox.Show("Desea Publicar seleccionar esta subasta del transportista "
                                 + txtTransportista.Text, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
@@ -105,7 +107,7 @@ namespace MercadoChile.Template
                 }
             }
         }
-        private void btnSelSub_Click(object sender, EventArgs e)
+        private void btnSelSub_Click_1(object sender, EventArgs e)
         {
             txtMonto.Text = DgvSubasta.CurrentRow.Cells[1].Value.ToString();
             txtTransportista.Text = DgvSubasta.CurrentRow.Cells[4].Value.ToString();
@@ -120,7 +122,69 @@ namespace MercadoChile.Template
 
         }
 
-        
+        private async void btnListarVent_Click(object sender, EventArgs e)
+        {
+            string respuesta = await Get.GetHttp3();
+            List<Venta> lista = JsonConvert.DeserializeObject<List<Venta>>(respuesta);
+            string respuesta2 = await Get.GetHttp2();
+            List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
+            DgvVenta.DataSource = lista;
+            foreach (DataGridViewRow fila in DgvSubasta.Rows)
+            {
+                foreach (var fila1 in lista2)
+                {
+                    fila.Cells["cnClienteExterno"].Value = fila1.nombre_usuario;
+                    break;
+                }
+            }
+        }
+
+        private void btnSelccVenta_Click(object sender, EventArgs e)
+        {
+            txtDescVenta.Text = DgvSubasta.CurrentRow.Cells[1].Value.ToString();
+        }
+
+        private async void btnIngresarSubasta_Click(object sender, EventArgs e)
+        {
+            string respuesta = await Get.GetHttp3();
+            List<Venta> lista = JsonConvert.DeserializeObject<List<Venta>>(respuesta);
+            foreach (var list in lista)
+            {
+                if (txtDescVenta.Text == list.descripcion_venta)
+                {
+                    int id_venta = list.id_venta;
+                    var client = new HttpClient();
+                    Subasta post2 = new Subasta()
+                    {
+                        monto_subasta = 0,
+                        id_venta = id_venta,
+                        fecha_subasta = DateTime.Now,
+                        id_usuario = list.id_usuario,
+
+                    };
+                    var data = JsonSerializer.Serialize<Subasta>(post2);
+                    HttpContent content =
+                        new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                    var httpResponse = await client.PostAsync(url, content);
+                    if (MessageBox.Show("Desea Publicar seleccionar esta subasta del transportista "
+                        + txtTransportista.Text, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        if (httpResponse.IsSuccessStatusCode)
+                        {
+                            var result = await httpResponse.Content.ReadAsStringAsync();
+                            var postResult = JsonSerializer.Deserialize<Subasta>(result);
+                            this.Hide();
+                        }
+                    }
+                    else
+                    {
+                        txtDescVenta.Text = "";
+
+                    }
+                }
+            }
+        }
     }
-    }
+}
+
 
