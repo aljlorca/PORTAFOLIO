@@ -81,12 +81,13 @@
                     <a href="{% url 'productores' %}" class="nav-item nav-link">Productores</a>
                     {% endif %}
                     {%if cargo == 'Cliente Interno'%}
-                    <a href="{% url 'cliente_interno' %}" class="nav-item nav-link">Portal</a>
+                    <a href="{% url 'cliente_interno' %}" class="nav-item nav-link">Menu</a>
                     <a href="{% url 'mercado' %}" class="nav-item nav-link">Mercado</a>
                     {% endif %}
                     {%if cargo == 'Cliente Externo'%}
-                    <a href="{% url 'cliente_externo' %}" class="nav-item nav-link">Portal</a>
+                    <a href="{% url 'cliente_externo' %}" class="nav-item nav-link">Menu</a>
                     <a href="{% url 'pedido' %}" class="nav-item nav-link">Pedido</a>
+                    <a href="{% url 'listado_ventas' %}" class="nav-item nav-link">Ventas</a>
                     {% endif %}
                     {%if cargo == 'Transportista'%}
                     <a href="{% url 'postulacion' %}" class="nav-item nav-link">Postulacion</a>
@@ -117,9 +118,10 @@
                         <i class="fas fa-sign-in-alt text-body"></i>                        
                     </a>
                     {% endif %}
+                    {%if cargo == 'Cliente Interno'%}
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'carrito' %}">
                         <small class="fa fa-shopping-bag text-body">{{importe_cant_carro}}</small>
-
+                    {% endif %}
                     </a>
                 </div>
             </div>
