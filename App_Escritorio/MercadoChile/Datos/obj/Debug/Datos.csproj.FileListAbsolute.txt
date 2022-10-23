@@ -106,3 +106,37 @@ D:\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.CoreCompi
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.CopyComplete
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.dll
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.pdb
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Datos.dll.config
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Datos.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Datos.pdb
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Castle.Core.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Configuration.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Configuration.Binder.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Http.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Logging.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Options.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Primitives.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Moq.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Moq.pdb
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Moq.Contrib.HttpClient.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\Newtonsoft.Json.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\RestSharp.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Buffers.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Memory.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Net.Http.Json.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Numerics.Vectors.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Text.Encodings.Web.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Text.Json.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.ValueTuple.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Threading.AccessControl.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.CopyComplete
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.pdb
