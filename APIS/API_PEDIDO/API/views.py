@@ -14,7 +14,8 @@ def agregar_pedido(descripcion_pedido,fecha_sla_pedido,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('PEDIDO_AGREGAR',[descripcion_pedido,fecha_sla_pedido,id_usuario,salida])
+    estado_fila = '1'
+    cursor.callproc('PEDIDO_AGREGAR',[descripcion_pedido,fecha_sla_pedido,id_usuario,estado_fila,salida])
     return salida
 
 def modificar_pedido(id_pedido,descripcion_pedido,fecha_sla_pedido,id_usuario):

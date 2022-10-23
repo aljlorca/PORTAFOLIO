@@ -905,12 +905,6 @@ end VENTA_LISTAR;
 ------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP contrato -----------------------------------------------------------------------------
 
-create sequence sec_contrato
-  start with 1
-  increment by 1
-  maxvalue 99999999999999999999
-  minvalue 1;
-
 
 create or replace PROCEDURE CONTRATO_ELIMINAR (v_id_contrato integer, v_salida out number) is
 begin 
@@ -926,7 +920,8 @@ end CONTRATO_ELIMINAR;
 
 
 create or replace PROCEDURE CONTRATO_AGREGAR 
-(
+(   
+    v_id_contrato varchar2,
     v_documento_contrato varchar2,
     v_fecha_contrato date,
     v_tipo_contrato varchar2,
@@ -937,7 +932,7 @@ create or replace PROCEDURE CONTRATO_AGREGAR
 ) is
 begin 
   insert into contrato(id_contrato,documento_contrato,fecha_contrato,tipo_contrato,id_empresa,estado_fila) 
-  values(sec_contrato.nextval,v_documento_contrato,v_fecha_contrato,v_tipo_contrato,v_id_empresa,v_estado_fila);
+  values(v_id_contratol,v_documento_contrato,v_fecha_contrato,v_tipo_contrato,v_id_empresa,v_estado_fila);
   commit;
   v_salida:=1; 
   
@@ -947,7 +942,7 @@ end CONTRATO_AGREGAR;
 
 create or replace PROCEDURE CONTRATO_MODIFICAR 
 (
-    v_id_contrato integer,
+    v_id_contrato varchar2,
     v_documento_contrato varchar2,
     v_fecha_contrato date,
     v_tipo_contrato varchar2,

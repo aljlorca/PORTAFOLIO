@@ -76,22 +76,22 @@
                     <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
                     {%if cargo == 'Proveedor'%}
                     <a href="{% url 'postulaciones' %}" class="nav-item nav-link">Postulaciones</a>
-                    {% endif %}
-                    {%if cargo == 'Proveedor'%}
                     <a href="{% url 'productores' %}" class="nav-item nav-link">Productos</a>
+                    <a href="{% url 'productores' %}" class="nav-item nav-link">Productores</a>
                     {% endif %}
                     {%if cargo == 'Cliente Interno'%}
                     <a href="{% url 'cliente_interno' %}" class="nav-item nav-link">Portal</a>
-                    {% endif %}
-                    {%if cargo == 'Cliente Interno'%}
                     <a href="{% url 'mercado' %}" class="nav-item nav-link">Mercado</a>
                     {% endif %}
-                    {%if cargo == 'Proveedor'%}
-                    <a href="{% url 'productores' %}" class="nav-item nav-link">Productores</a>
+                    {%if cargo == 'Cliente Externo'%}
+                    <a href="{% url 'cliente_externo' %}" class="nav-item nav-link">Portal</a>
+                    <a href="{% url 'pedido' %}" class="nav-item nav-link">Pedido</a>
                     {% endif %}
                     {%if cargo == 'Transportista'%}
                     <a href="{% url 'postulacion' %}" class="nav-item nav-link">Postulacion</a>
                     {% endif %}
+                    <!-- no sirve xd
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Menu</a>
                         <div class="dropdown-menu m-0">
@@ -100,7 +100,7 @@
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             <a href="404.html" class="dropdown-item">404 Page</a>
                         </div>
-                    </div>
+                    </div>-->
                     <a href="{% url 'contacto' %}" class="nav-item nav-link">Contacto</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">

@@ -58,7 +58,7 @@
             this.cnFecha,
             this.cnCliente,
             this.cnId});
-            this.DgvProducto.Location = new System.Drawing.Point(52, 34);
+            this.DgvProducto.Location = new System.Drawing.Point(38, 102);
             this.DgvProducto.Name = "DgvProducto";
             this.DgvProducto.RowHeadersVisible = false;
             this.DgvProducto.RowTemplate.Height = 150;
@@ -73,7 +73,7 @@
             this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListar.Image = ((System.Drawing.Image)(resources.GetObject("btnListar.Image")));
             this.btnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListar.Location = new System.Drawing.Point(76, 387);
+            this.btnListar.Location = new System.Drawing.Point(62, 455);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(250, 40);
             this.btnListar.TabIndex = 99;
@@ -100,7 +100,7 @@
             this.groupBox1.Controls.Add(this.txtDescrip);
             this.groupBox1.Controls.Add(this.txtFecha);
             this.groupBox1.Controls.Add(this.label38);
-            this.groupBox1.Location = new System.Drawing.Point(379, 56);
+            this.groupBox1.Location = new System.Drawing.Point(368, 134);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(644, 247);
             this.groupBox1.TabIndex = 101;
@@ -132,7 +132,7 @@
             this.btnPublicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPublicar.Image = ((System.Drawing.Image)(resources.GetObject("btnPublicar.Image")));
             this.btnPublicar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPublicar.Location = new System.Drawing.Point(411, 133);
+            this.btnPublicar.Location = new System.Drawing.Point(428, 110);
             this.btnPublicar.Name = "btnPublicar";
             this.btnPublicar.Size = new System.Drawing.Size(216, 40);
             this.btnPublicar.TabIndex = 68;
@@ -182,7 +182,7 @@
             this.btnSelProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelProd.Image = ((System.Drawing.Image)(resources.GetObject("btnSelProd.Image")));
             this.btnSelProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelProd.Location = new System.Drawing.Point(522, 328);
+            this.btnSelProd.Location = new System.Drawing.Point(542, 409);
             this.btnSelProd.Name = "btnSelProd";
             this.btnSelProd.Size = new System.Drawing.Size(207, 40);
             this.btnSelProd.TabIndex = 85;
@@ -220,7 +220,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(1035, 634);
+            this.ClientSize = new System.Drawing.Size(1028, 543);
             this.Controls.Add(this.btnSelProd);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label8);

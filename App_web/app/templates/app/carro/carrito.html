@@ -32,7 +32,7 @@
                                     <a href="{% url 'carro:restar' value.id_producto %}"><i class="fa fa-minus"></i></a>
                                     </button>
                                 </div> -->   
-                                {{value.cantidad}}
+                                {{value.cantidad}} TN
                                 <!-- NO SUMAR  
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-primary btn-plus">
@@ -46,17 +46,15 @@
                         <td class="align-middle"><button class="btn btn-sm btn-danger"> <a href="{% url 'carro:eliminar' value.id_producto %}"><i class="fa fa-times"></i></a></button></td>
                     </tr>
                     {% endfor %}
-                    {% else %}
-                    <tr>
-                        <td colspan="align-middle">
-                            <div class="alert alert-danger text-center">
-                                Sin productos
-                            </div>
-                        </td>
-                    </tr>
-                    {% endif %}
+                    
                 </tbody>
+                {% else %}
+                        <div class="alert alert-danger text-center">
+                            Sin productos
+                        </div>
+                {% endif %}
             </table>
+            
         </div>
 <!-- TOTALES -->   
             <div  class="col-lg-4 mb-0" style="margin-top: 50px">
@@ -67,7 +65,7 @@
                                 <h5>Total</h5>
                                 <h5>$ {{importe_total_carro | intcomma}}</h5>
                             </div>
-                            <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" href="{% url 'checkout' %}">Realizar Compra</button>
+                            <a class="btn btn-block btn-primary font-weight-bold my-3 py-3" href="http://127.0.0.1:3000/checkout/">Realizar Compra</a>
                         </div>
                     </div>
                 </div>

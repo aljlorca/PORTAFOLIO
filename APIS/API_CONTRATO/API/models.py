@@ -60,7 +60,7 @@ class Empresa(models.Model):
         unique_together = (('duns_empresa'),)
 
 class Contrato(models.Model):
-    id_contrato = models.BigIntegerField(primary_key=True)
+    id_contrato = models.CharField(primary_key=True,max_length=150)
     documento_contrato = models.FileField(max_length=125,upload_to='documentos')
     fecha_contrato = models.DateField()
     tipo_contrato = models.CharField(max_length=50)
