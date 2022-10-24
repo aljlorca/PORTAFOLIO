@@ -1,3 +1,4 @@
+from urllib import response
 import requests
 import json
 from django.contrib.sessions import *
@@ -45,8 +46,6 @@ def get_session(request):
         
     return data
 
-
-
 #PRODUCTOS CONTROLLERS
 def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario): 
 
@@ -86,7 +85,18 @@ def subasta_controller(monto,id_venta,id_usuario):
     url = 'http://127.0.0.1:8014/api/subasta_old/'
     body = {"monto_subasta": monto,"id_venta":id_venta,"id_usuario":id_usuario}
     response = requests.post(url,json=body)
-    print (response)
+
+
+def subasta_get():
+    url = 'http://127.0.0.1:8014/api/subasta/'
+    try: 
+        response = requests.get(url)
+    except:
+        data = {'message':'error de conexion'}
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
 
 #PEDIDO CONTROLLERS
 def pedido_get():
@@ -185,8 +195,7 @@ def ventas_get():
     if r.status_code == 200:
         content = json.loads(r.content)
         return content
- 
-#Ventas ID Controller
+
 def Ventas_get_id(id):
     url = 'http://127.0.0.1:8017/api/venta/'+str(id)
     try: 
@@ -200,3 +209,4 @@ def Ventas_get_id(id):
     if response.status_code == 404:
         data = 'ERROR: Usuario no encontrado'
         return data
+

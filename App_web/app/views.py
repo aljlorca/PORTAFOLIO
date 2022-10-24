@@ -76,7 +76,7 @@ def carrito(request):
         if data['cargo']!='Cliente Interno':
             return redirect(to="http://127.0.0.1:3000/")
     except:
-        pass
+        return redirect(to="http://127.0.0.1:3000/")
 
     return render(request, 'app/carro/carrito.html',data)
 
@@ -277,23 +277,7 @@ def postulaciones(request):
         return render(request, 'app/proveedor/Postulaciones.html',data)
     
 
-@csrf_exempt
-def ingreso_productos(request):
-    data = get_session(request)
-    try:
-        if data['cargo']!='Proveedor':
-            return redirect(to="http://127.0.0.1:3000/")
-    except:
-        pass
 
-    if request.method == 'POST':
-            monto = request.POST.get('monto')
-            id_venta = ''
-            id_usuario = request.session['id_user']
-            subasta_controller(monto,id_venta,id_usuario)
-            return render(request, 'app/Ingreso_postulacion.html')
-
-    return render(request, 'app/Ingreso_postulacion.html',data)
 
 @csrf_exempt
 def ingreso_postulacion(request):
@@ -347,15 +331,49 @@ def transportista(request):
             return redirect(to="http://127.0.0.1:3000/")
 
     except:
-        pass
+        return redirect(to="http://127.0.0.1:3000/")
+
     
     data = get_session(request)
 
     return render(request, 'app/transportista/menu.html',data)
 
+def subasta(request):
+    
+    try:
+        cargo=request.session['cargo']
+        if cargo!='Transportista':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
+
+    
+    data = get_session(request)
+
+    data['venta'] = ventas_get()
+    data['subasta'] = subasta_get()
+
+    return(request,'app/transportista/transportistas.html',data)
 
 
 
+@csrf_exempt
+def ingreso_productos(request):
+    data = get_session(request)
+    try:
+        if data['cargo']!='Proveedor':
+            return redirect(to="http://127.0.0.1:3000/")
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
 
+    if request.method == 'POST':
+            monto = request.POST.get('monto')
+            id_venta = ''
+            id_usuario = request.session['id_user']
+            subasta_controller(monto,id_venta,id_usuario)
+            return render(request, 'app/Ingreso_postulacion.html')
+
+    return render(request, 'app/Ingreso_postulacion.html',data)
 
 

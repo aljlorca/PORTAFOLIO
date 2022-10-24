@@ -22,7 +22,6 @@ urlpatterns = [
 
     #Proveedor
     path("productores/", productores, name="productores"),
-    path("ingreso_productos/", ingreso_productos, name="ingreso_productos"),
     path("postulaciones/", postulaciones, name="postulaciones"),
     path("ingreso_postulacion/", ingreso_postulacion, name="ingreso_postulacion"),
 

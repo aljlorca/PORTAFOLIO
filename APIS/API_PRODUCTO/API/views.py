@@ -122,16 +122,8 @@ class ProductoViewset(viewsets.ModelViewSet):
         datos={'message':'Success'}
         return Response(datos, status=200)
     def put(self, request, *args, **kwargs):
-        id_producto = request.data['id_producto']
-        nombre_producto = request.data['nombre_producto']
-        cantidad_producto = request.data['cantidad_producto']
-        precio_producto = request.data['precio_producto']
-        imagen_producto = request.data['imagen_producto']
-        id_calidad = request.data['id_calidad']
         saldo_producto = request.data['saldo_producto']
-        estado_fila = request.data['estado_fila']
-        id_usuario = request.data['id_usuario']
-        Producto.objects.update(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
+        Producto.objects.update(saldo_producto=saldo_producto)
         return Response({'message': 'Success'}, status=200)
     def delete(self, request, *args, **kwargs):
         id_contrato = request.data['id_contrato']
