@@ -1325,14 +1325,14 @@ create or replace PROCEDURE SUBASTA_AGREGAR
     v_id_usuario integer,
     v_fecha_subasta date,
     v_estado_fila char,
-    v_salida OUT NUMBER
+    v_salida OUT varchar2
 
 ) is
 begin 
   insert into subasta(id_subasta,monto_subasta,id_venta,fecha_subasta,estado_fila,id_usuario) 
   values(sec_subasta.nextval,v_monto,v_id_venta,v_fecha_subasta,v_estado_fila,v_id_usuario);
   commit;
-  v_salida:=1; 
+  v_salida:=sec_subasta.CURRVAL; 
 
   exception when others then v_salida:=0;
 
