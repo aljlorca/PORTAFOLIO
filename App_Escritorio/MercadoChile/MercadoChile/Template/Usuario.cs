@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -432,6 +433,329 @@ namespace MercadoChile
             cmbPaisEdit.Text = DgvClientes.CurrentRow.Cells[11].Value.ToString();
             
             
+        }
+
+        private void cmbCargo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRutUsua_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRutUsua_Enter(object sender, EventArgs e)
+        {
+            if (txtRutUsua.Text == "Rut Cliente")
+            {
+                txtRutUsua.Text = "";
+                txtRutUsua.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtRutUsua_Leave(object sender, EventArgs e)
+        {
+            if (txtRutUsua.Text == "")
+            {
+                txtRutUsua.Text = "Rut Cliente";
+                txtRutUsua.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtNombreUsua_Enter(object sender, EventArgs e)
+        {
+            if (txtNombreUsua.Text == "")
+            {
+                txtNombreUsua.Text = "Nombre Cliente";
+                txtNombreUsua.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtNombreUsua_Leave(object sender, EventArgs e)
+        {
+            if (txtNombreUsua.Text == "Nombre Cliente")
+            {
+                txtNombreUsua.Text = "";
+                txtNombreUsua.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtDirecUsua_Enter(object sender, EventArgs e)
+        {
+            if (txtDirecUsua.Text == "Direccion")
+            {
+                txtDirecUsua.Text = "";
+                txtDirecUsua.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtDirecUsua_Leave(object sender, EventArgs e)
+        {
+            if (txtDirecUsua.Text == "")
+            {
+                txtDirecUsua.Text = "Direccion";
+                txtDirecUsua.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtTelUsua_Enter(object sender, EventArgs e)
+        {
+            if (txtTelUsua.Text == "Telefono")
+            {
+                txtTelUsua.Text = "";
+                txtTelUsua.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtTelUsua_Leave(object sender, EventArgs e)
+        {
+            if (txtTelUsua.Text == "")
+            {
+                txtTelUsua.Text = "Telefono";
+                txtTelUsua.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtCorUsua_Enter(object sender, EventArgs e)
+        {
+            if (txtCorUsua.Text == "Correo")
+            {
+                txtCorUsua.Text = "";
+                txtCorUsua.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtCorUsua_Leave(object sender, EventArgs e)
+        {
+            if (txtCorUsua.Text == "")
+            {
+                txtCorUsua.Text = "Correo";
+                txtCorUsua.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtConUsua_Enter(object sender, EventArgs e)
+        {
+            if (txtConUsua.Text == "Contraseña")
+            {
+                txtConUsua.Text = "";
+                txtConUsua.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtConUsua_Leave(object sender, EventArgs e)
+        {
+            if (txtConUsua.Text == "")
+            {
+                txtConUsua.Text = "Contraseña";
+                txtConUsua.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void tabPage1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbPais_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbPais_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbRegion_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbRegion_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCiudad_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCiudad_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbEmpresa_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbEmpresa_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCargo_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCargo_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRutEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtRutEdit.Text == "Rut Cliente")
+            {
+                txtRutEdit.Text = "";
+                txtRutEdit.ForeColor = Color.Black;
+
+            }
+
+        }
+
+        private void txtRutEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtRutEdit.Text == "")
+            {
+                txtRutEdit.Text = "Rut Cliente";
+                txtRutEdit.ForeColor = Color.DimGray;
+
+            }
+
+        }
+
+        private void txtNomEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtNomEdit.Text == "Nombre Cliente")
+            {
+                txtNomEdit.Text = "";
+                txtNomEdit.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtNomEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtNomEdit.Text == "")
+            {
+                txtNomEdit.Text = "Nombre Cliente";
+                txtNomEdit.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtDirEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtDirEdit.Text == "Direccion")
+            {
+                txtDirEdit.Text = "";
+                txtDirEdit.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtDirEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtDirEdit.Text == "")
+            {
+                txtDirEdit.Text = "Direccion";
+                txtDirEdit.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtTeleEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtTeleEdit.Text == "Telefono")
+            {
+                txtTeleEdit.Text = "";
+                txtTeleEdit.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtTeleEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtTeleEdit.Text == "")
+            {
+                txtTeleEdit.Text = "Telefono";
+                txtTeleEdit.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtCorEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtCorEdit.Text == "Correo")
+            {
+                txtCorEdit.Text = "";
+                txtCorEdit.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtCorEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtCorEdit.Text == "")
+            {
+                txtCorEdit.Text = "Correo";
+                txtCorEdit.ForeColor = Color.DimGray;
+
+            }
+
+        }
+
+        private void txtConEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtConEdit.Text == "Nueva Contraseña")
+            {
+                txtConEdit.Text = "";
+                txtConEdit.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtConEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtConEdit.Text == "")
+            {
+                txtConEdit.Text = "Nueva Contraseña";
+                txtConEdit.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

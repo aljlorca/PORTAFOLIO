@@ -184,6 +184,117 @@ namespace MercadoChile.Template
                 }
             }
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMonto_Enter(object sender, EventArgs e)
+        {
+            if (txtMonto.Text == "Monto")
+            {
+                txtMonto.Text = "";
+                txtMonto.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtMonto_Leave(object sender, EventArgs e)
+        {
+            if (txtMonto.Text == "")
+            {
+                txtMonto.Text = "Monto";
+                txtMonto.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtTransportista_Enter(object sender, EventArgs e)
+        {
+            if (txtTransportista.Text == "Transportista")
+            {
+                txtTransportista.Text = "";
+                txtTransportista.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtTransportista_Leave(object sender, EventArgs e)
+        {
+            if (txtTransportista.Text == "")
+            {
+                txtTransportista.Text = "Transportista";
+                txtTransportista.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtCapacidad_Enter(object sender, EventArgs e)
+        {
+            if (txtCapacidad.Text == "Capacidad")
+            {
+                txtCapacidad.Text = "";
+                txtCapacidad.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtCapacidad_Leave(object sender, EventArgs e)
+        {
+            if (txtCapacidad.Text == "Capacidad")
+            {
+                txtCapacidad.Text = "";
+                txtCapacidad.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtRefrigeracion_Enter(object sender, EventArgs e)
+        {
+            if (txtRefrigeracion.Text == "Agregar Refrigeracion")
+            {
+                txtRefrigeracion.Text = "";
+                txtRefrigeracion.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtRefrigeracion_Leave(object sender, EventArgs e)
+        {
+            if (txtRefrigeracion.Text == "")
+            {
+                txtRefrigeracion.Text = "Agregar Refrigeracion";
+                txtRefrigeracion.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtTamaño_Enter(object sender, EventArgs e)
+        {
+            if (txtTamaño.Text == "Tamaño")
+            {
+                txtTamaño.Text = "";
+                txtTamaño.ForeColor = System.Drawing.Color.Black;
+
+            }
+
+        }
+
+        private void txtTamaño_Leave(object sender, EventArgs e)
+        {
+            if (txtTamaño.Text == "")
+            {
+                txtTamaño.Text = "Tamaño";
+                txtTamaño.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtMonto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

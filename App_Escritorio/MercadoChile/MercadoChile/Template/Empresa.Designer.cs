@@ -31,10 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Empresa));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.cmbCiudad = new System.Windows.Forms.ComboBox();
             this.cmbRegion = new System.Windows.Forms.ComboBox();
             this.cmbPais = new System.Windows.Forms.ComboBox();
@@ -44,32 +41,21 @@
             this.txtDirecEmp = new System.Windows.Forms.TextBox();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.txtDunsEmp = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.cmbCiudadEdit = new System.Windows.Forms.ComboBox();
             this.cmbRegionEdit = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
             this.cmbPaisEdit = new System.Windows.Forms.ComboBox();
             this.cmbTipoEmpEdit = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
             this.txtDunsEdit = new System.Windows.Forms.TextBox();
             this.txtGiroEdit = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
             this.txtDirEdit = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
             this.txtRazonEdit = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
             this.DgvEmpresa = new System.Windows.Forms.DataGridView();
             this.cnDunsEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnRazonSocial = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,6 +80,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -103,10 +90,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label22);
-            this.tabPage1.Controls.Add(this.label21);
-            this.tabPage1.Controls.Add(this.label20);
-            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.cmbCiudad);
             this.tabPage1.Controls.Add(this.cmbRegion);
             this.tabPage1.Controls.Add(this.cmbPais);
@@ -116,10 +101,6 @@
             this.tabPage1.Controls.Add(this.txtDirecEmp);
             this.tabPage1.Controls.Add(this.txtRazonSocial);
             this.tabPage1.Controls.Add(this.txtDunsEmp);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -127,81 +108,68 @@
             this.tabPage1.Size = new System.Drawing.Size(1031, 572);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Crear Cliente";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // label22
+            // label3
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(292, 387);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(75, 25);
-            this.label22.TabIndex = 43;
-            this.label22.Text = "Ciudad";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(292, 353);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(73, 25);
-            this.label21.TabIndex = 42;
-            this.label21.Text = "Region";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(292, 308);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(50, 25);
-            this.label20.TabIndex = 41;
-            this.label20.Text = "Pais";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(292, 263);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(134, 25);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Tipo Empresa";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(255, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(547, 13);
+            this.label3.TabIndex = 103;
+            this.label3.Text = "---------------------------------------------------------------------------------" +
+    "------------------------------------------------------";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // cmbCiudad
             // 
+            this.cmbCiudad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCiudad.ForeColor = System.Drawing.Color.DimGray;
             this.cmbCiudad.FormattingEnabled = true;
-            this.cmbCiudad.Location = new System.Drawing.Point(461, 391);
+            this.cmbCiudad.Location = new System.Drawing.Point(548, 303);
             this.cmbCiudad.Name = "cmbCiudad";
-            this.cmbCiudad.Size = new System.Drawing.Size(214, 21);
+            this.cmbCiudad.Size = new System.Drawing.Size(214, 28);
             this.cmbCiudad.TabIndex = 38;
+            this.cmbCiudad.Text = "Ciudad";
+            this.cmbCiudad.SelectedIndexChanged += new System.EventHandler(this.cmbCiudad_SelectedIndexChanged);
             // 
             // cmbRegion
             // 
+            this.cmbRegion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRegion.ForeColor = System.Drawing.Color.DimGray;
             this.cmbRegion.FormattingEnabled = true;
-            this.cmbRegion.Location = new System.Drawing.Point(461, 353);
+            this.cmbRegion.Location = new System.Drawing.Point(548, 252);
             this.cmbRegion.Name = "cmbRegion";
-            this.cmbRegion.Size = new System.Drawing.Size(214, 21);
+            this.cmbRegion.Size = new System.Drawing.Size(214, 28);
             this.cmbRegion.TabIndex = 37;
+            this.cmbRegion.Text = "Region";
+            this.cmbRegion.SelectedIndexChanged += new System.EventHandler(this.cmbRegion_SelectedIndexChanged);
             this.cmbRegion.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             // 
             // cmbPais
             // 
+            this.cmbPais.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPais.ForeColor = System.Drawing.Color.DimGray;
             this.cmbPais.FormattingEnabled = true;
-            this.cmbPais.Location = new System.Drawing.Point(461, 312);
+            this.cmbPais.Location = new System.Drawing.Point(548, 195);
             this.cmbPais.Name = "cmbPais";
-            this.cmbPais.Size = new System.Drawing.Size(214, 21);
+            this.cmbPais.Size = new System.Drawing.Size(214, 28);
             this.cmbPais.TabIndex = 36;
+            this.cmbPais.Text = "Pais";
+            this.cmbPais.SelectedIndexChanged += new System.EventHandler(this.cmbPais_SelectedIndexChanged);
             this.cmbPais.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
             // 
             // cmbEmpresa
             // 
+            this.cmbEmpresa.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmpresa.ForeColor = System.Drawing.Color.DimGray;
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(461, 267);
+            this.cmbEmpresa.Location = new System.Drawing.Point(548, 142);
             this.cmbEmpresa.Name = "cmbEmpresa";
-            this.cmbEmpresa.Size = new System.Drawing.Size(214, 21);
+            this.cmbEmpresa.Size = new System.Drawing.Size(214, 28);
             this.cmbEmpresa.TabIndex = 35;
+            this.cmbEmpresa.Text = "Tipo Empresa";
+            this.cmbEmpresa.SelectedIndexChanged += new System.EventHandler(this.cmbEmpresa_SelectedIndexChanged);
             // 
             // btnCrear
             // 
@@ -211,7 +179,7 @@
             this.btnCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrear.Image = ((System.Drawing.Image)(resources.GetObject("btnCrear.Image")));
             this.btnCrear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCrear.Location = new System.Drawing.Point(424, 524);
+            this.btnCrear.Location = new System.Drawing.Point(423, 412);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(250, 40);
             this.btnCrear.TabIndex = 34;
@@ -221,86 +189,70 @@
             // 
             // txtGiroEmp
             // 
-            this.txtGiroEmp.Location = new System.Drawing.Point(466, 218);
+            this.txtGiroEmp.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiroEmp.ForeColor = System.Drawing.Color.DimGray;
+            this.txtGiroEmp.Location = new System.Drawing.Point(283, 303);
             this.txtGiroEmp.Name = "txtGiroEmp";
-            this.txtGiroEmp.Size = new System.Drawing.Size(214, 20);
+            this.txtGiroEmp.Size = new System.Drawing.Size(214, 26);
             this.txtGiroEmp.TabIndex = 30;
+            this.txtGiroEmp.Text = "Giro Empresa";
+            this.txtGiroEmp.TextChanged += new System.EventHandler(this.txtGiroEmp_TextChanged);
+            this.txtGiroEmp.Enter += new System.EventHandler(this.txtGiroEmp_Enter);
+            this.txtGiroEmp.Leave += new System.EventHandler(this.txtGiroEmp_Leave);
             // 
             // txtDirecEmp
             // 
-            this.txtDirecEmp.Location = new System.Drawing.Point(466, 179);
+            this.txtDirecEmp.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDirecEmp.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDirecEmp.Location = new System.Drawing.Point(283, 252);
             this.txtDirecEmp.Name = "txtDirecEmp";
-            this.txtDirecEmp.Size = new System.Drawing.Size(214, 20);
+            this.txtDirecEmp.Size = new System.Drawing.Size(214, 26);
             this.txtDirecEmp.TabIndex = 29;
+            this.txtDirecEmp.Text = "Direccion";
+            this.txtDirecEmp.TextChanged += new System.EventHandler(this.txtDirecEmp_TextChanged);
+            this.txtDirecEmp.Enter += new System.EventHandler(this.txtDirecEmp_Enter);
+            this.txtDirecEmp.Leave += new System.EventHandler(this.txtDirecEmp_Leave);
             // 
             // txtRazonSocial
             // 
-            this.txtRazonSocial.Location = new System.Drawing.Point(466, 140);
+            this.txtRazonSocial.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRazonSocial.ForeColor = System.Drawing.Color.DimGray;
+            this.txtRazonSocial.Location = new System.Drawing.Point(283, 195);
             this.txtRazonSocial.Name = "txtRazonSocial";
-            this.txtRazonSocial.Size = new System.Drawing.Size(214, 20);
+            this.txtRazonSocial.Size = new System.Drawing.Size(214, 26);
             this.txtRazonSocial.TabIndex = 28;
+            this.txtRazonSocial.Text = "Razon social";
+            this.txtRazonSocial.TextChanged += new System.EventHandler(this.txtRazonSocial_TextChanged);
+            this.txtRazonSocial.Enter += new System.EventHandler(this.txtRazonSocial_Enter);
+            this.txtRazonSocial.Leave += new System.EventHandler(this.txtRazonSocial_Leave);
             // 
             // txtDunsEmp
             // 
-            this.txtDunsEmp.Location = new System.Drawing.Point(466, 100);
+            this.txtDunsEmp.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDunsEmp.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDunsEmp.Location = new System.Drawing.Point(283, 142);
             this.txtDunsEmp.Name = "txtDunsEmp";
-            this.txtDunsEmp.Size = new System.Drawing.Size(214, 20);
+            this.txtDunsEmp.Size = new System.Drawing.Size(214, 26);
             this.txtDunsEmp.TabIndex = 27;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(285, 213);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(131, 25);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Giro Empresa";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(285, 174);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 25);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Direccion";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(285, 135);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 25);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Razon Social";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(285, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 25);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Duns Empresa";
+            this.txtDunsEmp.Text = "Duns Empresa";
+            this.txtDunsEmp.TextChanged += new System.EventHandler(this.txtDunsEmp_TextChanged);
+            this.txtDunsEmp.Enter += new System.EventHandler(this.txtDunsEmp_Enter);
+            this.txtDunsEmp.Leave += new System.EventHandler(this.txtDunsEmp_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(414, 3);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(419, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 25);
+            this.label1.Size = new System.Drawing.Size(222, 23);
             this.label1.TabIndex = 18;
             this.label1.Text = "Creacion de Empresa";
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.btnEliminar);
-            this.tabPage4.Controls.Add(this.btnModificar);
+            this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.label2);
             this.tabPage4.Controls.Add(this.groupBox1);
             this.tabPage4.Controls.Add(this.DgvEmpresa);
             this.tabPage4.Controls.Add(this.label8);
@@ -310,7 +262,38 @@
             this.tabPage4.Size = new System.Drawing.Size(1031, 572);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Listar Cliente";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(434, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(547, 13);
+            this.label2.TabIndex = 104;
+            this.label2.Text = "---------------------------------------------------------------------------------" +
+    "------------------------------------------------------";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnEliminar);
+            this.groupBox1.Controls.Add(this.btnEdit);
+            this.groupBox1.Controls.Add(this.btnModificar);
+            this.groupBox1.Controls.Add(this.cmbCiudadEdit);
+            this.groupBox1.Controls.Add(this.cmbRegionEdit);
+            this.groupBox1.Controls.Add(this.cmbPaisEdit);
+            this.groupBox1.Controls.Add(this.cmbTipoEmpEdit);
+            this.groupBox1.Controls.Add(this.txtDunsEdit);
+            this.groupBox1.Controls.Add(this.txtGiroEdit);
+            this.groupBox1.Controls.Add(this.txtDirEdit);
+            this.groupBox1.Controls.Add(this.txtRazonEdit);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(16, 30);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(239, 513);
+            this.groupBox1.TabIndex = 96;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Modificar Empresa";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnEliminar
             // 
@@ -320,54 +303,13 @@
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(112, 436);
+            this.btnEliminar.Location = new System.Drawing.Point(0, 392);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(250, 40);
+            this.btnEliminar.Size = new System.Drawing.Size(220, 40);
             this.btnEliminar.TabIndex = 98;
             this.btnEliminar.Text = "Eliminar Empresa";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.FlatAppearance.BorderSize = 0;
-            this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(137, 352);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(216, 40);
-            this.btnModificar.TabIndex = 97;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnEdit);
-            this.groupBox1.Controls.Add(this.cmbCiudadEdit);
-            this.groupBox1.Controls.Add(this.cmbRegionEdit);
-            this.groupBox1.Controls.Add(this.label30);
-            this.groupBox1.Controls.Add(this.cmbPaisEdit);
-            this.groupBox1.Controls.Add(this.cmbTipoEmpEdit);
-            this.groupBox1.Controls.Add(this.label31);
-            this.groupBox1.Controls.Add(this.txtDunsEdit);
-            this.groupBox1.Controls.Add(this.txtGiroEdit);
-            this.groupBox1.Controls.Add(this.label35);
-            this.groupBox1.Controls.Add(this.txtDirEdit);
-            this.groupBox1.Controls.Add(this.label32);
-            this.groupBox1.Controls.Add(this.txtRazonEdit);
-            this.groupBox1.Controls.Add(this.label40);
-            this.groupBox1.Controls.Add(this.label33);
-            this.groupBox1.Controls.Add(this.label39);
-            this.groupBox1.Controls.Add(this.label38);
-            this.groupBox1.Location = new System.Drawing.Point(378, 242);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(644, 329);
-            this.groupBox1.TabIndex = 96;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Modificar Usuario";
             // 
             // btnEdit
             // 
@@ -377,7 +319,7 @@
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(363, 130);
+            this.btnEdit.Location = new System.Drawing.Point(4, 312);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(216, 40);
             this.btnEdit.TabIndex = 68;
@@ -385,151 +327,121 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEditar_Click);
             // 
+            // btnModificar
+            // 
+            this.btnModificar.FlatAppearance.BorderSize = 0;
+            this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificar.Location = new System.Drawing.Point(6, 358);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(216, 40);
+            this.btnModificar.TabIndex = 97;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
             // cmbCiudadEdit
             // 
+            this.cmbCiudadEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCiudadEdit.ForeColor = System.Drawing.Color.DimGray;
             this.cmbCiudadEdit.FormattingEnabled = true;
-            this.cmbCiudadEdit.Location = new System.Drawing.Point(142, 278);
+            this.cmbCiudadEdit.Location = new System.Drawing.Point(6, 258);
             this.cmbCiudadEdit.Name = "cmbCiudadEdit";
-            this.cmbCiudadEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbCiudadEdit.Size = new System.Drawing.Size(214, 28);
             this.cmbCiudadEdit.TabIndex = 85;
+            this.cmbCiudadEdit.Text = "Ciudad";
             // 
             // cmbRegionEdit
             // 
+            this.cmbRegionEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRegionEdit.ForeColor = System.Drawing.Color.DimGray;
             this.cmbRegionEdit.FormattingEnabled = true;
-            this.cmbRegionEdit.Location = new System.Drawing.Point(143, 235);
+            this.cmbRegionEdit.Location = new System.Drawing.Point(6, 225);
             this.cmbRegionEdit.Name = "cmbRegionEdit";
-            this.cmbRegionEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbRegionEdit.Size = new System.Drawing.Size(214, 28);
             this.cmbRegionEdit.TabIndex = 84;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(30, 279);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(59, 20);
-            this.label30.TabIndex = 90;
-            this.label30.Text = "Ciudad";
+            this.cmbRegionEdit.Text = "Region";
             // 
             // cmbPaisEdit
             // 
+            this.cmbPaisEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPaisEdit.ForeColor = System.Drawing.Color.DimGray;
             this.cmbPaisEdit.FormattingEnabled = true;
-            this.cmbPaisEdit.Location = new System.Drawing.Point(143, 194);
+            this.cmbPaisEdit.Location = new System.Drawing.Point(6, 192);
             this.cmbPaisEdit.Name = "cmbPaisEdit";
-            this.cmbPaisEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbPaisEdit.Size = new System.Drawing.Size(214, 28);
             this.cmbPaisEdit.TabIndex = 83;
+            this.cmbPaisEdit.Text = "Pais";
             // 
             // cmbTipoEmpEdit
             // 
             this.cmbTipoEmpEdit.DisplayMember = "1";
+            this.cmbTipoEmpEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTipoEmpEdit.ForeColor = System.Drawing.Color.DimGray;
             this.cmbTipoEmpEdit.FormattingEnabled = true;
-            this.cmbTipoEmpEdit.Location = new System.Drawing.Point(142, 165);
+            this.cmbTipoEmpEdit.Location = new System.Drawing.Point(6, 159);
             this.cmbTipoEmpEdit.Name = "cmbTipoEmpEdit";
-            this.cmbTipoEmpEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbTipoEmpEdit.Size = new System.Drawing.Size(214, 28);
             this.cmbTipoEmpEdit.TabIndex = 82;
+            this.cmbTipoEmpEdit.Text = "Tipo Empresa";
             this.cmbTipoEmpEdit.ValueMember = "0";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(30, 236);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(60, 20);
-            this.label31.TabIndex = 89;
-            this.label31.Text = "Region";
             // 
             // txtDunsEdit
             // 
-            this.txtDunsEdit.Location = new System.Drawing.Point(143, 28);
+            this.txtDunsEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDunsEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDunsEdit.Location = new System.Drawing.Point(6, 31);
             this.txtDunsEdit.Name = "txtDunsEdit";
-            this.txtDunsEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtDunsEdit.Size = new System.Drawing.Size(214, 26);
             this.txtDunsEdit.TabIndex = 81;
+            this.txtDunsEdit.Text = "Duns Empresa";
+            this.txtDunsEdit.TextChanged += new System.EventHandler(this.txtDunsEdit_TextChanged);
+            this.txtDunsEdit.Enter += new System.EventHandler(this.txtDunsEdit_Enter);
+            this.txtDunsEdit.Leave += new System.EventHandler(this.txtDunsEdit_Leave);
             // 
             // txtGiroEdit
             // 
-            this.txtGiroEdit.Location = new System.Drawing.Point(143, 130);
+            this.txtGiroEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiroEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtGiroEdit.Location = new System.Drawing.Point(6, 126);
             this.txtGiroEdit.Name = "txtGiroEdit";
-            this.txtGiroEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtGiroEdit.Size = new System.Drawing.Size(214, 26);
             this.txtGiroEdit.TabIndex = 76;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(16, 28);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(115, 20);
-            this.label35.TabIndex = 79;
-            this.label35.Text = "Duns Empresa";
+            this.txtGiroEdit.Text = "Giro empresa";
+            this.txtGiroEdit.TextChanged += new System.EventHandler(this.txtGiroEdit_TextChanged);
+            this.txtGiroEdit.Enter += new System.EventHandler(this.txtGiroEdit_Enter);
+            this.txtGiroEdit.Leave += new System.EventHandler(this.txtGiroEdit_Leave);
             // 
             // txtDirEdit
             // 
-            this.txtDirEdit.Location = new System.Drawing.Point(143, 96);
+            this.txtDirEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDirEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDirEdit.Location = new System.Drawing.Point(6, 93);
             this.txtDirEdit.Name = "txtDirEdit";
-            this.txtDirEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtDirEdit.Size = new System.Drawing.Size(214, 26);
             this.txtDirEdit.TabIndex = 75;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(35, 195);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(39, 20);
-            this.label32.TabIndex = 88;
-            this.label32.Text = "Pais";
+            this.txtDirEdit.Text = "Direccion";
+            this.txtDirEdit.Enter += new System.EventHandler(this.txtDirEdit_Enter);
+            this.txtDirEdit.Leave += new System.EventHandler(this.txtDirEdit_Leave);
             // 
             // txtRazonEdit
             // 
-            this.txtRazonEdit.Location = new System.Drawing.Point(142, 64);
+            this.txtRazonEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRazonEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtRazonEdit.Location = new System.Drawing.Point(6, 63);
             this.txtRazonEdit.Name = "txtRazonEdit";
-            this.txtRazonEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtRazonEdit.Size = new System.Drawing.Size(214, 26);
             this.txtRazonEdit.TabIndex = 74;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(6, 64);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(103, 20);
-            this.label40.TabIndex = 69;
-            this.label40.Text = "Razon Social";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(21, 165);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(107, 20);
-            this.label33.TabIndex = 87;
-            this.label33.Text = "Tipo Empresa";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(13, 96);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(75, 20);
-            this.label39.TabIndex = 70;
-            this.label39.Text = "Direccion";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(16, 130);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(107, 20);
-            this.label38.TabIndex = 71;
-            this.label38.Text = "Giro Empresa";
+            this.txtRazonEdit.Text = "Rason Social";
+            this.txtRazonEdit.Enter += new System.EventHandler(this.txtRazonEdit_Enter);
+            this.txtRazonEdit.Leave += new System.EventHandler(this.txtRazonEdit_Leave);
             // 
             // DgvEmpresa
             // 
             this.DgvEmpresa.AllowUserToAddRows = false;
+            this.DgvEmpresa.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.DgvEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cnDunsEmpresa,
@@ -540,9 +452,9 @@
             this.cnCiudad,
             this.cnRegion,
             this.cnPais});
-            this.DgvEmpresa.Location = new System.Drawing.Point(197, 30);
+            this.DgvEmpresa.Location = new System.Drawing.Point(261, 49);
             this.DgvEmpresa.Name = "DgvEmpresa";
-            this.DgvEmpresa.Size = new System.Drawing.Size(701, 208);
+            this.DgvEmpresa.Size = new System.Drawing.Size(770, 520);
             this.DgvEmpresa.TabIndex = 94;
             // 
             // cnDunsEmpresa
@@ -597,7 +509,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(406, 2);
+            this.label8.Location = new System.Drawing.Point(586, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(231, 25);
             this.label8.TabIndex = 93;
@@ -642,25 +554,6 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cmbCiudad;
-        private System.Windows.Forms.ComboBox cmbRegion;
-        private System.Windows.Forms.ComboBox cmbPais;
-        private System.Windows.Forms.ComboBox cmbEmpresa;
-        private System.Windows.Forms.Button btnCrear;
-        private System.Windows.Forms.TextBox txtGiroEmp;
-        private System.Windows.Forms.TextBox txtDirecEmp;
-        private System.Windows.Forms.TextBox txtRazonSocial;
-        private System.Windows.Forms.TextBox txtDunsEmp;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
@@ -671,20 +564,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cmbCiudadEdit;
         private System.Windows.Forms.ComboBox cmbRegionEdit;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox cmbPaisEdit;
         private System.Windows.Forms.ComboBox cmbTipoEmpEdit;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox txtDunsEdit;
         private System.Windows.Forms.TextBox txtGiroEdit;
-        private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox txtDirEdit;
-        private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox txtRazonEdit;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label38;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnDunsEmpresa;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnRazonSocial;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnDireccion;
@@ -693,5 +578,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCiudad;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnRegion;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnPais;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.ComboBox cmbCiudad;
+        private System.Windows.Forms.ComboBox cmbRegion;
+        private System.Windows.Forms.ComboBox cmbPais;
+        private System.Windows.Forms.ComboBox cmbEmpresa;
+        private System.Windows.Forms.Button btnCrear;
+        private System.Windows.Forms.TextBox txtGiroEmp;
+        private System.Windows.Forms.TextBox txtDirecEmp;
+        private System.Windows.Forms.TextBox txtRazonSocial;
+        private System.Windows.Forms.TextBox txtDunsEmp;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

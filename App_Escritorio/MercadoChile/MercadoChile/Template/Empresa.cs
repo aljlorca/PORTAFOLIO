@@ -21,6 +21,9 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 using Amazon.Runtime.Internal;
 using Negocio;
 using Datos;
+using System.Windows.Media;
+using System.Drawing;
+
 
 namespace MercadoChile.Template
 {
@@ -299,6 +302,232 @@ namespace MercadoChile.Template
             cmbPaisEdit.DataSource = lista2;
             cmbPaisEdit.DisplayMember = "nombre_pais";
             cmbPaisEdit.ValueMember = "id_pais";
+        }
+       
+        private void txtDunsEmp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDunsEmp_Enter(object sender, EventArgs e)
+        {
+            if (txtDunsEmp.Text == "Duns Empresa")
+            {
+                txtDunsEmp.Text = "";
+                txtDunsEmp.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtDunsEmp_Leave(object sender, EventArgs e)
+        {
+            if (txtDunsEmp.Text == "")
+            {
+                txtDunsEmp.Text = "Duns Empresa";
+                txtDunsEmp.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtRazonSocial_Enter(object sender, EventArgs e)
+        {
+            if (txtDunsEmp.Text == "Razon Social")
+            {
+                txtDunsEmp.Text = "";
+                txtDunsEmp.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtRazonSocial_Leave(object sender, EventArgs e)
+        {
+            if (txtDunsEmp.Text == "")
+            {
+                txtDunsEmp.Text = "Razon Social";
+                txtDunsEmp.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtDirecEmp_Enter(object sender, EventArgs e)
+        {
+            if (txtDirecEmp.Text == "Direccion")
+            {
+                txtDirecEmp.Text = "";
+                txtDirecEmp.ForeColor = System.Drawing.Color.Black;
+
+            }
+
+        }
+
+        private void txtDirecEmp_Leave(object sender, EventArgs e)
+        {
+            if (txtDirecEmp.Text == "")
+            {
+                txtDirecEmp.Text = "Direccion";
+                txtDirecEmp.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtGiroEmp_Enter(object sender, EventArgs e)
+        {
+            if (txtGiroEmp.Text == "Giro Empresa ")
+            {
+                txtGiroEmp.Text = "";
+                txtGiroEmp.ForeColor = System.Drawing.Color.Black;
+            }
+
+        }
+
+        private void txtGiroEmp_Leave(object sender, EventArgs e)
+        {
+            if (txtGiroEmp.Text == "")
+            {
+                txtGiroEmp.Text = "Giro Empresa ";
+                txtGiroEmp.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtGiroEdit_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDunsEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtDunsEmp.Text == "")
+            {
+                txtDunsEmp.Text = "Duns Empresa";
+                txtDunsEmp.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtDunsEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtDunsEmp.Text == "")
+            {
+                txtDunsEmp.Text = "Duns Empresa";
+                txtDunsEmp.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtRazonEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtDunsEmp.Text == "Razon Social")
+            {
+                txtDunsEmp.Text = "";
+                txtDunsEmp.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtRazonEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtDunsEmp.Text == "")
+            {
+                txtDunsEmp.Text = "Razon Social";
+                txtDunsEmp.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtDirEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtDirecEmp.Text == "Direccion")
+            {
+                txtDirecEmp.Text = "";
+                txtDirecEmp.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtDirEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtDirecEmp.Text == "")
+            {
+                txtDirecEmp.Text = "Direccion";
+                txtDirecEmp.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtGiroEdit_Enter(object sender, EventArgs e)
+        {
+            if (txtGiroEmp.Text == "Giro Empresa ")
+            {
+                txtGiroEmp.Text = "";
+                txtGiroEmp.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtGiroEdit_Leave(object sender, EventArgs e)
+        {
+            if (txtGiroEmp.Text == "")
+            {
+                txtGiroEmp.Text = "Giro Empresa ";
+                txtGiroEmp.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtDunsEdit_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRazonSocial_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDirecEmp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtGiroEmp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCiudad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbRegion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbPais_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbEmpresa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

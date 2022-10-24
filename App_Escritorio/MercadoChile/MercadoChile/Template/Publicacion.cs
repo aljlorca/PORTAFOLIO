@@ -109,6 +109,66 @@ namespace MercadoChile.Template
                 }
             }
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFecha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescrip_Enter(object sender, EventArgs e)
+        {
+            if (txtDescrip.Text == "Descripcion")
+            {
+                txtDescrip.Text = "";
+                txtDescrip.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtDescrip_Leave(object sender, EventArgs e)
+        {
+            if (txtDescrip.Text == "")
+            {
+                txtDescrip.Text = "Descripcion";
+                txtDescrip.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtFecha_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFecha_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCliente_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCliente_Leave(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
