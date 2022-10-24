@@ -36,5 +36,60 @@ namespace MercadoChile
         {
 
         }
+
+        private void txtCargo_Enter(object sender, EventArgs e)
+        {
+            if (txtCargo.Text == "Nombre Cargo")
+            {
+                txtCargo.Text = "";
+                txtCargo.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtCargo_Leave(object sender, EventArgs e)
+        {
+            if (txtCargo.Text == "")
+            {
+                txtCargo.Text = "Nombre Cargo";
+                txtCargo.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtDescripcion_Enter(object sender, EventArgs e)
+        {
+            if (txtCargo.Text == "Descripcion")
+            {
+                txtCargo.Text = "";
+                txtCargo.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtDescripcion_Leave(object sender, EventArgs e)
+        {
+            if (txtCargo.Text == "")
+            {
+                txtCargo.Text = "Descripcion";
+                txtCargo.ForeColor = System.Drawing.Color.DimGray;
+
+            }
+        }
+
+        private void txtCargo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Cargos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

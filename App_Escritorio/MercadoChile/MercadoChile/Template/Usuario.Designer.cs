@@ -32,11 +32,6 @@ namespace MercadoChile
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuario));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
             this.cmbCiudad = new System.Windows.Forms.ComboBox();
             this.cmbRegion = new System.Windows.Forms.ComboBox();
@@ -49,40 +44,22 @@ namespace MercadoChile
             this.txtDirecUsua = new System.Windows.Forms.TextBox();
             this.txtNombreUsua = new System.Windows.Forms.TextBox();
             this.txtRutUsua = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.cmbEmpresaEdit = new System.Windows.Forms.ComboBox();
-            this.label29 = new System.Windows.Forms.Label();
             this.cmbCiudadEdit = new System.Windows.Forms.ComboBox();
             this.cmbRegionEdit = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
             this.cmbPaisEdit = new System.Windows.Forms.ComboBox();
-            this.label37 = new System.Windows.Forms.Label();
             this.cmbCargoEdit = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
             this.txtConEdit = new System.Windows.Forms.TextBox();
             this.txtRutEdit = new System.Windows.Forms.TextBox();
             this.txtTeleEdit = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
             this.txtDirEdit = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
             this.txtNomEdit = new System.Windows.Forms.TextBox();
             this.txtCorEdit = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
             this.DgvClientes = new System.Windows.Forms.DataGridView();
             this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,8 +72,11 @@ namespace MercadoChile
             this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -119,11 +99,9 @@ namespace MercadoChile
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label23);
-            this.tabPage1.Controls.Add(this.label22);
-            this.tabPage1.Controls.Add(this.label21);
-            this.tabPage1.Controls.Add(this.label20);
-            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.label9);
+            this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.cmbEmpresa);
             this.tabPage1.Controls.Add(this.cmbCiudad);
             this.tabPage1.Controls.Add(this.cmbRegion);
@@ -136,113 +114,82 @@ namespace MercadoChile
             this.tabPage1.Controls.Add(this.txtDirecUsua);
             this.tabPage1.Controls.Add(this.txtNombreUsua);
             this.tabPage1.Controls.Add(this.txtRutUsua);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1036, 584);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Crear Cliente";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(431, 478);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(90, 25);
-            this.label23.TabIndex = 44;
-            this.label23.Text = "Empresa";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(431, 428);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(75, 25);
-            this.label22.TabIndex = 43;
-            this.label22.Text = "Ciudad";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(431, 394);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(73, 25);
-            this.label21.TabIndex = 42;
-            this.label21.Text = "Region";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(431, 349);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(50, 25);
-            this.label20.TabIndex = 41;
-            this.label20.Text = "Pais";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(431, 304);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(66, 25);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Cargo";
+            this.tabPage1.Enter += new System.EventHandler(this.tabPage1_Enter);
+            this.tabPage1.Leave += new System.EventHandler(this.tabPage1_Leave);
             // 
             // cmbEmpresa
             // 
+            this.cmbEmpresa.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmpresa.ForeColor = System.Drawing.Color.DimGray;
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(600, 478);
+            this.cmbEmpresa.Location = new System.Drawing.Point(373, 354);
             this.cmbEmpresa.Name = "cmbEmpresa";
-            this.cmbEmpresa.Size = new System.Drawing.Size(214, 21);
+            this.cmbEmpresa.Size = new System.Drawing.Size(214, 26);
             this.cmbEmpresa.TabIndex = 39;
+            this.cmbEmpresa.Text = "Empresa";
+            this.cmbEmpresa.Enter += new System.EventHandler(this.cmbEmpresa_Enter);
+            this.cmbEmpresa.Leave += new System.EventHandler(this.cmbEmpresa_Leave);
             // 
             // cmbCiudad
             // 
+            this.cmbCiudad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCiudad.ForeColor = System.Drawing.Color.DimGray;
             this.cmbCiudad.FormattingEnabled = true;
-            this.cmbCiudad.Location = new System.Drawing.Point(600, 432);
+            this.cmbCiudad.Location = new System.Drawing.Point(373, 294);
             this.cmbCiudad.Name = "cmbCiudad";
-            this.cmbCiudad.Size = new System.Drawing.Size(214, 21);
+            this.cmbCiudad.Size = new System.Drawing.Size(214, 26);
             this.cmbCiudad.TabIndex = 38;
+            this.cmbCiudad.Text = "Ciudad";
+            this.cmbCiudad.Enter += new System.EventHandler(this.cmbCiudad_Enter);
+            this.cmbCiudad.Leave += new System.EventHandler(this.cmbCiudad_Leave);
             // 
             // cmbRegion
             // 
+            this.cmbRegion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRegion.ForeColor = System.Drawing.Color.DimGray;
             this.cmbRegion.FormattingEnabled = true;
-            this.cmbRegion.Location = new System.Drawing.Point(600, 394);
+            this.cmbRegion.Location = new System.Drawing.Point(373, 239);
             this.cmbRegion.Name = "cmbRegion";
-            this.cmbRegion.Size = new System.Drawing.Size(214, 21);
+            this.cmbRegion.Size = new System.Drawing.Size(214, 26);
             this.cmbRegion.TabIndex = 37;
+            this.cmbRegion.Text = "Region";
             this.cmbRegion.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
+            this.cmbRegion.Enter += new System.EventHandler(this.cmbRegion_Enter);
+            this.cmbRegion.Leave += new System.EventHandler(this.cmbRegion_Leave);
             // 
             // cmbPais
             // 
+            this.cmbPais.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPais.ForeColor = System.Drawing.Color.DimGray;
             this.cmbPais.FormattingEnabled = true;
-            this.cmbPais.Location = new System.Drawing.Point(600, 353);
+            this.cmbPais.Location = new System.Drawing.Point(373, 182);
             this.cmbPais.Name = "cmbPais";
-            this.cmbPais.Size = new System.Drawing.Size(214, 21);
+            this.cmbPais.Size = new System.Drawing.Size(214, 26);
             this.cmbPais.TabIndex = 36;
+            this.cmbPais.Text = "Pais";
             this.cmbPais.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
+            this.cmbPais.Enter += new System.EventHandler(this.cmbPais_Enter);
+            this.cmbPais.Leave += new System.EventHandler(this.cmbPais_Leave);
             // 
             // cmbCargo
             // 
+            this.cmbCargo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCargo.ForeColor = System.Drawing.Color.DimGray;
             this.cmbCargo.FormattingEnabled = true;
-            this.cmbCargo.Location = new System.Drawing.Point(600, 308);
+            this.cmbCargo.Location = new System.Drawing.Point(373, 118);
             this.cmbCargo.Name = "cmbCargo";
-            this.cmbCargo.Size = new System.Drawing.Size(214, 21);
+            this.cmbCargo.Size = new System.Drawing.Size(214, 26);
             this.cmbCargo.TabIndex = 35;
-            this.cmbCargo.Text = "Seleccionar";
+            this.cmbCargo.Text = "Cargo";
+            this.cmbCargo.SelectedIndexChanged += new System.EventHandler(this.cmbCargo_SelectedIndexChanged);
+            this.cmbCargo.Enter += new System.EventHandler(this.cmbCargo_Enter);
+            this.cmbCargo.Leave += new System.EventHandler(this.cmbCargo_Leave);
             // 
             // btnCrear
             // 
@@ -252,7 +199,7 @@ namespace MercadoChile
             this.btnCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrear.Image = ((System.Drawing.Image)(resources.GetObject("btnCrear.Image")));
             this.btnCrear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCrear.Location = new System.Drawing.Point(553, 537);
+            this.btnCrear.Location = new System.Drawing.Point(373, 424);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(250, 40);
             this.btnCrear.TabIndex = 34;
@@ -262,130 +209,90 @@ namespace MercadoChile
             // 
             // txtConUsua
             // 
-            this.txtConUsua.Location = new System.Drawing.Point(600, 261);
+            this.txtConUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConUsua.ForeColor = System.Drawing.Color.DimGray;
+            this.txtConUsua.Location = new System.Drawing.Point(24, 432);
             this.txtConUsua.Name = "txtConUsua";
-            this.txtConUsua.Size = new System.Drawing.Size(214, 20);
+            this.txtConUsua.Size = new System.Drawing.Size(214, 26);
             this.txtConUsua.TabIndex = 32;
+            this.txtConUsua.Text = "Contraseña";
+            this.txtConUsua.Enter += new System.EventHandler(this.txtConUsua_Enter);
+            this.txtConUsua.Leave += new System.EventHandler(this.txtConUsua_Leave);
             // 
             // txtCorUsua
             // 
-            this.txtCorUsua.Location = new System.Drawing.Point(600, 221);
+            this.txtCorUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorUsua.ForeColor = System.Drawing.Color.DimGray;
+            this.txtCorUsua.Location = new System.Drawing.Point(24, 354);
             this.txtCorUsua.Name = "txtCorUsua";
-            this.txtCorUsua.Size = new System.Drawing.Size(214, 20);
+            this.txtCorUsua.Size = new System.Drawing.Size(214, 26);
             this.txtCorUsua.TabIndex = 31;
+            this.txtCorUsua.Text = "Correo";
+            this.txtCorUsua.Enter += new System.EventHandler(this.txtCorUsua_Enter);
+            this.txtCorUsua.Leave += new System.EventHandler(this.txtCorUsua_Leave);
             // 
             // txtTelUsua
             // 
-            this.txtTelUsua.Location = new System.Drawing.Point(600, 183);
+            this.txtTelUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelUsua.ForeColor = System.Drawing.Color.DimGray;
+            this.txtTelUsua.Location = new System.Drawing.Point(24, 294);
             this.txtTelUsua.Name = "txtTelUsua";
-            this.txtTelUsua.Size = new System.Drawing.Size(214, 20);
+            this.txtTelUsua.Size = new System.Drawing.Size(214, 26);
             this.txtTelUsua.TabIndex = 30;
+            this.txtTelUsua.Text = "Telefono";
+            this.txtTelUsua.Enter += new System.EventHandler(this.txtTelUsua_Enter);
+            this.txtTelUsua.Leave += new System.EventHandler(this.txtTelUsua_Leave);
             // 
             // txtDirecUsua
             // 
-            this.txtDirecUsua.Location = new System.Drawing.Point(600, 144);
+            this.txtDirecUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDirecUsua.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDirecUsua.Location = new System.Drawing.Point(24, 239);
             this.txtDirecUsua.Name = "txtDirecUsua";
-            this.txtDirecUsua.Size = new System.Drawing.Size(214, 20);
+            this.txtDirecUsua.Size = new System.Drawing.Size(214, 26);
             this.txtDirecUsua.TabIndex = 29;
+            this.txtDirecUsua.Text = "Direccion";
+            this.txtDirecUsua.Enter += new System.EventHandler(this.txtDirecUsua_Enter);
+            this.txtDirecUsua.Leave += new System.EventHandler(this.txtDirecUsua_Leave);
             // 
             // txtNombreUsua
             // 
-            this.txtNombreUsua.Location = new System.Drawing.Point(600, 105);
+            this.txtNombreUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreUsua.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNombreUsua.Location = new System.Drawing.Point(24, 183);
             this.txtNombreUsua.Name = "txtNombreUsua";
-            this.txtNombreUsua.Size = new System.Drawing.Size(214, 20);
+            this.txtNombreUsua.Size = new System.Drawing.Size(214, 26);
             this.txtNombreUsua.TabIndex = 28;
+            this.txtNombreUsua.Text = "Nombre Cliente";
+            this.txtNombreUsua.Enter += new System.EventHandler(this.txtNombreUsua_Enter);
+            this.txtNombreUsua.Leave += new System.EventHandler(this.txtNombreUsua_Leave);
             // 
             // txtRutUsua
             // 
-            this.txtRutUsua.Location = new System.Drawing.Point(600, 65);
+            this.txtRutUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRutUsua.ForeColor = System.Drawing.Color.DimGray;
+            this.txtRutUsua.Location = new System.Drawing.Point(24, 118);
             this.txtRutUsua.Name = "txtRutUsua";
-            this.txtRutUsua.Size = new System.Drawing.Size(214, 20);
+            this.txtRutUsua.Size = new System.Drawing.Size(214, 26);
             this.txtRutUsua.TabIndex = 27;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(419, 256);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 25);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Contraseña";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(419, 216);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 25);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Correo";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(419, 178);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 25);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Telefono";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(419, 139);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 25);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Direccion";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(419, 100);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(147, 25);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Nombre Cliente";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(419, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 25);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Rut Cliente";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(543, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 25);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Creacion de Cliente";
+            this.txtRutUsua.Text = "Rut Cliente";
+            this.txtRutUsua.TextChanged += new System.EventHandler(this.txtRutUsua_TextChanged);
+            this.txtRutUsua.Enter += new System.EventHandler(this.txtRutUsua_Enter);
+            this.txtRutUsua.Leave += new System.EventHandler(this.txtRutUsua_Leave);
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.button2);
-            this.tabPage4.Controls.Add(this.btnModificar);
+            this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.label3);
+            this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Controls.Add(this.groupBox1);
             this.tabPage4.Controls.Add(this.DgvClientes);
-            this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1036, 584);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Listar Cliente";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -395,7 +302,7 @@ namespace MercadoChile
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(112, 436);
+            this.button2.Location = new System.Drawing.Point(6, 520);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(250, 40);
             this.button2.TabIndex = 98;
@@ -410,7 +317,7 @@ namespace MercadoChile
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(123, 338);
+            this.btnModificar.Location = new System.Drawing.Point(6, 474);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(216, 40);
             this.btnModificar.TabIndex = 97;
@@ -420,32 +327,24 @@ namespace MercadoChile
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnEdit);
+            this.groupBox1.Controls.Add(this.btnModificar);
             this.groupBox1.Controls.Add(this.cmbEmpresaEdit);
-            this.groupBox1.Controls.Add(this.label29);
             this.groupBox1.Controls.Add(this.cmbCiudadEdit);
             this.groupBox1.Controls.Add(this.cmbRegionEdit);
-            this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.cmbPaisEdit);
-            this.groupBox1.Controls.Add(this.label37);
             this.groupBox1.Controls.Add(this.cmbCargoEdit);
-            this.groupBox1.Controls.Add(this.label31);
             this.groupBox1.Controls.Add(this.txtConEdit);
             this.groupBox1.Controls.Add(this.txtRutEdit);
             this.groupBox1.Controls.Add(this.txtTeleEdit);
-            this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.txtDirEdit);
-            this.groupBox1.Controls.Add(this.label32);
             this.groupBox1.Controls.Add(this.txtNomEdit);
             this.groupBox1.Controls.Add(this.txtCorEdit);
-            this.groupBox1.Controls.Add(this.label40);
-            this.groupBox1.Controls.Add(this.label33);
-            this.groupBox1.Controls.Add(this.label39);
-            this.groupBox1.Controls.Add(this.label38);
-            this.groupBox1.Controls.Add(this.label36);
-            this.groupBox1.Location = new System.Drawing.Point(378, 242);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(3, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(644, 329);
+            this.groupBox1.Size = new System.Drawing.Size(232, 566);
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificar Usuario";
@@ -458,7 +357,7 @@ namespace MercadoChile
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(380, 158);
+            this.btnEdit.Location = new System.Drawing.Point(6, 437);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(216, 40);
             this.btnEdit.TabIndex = 68;
@@ -468,205 +367,130 @@ namespace MercadoChile
             // 
             // cmbEmpresaEdit
             // 
+            this.cmbEmpresaEdit.ForeColor = System.Drawing.Color.DimGray;
             this.cmbEmpresaEdit.FormattingEnabled = true;
-            this.cmbEmpresaEdit.Location = new System.Drawing.Point(142, 302);
+            this.cmbEmpresaEdit.Location = new System.Drawing.Point(17, 395);
             this.cmbEmpresaEdit.Name = "cmbEmpresaEdit";
-            this.cmbEmpresaEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbEmpresaEdit.Size = new System.Drawing.Size(214, 27);
             this.cmbEmpresaEdit.TabIndex = 86;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(13, 303);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(73, 20);
-            this.label29.TabIndex = 91;
-            this.label29.Text = "Empresa";
+            this.cmbEmpresaEdit.Text = "Empresa";
             // 
             // cmbCiudadEdit
             // 
+            this.cmbCiudadEdit.ForeColor = System.Drawing.Color.DimGray;
             this.cmbCiudadEdit.FormattingEnabled = true;
-            this.cmbCiudadEdit.Location = new System.Drawing.Point(142, 275);
+            this.cmbCiudadEdit.Location = new System.Drawing.Point(17, 362);
             this.cmbCiudadEdit.Name = "cmbCiudadEdit";
-            this.cmbCiudadEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbCiudadEdit.Size = new System.Drawing.Size(214, 27);
             this.cmbCiudadEdit.TabIndex = 85;
+            this.cmbCiudadEdit.Text = "Ciudad";
             // 
             // cmbRegionEdit
             // 
+            this.cmbRegionEdit.ForeColor = System.Drawing.Color.DimGray;
             this.cmbRegionEdit.FormattingEnabled = true;
-            this.cmbRegionEdit.Location = new System.Drawing.Point(142, 248);
+            this.cmbRegionEdit.Location = new System.Drawing.Point(17, 329);
             this.cmbRegionEdit.Name = "cmbRegionEdit";
-            this.cmbRegionEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbRegionEdit.Size = new System.Drawing.Size(214, 27);
             this.cmbRegionEdit.TabIndex = 84;
+            this.cmbRegionEdit.Text = "Region";
             this.cmbRegionEdit.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             this.cmbRegionEdit.TextUpdate += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(22, 276);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(59, 20);
-            this.label30.TabIndex = 90;
-            this.label30.Text = "Ciudad";
-            // 
             // cmbPaisEdit
             // 
+            this.cmbPaisEdit.ForeColor = System.Drawing.Color.DimGray;
             this.cmbPaisEdit.FormattingEnabled = true;
-            this.cmbPaisEdit.Location = new System.Drawing.Point(142, 221);
+            this.cmbPaisEdit.Location = new System.Drawing.Point(17, 296);
             this.cmbPaisEdit.Name = "cmbPaisEdit";
-            this.cmbPaisEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbPaisEdit.Size = new System.Drawing.Size(214, 27);
             this.cmbPaisEdit.TabIndex = 83;
+            this.cmbPaisEdit.Text = "Pais";
             this.cmbPaisEdit.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
             this.cmbPaisEdit.TextUpdate += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(29, 140);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(57, 20);
-            this.label37.TabIndex = 72;
-            this.label37.Text = "Correo";
             // 
             // cmbCargoEdit
             // 
             this.cmbCargoEdit.DisplayMember = "1";
+            this.cmbCargoEdit.ForeColor = System.Drawing.Color.DimGray;
             this.cmbCargoEdit.FormattingEnabled = true;
-            this.cmbCargoEdit.Location = new System.Drawing.Point(142, 194);
+            this.cmbCargoEdit.Location = new System.Drawing.Point(17, 263);
             this.cmbCargoEdit.Name = "cmbCargoEdit";
-            this.cmbCargoEdit.Size = new System.Drawing.Size(214, 21);
+            this.cmbCargoEdit.Size = new System.Drawing.Size(214, 27);
             this.cmbCargoEdit.TabIndex = 82;
+            this.cmbCargoEdit.Text = "Cargo";
             this.cmbCargoEdit.ValueMember = "0";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(21, 249);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(60, 20);
-            this.label31.TabIndex = 89;
-            this.label31.Text = "Region";
             // 
             // txtConEdit
             // 
-            this.txtConEdit.Location = new System.Drawing.Point(142, 168);
+            this.txtConEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtConEdit.Location = new System.Drawing.Point(17, 230);
             this.txtConEdit.Name = "txtConEdit";
-            this.txtConEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtConEdit.Size = new System.Drawing.Size(214, 27);
             this.txtConEdit.TabIndex = 78;
+            this.txtConEdit.Text = "Nueva contraseña";
+            this.txtConEdit.Enter += new System.EventHandler(this.txtConEdit_Enter);
+            this.txtConEdit.Leave += new System.EventHandler(this.txtConEdit_Leave);
             // 
             // txtRutEdit
             // 
-            this.txtRutEdit.Location = new System.Drawing.Point(142, 38);
+            this.txtRutEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtRutEdit.Location = new System.Drawing.Point(17, 59);
             this.txtRutEdit.Name = "txtRutEdit";
-            this.txtRutEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtRutEdit.Size = new System.Drawing.Size(214, 27);
             this.txtRutEdit.TabIndex = 81;
+            this.txtRutEdit.Text = "Rut Cliente";
+            this.txtRutEdit.Enter += new System.EventHandler(this.txtRutEdit_Enter);
+            this.txtRutEdit.Leave += new System.EventHandler(this.txtRutEdit_Leave);
             // 
             // txtTeleEdit
             // 
-            this.txtTeleEdit.Location = new System.Drawing.Point(142, 116);
+            this.txtTeleEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtTeleEdit.Location = new System.Drawing.Point(17, 164);
             this.txtTeleEdit.Name = "txtTeleEdit";
-            this.txtTeleEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtTeleEdit.Size = new System.Drawing.Size(214, 27);
             this.txtTeleEdit.TabIndex = 76;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(15, 38);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(88, 20);
-            this.label35.TabIndex = 79;
-            this.label35.Text = "Rut Cliente";
+            this.txtTeleEdit.Text = "Telefono";
+            this.txtTeleEdit.Enter += new System.EventHandler(this.txtTeleEdit_Enter);
+            this.txtTeleEdit.Leave += new System.EventHandler(this.txtTeleEdit_Leave);
             // 
             // txtDirEdit
             // 
-            this.txtDirEdit.Location = new System.Drawing.Point(142, 90);
+            this.txtDirEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDirEdit.Location = new System.Drawing.Point(17, 129);
             this.txtDirEdit.Name = "txtDirEdit";
-            this.txtDirEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtDirEdit.Size = new System.Drawing.Size(214, 27);
             this.txtDirEdit.TabIndex = 75;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(26, 222);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(39, 20);
-            this.label32.TabIndex = 88;
-            this.label32.Text = "Pais";
+            this.txtDirEdit.Text = "Direccion";
+            this.txtDirEdit.Enter += new System.EventHandler(this.txtDirEdit_Enter);
+            this.txtDirEdit.Leave += new System.EventHandler(this.txtDirEdit_Leave);
             // 
             // txtNomEdit
             // 
-            this.txtNomEdit.Location = new System.Drawing.Point(142, 64);
+            this.txtNomEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNomEdit.Location = new System.Drawing.Point(17, 96);
             this.txtNomEdit.Name = "txtNomEdit";
-            this.txtNomEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtNomEdit.Size = new System.Drawing.Size(214, 27);
             this.txtNomEdit.TabIndex = 74;
+            this.txtNomEdit.Text = "Nombre Cliente";
+            this.txtNomEdit.Enter += new System.EventHandler(this.txtNomEdit_Enter);
+            this.txtNomEdit.Leave += new System.EventHandler(this.txtNomEdit_Leave);
             // 
             // txtCorEdit
             // 
-            this.txtCorEdit.Location = new System.Drawing.Point(142, 140);
+            this.txtCorEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtCorEdit.Location = new System.Drawing.Point(17, 197);
             this.txtCorEdit.Name = "txtCorEdit";
-            this.txtCorEdit.Size = new System.Drawing.Size(214, 20);
+            this.txtCorEdit.Size = new System.Drawing.Size(214, 27);
             this.txtCorEdit.TabIndex = 77;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(6, 64);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(118, 20);
-            this.label40.TabIndex = 69;
-            this.label40.Text = "Nombre Cliente";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(21, 195);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(52, 20);
-            this.label33.TabIndex = 87;
-            this.label33.Text = "Cargo";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(12, 90);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(75, 20);
-            this.label39.TabIndex = 70;
-            this.label39.Text = "Direccion";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(15, 116);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(71, 20);
-            this.label38.TabIndex = 71;
-            this.label38.Text = "Telefono";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(0, 168);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(141, 20);
-            this.label36.TabIndex = 73;
-            this.label36.Text = "Nueva Contraseña";
+            this.txtCorEdit.Text = "Correo";
+            this.txtCorEdit.Enter += new System.EventHandler(this.txtCorEdit_Enter);
+            this.txtCorEdit.Leave += new System.EventHandler(this.txtCorEdit_Leave);
             // 
             // DgvClientes
             // 
             this.DgvClientes.AllowUserToAddRows = false;
+            this.DgvClientes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cnNumeIdenUsuar,
@@ -680,9 +504,10 @@ namespace MercadoChile
             this.cnCiudad,
             this.cnRegion,
             this.cnPais});
-            this.DgvClientes.Location = new System.Drawing.Point(3, 28);
+            this.DgvClientes.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.DgvClientes.Location = new System.Drawing.Point(240, 57);
             this.DgvClientes.Name = "DgvClientes";
-            this.DgvClientes.Size = new System.Drawing.Size(1019, 208);
+            this.DgvClientes.Size = new System.Drawing.Size(793, 521);
             this.DgvClientes.TabIndex = 94;
             // 
             // cnNumeIdenUsuar
@@ -751,16 +576,6 @@ namespace MercadoChile
             this.cnPais.HeaderText = "Pais";
             this.cnPais.Name = "cnPais";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(373, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(214, 25);
-            this.label8.TabIndex = 93;
-            this.label8.Text = "Listar y Eliminar Cliente";
-            // 
             // button1
             // 
             this.button1.FlatAppearance.BorderSize = 0;
@@ -774,6 +589,48 @@ namespace MercadoChile
             this.button1.TabIndex = 95;
             this.button1.Tag = "";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 64);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(412, 13);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "---------------------------------------------------------------------------------" +
+    "------------------------------------------------------";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(19, 36);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(247, 28);
+            this.label10.TabIndex = 45;
+            this.label10.Text = "Creacion de Cliente";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(464, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(412, 13);
+            this.label3.TabIndex = 102;
+            this.label3.Text = "---------------------------------------------------------------------------------" +
+    "------------------------------------------------------";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(572, 5);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(205, 28);
+            this.label8.TabIndex = 101;
+            this.label8.Text = "Lista De Usuarios";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // Usuario
             // 
@@ -806,20 +663,8 @@ namespace MercadoChile
         private System.Windows.Forms.TextBox txtDirecUsua;
         private System.Windows.Forms.TextBox txtNombreUsua;
         private System.Windows.Forms.TextBox txtRutUsua;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmbEmpresa;
         private System.Windows.Forms.ComboBox cmbCiudad;
         private System.Windows.Forms.ComboBox cmbRegion;
@@ -829,30 +674,18 @@ namespace MercadoChile
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ComboBox cmbEmpresaEdit;
-        private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox cmbCiudadEdit;
         private System.Windows.Forms.ComboBox cmbRegionEdit;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox cmbPaisEdit;
-        private System.Windows.Forms.Label label37;
         private System.Windows.Forms.ComboBox cmbCargoEdit;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox txtConEdit;
         private System.Windows.Forms.TextBox txtRutEdit;
         private System.Windows.Forms.TextBox txtTeleEdit;
-        private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox txtDirEdit;
-        private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox txtNomEdit;
         private System.Windows.Forms.TextBox txtCorEdit;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView DgvClientes;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNumeIdenUsuar;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNombre;
@@ -865,5 +698,9 @@ namespace MercadoChile
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCiudad;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnRegion;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnPais;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label8;
     }
 }

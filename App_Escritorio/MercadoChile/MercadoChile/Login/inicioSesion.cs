@@ -106,9 +106,9 @@ namespace MercadoChile
 
         private void txtcontraseña_admin_Leave(object sender, EventArgs e)
         {
-            if (txtContraseña.Text == "**********")
+            if (txtContraseña.Text == "")
             {
-                txtContraseña.Text = "";
+                txtContraseña.Text = "**********";
                 txtContraseña.ForeColor = Color.LightGray;
             }
         }

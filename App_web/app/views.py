@@ -318,7 +318,7 @@ def detalle_venta(request,id_venta):
         'empresa':session['empresa'],
     }
     id_venta=request.session["id_venta"]
-    return render(request, 'app/Cliente_Interno/ver_producto.html', data)
+    return render(request, 'app/proveedor/Ver_ventas.html', data)
 
 
 def listado_ventas(request):
