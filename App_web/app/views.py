@@ -18,15 +18,10 @@ def home(request):
 def contacto(request):
     return render(request, 'app/contacto.html')
 
-def carrito(request):
-    data = get_session(request)
-    try:
-        if data['cargo']!='Cliente Interno':
-            return redirect(to="http://127.0.0.1:3000/")
-    except:
-        pass
-
-    return render(request, 'app/carro/carrito.html',data)
+def logout(request):
+    mensaje = logout_controller(request)
+    data = {'message':mensaje}
+    return redirect(to="http://127.0.0.1:3000/")
 
 @csrf_exempt
 def login(request):
@@ -45,7 +40,7 @@ def login(request):
                 if respt[1]=='Proveedor':
                     return redirect(to="http://127.0.0.1:3000/productores/")
                 elif respt[1]=='Transportista':
-                    return redirect(to="http://127.0.0.1:3000/")
+                    return redirect(to="http://127.0.0.1:3000/transportista/")
                 elif respt[1]=='Cliente Interno':
                     return redirect(to="http://127.0.0.1:3000/cliente_interno/")
                 elif respt[1]=='Cliente Externo':
@@ -61,44 +56,25 @@ def login(request):
         return render(request, 'app/login.html',data)
     return render(request, 'app/login.html')
 
-@csrf_exempt
-def productores(request):
-    data = get_session(request)
-    if data['cargo']!='Proveedor':
-        return redirect(to="http://127.0.0.1:3000/")
-    if request.method == 'POST':
-            company=request.session['company']
-            company=company.replace(' ','_')
-            fecha = datetime.datetime.now()
-            fecha=fecha.strftime("%d%m%y%H%M%S")
-            id = company+str(randrange(1,10000))+fecha
-            nombre_producto = request.POST.get('nombre-producto')
-            cantidad_producto = request.POST.get('cantidad-producto')
-            precio_producto = request.POST.get('precio-producto')
-            imagen_producto =  request.FILES['imagen-producto']
-            id_calidad = request.POST.get('calidad-producto')
-            saldo_producto = '1'
-            estado_fila= '1'
-            id_usuario = request.session['id_user']
-            try: 
-                producto=Producto.objects.get(id_producto=id,imagen_producto=imagen_producto)
-            except Producto.DoesNotExist:
-                producto = Producto(id_producto=id,imagen_producto=imagen_producto)
-                producto.save()
-
-            buscar = str(producto)
-            ruta_proyecto = os.getcwd()+'/media/'
-            ruta = ruta_proyecto+buscar
-            crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
-            
-            return render(request, 'app/proveedor/productores.html')
-    return render(request, 'app/proveedor/productores.html',data)
+###########################
+###Cliente Interno Views###
+###########################
 
 def cliente_interno(request):
     data = get_session(request)
     if data['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
     return render(request, 'app/Cliente_Interno/menu.html',data)
+
+def carrito(request):
+    data = get_session(request)
+    try:
+        if data['cargo']!='Cliente Interno':
+            return redirect(to="http://127.0.0.1:3000/")
+    except:
+        pass
+
+    return render(request, 'app/carro/carrito.html',data)
 
 def cliente_ecomerce(request):
     session = get_session(request)
@@ -134,20 +110,6 @@ def detalle_producto(request, id_producto):
     }
     return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 
-def cliente_externo(request):
-    try:
-        cargo=request.session['cargo']
-        if cargo!='Cliente Externo':
-            return redirect(to="http://127.0.0.1:3000/")
-
-    except:
-        return redirect(to="http://127.0.0.1:3000/")
-    
-    
-    session = get_session(request)
-
-    return render(request, 'app/cliente_externo/menu.html',session)
-
 def checkout(request):
     try:
         cargo=request.session['cargo']
@@ -171,29 +133,38 @@ def checkout(request):
     }    
     return render(request, 'app/carro/checkout.html',data)
 
+def detalle_venta(request,id_venta):
+    session = get_session(request)
+    if session['cargo']!='Cliente Interno':
+        return redirect(to="http://127.0.0.1:3000/")
+    data = {
+        'ventas':Ventas_get_id(id_venta),
+        'cargo': session['cargo'],
+        'usuario': session['usuario'],
+        'empresa': session['correo'],
+        'id_user': session['id_user'],
+        'empresa':session['empresa'],
+    }
+    id_venta=request.session["id_venta"]
+    return render(request, 'app/proveedor/Ver_ventas.html', data)
 
-@csrf_exempt
-def ingreso_productos(request):
-    data = get_session(request)
+###########################
+###Cliente Externo Views###
+###########################
+
+def cliente_externo(request):
     try:
-        if data['cargo']!='Transportista':
+        cargo=request.session['cargo']
+        if cargo!='Cliente Externo':
             return redirect(to="http://127.0.0.1:3000/")
+
     except:
-        pass
+        return redirect(to="http://127.0.0.1:3000/")
+    
+    
+    session = get_session(request)
 
-    if request.method == 'POST':
-            monto = request.POST.get('monto')
-            id_venta = ''
-            id_usuario = request.session['id_user']
-            subasta_controller(monto,id_venta,id_usuario)
-            return render(request, 'app/Ingreso_postulacion.html')
-
-    return render(request, 'app/Ingreso_postulacion.html',data)
-
-def logout(request):
-    mensaje = logout_controller(request)
-    data = {'message':mensaje}
-    return redirect(to="http://127.0.0.1:3000/")
+    return render(request, 'app/cliente_externo/menu.html',session)
 
 @csrf_exempt
 def pedido(request):
@@ -217,19 +188,60 @@ def pedido(request):
         data={'error':'no fue posible crear el pedido'}
     return render(request, 'app/cliente_externo/pedido.html',data)
 
+def listado_ventas(request):
+    data = get_session(request)
 
-def transportista(request):
     try:
         cargo=request.session['cargo']
-        if cargo!='Transportista':
+        if cargo!='Cliente Externo':
             return redirect(to="http://127.0.0.1:3000/")
 
     except:
-        pass
-    
-    data = get_session(request)
+        return redirect(to="http://127.0.0.1:3000/")
 
-    return render(request, 'app/transportistas.html',data)
+    try:
+        data['venta'] = ventas_get()
+
+    except:
+        data={'error':'error de conexion'}
+    return render(request, 'app/cliente_externo/listado_ventas.html',data)
+
+#####################
+###Proveedor Views###
+#####################
+
+@csrf_exempt
+def productores(request):
+    data = get_session(request)
+    if data['cargo']!='Proveedor':
+        return redirect(to="http://127.0.0.1:3000/")
+    if request.method == 'POST':
+            company=request.session['company']
+            company=company.replace(' ','_')
+            fecha = datetime.datetime.now()
+            fecha=fecha.strftime("%d%m%y%H%M%S")
+            id = company+str(randrange(1,10000))+fecha
+            nombre_producto = request.POST.get('nombre-producto')
+            cantidad_producto = request.POST.get('cantidad-producto')
+            precio_producto = request.POST.get('precio-producto')
+            imagen_producto =  request.FILES['imagen-producto']
+            id_calidad = request.POST.get('calidad-producto')
+            saldo_producto = '1'
+            estado_fila= '1'
+            id_usuario = request.session['id_user']
+            try: 
+                producto=Producto.objects.get(id_producto=id,imagen_producto=imagen_producto)
+            except Producto.DoesNotExist:
+                producto = Producto(id_producto=id,imagen_producto=imagen_producto)
+                producto.save()
+
+            buscar = str(producto)
+            ruta_proyecto = os.getcwd()+'/media/'
+            ruta = ruta_proyecto+buscar
+            crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
+            
+            return render(request, 'app/proveedor/productores.html')
+    return render(request, 'app/proveedor/productores.html',data)
 
 def postulaciones(request):
     session = get_session(request)
@@ -250,6 +262,24 @@ def postulaciones(request):
         'empresa':session['empresa'],
     }
     return render(request, 'app/proveedor/Postulaciones.html',data)
+
+@csrf_exempt
+def ingreso_productos(request):
+    data = get_session(request)
+    try:
+        if data['cargo']!='Proveedor':
+            return redirect(to="http://127.0.0.1:3000/")
+    except:
+        pass
+
+    if request.method == 'POST':
+            monto = request.POST.get('monto')
+            id_venta = ''
+            id_usuario = request.session['id_user']
+            subasta_controller(monto,id_venta,id_usuario)
+            return render(request, 'app/Ingreso_postulacion.html')
+
+    return render(request, 'app/Ingreso_postulacion.html',data)
 
 @csrf_exempt
 def ingreso_postulacion(request):
@@ -292,37 +322,26 @@ def ingreso_postulacion(request):
             Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto)
     return render(request, 'app/proveedor/Ingreso_postulacion.html',data)
 
-def detalle_venta(request,id_venta):
-    session = get_session(request)
-    if session['cargo']!='Cliente Interno':
-        return redirect(to="http://127.0.0.1:3000/")
-    data = {
-        'ventas':Ventas_get_id(id_venta),
-        'cargo': session['cargo'],
-        'usuario': session['usuario'],
-        'empresa': session['correo'],
-        'id_user': session['id_user'],
-        'empresa':session['empresa'],
-    }
-    id_venta=request.session["id_venta"]
-    return render(request, 'app/proveedor/Ver_ventas.html', data)
+#########################
+###Transportista Views###
+#########################
 
-
-def listado_ventas(request):
-    data = get_session(request)
-
+def transportista(request):
     try:
         cargo=request.session['cargo']
-        if cargo!='Cliente Externo':
+        if cargo!='Transportista':
             return redirect(to="http://127.0.0.1:3000/")
 
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        pass
+    
+    data = get_session(request)
 
-    try:
-        data['venta'] = ventas_get()
+    return render(request, 'app/transportista/menu.html',data)
 
-    except:
-        data={'error':'error de conexion'}
-    return render(request, 'app/cliente_externo/listado_ventas.html',data)
+
+
+
+
+
 
