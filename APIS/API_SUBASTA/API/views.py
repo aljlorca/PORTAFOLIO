@@ -17,7 +17,7 @@ def agregar_subasta(monto_subasta,id_venta,id_usuario):
     salida = cursor.var(cx_Oracle.NUMBER)
     fecha_subasta = datetime.date.today()
     estado_fila = '1'
-    cursor.callproc('SUBASTA_AGREGAR',[monto_subasta,id_venta,fecha_subasta,estado_fila,id_usuario,salida])
+    cursor.callproc('SUBASTA_AGREGAR',[monto_subasta,id_venta,id_usuario,fecha_subasta,estado_fila,salida])
     return salida
 
 def modificar_subasta(id_subasta,monto_subasta,id_venta,id_usuario):
@@ -68,8 +68,9 @@ class SubastaView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_subasta(monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
-        datos = {'message':'Success'}
+        salida = agregar_subasta(monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
+        res = salida.getvalue()
+        datos = {'message':'Success','id_subasta':round(res)}
         return JsonResponse(datos)
         
 

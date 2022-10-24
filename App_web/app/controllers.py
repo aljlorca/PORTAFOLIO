@@ -15,7 +15,6 @@ def login_controller(correo,contrasena):
         content = json.loads(response.content)
         return content
 
-
 def logout_controller(request):
     try:
         del request.session['username']
@@ -81,18 +80,36 @@ def producto_get_id(id):
         return data
 
 #SUBASTA CONTROLLERS
-def subasta_controller(monto,id_venta,id_usuario):
+def subasta_post(monto,id_venta,id_usuario):
     url = 'http://127.0.0.1:8014/api/subasta_old/'
     body = {"monto_subasta": monto,"id_venta":id_venta,"id_usuario":id_usuario}
-    response = requests.post(url,json=body)
+    try:
+        response = requests.post(url,json=body)
+    except: 
+        data = 'error de conexion'
+        return data
 
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content['id_subasta']
 
 def subasta_get():
-    url = 'http://127.0.0.1:8014/api/subasta/'
+    url='http://127.0.0.1:8014/api/subasta/'
     try: 
         response = requests.get(url)
     except:
-        data = {'message':'error de conexion'}
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+
+def subasta_get_id(id):
+    url='http://127.0.0.1:8014/api/subasta/'+str(id)
+    try: 
+        response = requests.get(url)
+    except:
+        data = 'error de conexion'
         return data
     if response.status_code == 200:
         content = json.loads(response.content)
@@ -210,3 +227,16 @@ def Ventas_get_id(id):
         data = 'ERROR: Usuario no encontrado'
         return data
 
+
+#CARGA CONTROLLERS 
+def carga_post(capacidad, tamano,refrigeracion,id_usuario,subasta):
+    url="http://127.0.0.1:8008/api/pedido_old/"
+    body = {"capacidad_carga": capacidad,"refrigeracion_carga":refrigeracion,"tamano_carga":tamano,'id_usuario':id_usuario,'id_subasta':subasta}
+    try: 
+        response = requests.post(url,json=body)
+    except:
+        data = {'message':'error de conexion'}
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content

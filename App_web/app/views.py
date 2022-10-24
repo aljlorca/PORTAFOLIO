@@ -3,6 +3,7 @@ import imp
 import os
 from random import randrange
 from django.shortcuts import render,redirect
+from urllib3 import Retry
 from .models import Producto
 from .controllers import *
 from django.views.decorators.csrf import csrf_exempt
@@ -62,8 +63,6 @@ def login(request):
 ###Cliente Interno Views###
 ###########################
 
-        
-
 def cliente_interno(request):
     data = get_session(request)
     if data['cargo']!='Cliente Interno':
@@ -81,17 +80,10 @@ def carrito(request):
     return render(request, 'app/carro/carrito.html',data)
 
 def cliente_ecomerce(request):
-    session = get_session(request)
-    if session['cargo']!='Cliente Interno':
+    data = get_session(request)
+    if data['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
-    data = {
-        'producto':productos_get(),
-        'cargo': session['cargo'],
-        'usuario': session['usuario'],
-        'empresa': session['correo'],
-        'id_user': session['id_user'],
-        'empresa':session['empresa'],
-    }
+    data['producto'] = productos_get()
 
     return render(request, 'app/Cliente_Interno/listado_productos.html',data)
 
@@ -275,9 +267,6 @@ def postulaciones(request):
         data = get_session(request) 
         data['error'] ='error de conexion'
         return render(request, 'app/proveedor/Postulaciones.html',data)
-    
-
-
 
 @csrf_exempt
 def ingreso_postulacion(request):
@@ -339,7 +328,38 @@ def transportista(request):
     return render(request, 'app/transportista/menu.html',data)
 
 def subasta(request):
-    
+    session = get_session(request)
+    try:
+        try:
+            cargo=request.session['cargo']
+            if cargo!='Transportista':
+                return redirect(to="http://127.0.0.1:3000/")
+
+        except:
+            return redirect(to="http://127.0.0.1:3000/")
+        data = {
+            'ventas':ventas_get(),
+            'subasta':subasta_get(),
+            'cargo': session['cargo'],
+            'usuario': session['usuario'],
+            'empresa': session['correo'],
+            'id_user': session['id_user'],
+            'empresa':session['empresa'],
+        }
+        return render(request, 'app/transportista/listado_subastas.html',data)
+    except:
+        data = get_session(request) 
+        data['error'] ='error de conexion'
+        return render(request, 'app/transportista/listado_subastas.html',data)
+
+@csrf_exempt
+def detalle_subasta(request,id_venta):
+    data = get_session(request)
+    id_usuario = request.session['id_user']
+    carga=request.session['carga'] 
+    capacidad_carga = carga['capacidad_carga']
+    tamano_carga = carga['tamano_carga']
+    refrigeracion_carga = carga['refrigeracion_carga']
     try:
         cargo=request.session['cargo']
         if cargo!='Transportista':
@@ -347,33 +367,39 @@ def subasta(request):
 
     except:
         return redirect(to="http://127.0.0.1:3000/")
+    data['venta']=Ventas_get_id(id_venta)
+    data['subasta']=subasta_get()
+    try:
+        carga=request.session['carga'] 
+    except:
+        data['error']='Favor llenar los datos de carga'
+        return redirect(to="http://127.0.0.1:3000/carga/")
 
     
-    data = get_session(request)
+    if request.method == 'POST':
+        monto = request.POST.get('monto')
+        id_subasta=subasta_post(monto,id_venta,id_usuario)
+        carga_post(capacidad_carga,tamano_carga,refrigeracion_carga,id_usuario,id_subasta)
+    
 
-    data['venta'] = ventas_get()
-    data['subasta'] = subasta_get()
-
-    return(request,'app/transportista/transportistas.html',data)
-
-
+    return render(request, 'app/transportista/Ingreso_subasta.html',data)
 
 @csrf_exempt
-def ingreso_productos(request):
+def carga(request):
     data = get_session(request)
     try:
-        if data['cargo']!='Proveedor':
+        if data['cargo']!='Transportista':
             return redirect(to="http://127.0.0.1:3000/")
+
     except:
         return redirect(to="http://127.0.0.1:3000/")
 
     if request.method == 'POST':
-            monto = request.POST.get('monto')
-            id_venta = ''
-            id_usuario = request.session['id_user']
-            subasta_controller(monto,id_venta,id_usuario)
-            return render(request, 'app/Ingreso_postulacion.html')
-
-    return render(request, 'app/Ingreso_postulacion.html',data)
-
-
+        capacidad = request.POST.get('capacidad-carga')
+        tamano = request.POST.get('tamano-carga')
+        refrigeracion = request.POST.get('refrigeracion-carga')
+        data['carga']={'capacidad_carga':capacidad,'tamano_carga':tamano,'refrigeracion_carga':refrigeracion}
+        request.session['carga'] = data['carga']
+        return redirect(to='http://127.0.0.1:3000/subasta/')
+            
+    return render(request, 'app/transportista/ingreso_carga.html',data)

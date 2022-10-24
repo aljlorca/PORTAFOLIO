@@ -130,9 +130,9 @@ class Subasta(models.Model):
 class Carga(models.Model):
     id_carga = models.BigIntegerField(primary_key=True)
     capacidad_carga = models.CharField(max_length=300)
-    refrigeracion = models.CharField(max_length=1)
+    refrigeracion_carga = models.CharField(max_length=1)
     tamano_carga = models.CharField(max_length=150)
-    id_subasta = models.ForeignKey('Subasta', models.DO_NOTHING, db_column='id_subasta_transportista')
+    id_subasta = models.ForeignKey('Subasta', models.DO_NOTHING, db_column='id_subasta')
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
     estado_fila = models.CharField(max_length=1)
     class Meta:

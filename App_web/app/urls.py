@@ -27,6 +27,9 @@ urlpatterns = [
 
     #Transportista
     path("transportista/", transportista, name="transportista"),
+    path("subasta/", subasta, name="subasta"),
+    path("detalle_subasta/<int:id_venta>", detalle_subasta, name="detalle_subasta"),
+    path("carga/", carga, name="carga"),
 
 
 ]

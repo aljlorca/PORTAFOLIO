@@ -3,7 +3,7 @@ from .views import CargaView,CargaViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('calidad',CargaViewset)
+router.register('carga',CargaViewset)
 
 urlpatterns = [
     path('',include(router.urls)),
