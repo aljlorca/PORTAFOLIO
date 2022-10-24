@@ -47,13 +47,12 @@ namespace MercadoChile.Template
             ofd.Title = "Seleccione un Contrato";
             ofd.Filter = "Archivos permitidos|*.pdf";
             string theDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-            
+            string id = cmb_TipoEmpresa.Text + "_" + dateTimePicker1.Value.ToString();
+            Console.WriteLine(id);
             Console.WriteLine(theDate);
             
             if (ofd.ShowDialog().Equals(DialogResult.OK))
             {
-                string id = cmb_TipoEmpresa.Text + dateTimePicker1.Value.ToString();
-                Console.WriteLine(id);
                 string mensajeRespuesta = "";
                 int tipoRespuesta = 2;
                 string nombreCompletoArchivo = ofd.FileName;

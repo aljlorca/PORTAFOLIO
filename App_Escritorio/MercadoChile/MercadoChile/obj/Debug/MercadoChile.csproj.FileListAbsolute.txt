@@ -1153,3 +1153,5 @@ C:\Users\PC Gaming\Desktop\actualizable\3\PORTAFOLIO-main\App_Escritorio\Mercado
 C:\Users\PC Gaming\Desktop\actualizable\3\PORTAFOLIO-main\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CoreCompileInputs.cache
 C:\Users\PC Gaming\Desktop\actualizable\3\PORTAFOLIO-main\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
 C:\Users\PC Gaming\Desktop\actualizable\3\PORTAFOLIO-main\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Procesos.resources
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Imagenes.resources

@@ -47,6 +47,7 @@
     <Compile Include="DBApi.cs" />
     <Compile Include="getContrato.cs" />
     <Compile Include="getEmpresa.cs" />
+    <Compile Include="getProcesos.cs" />
     <Compile Include="getPostulacion.cs" />
     <Compile Include="getPublicacion.cs" />
     <Compile Include="getUsuario.cs" />

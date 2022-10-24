@@ -2,10 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\MercadoChile",
-    "\\MercadoChile\\Login",
-    "\\MercadoChile\\Modelos",
-    "\\MercadoChile\\Template",
-    "\\Negocio"
+    "\\MercadoChile\\Template"
   ],
   "SelectedNode": "\\MercadoChile.sln",
   "PreviewInSolutionExplorer": false

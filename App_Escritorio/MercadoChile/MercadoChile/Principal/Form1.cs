@@ -151,5 +151,10 @@ namespace MercadoChile
         {
             AbrirForm(new Postulacion());
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new Procesos());
+        }
     }
 }

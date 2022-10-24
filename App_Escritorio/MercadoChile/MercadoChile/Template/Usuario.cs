@@ -351,8 +351,6 @@ namespace MercadoChile
                         break;
                     }
                 }
-
-
                 foreach (var fila1 in lista1)
                 {
                     
