@@ -19,11 +19,11 @@ def agregar_producto(nombre_producto,cantidad_producto,precio_producto,imagen_pr
     estado_fila = '1'
     cursor.callproc('PRODUCTO_AGREGAR',[nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario,salida])
 
-def modificar_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,id_usuario):
+def modificar_producto(id_producto,saldo_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('PRODUCTO_MODIFICAR',[id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,id_usuario,salida])
+    cursor.callproc('PRODUCTO_SALDO',[id_producto,saldo_producto,salida])
 
 def eliminar_producto(id_producto):
     django_cursor = connection.cursor()
@@ -83,7 +83,7 @@ class ProductoView(View):
         jd = json.loads(request.body)
         productos = list(Producto.objects.filter(id_producto=id_producto).values())
         if len(productos)>0:
-            modificar_producto(id_producto=jd['id_producto'],nombre_producto=jd['nombre_producto'],cantidad_producto=jd['cantidad_producto'],id_empresa=jd['id_empresa'],imagen_producto=jd['imagen_producto'])
+            modificar_producto(id_producto=jd['id_producto'],saldo_producto=jd['saldo_producto'])
             datos={'message':'Success'}
         else:
             datos={'message':'ERROR: Producto NO fue posible actualizar sus datos'}
@@ -122,8 +122,16 @@ class ProductoViewset(viewsets.ModelViewSet):
         datos={'message':'Success'}
         return Response(datos, status=200)
     def put(self, request, *args, **kwargs):
+        id_producto = request.data['id_producto']
+        nombre_producto = request.data['nombre_producto']
+        cantidad_producto = request.data['cantidad_producto']
+        precio_producto = request.data['precio_producto']
+        imagen_producto = request.data['imagen_producto']
+        id_calidad = request.data['id_calidad']
         saldo_producto = request.data['saldo_producto']
-        Producto.objects.update(saldo_producto=saldo_producto)
+        estado_fila = request.data['estado_fila']
+        id_usuario = request.data['id_usuario']
+        Producto.objects.update(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
         return Response({'message': 'Success'}, status=200)
     def delete(self, request, *args, **kwargs):
         id_contrato = request.data['id_contrato']

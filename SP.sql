@@ -239,6 +239,25 @@ begin
     open cur_listar for select * from PRODUCTO;
 end PRODUCTO_LISTAR;
 
+create or replace PROCEDURE PRODUCTO_SALDO
+(
+    v_id_producto integer,
+    v_saldo_producto char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE producto
+    SET saldo_producto = v_saldo_producto
+    WHERE id_producto = v_id_producto;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+
+end PRODUCTO_MODIFICAR;
+
 ------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP LOGIN -----------------------------------------------------------------------------
 create or replace PROCEDURE LOGIN
