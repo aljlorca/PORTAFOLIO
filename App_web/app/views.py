@@ -354,12 +354,15 @@ def subasta(request):
 
 @csrf_exempt
 def detalle_subasta(request,id_venta):
-    data = get_session(request)
-    id_usuario = request.session['id_user']
-    carga=request.session['carga'] 
-    capacidad_carga = carga['capacidad_carga']
-    tamano_carga = carga['tamano_carga']
-    refrigeracion_carga = carga['refrigeracion_carga']
+    try:
+        data = get_session(request)
+        id_usuario = request.session['id_user']
+        carga=request.session['carga'] 
+        capacidad_carga = carga['capacidad_carga']
+        tamano_carga = carga['tamano_carga']
+        refrigeracion_carga = carga['refrigeracion_carga']
+    except:
+        return redirect(to="http://127.0.0.1:3000/carga/")
     try:
         cargo=request.session['cargo']
         if cargo!='Transportista':
