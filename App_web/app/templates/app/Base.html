@@ -106,16 +106,13 @@
                     </div>-->
                     <a href="{% url 'contacto' %}" class="nav-item nav-link">Contacto</a>
                 </div>
-                <div class="d-none d-lg-flex ms-2">
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                        <small class="fa fa-search text-body"></small>
-                    </a>
+                <div class="d-none d-lg-flex ms-3">
                     {% if cargo != 'Visita' %}
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'logout' %}">
+                    <a class="btn-sm-square bg-white rounded-circle ms-7" href="{% url 'logout' %}">
                         <small class="fas fa-sign-out-alt"></small>
                     </a>
                     {% else %}
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="{% url 'login' %}">
+                    <a class="btn-sm-square bg-white rounded-circle ms-7" href="{% url 'login' %}">
                         <i class="fas fa-sign-in-alt text-body"></i>                        
                     </a>
                     {% endif %}
