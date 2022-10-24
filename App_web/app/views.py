@@ -1,3 +1,4 @@
+from distutils.log import error
 import imp
 import os
 from random import randrange
@@ -16,7 +17,8 @@ def home(request):
     return render(request, 'app/home.html',data)
 
 def contacto(request):
-    return render(request, 'app/contacto.html')
+    data = get_session(request)
+    return render(request, 'app/contacto.html',data)
 
 def carrito(request):
     data = get_session(request)
@@ -64,35 +66,41 @@ def login(request):
 @csrf_exempt
 def productores(request):
     data = get_session(request)
-    if data['cargo']!='Proveedor':
-        return redirect(to="http://127.0.0.1:3000/")
-    if request.method == 'POST':
-            company=request.session['company']
-            company=company.replace(' ','_')
-            fecha = datetime.datetime.now()
-            fecha=fecha.strftime("%d%m%y%H%M%S")
-            id = company+str(randrange(1,10000))+fecha
-            nombre_producto = request.POST.get('nombre-producto')
-            cantidad_producto = request.POST.get('cantidad-producto')
-            precio_producto = request.POST.get('precio-producto')
-            imagen_producto =  request.FILES['imagen-producto']
-            id_calidad = request.POST.get('calidad-producto')
-            saldo_producto = '1'
-            estado_fila= '1'
-            id_usuario = request.session['id_user']
-            try: 
-                producto=Producto.objects.get(id_producto=id,imagen_producto=imagen_producto)
-            except Producto.DoesNotExist:
-                producto = Producto(id_producto=id,imagen_producto=imagen_producto)
-                producto.save()
+    try:
+        if data['cargo']!='Proveedor':
+            return redirect(to="http://127.0.0.1:3000/")
+        if request.method == 'POST':
+                company=request.session['company']
+                company=company.replace(' ','_')
+                fecha = datetime.datetime.now()
+                fecha=fecha.strftime("%d%m%y%H%M%S")
+                id = company+str(randrange(1,10000))+fecha
+                nombre_producto = request.POST.get('nombre-producto')
+                cantidad_producto = request.POST.get('cantidad-producto')
+                precio_producto = request.POST.get('precio-producto')
+                imagen_producto =  request.FILES['imagen-producto']
+                id_calidad = request.POST.get('calidad-producto')
+                saldo_producto = '1'
+                estado_fila= '1'
+                id_usuario = request.session['id_user']
+                try: 
+                    producto=Producto.objects.get(id_producto=id,imagen_producto=imagen_producto)
+                except Producto.DoesNotExist:
+                    producto = Producto(id_producto=id,imagen_producto=imagen_producto)
+                    producto.save()
 
-            buscar = str(producto)
-            ruta_proyecto = os.getcwd()+'/media/'
-            ruta = ruta_proyecto+buscar
-            crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
-            
-            return render(request, 'app/proveedor/productores.html')
-    return render(request, 'app/proveedor/productores.html',data)
+                buscar = str(producto)
+                ruta_proyecto = os.getcwd()+'/media/'
+                ruta = ruta_proyecto+buscar
+                crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
+                
+                return render(request, 'app/proveedor/productores.html')
+        return render(request, 'app/proveedor/productores.html',data)
+    except:
+        data = get_session(request)
+        data['error']='Lo sentimos no fue posible registrar el producto, Fallo en la conexion'
+        return render(request, 'app/proveedor/productores.html',data)
+        
 
 def cliente_interno(request):
     data = get_session(request)
@@ -233,23 +241,28 @@ def transportista(request):
 
 def postulaciones(request):
     session = get_session(request)
-
     try:
-        cargo=request.session['cargo']
-        if cargo!='Proveedor':
-            return redirect(to="http://127.0.0.1:3000/")
+        try:
+            cargo=request.session['cargo']
+            if cargo!='Proveedor':
+                return redirect(to="http://127.0.0.1:3000/")
 
+        except:
+            return redirect(to="http://127.0.0.1:3000/")
+        data = {
+            'ventas':ventas_get(),
+            'cargo': session['cargo'],
+            'usuario': session['usuario'],
+            'empresa': session['correo'],
+            'id_user': session['id_user'],
+            'empresa':session['empresa'],
+        }
+        return render(request, 'app/proveedor/Postulaciones.html',data)
     except:
-        return redirect(to="http://127.0.0.1:3000/")
-    data = {
-        'ventas':ventas_get(),
-        'cargo': session['cargo'],
-        'usuario': session['usuario'],
-        'empresa': session['correo'],
-        'id_user': session['id_user'],
-        'empresa':session['empresa'],
-    }
-    return render(request, 'app/proveedor/Postulaciones.html',data)
+        data = get_session(request) 
+        data['error'] ='error de conexion'
+        return render(request, 'app/proveedor/Postulaciones.html',data)
+    
 
 @csrf_exempt
 def ingreso_postulacion(request):

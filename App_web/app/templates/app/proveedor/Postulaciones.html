@@ -22,10 +22,15 @@
             <div class="row g-0 gx-5 align-items-end">
                 <div class="col-lg-6">
                     <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                        <h1 class="display-5 mb-3">Postulaciones</h1>
-                        
+                        <h1 class="display-5 mb-3">Postulaciones</h1>                        
                     </div>
                 </div>
+            </div>
+            <div class="col-M-2 align-items-center m-3">
+                {% if error == 'error de conexion' %} 
+                    <p>Tenemos problemas en estos momentos</p>
+                    <img class="img-fluid w-75" src="https://reygif.com/media/5/hombre-pico-62712.gif" alt="">
+                {% endif %}
             </div>
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
