@@ -14,7 +14,7 @@ def agregar_postulacion(descripcion_postulacion,estado_postulacion,id_venta,id_u
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    estado_fila = '1'
+    estado_fila = '0'
     cursor.callproc('POSTULACION_AGREGAR',[descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto,estado_fila,salida])
     return salida
 
