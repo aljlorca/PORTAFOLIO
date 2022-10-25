@@ -22,7 +22,7 @@ def modificar_postulacion(id_postulacion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('POSTULACION_MODIFICAR',[id_postulacion,salida])
+    cursor.callproc('POSTULACION_ACEPTAR',[id_postulacion,salida])
 
 def eliminar_postulacion(id_postulacion):
     django_cursor = connection.cursor()
