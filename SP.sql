@@ -241,7 +241,7 @@ end PRODUCTO_LISTAR;
 
 create or replace PROCEDURE PRODUCTO_SALDO
 (
-    v_id_producto integer,
+    v_id_producto varchar2,
     v_saldo_producto char,
     v_salida OUT NUMBER
 
@@ -256,7 +256,7 @@ begin
   exception when others then v_salida:=0;
 
 
-end PRODUCTO_MODIFICAR;
+end PRODUCTO_SALDO;
 
 ------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------SP LOGIN -----------------------------------------------------------------------------
