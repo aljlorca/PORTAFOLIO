@@ -23,7 +23,7 @@ urlpatterns = [
     #Proveedor
     path("productores/", productores, name="productores"),
     path("postulaciones/", postulaciones, name="postulaciones"),
-    path("ingreso_postulacion/", ingreso_postulacion, name="ingreso_postulacion"),
+    path("ingreso_postulacion/<int:id_venta>", ingreso_postulacion, name="ingreso_postulacion"),
 
     #Transportista
     path("transportista/", transportista, name="transportista"),

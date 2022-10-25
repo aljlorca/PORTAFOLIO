@@ -269,7 +269,7 @@ def postulaciones(request):
         return render(request, 'app/proveedor/Postulaciones.html',data)
 
 @csrf_exempt
-def ingreso_postulacion(request):
+def ingreso_postulacion(request,id_venta):
     data = get_session(request)
     try:
         cargo=request.session['cargo']
@@ -287,7 +287,6 @@ def ingreso_postulacion(request):
             id_producto  = company+str(randrange(1,10000))+fecha
             descripcion_postulacion = request.POST.get('descripcion-postulacion')
             estado_postulacion = 'licitacion'
-            id_venta = request.session["id_venta"]
             id_usuario = request.session['id_user']
             nombre_producto = request.POST.get('nombre-producto')
             cantidad_producto = request.POST.get('cantidad-producto')

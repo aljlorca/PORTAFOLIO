@@ -47,7 +47,7 @@
                                     <span class="text-primary me-1">Fecha limite:{{v.fecha_venta}}</span>
                                 </div>
                                 <div class="text-center p-4">
-                                    <a type="button" class="btn btn-primary" href="{% url 'ingreso_postulacion' %}">ingresar postulacion</a>
+                                    <a type="button" class="btn btn-primary" href="{% url 'ingreso_postulacion' v.id_venta %}">ingresar postulacion</a>
                                 </div>
                             </div>
                         </div>
