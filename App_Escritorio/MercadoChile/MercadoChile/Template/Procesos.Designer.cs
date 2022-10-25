@@ -34,8 +34,6 @@
             this.btnListar = new System.Windows.Forms.Button();
             this.DgvPostulacion = new System.Windows.Forms.DataGridView();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -58,6 +56,7 @@
             this.cnVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnEstadoF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnBoton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -86,8 +85,6 @@
             this.tabPage1.Controls.Add(this.btnListar);
             this.tabPage1.Controls.Add(this.DgvPostulacion);
             this.tabPage1.Controls.Add(this.btnEliminar);
-            this.tabPage1.Controls.Add(this.btnModificar);
-            this.tabPage1.Controls.Add(this.btnEdit);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -104,7 +101,7 @@
             this.btnListar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListar.Location = new System.Drawing.Point(801, 347);
+            this.btnListar.Location = new System.Drawing.Point(792, 323);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(216, 40);
             this.btnListar.TabIndex = 99;
@@ -124,6 +121,7 @@
             this.cnVenta,
             this.cnCliente,
             this.cnProduto,
+            this.cnEstadoF,
             this.cnBoton});
             this.DgvPostulacion.Location = new System.Drawing.Point(6, 46);
             this.DgvPostulacion.Name = "DgvPostulacion";
@@ -145,35 +143,7 @@
             this.btnEliminar.TabIndex = 98;
             this.btnEliminar.Text = "Eliminar Empresa";
             this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.FlatAppearance.BorderSize = 0;
-            this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(773, 301);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(216, 40);
-            this.btnModificar.TabIndex = 97;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(812, 393);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(216, 40);
-            this.btnEdit.TabIndex = 68;
-            this.btnEdit.Text = "Editar Empresa";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // label3
             // 
@@ -327,7 +297,6 @@
             this.cnIdP.DataPropertyName = "id_postulacion";
             this.cnIdP.HeaderText = "ID";
             this.cnIdP.Name = "cnIdP";
-            this.cnIdP.Visible = false;
             // 
             // cnDesrip
             // 
@@ -358,6 +327,13 @@
             this.cnProduto.DataPropertyName = "id_producto";
             this.cnProduto.HeaderText = "Nombre Producto";
             this.cnProduto.Name = "cnProduto";
+            // 
+            // cnEstadoF
+            // 
+            this.cnEstadoF.DataPropertyName = "estado_fila";
+            this.cnEstadoF.HeaderText = "Estado Fila";
+            this.cnEstadoF.Name = "cnEstadoF";
+            this.cnEstadoF.Visible = false;
             // 
             // cnBoton
             // 
@@ -408,8 +384,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnId;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnUrl;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.DataGridView DgvPostulacion;
         private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnIdP;
@@ -418,6 +392,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnProduto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnEstadoF;
         private System.Windows.Forms.DataGridViewButtonColumn cnBoton;
     }
 }
