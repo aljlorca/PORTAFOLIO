@@ -95,8 +95,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtDescVenta);
             this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.txtDescVenta);
             this.groupBox2.Controls.Add(this.btnIngresarSubasta);
             this.groupBox2.Location = new System.Drawing.Point(403, 47);
             this.groupBox2.Name = "groupBox2";

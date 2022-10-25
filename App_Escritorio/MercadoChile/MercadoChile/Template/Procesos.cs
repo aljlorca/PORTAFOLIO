@@ -1,4 +1,5 @@
 ﻿using Datos;
+using iTextSharp.text.html.simpleparser;
 using MercadoChile.Modelos;
 using Negocio;
 using Newtonsoft.Json;
@@ -10,9 +11,13 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
+using static System.Net.WebRequestMethods;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 
 namespace MercadoChile.Template
@@ -20,12 +25,14 @@ namespace MercadoChile.Template
     
     public partial class Procesos : Form
     {
-
+        Uri baseUri = new Uri("http://127.0.0.1:8009/api/postulacion_old/");
         getProcesos Get = new getProcesos();
         public Procesos()
         {
             InitializeComponent();
             DgvProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Name = "Aceptar";
         }
        
         private async void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -46,13 +53,17 @@ namespace MercadoChile.Template
             currencyManager1.SuspendBinding();
             foreach (DataGridViewRow fila in DgvProducto.Rows)
             {
-                if (Convert.ToInt32(fila.Cells["cnSaldo"].Value) == 1)
+                foreach (var fila1 in lista)
                 {
-                    fila.Visible = false;
-                    currencyManager1.ResumeBinding();
-                    break;
+                    if (Convert.ToInt32(fila.Cells["cnSaldo"].Value) == 1)
+                    {
+                        fila.Visible = false;
+                        currencyManager1.ResumeBinding();
+                        break;
 
+                    }
                 }
+                
                 string urlss = fila.Cells["cnUrl"].Value.ToString();
                 WebClient wc = new WebClient();
                 byte[] bytes = wc.DownloadData(urlss);
@@ -87,6 +98,59 @@ namespace MercadoChile.Template
             string respuesta = await Get.GetHttp5();
             List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
             DgvPostulacion.DataSource = lista;
+            DgvPostulacion.DataSource = (from p in lista
+                                         orderby p.id_venta descending
+                                         select p).ToList();
+            foreach (DataGridViewRow fila in DgvPostulacion.Rows)
+            {
+                DgvPostulacion.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
+            }
+        }
+
+        private async void Click_Aceptar(object sender, DataGridViewCellEventArgs e)
+        {
+            string respuesta = await Get.GetHttp5();
+            List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
+            
+            if (DgvPostulacion.CurrentCell.ColumnIndex == 0)
+            {
+                
+
+
+                
+                    var row = DgvPostulacion.CurrentRow;
+                foreach (DataGridViewRow fila in DgvPostulacion.Rows)
+                {
+
+                    if (fila.Cells["cnIdP"].Value == DgvPostulacion.CurrentRow.Cells[1].Value)
+                    {
+                        string id = fila.Cells["cnIdP"].Value.ToString();
+                        Console.WriteLine(id);
+                        Postul post = new Postul()
+                        {
+
+                            id_postulacion = id,
+
+                        };
+                        var data = JsonSerializer.Serialize<Postul>(post);
+                        HttpRequestMessage request = new HttpRequestMessage
+                        {
+
+                            Content = new StringContent(data, Encoding.UTF8, "application/json"),
+                            Method = HttpMethod.Put,
+                            RequestUri = new Uri(baseUri, id),
+                        };
+                        var httpClient = new HttpClient();
+                        if (MessageBox.Show("Desea Publicar seleccionar esta subasta del transportista "
+                               + DgvPostulacion.CurrentRow.Cells[2].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            await httpClient.SendAsync(request);
+                            this.Hide();
+
+                        }
+                    }
+                }
+            }
         }
     }
 }

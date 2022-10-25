@@ -10,11 +10,11 @@ namespace Datos
 {
     public class getProcesos
     {
-        private string url = "http://127.0.0.1:8010/api/producto/?format=json";
+        private string url = "http://127.0.0.1:8010/api/producto/";
         private string url2 = "http://127.0.0.1:8000/api/calidad/";
         private string url3 = "http://127.0.0.1:8016/api/usuario/";
         private string url4 = "http://127.0.0.1:8008/api/pedido/";
-        private string url5 = "http://127.0.0.1:8009/api/postulacion/";
+        private string url5 = "http://127.0.0.1:8009/api/postulacion_historico/";
         public async Task<string> GetHttp()
         {
             WebRequest oRequest = WebRequest.Create(url);
