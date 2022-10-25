@@ -31,10 +31,7 @@ namespace MercadoChile.Template
         {
             InitializeComponent();
             DgvProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Name = "Aceptar";
         }
-
         private async void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string respuesta = await Get.GetHttp();
@@ -42,9 +39,7 @@ namespace MercadoChile.Template
             string respuesta2 = await Get.GetHttp2();
             List<Calidad> lista2 = JsonConvert.DeserializeObject<List<Calidad>>(respuesta2);
             string respuesta3 = await Get.GetHttp3();
-            List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
-            string respuesta4 = await Get.GetHttp4();
-            List<Pedido> lista4 = JsonConvert.DeserializeObject<List<Pedido>>(respuesta4);
+            List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);  
             DgvProducto.DataSource = lista;
             this.DgvProducto.Columns[7].Visible = false;
             cnImagen.ImageLayout = DataGridViewImageCellLayout.Stretch;
@@ -63,7 +58,6 @@ namespace MercadoChile.Template
 
                     }
                 }
-
                 string urlss = fila.Cells["cnUrl"].Value.ToString();
                 WebClient wc = new WebClient();
                 byte[] bytes = wc.DownloadData(urlss);
@@ -80,7 +74,6 @@ namespace MercadoChile.Template
                     fila.Cells["cnProveedor"].Value = fila1.nombre_usuario;
                     break;
                 }
-
             }
         }
 
@@ -92,11 +85,16 @@ namespace MercadoChile.Template
             this.Hide();
             i.Show();
         }
-
         private async void btnListar_Click(object sender, EventArgs e)
         {
             string respuesta = await Get.GetHttp5();
             List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
+            string respuesta2 = await Get.GetHttp();
+            List<Producto> lista2 = JsonConvert.DeserializeObject<List<Producto>>(respuesta2);
+            string respuesta3 = await Get.GetHttp3();
+            List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
+            string respuesta4 = await Get.GetHttp4();
+            List<Venta> lista4 = JsonConvert.DeserializeObject<List<Venta>>(respuesta4);
             DgvPostulacion.DataSource = lista;
             DgvPostulacion.DataSource = (from p in lista
                                          orderby p.id_venta descending
@@ -110,7 +108,27 @@ namespace MercadoChile.Template
                     if (fila.Cells["cnEstadoF"].Value.ToString() == "1")
                     {
                         fila.Visible = false;
+                        break;
+                    }
+                    if (fila.Cells["cnEstado"].Value.ToString() == "Rechazada")
+                    {
+                        fila.Visible = false;
                         currencyManager1.ResumeBinding();
+                        break;
+                    }
+                    foreach (var fila1 in lista3)
+                    {
+                        fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
+                        break;
+                    }
+                    foreach (var fila1 in lista2)
+                    {
+                        fila.Cells["cnProduto"].Value = fila1.nombre_producto;
+                        break;
+                    }
+                    foreach (var fila1 in lista4)
+                    {
+                        fila.Cells["cnVenta"].Value = fila1.descripcion_venta;
                         break;
                     }
                 }
@@ -118,10 +136,8 @@ namespace MercadoChile.Template
 
             }
         }
-
         private async void Click_Aceptar(object sender, DataGridViewCellEventArgs e)
         {
-
             if (DgvPostulacion.CurrentCell.ColumnIndex == 0)
             {
                 foreach (DataGridViewRow fila in DgvPostulacion.Rows)
@@ -142,8 +158,8 @@ namespace MercadoChile.Template
                             RequestUri = new Uri(baseUri, id),
                         };
                         var httpClient = new HttpClient();
-                        if (MessageBox.Show("Desea Publicar esta postulacion del Proveedor "
-                               + DgvPostulacion.CurrentRow.Cells[2].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show("Desea Publicar esta postulacion para la Venta "
+                               + DgvPostulacion.CurrentRow.Cells[4].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             await httpClient.SendAsync(request);
                             this.Hide();
@@ -152,10 +168,8 @@ namespace MercadoChile.Template
                 }
             }
         }
-
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
-
             foreach (DataGridViewRow fila in DgvPostulacion.Rows)
             {
                 int i = DgvPostulacion.SelectedCells[0].RowIndex;
@@ -176,7 +190,7 @@ namespace MercadoChile.Template
                     };
                     var httpClient = new HttpClient();
                     if (MessageBox.Show("Desea eliminar esta postulacion del Proveedor "
-                           + DgvPostulacion.CurrentRow.Cells[2].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                           + DgvPostulacion.CurrentRow.Cells[6].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         await httpClient.SendAsync(request);
                         this.Hide();

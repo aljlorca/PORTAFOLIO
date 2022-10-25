@@ -11,9 +11,9 @@ namespace Negocio
         public string id_postulacion { get; set; }
         public string descripcion_postulacion { get; set; }
         public string estado_postulacion { get; set; }
-        public int id_venta { get; set; }
+        public string id_venta { get; set; }
         public string estado_fila { get; set; }
-        public int id_usuario { get; set; }
+        public string id_usuario { get; set; }
         public string id_producto { get; set; }
     }
 }

@@ -125,7 +125,7 @@
             this.cnBoton});
             this.DgvPostulacion.Location = new System.Drawing.Point(6, 46);
             this.DgvPostulacion.Name = "DgvPostulacion";
-            this.DgvPostulacion.Size = new System.Drawing.Size(770, 520);
+            this.DgvPostulacion.Size = new System.Drawing.Size(664, 520);
             this.DgvPostulacion.TabIndex = 104;
             this.DgvPostulacion.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_Aceptar);
             // 
@@ -297,6 +297,7 @@
             this.cnIdP.DataPropertyName = "id_postulacion";
             this.cnIdP.HeaderText = "ID";
             this.cnIdP.Name = "cnIdP";
+            this.cnIdP.Visible = false;
             // 
             // cnDesrip
             // 
