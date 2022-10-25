@@ -526,8 +526,7 @@ create sequence sec_postulacion
 
 create or replace PROCEDURE POSTULACION_ELIMINAR (v_id_postulacion integer, v_salida out number) is
 begin 
-    UPDATE postulacion
-    SET estado_fila = '0'
+    DELETE postulacion
     WHERE v_id_postulacion = id_postulacion;
     commit;
     v_salida:=1;
@@ -583,10 +582,24 @@ begin
   
   exception when others then v_salida:=0;
 
-
 end POSTULACION_MODIFICAR;
 
- 
+ create or replace PROCEDURE POSTULACION_ACEPTAR
+(
+    v_id_postulacion char,
+    v_salida OUT NUMBER
+
+) is
+begin 
+    UPDATE postulacion
+    SET estado_fila = '1'
+    WHERE id_postulacion = v_id_postulacion;
+    commit;
+    v_salida:=1;
+
+  exception when others then v_salida:=0;
+
+end POSTULACION_ACEPTAR;
 
 CREATE OR REPLACE EDITIONABLE PROCEDURE POSTULACION_LISTAR (cur_listar out SYS_REFCURSOR) 
 is
