@@ -18,11 +18,11 @@ def agregar_postulacion(descripcion_postulacion,estado_postulacion,id_venta,id_u
     cursor.callproc('POSTULACION_AGREGAR',[descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto,estado_fila,salida])
     return salida
 
-def modificar_postulacion(id_postulacion,descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto):
+def modificar_postulacion(id_postulacion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('POSTULACION_MODIFICAR',[id_postulacion,descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto,salida])
+    cursor.callproc('POSTULACION_MODIFICAR',[id_postulacion,salida])
 
 def eliminar_postulacion(id_postulacion):
     django_cursor = connection.cursor()
@@ -74,7 +74,7 @@ class PostulacionView(View):
         jd = json.loads(request.body)
         postulaciones = list(Postulacion.objects.filter(id_postulacion=id_postulacion).values())
         if len(postulaciones) > 0:
-            modificar_postulacion(id_postulacion=jd['id_postulacion'],descripcion_postulacion=jd['descripcion_postulacion'],estado_postulacion=jd['estado_postulacion'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'],id_producto=jd['id_producto'])
+            modificar_postulacion(id_postulacion=jd['id_postulacion'])
             datos={'message':"Success"}
         else:
             datos={'message':"ERROR: No se encuentra la postulacion"}
