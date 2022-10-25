@@ -45,7 +45,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.txt_Id = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -63,14 +64,12 @@
             // 
             this.txt_TipoContrato.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TipoContrato.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_TipoContrato.Location = new System.Drawing.Point(219, 196);
+            this.txt_TipoContrato.Location = new System.Drawing.Point(205, 171);
             this.txt_TipoContrato.Name = "txt_TipoContrato";
             this.txt_TipoContrato.Size = new System.Drawing.Size(200, 26);
             this.txt_TipoContrato.TabIndex = 1;
             this.txt_TipoContrato.Text = "Tipo Empresa";
             this.txt_TipoContrato.TextChanged += new System.EventHandler(this.txt_TipoContrato_TextChanged);
-            this.txt_TipoContrato.Enter += new System.EventHandler(this.txt_TipoContrato_Enter);
-            this.txt_TipoContrato.Leave += new System.EventHandler(this.txt_TipoContrato_Leave);
             // 
             // abrir
             // 
@@ -105,7 +104,7 @@
             this.cmb_TipoEmpresa.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_TipoEmpresa.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_TipoEmpresa.FormattingEnabled = true;
-            this.cmb_TipoEmpresa.Location = new System.Drawing.Point(219, 250);
+            this.cmb_TipoEmpresa.Location = new System.Drawing.Point(205, 225);
             this.cmb_TipoEmpresa.Name = "cmb_TipoEmpresa";
             this.cmb_TipoEmpresa.Size = new System.Drawing.Size(200, 28);
             this.cmb_TipoEmpresa.TabIndex = 6;
@@ -117,9 +116,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(380, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 25);
+            this.label1.Size = new System.Drawing.Size(184, 25);
             this.label1.TabIndex = 19;
-            this.label1.Text = "Creacion de Contrato";
+            this.label1.Text = "Ingreso de Contrato";
             // 
             // label2
             // 
@@ -148,7 +147,6 @@
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.Crear_Contrato);
             this.tabPage1.Controls.Add(this.cmb_TipoEmpresa);
-            this.tabPage1.Controls.Add(this.txt_Id);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.dateTimePicker1);
@@ -158,7 +156,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(995, 541);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Ingreso Contrato";
             // 
             // label7
             // 
@@ -183,26 +181,28 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.txtNombre);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(793, 424);
+            this.tabPage2.Size = new System.Drawing.Size(995, 541);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Creacion Contrato";
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(278, 67);
+            this.txtNombre.Location = new System.Drawing.Point(375, 107);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(178, 20);
             this.txtNombre.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(278, 307);
+            this.button1.Location = new System.Drawing.Point(375, 220);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(178, 23);
             this.button1.TabIndex = 0;
@@ -210,18 +210,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txt_Id
+            // label3
             // 
-            this.txt_Id.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Id.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_Id.Location = new System.Drawing.Point(219, 130);
-            this.txt_Id.Name = "txt_Id";
-            this.txt_Id.Size = new System.Drawing.Size(200, 26);
-            this.txt_Id.TabIndex = 2;
-            this.txt_Id.Text = "ID contrato";
-            this.txt_Id.TextChanged += new System.EventHandler(this.txt_Id_TextChanged);
-            this.txt_Id.Enter += new System.EventHandler(this.txt_Id_Enter);
-            this.txt_Id.Leave += new System.EventHandler(this.txt_Id_Leave);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(272, 52);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(412, 13);
+            this.label3.TabIndex = 106;
+            this.label3.Text = "---------------------------------------------------------------------------------" +
+    "------------------------------------------------------";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(370, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(198, 25);
+            this.label4.TabIndex = 105;
+            this.label4.Text = "Creacion de Contrato";
             // 
             // Contrato
             // 
@@ -263,6 +270,7 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txt_Id;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

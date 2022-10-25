@@ -211,46 +211,6 @@ namespace MercadoChile.Template
 
         }
 
-        private void txt_TipoContrato_Enter(object sender, EventArgs e)
-        {
-            if (txt_Id.Text == "Tipo Contrato")
-            {
-                txt_Id.Text = "";
-                txt_Id.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void txt_TipoContrato_Leave(object sender, EventArgs e)
-        {
-            if (txt_Id.Text == "")
-            {
-                txt_Id.Text = "Tipo Contrato";
-                txt_Id.ForeColor = System.Drawing.Color.DimGray;
-
-            }
-        }
-
-        private void txt_Id_Enter(object sender, EventArgs e)
-        {
-            if (txt_Id.Text == "ID contrato")
-            {
-                txt_Id.Text = "";
-                txt_Id.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void txt_Id_Leave(object sender, EventArgs e)
-        {
-            if (txt_Id.Text == "")
-            {
-                txt_Id.Text = "ID contrato";
-                txt_Id.ForeColor = System.Drawing.Color.DimGray;
-
-            }
-        }
-
         private void txt_Id_TextChanged(object sender, EventArgs e)
         {
 
