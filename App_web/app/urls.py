@@ -24,6 +24,7 @@ urlpatterns = [
     path("productores/", productores, name="productores"),
     path("postulaciones/", postulaciones, name="postulaciones"),
     path("ingreso_postulacion/<int:id_venta>", ingreso_postulacion, name="ingreso_postulacion"),
+    path("proveedor/", proveedor , name="proveedor"),
 
     #Transportista
     path("transportista/", transportista, name="transportista"),
