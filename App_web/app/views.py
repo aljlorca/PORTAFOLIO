@@ -405,3 +405,10 @@ def carga(request):
         return redirect(to='http://127.0.0.1:3000/subasta/')
             
     return render(request, 'app/transportista/ingreso_carga.html',data)
+
+
+def proveedor(request):
+    data = get_session(request)
+    if data['cargo']!='Proveedor':
+        return redirect(to="http://127.0.0.1:3000/")
+    return render(request, 'app/proveedor/menu.html',data)
