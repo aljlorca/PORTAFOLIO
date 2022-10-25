@@ -31,20 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Procesos));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnListar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.cmbCiudadEdit = new System.Windows.Forms.ComboBox();
-            this.cmbRegionEdit = new System.Windows.Forms.ComboBox();
-            this.cmbPaisEdit = new System.Windows.Forms.ComboBox();
-            this.cmbTipoEmpEdit = new System.Windows.Forms.ComboBox();
-            this.txtDunsEdit = new System.Windows.Forms.TextBox();
-            this.txtGiroEdit = new System.Windows.Forms.TextBox();
-            this.txtDirEdit = new System.Windows.Forms.TextBox();
-            this.txtRazonEdit = new System.Windows.Forms.TextBox();
             this.DgvPostulacion = new System.Windows.Forms.DataGridView();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -67,9 +56,10 @@
             this.cnVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnEstadoF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnBoton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvPostulacion)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProducto)).BeginInit();
@@ -92,8 +82,9 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.btnListar);
             this.tabPage1.Controls.Add(this.DgvPostulacion);
+            this.tabPage1.Controls.Add(this.btnEliminar);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -103,28 +94,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Crear Cliente";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnListar);
-            this.groupBox1.Controls.Add(this.btnEliminar);
-            this.groupBox1.Controls.Add(this.btnEdit);
-            this.groupBox1.Controls.Add(this.btnModificar);
-            this.groupBox1.Controls.Add(this.cmbCiudadEdit);
-            this.groupBox1.Controls.Add(this.cmbRegionEdit);
-            this.groupBox1.Controls.Add(this.cmbPaisEdit);
-            this.groupBox1.Controls.Add(this.cmbTipoEmpEdit);
-            this.groupBox1.Controls.Add(this.txtDunsEdit);
-            this.groupBox1.Controls.Add(this.txtGiroEdit);
-            this.groupBox1.Controls.Add(this.txtDirEdit);
-            this.groupBox1.Controls.Add(this.txtRazonEdit);
-            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(7, 26);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(239, 513);
-            this.groupBox1.TabIndex = 105;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Modificar Empresa";
-            // 
             // btnListar
             // 
             this.btnListar.FlatAppearance.BorderSize = 0;
@@ -132,143 +101,13 @@
             this.btnListar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListar.Location = new System.Drawing.Point(6, 450);
+            this.btnListar.Location = new System.Drawing.Point(792, 323);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(216, 40);
             this.btnListar.TabIndex = 99;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
             this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
-            this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(6, 404);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(220, 40);
-            this.btnEliminar.TabIndex = 98;
-            this.btnEliminar.Text = "Eliminar Empresa";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(4, 312);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(216, 40);
-            this.btnEdit.TabIndex = 68;
-            this.btnEdit.Text = "Editar Empresa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.FlatAppearance.BorderSize = 0;
-            this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(-1, 358);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(216, 40);
-            this.btnModificar.TabIndex = 97;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            // 
-            // cmbCiudadEdit
-            // 
-            this.cmbCiudadEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCiudadEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.cmbCiudadEdit.FormattingEnabled = true;
-            this.cmbCiudadEdit.Location = new System.Drawing.Point(6, 258);
-            this.cmbCiudadEdit.Name = "cmbCiudadEdit";
-            this.cmbCiudadEdit.Size = new System.Drawing.Size(214, 28);
-            this.cmbCiudadEdit.TabIndex = 85;
-            this.cmbCiudadEdit.Text = "Ciudad";
-            // 
-            // cmbRegionEdit
-            // 
-            this.cmbRegionEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRegionEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.cmbRegionEdit.FormattingEnabled = true;
-            this.cmbRegionEdit.Location = new System.Drawing.Point(6, 225);
-            this.cmbRegionEdit.Name = "cmbRegionEdit";
-            this.cmbRegionEdit.Size = new System.Drawing.Size(214, 28);
-            this.cmbRegionEdit.TabIndex = 84;
-            this.cmbRegionEdit.Text = "Region";
-            // 
-            // cmbPaisEdit
-            // 
-            this.cmbPaisEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPaisEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.cmbPaisEdit.FormattingEnabled = true;
-            this.cmbPaisEdit.Location = new System.Drawing.Point(6, 192);
-            this.cmbPaisEdit.Name = "cmbPaisEdit";
-            this.cmbPaisEdit.Size = new System.Drawing.Size(214, 28);
-            this.cmbPaisEdit.TabIndex = 83;
-            this.cmbPaisEdit.Text = "Pais";
-            // 
-            // cmbTipoEmpEdit
-            // 
-            this.cmbTipoEmpEdit.DisplayMember = "1";
-            this.cmbTipoEmpEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTipoEmpEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.cmbTipoEmpEdit.FormattingEnabled = true;
-            this.cmbTipoEmpEdit.Location = new System.Drawing.Point(6, 159);
-            this.cmbTipoEmpEdit.Name = "cmbTipoEmpEdit";
-            this.cmbTipoEmpEdit.Size = new System.Drawing.Size(214, 28);
-            this.cmbTipoEmpEdit.TabIndex = 82;
-            this.cmbTipoEmpEdit.Text = "Tipo Empresa";
-            this.cmbTipoEmpEdit.ValueMember = "0";
-            // 
-            // txtDunsEdit
-            // 
-            this.txtDunsEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDunsEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtDunsEdit.Location = new System.Drawing.Point(6, 31);
-            this.txtDunsEdit.Name = "txtDunsEdit";
-            this.txtDunsEdit.Size = new System.Drawing.Size(214, 26);
-            this.txtDunsEdit.TabIndex = 81;
-            this.txtDunsEdit.Text = "Duns Empresa";
-            // 
-            // txtGiroEdit
-            // 
-            this.txtGiroEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiroEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtGiroEdit.Location = new System.Drawing.Point(6, 126);
-            this.txtGiroEdit.Name = "txtGiroEdit";
-            this.txtGiroEdit.Size = new System.Drawing.Size(214, 26);
-            this.txtGiroEdit.TabIndex = 76;
-            this.txtGiroEdit.Text = "Giro empresa";
-            // 
-            // txtDirEdit
-            // 
-            this.txtDirEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDirEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtDirEdit.Location = new System.Drawing.Point(6, 93);
-            this.txtDirEdit.Name = "txtDirEdit";
-            this.txtDirEdit.Size = new System.Drawing.Size(214, 26);
-            this.txtDirEdit.TabIndex = 75;
-            this.txtDirEdit.Text = "Direccion";
-            // 
-            // txtRazonEdit
-            // 
-            this.txtRazonEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRazonEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtRazonEdit.Location = new System.Drawing.Point(6, 63);
-            this.txtRazonEdit.Name = "txtRazonEdit";
-            this.txtRazonEdit.Size = new System.Drawing.Size(214, 26);
-            this.txtRazonEdit.TabIndex = 74;
-            this.txtRazonEdit.Text = "Rason Social";
             // 
             // DgvPostulacion
             // 
@@ -281,11 +120,30 @@
             this.cnEstado,
             this.cnVenta,
             this.cnCliente,
-            this.cnProduto});
-            this.DgvPostulacion.Location = new System.Drawing.Point(252, 38);
+            this.cnProduto,
+            this.cnEstadoF,
+            this.cnBoton});
+            this.DgvPostulacion.Location = new System.Drawing.Point(6, 46);
             this.DgvPostulacion.Name = "DgvPostulacion";
             this.DgvPostulacion.Size = new System.Drawing.Size(770, 520);
             this.DgvPostulacion.TabIndex = 104;
+            this.DgvPostulacion.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_Aceptar);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.Location = new System.Drawing.Point(814, 238);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(220, 40);
+            this.btnEliminar.TabIndex = 98;
+            this.btnEliminar.Text = "Eliminar Empresa";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // label3
             // 
@@ -439,7 +297,6 @@
             this.cnIdP.DataPropertyName = "id_postulacion";
             this.cnIdP.HeaderText = "ID";
             this.cnIdP.Name = "cnIdP";
-            this.cnIdP.Visible = false;
             // 
             // cnDesrip
             // 
@@ -471,6 +328,21 @@
             this.cnProduto.HeaderText = "Nombre Producto";
             this.cnProduto.Name = "cnProduto";
             // 
+            // cnEstadoF
+            // 
+            this.cnEstadoF.DataPropertyName = "estado_fila";
+            this.cnEstadoF.HeaderText = "Estado Fila";
+            this.cnEstadoF.Name = "cnEstadoF";
+            this.cnEstadoF.Visible = false;
+            // 
+            // cnBoton
+            // 
+            this.cnBoton.HeaderText = "";
+            this.cnBoton.Name = "cnBoton";
+            this.cnBoton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cnBoton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.cnBoton.Text = "";
+            // 
             // Procesos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,8 +355,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvPostulacion)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
@@ -513,18 +383,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnId;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnUrl;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.ComboBox cmbCiudadEdit;
-        private System.Windows.Forms.ComboBox cmbRegionEdit;
-        private System.Windows.Forms.ComboBox cmbPaisEdit;
-        private System.Windows.Forms.ComboBox cmbTipoEmpEdit;
-        private System.Windows.Forms.TextBox txtDunsEdit;
-        private System.Windows.Forms.TextBox txtGiroEdit;
-        private System.Windows.Forms.TextBox txtDirEdit;
-        private System.Windows.Forms.TextBox txtRazonEdit;
         private System.Windows.Forms.DataGridView DgvPostulacion;
         private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnIdP;
@@ -533,5 +392,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnProduto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnEstadoF;
+        private System.Windows.Forms.DataGridViewButtonColumn cnBoton;
     }
 }

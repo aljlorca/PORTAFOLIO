@@ -8,7 +8,7 @@ namespace Negocio
 {
     public class Producto
     {
-        public int id_producto { get; set; }
+        public string id_producto { get; set; }
         public string nombre_producto { get; set; }
         public int cantidad_producto { get; set; }
         public int precio_producto { get; set; }

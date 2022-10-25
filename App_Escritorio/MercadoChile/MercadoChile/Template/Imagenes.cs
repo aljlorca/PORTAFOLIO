@@ -40,8 +40,8 @@ namespace MercadoChile.Template
             {
                 if (list.nombre_producto == txtNomProd.Text)
                 {
-                    int id = list.id_producto;
-                    Uri myUri = new Uri(baseUri, id.ToString());
+                    string id = list.id_producto;
+                    Uri myUri = new Uri(baseUri, id);
                     var client = new HttpClient();
                     Producto post = new Producto()
                     {

@@ -32,8 +32,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtDescVenta = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtDescVenta = new System.Windows.Forms.TextBox();
             this.btnIngresarSubasta = new System.Windows.Forms.Button();
             this.btnSelccVenta = new System.Windows.Forms.Button();
             this.btnListarVent = new System.Windows.Forms.Button();
@@ -95,22 +95,15 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtDescVenta);
             this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.txtDescVenta);
             this.groupBox2.Controls.Add(this.btnIngresarSubasta);
-            this.groupBox2.Location = new System.Drawing.Point(403, 47);
+            this.groupBox2.Location = new System.Drawing.Point(417, 303);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(552, 308);
+            this.groupBox2.Size = new System.Drawing.Size(552, 186);
             this.groupBox2.TabIndex = 114;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Agregar Subasta";
-            // 
-            // txtDescVenta
-            // 
-            this.txtDescVenta.Location = new System.Drawing.Point(239, 63);
-            this.txtDescVenta.Name = "txtDescVenta";
-            this.txtDescVenta.Size = new System.Drawing.Size(214, 20);
-            this.txtDescVenta.TabIndex = 90;
             // 
             // label7
             // 
@@ -122,6 +115,13 @@
             this.label7.TabIndex = 88;
             this.label7.Text = "Descripcion Venta";
             // 
+            // txtDescVenta
+            // 
+            this.txtDescVenta.Location = new System.Drawing.Point(239, 63);
+            this.txtDescVenta.Name = "txtDescVenta";
+            this.txtDescVenta.Size = new System.Drawing.Size(214, 20);
+            this.txtDescVenta.TabIndex = 90;
+            // 
             // btnIngresarSubasta
             // 
             this.btnIngresarSubasta.FlatAppearance.BorderSize = 0;
@@ -130,7 +130,7 @@
             this.btnIngresarSubasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngresarSubasta.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresarSubasta.Image")));
             this.btnIngresarSubasta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIngresarSubasta.Location = new System.Drawing.Point(157, 223);
+            this.btnIngresarSubasta.Location = new System.Drawing.Point(197, 126);
             this.btnIngresarSubasta.Name = "btnIngresarSubasta";
             this.btnIngresarSubasta.Size = new System.Drawing.Size(216, 40);
             this.btnIngresarSubasta.TabIndex = 68;
@@ -145,7 +145,7 @@
             this.btnSelccVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelccVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelccVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelccVenta.Location = new System.Drawing.Point(600, 404);
+            this.btnSelccVenta.Location = new System.Drawing.Point(548, 495);
             this.btnSelccVenta.Name = "btnSelccVenta";
             this.btnSelccVenta.Size = new System.Drawing.Size(245, 40);
             this.btnSelccVenta.TabIndex = 113;
@@ -161,7 +161,7 @@
             this.btnListarVent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListarVent.Image = ((System.Drawing.Image)(resources.GetObject("btnListarVent.Image")));
             this.btnListarVent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListarVent.Location = new System.Drawing.Point(114, 404);
+            this.btnListarVent.Location = new System.Drawing.Point(159, 354);
             this.btnListarVent.Name = "btnListarVent";
             this.btnListarVent.Size = new System.Drawing.Size(217, 40);
             this.btnListarVent.TabIndex = 112;
@@ -179,7 +179,7 @@
             this.cnClienteExterno});
             this.DgvVenta.Location = new System.Drawing.Point(114, 28);
             this.DgvVenta.Name = "DgvVenta";
-            this.DgvVenta.Size = new System.Drawing.Size(234, 350);
+            this.DgvVenta.Size = new System.Drawing.Size(855, 270);
             this.DgvVenta.TabIndex = 0;
             // 
             // cnDescripionVenta
@@ -225,6 +225,7 @@
             this.txtBusVenta.Name = "txtBusVenta";
             this.txtBusVenta.Size = new System.Drawing.Size(193, 20);
             this.txtBusVenta.TabIndex = 115;
+            this.txtBusVenta.TextChanged += new System.EventHandler(this.txtBusVenta_TextChanged);
             // 
             // label2
             // 

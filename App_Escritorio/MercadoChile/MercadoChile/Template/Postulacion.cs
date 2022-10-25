@@ -41,8 +41,12 @@ namespace MercadoChile.Template
             string respuesta3 = await Get.GetHttp3();
             List<Venta> lista3 = JsonConvert.DeserializeObject<List<Venta>>(respuesta3);
             DgvSubasta.DataSource = lista;
+            DgvSubasta.DataSource = (from l in lista
+                                     orderby l.id_venta descending
+                                     select l).ToList();
             foreach (DataGridViewRow fila in DgvSubasta.Rows)
             {
+                
                 foreach (var fila1 in lista2)
                 {
                     fila.Cells["cnTransportista"].Value = fila1.nombre_usuario;
@@ -152,14 +156,14 @@ namespace MercadoChile.Template
             {
                 if (txtDescVenta.Text == list.descripcion_venta)
                 {
-                    int id_venta = list.id_venta;
+                    string id_venta = list.id_venta.ToString();
                     var client = new HttpClient();
                     Subasta post2 = new Subasta()
                     {
                         monto_subasta = 0,
                         id_venta = id_venta,
-                        fecha_subasta = DateTime.Now,
-                        id_usuario = list.id_usuario,
+                        fecha_subasta = DateTime.Now.ToString(),
+                        id_usuario = list.id_usuario.ToString(),
 
                     };
                     var data = JsonSerializer.Serialize<Subasta>(post2);
