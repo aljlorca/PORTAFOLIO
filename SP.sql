@@ -584,7 +584,7 @@ begin
 
 end POSTULACION_MODIFICAR;
 
- create or replace PROCEDURE POSTULACION_ACEPTAR
+create or replace PROCEDURE POSTULACION_ACEPTAR
 (
     v_id_postulacion char,
     v_salida OUT NUMBER
@@ -592,7 +592,8 @@ end POSTULACION_MODIFICAR;
 ) is
 begin 
     UPDATE postulacion
-    SET estado_fila = '1'
+    SET estado_fila = '1',
+    estado_postulacion = 'Aceptada'
     WHERE id_postulacion = v_id_postulacion;
     commit;
     v_salida:=1;

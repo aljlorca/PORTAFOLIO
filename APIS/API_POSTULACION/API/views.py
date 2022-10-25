@@ -10,11 +10,12 @@ import json
 import cx_Oracle
 
 # Create your views here.
-def agregar_postulacion(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto):
+def agregar_postulacion(descripcion_postulacion,id_venta,id_usuario,id_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    estado_fila = '0'
+    estado_fila = '1'
+    estado_postulacion = 'En Licitacion'
     cursor.callproc('POSTULACION_AGREGAR',[descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto,estado_fila,salida])
     return salida
 
