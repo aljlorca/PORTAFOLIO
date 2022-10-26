@@ -18,6 +18,7 @@
         </div>
       </div>
     </div>
+    {% if empresa != 'Persona Natural' %}
     <div class="col-12 col-md-6 col-lg-4">
       <div class="card" >
         <img src="https://cdn-icons-png.flaticon.com/512/6384/6384868.png" class="card-img-top" alt="...">
@@ -27,9 +28,8 @@
           <a href="http://127.0.0.1:3000/pedido_cliente_interno/" class="btn btn-primary">Entrar</a>
         </div>
       </div>
-
     </div>
-
+    {% endif %}
   </div>
 </div>
 {%endblock%}
