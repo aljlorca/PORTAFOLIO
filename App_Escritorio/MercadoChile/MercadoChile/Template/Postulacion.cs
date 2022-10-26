@@ -32,14 +32,13 @@ namespace MercadoChile.Template
         }
         private async void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp();
-            List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
-            string respuesta2 = await Get.GetHttp2();
-            List<Calidad> lista2 = JsonConvert.DeserializeObject<List<Calidad>>(respuesta2);
+            string respuesta = await Get.GetHttp4();
+            List<Carga> lista = JsonConvert.DeserializeObject<List<Carga>>(respuesta);
+            string respuesta2 = await Get.GetHttp();
+            List<Subasta> lista2 = JsonConvert.DeserializeObject<List<Subasta>>(respuesta2);
             string respuesta3 = await Get.GetHttp3();
             List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
             DgvCarga.DataSource = lista;
-            this.DgvCarga.Columns[7].Visible = false;
             
             CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvCarga.DataSource];
             currencyManager1.SuspendBinding();
@@ -47,7 +46,7 @@ namespace MercadoChile.Template
             {
                 foreach (var fila1 in lista)
                 {
-                    if (Convert.ToInt32(fila.Cells["cnSaldo"].Value) == 1)
+                    if (Convert.ToInt32(fila.Cells["cnEstadoFila"].Value) == 0)
                     {
                         fila.Visible = false;
                         currencyManager1.ResumeBinding();
@@ -56,16 +55,27 @@ namespace MercadoChile.Template
                 }
                 foreach (var fila1 in lista2)
                 {
-                    fila.Cells["cnCalidad"].Value = fila1.descripcion_calidad;
+                    fila.Cells["cnSubasta"].Value = fila1.monto_subasta;
                     break;
                 }
                 foreach (var fila1 in lista3)
                 {
-                    fila.Cells["cnProveedor"].Value = fila1.nombre_usuario;
+                    fila.Cells["cnTransportista"].Value = fila1.nombre_usuario;
                     break;
                 }
+                DgvCarga.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
             }
         }
 
+        private async void btnListar_Click(object sender, EventArgs e)
+        {
+            string respuesta2 = await Get.GetHttp();
+            List<Subasta> lista2 = JsonConvert.DeserializeObject<List<Subasta>>(respuesta2);
+            string respuesta3 = await Get.GetHttp3();
+            List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
+            DgvSubastas.DataSource= lista2;
+            CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvSubastas.DataSource];
+            currencyManager1.SuspendBinding();
+        }
     }
 }
