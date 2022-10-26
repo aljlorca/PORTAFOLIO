@@ -41,7 +41,7 @@ def login(request):
                 request.session['company'] = respt[4]
                 request.session['id_user'] = respt[5]
                 if respt[1]=='Proveedor':
-                    return redirect(to="http://127.0.0.1:3000/productores/")
+                    return redirect(to="http://127.0.0.1:3000/proveedor/")
                 elif respt[1]=='Transportista':
                     return redirect(to="http://127.0.0.1:3000/transportista/")
                 elif respt[1]=='Cliente Interno':
