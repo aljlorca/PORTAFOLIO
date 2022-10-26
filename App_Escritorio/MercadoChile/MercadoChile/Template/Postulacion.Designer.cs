@@ -31,36 +31,31 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Postulacion));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtBusVenta = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnListar = new System.Windows.Forms.Button();
             this.DgvSubastas = new System.Windows.Forms.DataGridView();
-            this.cnIdP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnDesrip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnEstadoF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnBoton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.DgvCarga = new System.Windows.Forms.DataGridView();
-            this.cnImagen = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cnNomProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCantProduc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.cnSubasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnRefrig = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnTamano = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnEstadoFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnTransportista = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnButon = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnDelSubasta = new System.Windows.Forms.Button();
+            this.cnIdS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnBoton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubastas)).BeginInit();
@@ -80,15 +75,13 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1036, 590);
             this.tabControl1.TabIndex = 23;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.txtBusVenta);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.btnListar);
             this.tabPage1.Controls.Add(this.DgvSubastas);
+            this.tabPage1.Controls.Add(this.btnListar);
             this.tabPage1.Controls.Add(this.btnEliminar);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label1);
@@ -97,33 +90,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1028, 564);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Proceso Postulacion";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(749, 142);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(259, 13);
-            this.label4.TabIndex = 119;
-            this.label4.Text = "---------------------------------------------------------------";
-            // 
-            // txtBusVenta
-            // 
-            this.txtBusVenta.Location = new System.Drawing.Point(782, 158);
-            this.txtBusVenta.Name = "txtBusVenta";
-            this.txtBusVenta.Size = new System.Drawing.Size(193, 20);
-            this.txtBusVenta.TabIndex = 118;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(806, 123);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(131, 19);
-            this.label5.TabIndex = 117;
-            this.label5.Text = "Buscador Venta";
+            this.tabPage1.Text = "Aceptacion de Subastas";
             // 
             // btnListar
             // 
@@ -132,12 +99,13 @@
             this.btnListar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListar.Location = new System.Drawing.Point(792, 323);
+            this.btnListar.Location = new System.Drawing.Point(744, 347);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(216, 40);
             this.btnListar.TabIndex = 99;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // DgvSubastas
             // 
@@ -145,70 +113,16 @@
             this.DgvSubastas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.DgvSubastas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvSubastas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cnIdP,
-            this.cnDesrip,
-            this.cnEstado,
+            this.cnIdS,
+            this.cnMonto,
+            this.cnFecha,
             this.cnVenta,
             this.cnCliente,
-            this.cnProduto,
-            this.cnEstadoF,
             this.cnBoton});
             this.DgvSubastas.Location = new System.Drawing.Point(6, 46);
             this.DgvSubastas.Name = "DgvSubastas";
             this.DgvSubastas.Size = new System.Drawing.Size(664, 520);
             this.DgvSubastas.TabIndex = 104;
-            // 
-            // cnIdP
-            // 
-            this.cnIdP.DataPropertyName = "id_postulacion";
-            this.cnIdP.HeaderText = "ID";
-            this.cnIdP.Name = "cnIdP";
-            this.cnIdP.Visible = false;
-            // 
-            // cnDesrip
-            // 
-            this.cnDesrip.DataPropertyName = "descripcion_postulacion";
-            this.cnDesrip.HeaderText = "Descripcion Postulacion";
-            this.cnDesrip.Name = "cnDesrip";
-            // 
-            // cnEstado
-            // 
-            this.cnEstado.DataPropertyName = "estado_postulacion";
-            this.cnEstado.HeaderText = "Estado Postulacion";
-            this.cnEstado.Name = "cnEstado";
-            // 
-            // cnVenta
-            // 
-            this.cnVenta.DataPropertyName = "id_venta";
-            this.cnVenta.HeaderText = "Venta";
-            this.cnVenta.Name = "cnVenta";
-            // 
-            // cnCliente
-            // 
-            this.cnCliente.DataPropertyName = "id_usuario";
-            this.cnCliente.HeaderText = "Cliente";
-            this.cnCliente.Name = "cnCliente";
-            // 
-            // cnProduto
-            // 
-            this.cnProduto.DataPropertyName = "id_producto";
-            this.cnProduto.HeaderText = "Nombre Producto";
-            this.cnProduto.Name = "cnProduto";
-            // 
-            // cnEstadoF
-            // 
-            this.cnEstadoF.DataPropertyName = "estado_fila";
-            this.cnEstadoF.HeaderText = "Estado Fila";
-            this.cnEstadoF.Name = "cnEstadoF";
-            this.cnEstadoF.Visible = false;
-            // 
-            // cnBoton
-            // 
-            this.cnBoton.HeaderText = "";
-            this.cnBoton.Name = "cnBoton";
-            this.cnBoton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cnBoton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cnBoton.Text = "";
             // 
             // btnEliminar
             // 
@@ -218,7 +132,7 @@
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(814, 238);
+            this.btnEliminar.Location = new System.Drawing.Point(744, 267);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(220, 40);
             this.btnEliminar.TabIndex = 98;
@@ -248,6 +162,7 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.btnDelSubasta);
             this.tabPage4.Controls.Add(this.label2);
             this.tabPage4.Controls.Add(this.DgvCarga);
             this.tabPage4.Controls.Add(this.label8);
@@ -256,7 +171,7 @@
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1028, 564);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Productos a Rechazar";
+            this.tabPage4.Text = "Aceptacion de Carga";
             // 
             // label2
             // 
@@ -274,78 +189,19 @@
             this.DgvCarga.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.DgvCarga.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvCarga.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cnImagen,
-            this.cnNomProd,
-            this.cnCantProduc,
-            this.cnPrecio,
-            this.cnSaldo,
-            this.cnCalidad,
-            this.cnProveedor,
+            this.cnSubasta,
+            this.cnCapacidad,
+            this.cnRefrig,
+            this.cnTamano,
+            this.cnEstadoFila,
+            this.cnTransportista,
             this.cnId,
-            this.cnUrl});
-            this.DgvCarga.Location = new System.Drawing.Point(54, 53);
+            this.cnButon});
+            this.DgvCarga.Location = new System.Drawing.Point(20, 45);
             this.DgvCarga.Name = "DgvCarga";
             this.DgvCarga.RowTemplate.Height = 150;
-            this.DgvCarga.Size = new System.Drawing.Size(925, 508);
+            this.DgvCarga.Size = new System.Drawing.Size(748, 508);
             this.DgvCarga.TabIndex = 94;
-            // 
-            // cnImagen
-            // 
-            this.cnImagen.HeaderText = "Imagen Produto";
-            this.cnImagen.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.cnImagen.Name = "cnImagen";
-            this.cnImagen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cnImagen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // cnNomProd
-            // 
-            this.cnNomProd.DataPropertyName = "nombre_producto";
-            this.cnNomProd.HeaderText = "Nombre Produto";
-            this.cnNomProd.Name = "cnNomProd";
-            // 
-            // cnCantProduc
-            // 
-            this.cnCantProduc.DataPropertyName = "cantidad_producto";
-            this.cnCantProduc.HeaderText = "Cantidad Producto";
-            this.cnCantProduc.Name = "cnCantProduc";
-            // 
-            // cnPrecio
-            // 
-            this.cnPrecio.DataPropertyName = "precio_producto";
-            this.cnPrecio.HeaderText = "Precio";
-            this.cnPrecio.Name = "cnPrecio";
-            // 
-            // cnSaldo
-            // 
-            this.cnSaldo.DataPropertyName = "saldo_producto";
-            this.cnSaldo.HeaderText = "Saldo Producto";
-            this.cnSaldo.Name = "cnSaldo";
-            // 
-            // cnCalidad
-            // 
-            this.cnCalidad.DataPropertyName = "id_calidad";
-            this.cnCalidad.HeaderText = "Calidad";
-            this.cnCalidad.Name = "cnCalidad";
-            // 
-            // cnProveedor
-            // 
-            this.cnProveedor.DataPropertyName = "id_usuario";
-            this.cnProveedor.HeaderText = "Proveedor";
-            this.cnProveedor.Name = "cnProveedor";
-            // 
-            // cnId
-            // 
-            this.cnId.DataPropertyName = "id_producto";
-            this.cnId.HeaderText = "ID";
-            this.cnId.Name = "cnId";
-            this.cnId.Visible = false;
-            // 
-            // cnUrl
-            // 
-            this.cnUrl.DataPropertyName = "imagen_producto";
-            this.cnUrl.HeaderText = "Url Imagen";
-            this.cnUrl.Name = "cnUrl";
-            this.cnUrl.Visible = false;
             // 
             // label8
             // 
@@ -371,6 +227,108 @@
             this.button1.Tag = "";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // cnSubasta
+            // 
+            this.cnSubasta.DataPropertyName = "id_subasta";
+            this.cnSubasta.HeaderText = "Monto Subasta";
+            this.cnSubasta.Name = "cnSubasta";
+            // 
+            // cnCapacidad
+            // 
+            this.cnCapacidad.DataPropertyName = "capacidad_carga";
+            this.cnCapacidad.HeaderText = "Capacidad Carga";
+            this.cnCapacidad.Name = "cnCapacidad";
+            // 
+            // cnRefrig
+            // 
+            this.cnRefrig.DataPropertyName = "refrigeracion_carga";
+            this.cnRefrig.HeaderText = "Refrigeracion Carga";
+            this.cnRefrig.Name = "cnRefrig";
+            // 
+            // cnTamano
+            // 
+            this.cnTamano.DataPropertyName = "tamano_carga";
+            this.cnTamano.HeaderText = "Tamaño Carga";
+            this.cnTamano.Name = "cnTamano";
+            // 
+            // cnEstadoFila
+            // 
+            this.cnEstadoFila.DataPropertyName = "estado_fila";
+            this.cnEstadoFila.HeaderText = "Estado Fila";
+            this.cnEstadoFila.Name = "cnEstadoFila";
+            // 
+            // cnTransportista
+            // 
+            this.cnTransportista.DataPropertyName = "id_usuario";
+            this.cnTransportista.HeaderText = "Transportista";
+            this.cnTransportista.Name = "cnTransportista";
+            // 
+            // cnId
+            // 
+            this.cnId.DataPropertyName = "id_carga";
+            this.cnId.HeaderText = "ID";
+            this.cnId.Name = "cnId";
+            this.cnId.Visible = false;
+            // 
+            // cnButon
+            // 
+            this.cnButon.HeaderText = "";
+            this.cnButon.Name = "cnButon";
+            // 
+            // btnDelSubasta
+            // 
+            this.btnDelSubasta.FlatAppearance.BorderSize = 0;
+            this.btnDelSubasta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnDelSubasta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelSubasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelSubasta.Image = ((System.Drawing.Image)(resources.GetObject("btnDelSubasta.Image")));
+            this.btnDelSubasta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelSubasta.Location = new System.Drawing.Point(786, 242);
+            this.btnDelSubasta.Name = "btnDelSubasta";
+            this.btnDelSubasta.Size = new System.Drawing.Size(220, 40);
+            this.btnDelSubasta.TabIndex = 105;
+            this.btnDelSubasta.Text = "Eliminar Subasta";
+            this.btnDelSubasta.UseVisualStyleBackColor = true;
+            // 
+            // cnIdS
+            // 
+            this.cnIdS.DataPropertyName = "id_subasta";
+            this.cnIdS.HeaderText = "ID";
+            this.cnIdS.Name = "cnIdS";
+            this.cnIdS.Visible = false;
+            // 
+            // cnMonto
+            // 
+            this.cnMonto.DataPropertyName = "monto_subasta";
+            this.cnMonto.HeaderText = "Monto Subasta";
+            this.cnMonto.Name = "cnMonto";
+            // 
+            // cnFecha
+            // 
+            this.cnFecha.DataPropertyName = "fecha_subasta";
+            this.cnFecha.HeaderText = "Fecha Subasta";
+            this.cnFecha.Name = "cnFecha";
+            // 
+            // cnVenta
+            // 
+            this.cnVenta.DataPropertyName = "id_venta";
+            this.cnVenta.HeaderText = "Venta";
+            this.cnVenta.Name = "cnVenta";
+            // 
+            // cnCliente
+            // 
+            this.cnCliente.DataPropertyName = "id_usuario";
+            this.cnCliente.HeaderText = "Cliente";
+            this.cnCliente.Name = "cnCliente";
+            // 
+            // cnBoton
+            // 
+            this.cnBoton.HeaderText = "";
+            this.cnBoton.Name = "cnBoton";
+            this.cnBoton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cnBoton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.cnBoton.Text = "";
+            // 
             // Postulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,35 +353,30 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtBusVenta;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.DataGridView DgvSubastas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnIdP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnDesrip;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnEstado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnProduto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnEstadoF;
-        private System.Windows.Forms.DataGridViewButtonColumn cnBoton;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView DgvCarga;
-        private System.Windows.Forms.DataGridViewImageColumn cnImagen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnNomProd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnCantProduc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnSaldo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnCalidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnProveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnUrl;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnSubasta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnCapacidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnRefrig;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnTamano;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnEstadoFila;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnTransportista;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnId;
+        private System.Windows.Forms.DataGridViewButtonColumn cnButon;
+        private System.Windows.Forms.Button btnDelSubasta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnIdS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnMonto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnFecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnVenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnCliente;
+        private System.Windows.Forms.DataGridViewButtonColumn cnBoton;
     }
 }

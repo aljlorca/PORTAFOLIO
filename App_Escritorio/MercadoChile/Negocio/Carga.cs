@@ -8,10 +8,11 @@ namespace Negocio
 {
     public class Carga
     {
+        public string id_carga { get; set; }
         public string capacidad_carga { get; set; }
         public string refrigeracion_carga { get; set; }
         public string tamano_carga { get; set; }
-        public int id_subasta { get; set; }
-        public int id_usuario { get; set; }
+        public string id_subasta { get; set; }
+        public string id_usuario { get; set; }
     }
 }
