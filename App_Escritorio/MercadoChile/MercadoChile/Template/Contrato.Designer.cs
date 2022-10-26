@@ -265,7 +265,7 @@
             this.txtDireccionCliente.Name = "txtDireccionCliente";
             this.txtDireccionCliente.Size = new System.Drawing.Size(214, 26);
             this.txtDireccionCliente.TabIndex = 116;
-            this.txtDireccionCliente.Text = "Direccion ";
+            this.txtDireccionCliente.Text = "Direccion";
             this.txtDireccionCliente.Enter += new System.EventHandler(this.DireccionEnter);
             this.txtDireccionCliente.Leave += new System.EventHandler(this.DireccionLeave);
             // 
@@ -298,7 +298,7 @@
             this.txtRut.Name = "txtRut";
             this.txtRut.Size = new System.Drawing.Size(214, 26);
             this.txtRut.TabIndex = 113;
-            this.txtRut.Text = "Rut Cliente ";
+            this.txtRut.Text = "Rut Cliente";
             this.txtRut.Enter += new System.EventHandler(this.rutCliente);
             this.txtRut.Leave += new System.EventHandler(this.rutClienteLeave);
             // 
