@@ -128,11 +128,11 @@ namespace MercadoChile.Template
             doc.Add(new Paragraph(" "));
             doc.Add(new Paragraph("En Santiago a 14/10/2022 Entre Mercado Chile Rut 99.999.999-9 Represantada  por Homero Simsomp en su calidad de gerente general " +
                 "Cedula de identidad N° 22.222.222-2 ambos domiciliados en avenida siempre viva N°666 comuna de Sprinfield ciudad de Santiago que en adelante se denomina el mandante" +
-                " y don " + txtNombre.Text + " de nacionalidad Peruana cedula de identidad 33.333.333-3 domiciliado en calle La matalechu 666 comuna de puente asalto ciudad de santiago" +
-                "han acordado el contrato de prestacion de servicios que consta de las siguiente clausulas que a continuación se exponen")
+                " y don " + txtNombreCliente.Text + " de nacionalidad "+txtNacionalidad.Text+" cedula de identidad " + txtRut.Text + " domiciliado en " + txtDireccionCliente.Text + 
+                " han acordado el contrato de prestacion de servicios que consta de las siguiente clausulas que a continuación se exponen")
             { Alignment = Element.ALIGN_JUSTIFIED });
             doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph("PRIMERO. En virtud del presente contrato de prestacion de servicios, el mandatario se compromete a ejecutar el siguiente cargo: Proveedor de productos" +
+            doc.Add(new Paragraph("PRIMERO. En virtud del presente contrato de prestacion de servicios, el mandatario se compromete a ejecutar el siguiente cargo: "+ txtCargo.Text+" de productos" +
                 " de la empresa Mercado Chile ")
             { Alignment = Element.ALIGN_JUSTIFIED });
             doc.Add(new Paragraph(" "));
@@ -159,7 +159,7 @@ namespace MercadoChile.Template
             doc.Add(new Paragraph(" "));
             doc.Add(firma);
             doc.Add(new Paragraph("FIRMA MANDANTE                                           FIRMA DEL MANDATARIO"));
-            doc.Add(new Paragraph("RUT: 99.999.999-9                                             RUT"));
+            doc.Add(new Paragraph("RUT: 99.999.999-9                                             RUT: "+ txtRut.Text ));
 
             doc.Close();
 
@@ -217,6 +217,11 @@ namespace MercadoChile.Template
         }
 
         private void txt_TipoContrato_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
         {
 
         }
