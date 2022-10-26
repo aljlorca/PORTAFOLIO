@@ -33,7 +33,6 @@ namespace MercadoChile
             this.label1 = new System.Windows.Forms.Label();
             this.txtCargo = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -77,19 +76,6 @@ namespace MercadoChile
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.ForeColor = System.Drawing.Color.DimGray;
-            this.txtDescripcion.Location = new System.Drawing.Point(423, 245);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(186, 26);
-            this.txtDescripcion.TabIndex = 5;
-            this.txtDescripcion.Text = "Descripcion";
-            this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
-            this.txtDescripcion.Enter += new System.EventHandler(this.txtDescripcion_Enter);
-            this.txtDescripcion.Leave += new System.EventHandler(this.txtDescripcion_Leave);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -106,7 +92,6 @@ namespace MercadoChile
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 600);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtCargo);
             this.Controls.Add(this.label1);
@@ -124,7 +109,6 @@ namespace MercadoChile
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCargo;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label2;
     }
 }

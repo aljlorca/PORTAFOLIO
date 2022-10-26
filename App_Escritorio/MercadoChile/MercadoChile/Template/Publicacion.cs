@@ -85,7 +85,7 @@ namespace MercadoChile.Template
                         monto_neto_venta = 0,
                         fecha_venta = txtFecha.Text,
                         tipo_venta = "1",
-                        id_usuario = list.id_usuario
+                        id_usuario = Convert.ToInt32(list.id_usuario)
                     };
                     var data = JsonSerializer.Serialize<Venta>(post2);
                     HttpContent content =

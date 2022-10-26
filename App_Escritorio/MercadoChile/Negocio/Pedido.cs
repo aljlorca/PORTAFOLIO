@@ -11,6 +11,6 @@ namespace Negocio
         public int id_pedido { get; set; }
         public string descripcion_pedido { get; set; }
         public string fecha_sla_pedido { get; set; }
-        public int id_usuario { get; set; }
+        public string id_usuario { get; set; }
     }
 }
