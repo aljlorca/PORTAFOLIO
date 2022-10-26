@@ -67,6 +67,7 @@ def cliente_interno(request):
     data = get_session(request)
     if data['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
+    
     return render(request, 'app/Cliente_Interno/menu.html',data)
 
 def carrito(request):
@@ -144,6 +145,27 @@ def detalle_venta(request,id_venta):
     id_venta=request.session["id_venta"]
     return render(request, 'app/proveedor/Ver_ventas.html', data)
 
+@csrf_exempt
+def pedido_cliente_interno(request):
+    data = get_session(request)
+    try:
+        if data['cargo']!='Cliente Interno' and data['empresa']!='Persona Natural':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
+
+    try:
+        if request.method == 'POST':
+            descripcion = request.POST.get('descripcion')
+            fecha_sla = request.POST.get('fecha-sla')
+            id_usuario = request.session['id_user']
+            data = pedido_post(descripcion,fecha_sla,id_usuario)
+    except:
+        data={'error':'no fue posible crear el pedido'}
+    return render(request, 'app/Cliente_Interno/pedido.html',data)
+
+
 ###########################
 ###Cliente Externo Views###
 ###########################
@@ -205,6 +227,12 @@ def listado_ventas(request):
 #####################
 ###Proveedor Views###
 #####################
+
+def proveedor(request):
+    data = get_session(request)
+    if data['cargo']!='Proveedor':
+        return redirect(to="http://127.0.0.1:3000/")
+    return render(request, 'app/proveedor/menu.html',data)
 
 @csrf_exempt
 def productores(request):
@@ -406,9 +434,3 @@ def carga(request):
             
     return render(request, 'app/transportista/ingreso_carga.html',data)
 
-
-def proveedor(request):
-    data = get_session(request)
-    if data['cargo']!='Proveedor':
-        return redirect(to="http://127.0.0.1:3000/")
-    return render(request, 'app/proveedor/menu.html',data)

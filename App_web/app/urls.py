@@ -14,6 +14,7 @@ urlpatterns = [
     path('mercado/', cliente_ecomerce , name="mercado"),
     path("checkout/", checkout, name="checkout"),
     path("detalle_venta/<str:id_producto>/", detalle_venta, name="detalle_venta"),
+    path('pedido_cliente_interno/', pedido_cliente_interno , name="pedido_cliente_interno"),
 
     #Cliente Externo
     path("cliente_externo/", cliente_externo, name="cliente_externo"),

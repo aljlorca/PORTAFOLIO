@@ -43,10 +43,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtNombreCliente = new System.Windows.Forms.TextBox();
+            this.txtRut = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtDireccionCliente = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtCargo = new System.Windows.Forms.TextBox();
+            this.txtNacionalidad = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -181,9 +191,19 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.txtNacionalidad);
+            this.tabPage2.Controls.Add(this.txtCargo);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.txtDireccionCliente);
+            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.txtRut);
+            this.tabPage2.Controls.Add(this.txtNombreCliente);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.txtNombre);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -192,23 +212,6 @@
             this.tabPage2.Size = new System.Drawing.Size(995, 541);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Creacion Contrato";
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(375, 107);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(178, 20);
-            this.txtNombre.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(375, 220);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Generacion Contrato";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -229,6 +232,125 @@
             this.label4.Size = new System.Drawing.Size(198, 25);
             this.label4.TabIndex = 105;
             this.label4.Text = "Creacion de Contrato";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(375, 407);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(178, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Generacion Contrato";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(114, 110);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.TabIndex = 107;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(195, 105);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(114, 23);
+            this.label8.TabIndex = 111;
+            this.label8.Text = "Rut Cliente ";
+            // 
+            // txtNombreCliente
+            // 
+            this.txtNombreCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNombreCliente.Location = new System.Drawing.Point(375, 150);
+            this.txtNombreCliente.Name = "txtNombreCliente";
+            this.txtNombreCliente.Size = new System.Drawing.Size(214, 26);
+            this.txtNombreCliente.TabIndex = 112;
+            this.txtNombreCliente.Text = "Duns Empresa";
+            // 
+            // txtRut
+            // 
+            this.txtRut.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRut.ForeColor = System.Drawing.Color.DimGray;
+            this.txtRut.Location = new System.Drawing.Point(375, 102);
+            this.txtRut.Name = "txtRut";
+            this.txtRut.Size = new System.Drawing.Size(214, 26);
+            this.txtRut.TabIndex = 113;
+            this.txtRut.Text = "Rut_Cliente ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label9.Location = new System.Drawing.Point(195, 153);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(161, 23);
+            this.label9.TabIndex = 114;
+            this.label9.Text = "Nombre_Cliente";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(195, 206);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(174, 23);
+            this.label10.TabIndex = 115;
+            this.label10.Text = "Direccion_Cliente";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // txtDireccionCliente
+            // 
+            this.txtDireccionCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDireccionCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDireccionCliente.Location = new System.Drawing.Point(375, 203);
+            this.txtDireccionCliente.Name = "txtDireccionCliente";
+            this.txtDireccionCliente.Size = new System.Drawing.Size(214, 26);
+            this.txtDireccionCliente.TabIndex = 116;
+            this.txtDireccionCliente.Text = "Direccion ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(195, 312);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(69, 23);
+            this.label11.TabIndex = 117;
+            this.label11.Text = "Cargo";
+            // 
+            // txtCargo
+            // 
+            this.txtCargo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCargo.ForeColor = System.Drawing.Color.DimGray;
+            this.txtCargo.Location = new System.Drawing.Point(375, 309);
+            this.txtCargo.Name = "txtCargo";
+            this.txtCargo.Size = new System.Drawing.Size(214, 26);
+            this.txtCargo.TabIndex = 118;
+            this.txtCargo.Text = "Cargo";
+            // 
+            // txtNacionalidad
+            // 
+            this.txtNacionalidad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNacionalidad.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNacionalidad.Location = new System.Drawing.Point(375, 259);
+            this.txtNacionalidad.Name = "txtNacionalidad";
+            this.txtNacionalidad.Size = new System.Drawing.Size(214, 26);
+            this.txtNacionalidad.TabIndex = 119;
+            this.txtNacionalidad.Text = "Nacionalidad";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label12.Location = new System.Drawing.Point(195, 262);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(139, 23);
+            this.label12.TabIndex = 120;
+            this.label12.Text = "Nacionalidad";
             // 
             // Contrato
             // 
@@ -267,10 +389,20 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtRut;
+        private System.Windows.Forms.TextBox txtNombreCliente;
+        private System.Windows.Forms.TextBox txtDireccionCliente;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtCargo;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtNacionalidad;
     }
 }
