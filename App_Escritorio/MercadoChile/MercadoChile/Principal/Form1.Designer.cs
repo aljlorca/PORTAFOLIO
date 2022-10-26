@@ -31,6 +31,7 @@ namespace MercadoChile
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MenuVertical = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -46,7 +47,7 @@ namespace MercadoChile
             this.iconCerrar = new System.Windows.Forms.PictureBox();
             this.btnslide = new System.Windows.Forms.PictureBox();
             this.PanelContenedor = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.MenuVertical.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -61,6 +62,7 @@ namespace MercadoChile
             // MenuVertical
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.Transparent;
+            this.MenuVertical.Controls.Add(this.button8);
             this.MenuVertical.Controls.Add(this.button7);
             this.MenuVertical.Controls.Add(this.button6);
             this.MenuVertical.Controls.Add(this.panel1);
@@ -74,6 +76,22 @@ namespace MercadoChile
             this.MenuVertical.Name = "MenuVertical";
             this.MenuVertical.Size = new System.Drawing.Size(258, 650);
             this.MenuVertical.TabIndex = 0;
+            // 
+            // button7
+            // 
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.Location = new System.Drawing.Point(5, 493);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(250, 40);
+            this.button7.TabIndex = 8;
+            this.button7.Text = "     Procesos Producto";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -284,21 +302,21 @@ namespace MercadoChile
             this.PanelContenedor.Size = new System.Drawing.Size(1042, 600);
             this.PanelContenedor.TabIndex = 2;
             // 
-            // button7
+            // button8
             // 
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(5, 493);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(250, 40);
-            this.button7.TabIndex = 8;
-            this.button7.Text = "     Procesos Producto";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.Location = new System.Drawing.Point(5, 539);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(250, 40);
+            this.button8.TabIndex = 9;
+            this.button8.Text = "     Cerrar Sesion";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
@@ -345,6 +363,7 @@ namespace MercadoChile
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }
 
