@@ -92,7 +92,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1028, 564);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Crear Cliente";
+            this.tabPage1.Text = "Proceso Postulacion";
             // 
             // btnListar
             // 
@@ -176,7 +176,7 @@
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1028, 564);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Listar Cliente";
+            this.tabPage4.Text = "Productos a Rechazar";
             // 
             // label2
             // 
@@ -274,9 +274,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(359, 4);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(231, 25);
+            this.label8.Size = new System.Drawing.Size(338, 25);
             this.label8.TabIndex = 93;
-            this.label8.Text = "Listar y Eliminar Empresa";
+            this.label8.Text = "Eliminacion de Productos rechazados";
             // 
             // button1
             // 

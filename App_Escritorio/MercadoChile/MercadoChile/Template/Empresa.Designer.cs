@@ -42,7 +42,7 @@
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.txtDunsEmp = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -69,7 +69,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvEmpresa)).BeginInit();
             this.SuspendLayout();
@@ -78,7 +78,7 @@
             // 
             this.tabControl1.AccessibleName = "";
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(1, 1);
@@ -107,7 +107,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1031, 572);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Crear Cliente";
+            this.tabPage1.Text = "Crear Empresa";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // label3
@@ -249,24 +249,24 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Creacion de Empresa";
             // 
-            // tabPage4
+            // tabPage2
             // 
-            this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage4.Controls.Add(this.label2);
-            this.tabPage4.Controls.Add(this.groupBox1);
-            this.tabPage4.Controls.Add(this.DgvEmpresa);
-            this.tabPage4.Controls.Add(this.label8);
-            this.tabPage4.Controls.Add(this.button1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1031, 572);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Listar Cliente";
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Controls.Add(this.DgvEmpresa);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(1031, 572);
+            this.tabPage2.TabIndex = 3;
+            this.tabPage2.Text = "Listar Empresa";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(434, 25);
+            this.label2.Location = new System.Drawing.Point(288, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(547, 13);
             this.label2.TabIndex = 104;
@@ -452,9 +452,9 @@
             this.cnCiudad,
             this.cnRegion,
             this.cnPais});
-            this.DgvEmpresa.Location = new System.Drawing.Point(261, 49);
+            this.DgvEmpresa.Location = new System.Drawing.Point(258, 56);
             this.DgvEmpresa.Name = "DgvEmpresa";
-            this.DgvEmpresa.Size = new System.Drawing.Size(770, 520);
+            this.DgvEmpresa.Size = new System.Drawing.Size(770, 513);
             this.DgvEmpresa.TabIndex = 94;
             // 
             // cnDunsEmpresa
@@ -509,7 +509,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(586, 0);
+            this.label8.Location = new System.Drawing.Point(458, 5);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(231, 25);
             this.label8.TabIndex = 93;
@@ -542,8 +542,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvEmpresa)).EndInit();
@@ -554,7 +554,7 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.GroupBox groupBox1;
