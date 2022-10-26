@@ -136,6 +136,18 @@ namespace MercadoChile.Template
 
             }
         }
+        private void txtBusVenta_TextChanged(object sender, EventArgs e)
+        {
+           
+            DgvPostulacion.CurrentCell = null;
+            foreach (DataGridViewRow fila in DgvPostulacion.Rows)
+            {
+                
+                fila.Visible = fila.Cells["cnVenta"].Value.ToString().ToUpper().Contains(txtBusVenta.Text.ToUpper());
+                
+            }
+
+        }
         private async void Click_Aceptar(object sender, DataGridViewCellEventArgs e)
         {
             if (DgvPostulacion.CurrentCell.ColumnIndex == 0)

@@ -58,6 +58,9 @@
             this.cnProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnEstadoF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnBoton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtBusVenta = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvPostulacion)).BeginInit();
@@ -82,6 +85,9 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.txtBusVenta);
+            this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.btnListar);
             this.tabPage1.Controls.Add(this.DgvPostulacion);
             this.tabPage1.Controls.Add(this.btnEliminar);
@@ -344,6 +350,33 @@
             this.cnBoton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.cnBoton.Text = "";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(749, 142);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(259, 13);
+            this.label4.TabIndex = 119;
+            this.label4.Text = "---------------------------------------------------------------";
+            // 
+            // txtBusVenta
+            // 
+            this.txtBusVenta.Location = new System.Drawing.Point(782, 158);
+            this.txtBusVenta.Name = "txtBusVenta";
+            this.txtBusVenta.Size = new System.Drawing.Size(193, 20);
+            this.txtBusVenta.TabIndex = 118;
+            this.txtBusVenta.TextChanged += new System.EventHandler(this.txtBusVenta_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(806, 123);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 19);
+            this.label5.TabIndex = 117;
+            this.label5.Text = "Buscador Venta";
+            // 
             // Procesos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,5 +428,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnEstadoF;
         private System.Windows.Forms.DataGridViewButtonColumn cnBoton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtBusVenta;
+        private System.Windows.Forms.Label label5;
     }
 }
