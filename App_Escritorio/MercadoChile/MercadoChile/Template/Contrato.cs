@@ -225,5 +225,105 @@ namespace MercadoChile.Template
         {
 
         }
+
+        private void rutCliente(object sender, EventArgs e)
+        {
+            if (txtRut.Text == "Rut Cliente")
+            {
+                txtRut.Text = "";
+                txtRut.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void rutClienteLeave(object sender, EventArgs e)
+        {
+            if (txtRut.Text == "")
+            {
+                txtRut.Text = "Rut Cliente";
+                txtRut.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void nombreClienteEnter(object sender, EventArgs e)
+        {
+            if (txtNombreCliente.Text == "Nombre Cliente")
+            {
+                txtNombreCliente.Text = "";
+                txtNombreCliente.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void nombreClienteLeave(object sender, EventArgs e)
+        {
+            if (txtNombreCliente.Text == "")
+            {
+                txtNombreCliente.Text = "Nombre Cliente";
+                txtNombreCliente.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void DireccionEnter(object sender, EventArgs e)
+        {
+            if (txtDireccionCliente.Text == "Direccion")
+            {
+                txtDireccionCliente.Text = "";
+                txtDireccionCliente.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void DireccionLeave(object sender, EventArgs e)
+        {
+            if (txtDireccionCliente.Text == "")
+            {
+                txtDireccionCliente.Text = "Direccion";
+                txtDireccionCliente.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void NacionalidadEnter(object sender, EventArgs e)
+        {
+            if (txtNacionalidad.Text == "Nacionalidad")
+            {
+                txtNacionalidad.Text = "";
+                txtNacionalidad.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void txtNacionalidad_Leave(object sender, EventArgs e)
+        {
+            if (txtNacionalidad.Text == "")
+            {
+                txtNacionalidad.Text = "Nacionalidad";
+                txtNacionalidad.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void CargoEnter(object sender, EventArgs e)
+        {
+            if (txtCargo.Text == "Cargo")
+            {
+                txtCargo.Text = "";
+                txtCargo.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
+
+        private void Cargo(object sender, EventArgs e)
+        {
+            if (txtCargo.Text == "")
+            {
+                txtCargo.Text = "Cargo";
+                txtCargo.ForeColor = System.Drawing.Color.Black;
+
+            }
+        }
     }
 }
