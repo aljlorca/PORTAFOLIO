@@ -19,6 +19,7 @@ namespace MercadoChile
     public partial class Form1 : Form
     {
         DBApi dBApi = new DBApi();
+        inicioSesion iniciosesion;
 
         private string url = "http://127.0.0.1:8000/api/cargo/cargo/?format=json";
         public Form1()
@@ -155,6 +156,13 @@ namespace MercadoChile
         private void button7_Click(object sender, EventArgs e)
         {
             AbrirForm(new Procesos());
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            iniciosesion = new inicioSesion();
+            iniciosesion.Show();
+            this.Hide();
         }
     }
 }
