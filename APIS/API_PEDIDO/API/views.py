@@ -16,19 +16,21 @@ def agregar_pedido(descripcion_pedido,fecha_sla_pedido,id_usuario):
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
     cursor.callproc('PEDIDO_AGREGAR',[descripcion_pedido,fecha_sla_pedido,id_usuario,estado_fila,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_pedido(id_pedido,descripcion_pedido,fecha_sla_pedido,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('PEDIDO_MODIFICAR',[id_pedido,descripcion_pedido,fecha_sla_pedido,id_usuario,salida])
+    return round(salida.getvalue())
 
 def eliminar_pedido(id_pedido):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('PEDIDO_ELIMINAR',[id_pedido,salida])
+    return round(salida.getvalue())
 
 def lista_pedido():
     django_cursor = connection.cursor()
@@ -65,8 +67,14 @@ class PedidoView(View):
 
     def post(self, request):
         jd = json.loads(request.body)
-        agregar_pedido(descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
-        datos = {'message':'Success'}
+        try:
+            salida = agregar_pedido(descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
+            if salida == 1:
+                datos = {'message':'Success'}
+            elif salida == 0:
+                datos = {'message': 'ERROR: no fue posible agregar el pedido'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
         
 
@@ -74,8 +82,14 @@ class PedidoView(View):
         jd = json.loads(request.body)
         empresas = list(Pedido.objects.filter(id_pedido=id_pedido).values())
         if len(empresas) > 0:
-            modificar_pedido(id_pedido=jd['id_pedido'],descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
-            datos={'message':"Success"}
+            try:
+                salida = modificar_pedido(id_pedido=jd['id_pedido'],descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible modificar el pedido'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: No se encuentra el pedido"}
         return JsonResponse(datos)
@@ -84,8 +98,14 @@ class PedidoView(View):
         pedidos = list(Pedido.objects.filter(id_pedido=id_pedido).values())
         jd = json.loads(request.body)
         if len(pedidos) > 0:
-            eliminar_pedido(id_pedido=jd['id_pedido'])
-            datos={'message':"Success"}
+            try: 
+                salida  = eliminar_pedido(id_pedido=jd['id_pedido'])
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERROR: no fue posible eliminar el pedido'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: no fue posible eliminar el pedido"}
         return JsonResponse(datos)
@@ -93,8 +113,6 @@ class PedidoView(View):
 class PedidoViewset(viewsets.ModelViewSet):
     queryset = Pedido.objects.filter(estado_fila='1')
     serializer_class = PedidoSerializer
-
-
 
 class PedidoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
