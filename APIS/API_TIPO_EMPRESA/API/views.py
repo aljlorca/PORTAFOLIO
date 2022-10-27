@@ -68,36 +68,38 @@ class TipoEmpresaView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida  = agregar_tipo_empresa(tipo_empresa=jd['tipo_empresa'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible agregar el tipo de empresa'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida  = agregar_tipo_empresa(tipo_empresa=jd['tipo_empresa'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message':'ERORR: no fue posible agregar el tipo de empresa'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
         
 
     def put(self, request,id_tipo_empresa):
         try:
             jd = json.loads(request.body)
+            tipos = list(TipoEmpresa.objects.filter(id_tipo_empresa=id_tipo_empresa).values())
+            if len(tipos) > 0:
+                try:
+                    salida = modificar_tipo_empresa(tipo_empresa=jd['tipo_empresa'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: no fue posible modificar el tipo de empresa'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra el tipo de empresa"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        tipos = list(TipoEmpresa.objects.filter(id_tipo_empresa=id_tipo_empresa).values())
-        if len(tipos) > 0:
-            try:
-                salida = modificar_tipo_empresa(tipo_empresa=jd['tipo_empresa'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos = {'message':'ERORR: no fue posible modificar el tipo de empresa'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra el tipo de empresa"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_tipo_empresa):

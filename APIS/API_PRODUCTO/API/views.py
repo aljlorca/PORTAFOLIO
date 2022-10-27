@@ -88,20 +88,21 @@ class ProductoView(View):
     def put(self,request,id_producto):
         try:
             jd = json.loads(request.body)
+            productos = list(Producto.objects.filter(id_producto=id_producto).values())
+            if len(productos)>0:
+                try:
+                    salida = modificar_producto(id_producto=jd['id_producto'],saldo_producto=jd['saldo_producto'])
+                    if salida == 1:
+                        datos={'message':'Success'}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: no fue posible eliminar el producto'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':'ERROR: Producto NO encontrado'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        productos = list(Producto.objects.filter(id_producto=id_producto).values())
-        if len(productos)>0:
-            try:
-                salida = modificar_producto(id_producto=jd['id_producto'],saldo_producto=jd['saldo_producto'])
-                if salida == 1:
-                    datos={'message':'Success'}
-                elif salida == 0:
-                    datos = {'message':'ERORR: no fue posible eliminar el producto'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':'ERROR: Producto NO encontrado'}
+
         return JsonResponse(datos)
     
     def delete(self,request,id_producto):

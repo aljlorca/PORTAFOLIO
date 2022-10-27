@@ -69,35 +69,37 @@ class RegionView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida = agregar_region(nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERORR: No fue posible agregar la region'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida = agregar_region(nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message':'ERORR: No fue posible agregar la region'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
 
     def put(self, request,id_region):
         try:
             jd = json.loads(request.body)
+            regiones = list(Region.objects.filter(id_region=id_region).values())
+            if len(regiones) > 0:
+                try:
+                    salida = modificar_region(id_region=jd['id_region'],nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: no fue posiuble modificar la region'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra la region"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        regiones = list(Region.objects.filter(id_region=id_region).values())
-        if len(regiones) > 0:
-            try:
-                salida = modificar_region(id_region=jd['id_region'],nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos = {'message':'ERORR: no fue posiuble modificar la region'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra la region"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_region):

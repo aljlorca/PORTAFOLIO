@@ -70,16 +70,17 @@ class CalidadView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida = agregar_calidad(descripcion_calidad=jd['descripcion_calidad'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERROR: no fue posible agregar la calidad'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida = agregar_calidad(descripcion_calidad=jd['descripcion_calidad'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message':'ERROR: no fue posible agregar la calidad'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         
         return JsonResponse(datos)
         
@@ -87,20 +88,20 @@ class CalidadView(View):
     def put(self, request,id_calidad):
         try:
             jd = json.loads(request.body)
+            calidades = list(Calidad.objects.filter(id_calidad=id_calidad).values())
+            if len(calidades) > 0:
+                try: 
+                    salida=modificar_calidad(id_calidad=jd['id_calidad'],descripcion_calidad=jd['descripcion_calidad'])
+                    if salida == 1:
+                        datos = {'message':'Success'}
+                    elif salida == 0:
+                        datos = {'message':'ERROR: no fue posible actualizar la calidad'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra la calidad"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        calidades = list(Calidad.objects.filter(id_calidad=id_calidad).values())
-        if len(calidades) > 0:
-            try: 
-                salida=modificar_calidad(id_calidad=jd['id_calidad'],descripcion_calidad=jd['descripcion_calidad'])
-                if salida == 1:
-                    datos = {'message':'Success'}
-                elif salida == 0:
-                    datos = {'message':'ERROR: no fue posible actualizar la calidad'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra la calidad"}
         return JsonResponse(datos)
 
     def delete(self, request,id_calidad):

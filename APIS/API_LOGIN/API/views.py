@@ -30,17 +30,18 @@ class UsuarioAuthView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                usuarios = request_usuario(correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'])
+                if len(usuarios) > 0:
+                    usuario = usuarios[0]
+                    datos={'message':"Success",'usuario':usuario}
+                else:
+                    datos={'message':"ERROR: usuario No Encontrado"}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            usuarios = request_usuario(correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'])
-            if len(usuarios) > 0:
-                usuario = usuarios[0]
-                datos={'message':"Success",'usuario':usuario}
-            else:
-                datos={'message':"ERROR: usuario No Encontrado"}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
 
         return JsonResponse(datos)
 

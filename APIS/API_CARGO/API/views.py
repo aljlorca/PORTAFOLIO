@@ -69,36 +69,37 @@ class CargoView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida = agregar_cargo(nombre=jd['nombre_cargo'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos={'message':"ERROR: no fue posible agregar el cargo"}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida = agregar_cargo(nombre=jd['nombre_cargo'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos={'message':"ERROR: no fue posible agregar el cargo"}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
         
 
     def put(self, request,id_cargo):
         try:
             jd = json.loads(request.body)
+            cargos = list(Cargo.objects.filter(id_cargo=id_cargo).values())
+            if len(cargos) > 0:
+                try:
+                    salida = modificar_cargo(id_cargo=jd['id_cargo'],nombre=jd['nombre_cargo'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos={'message':"ERROR: no fue posible modificar el cargo"}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra el cargo"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        cargos = list(Cargo.objects.filter(id_cargo=id_cargo).values())
-        if len(cargos) > 0:
-            try:
-                salida = modificar_cargo(id_cargo=jd['id_cargo'],nombre=jd['nombre_cargo'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos={'message':"ERROR: no fue posible modificar el cargo"}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra el cargo"}
         return JsonResponse(datos)
 
     def delete(self, request,id_cargo):

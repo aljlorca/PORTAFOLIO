@@ -69,35 +69,37 @@ class CiudadView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida = agregar_ciudad(nombre_ciudad=jd['nombre_ciudad'],codigo_postal=jd['codigo_postal'],id_region=jd['id_region'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible registrar la ciudad'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida = agregar_ciudad(nombre_ciudad=jd['nombre_ciudad'],codigo_postal=jd['codigo_postal'],id_region=jd['id_region'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos={'message':'ERROR: no fue posible registrar la ciudad'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
 
     def put(self, request,id_ciudad):
         try:
             jd = json.loads(request.body)
+            ciudades = list(Ciudad.objects.filter(id_ciudad=id_ciudad).values())
+            if len(ciudades) > 0:
+                try:
+                    salida = modificar_ciudad(id_ciudad=jd['id_ciudad'],nombre_ciudad=jd['nombre_ciudad'],codigo_postal=jd['codigo_postal'],id_region=jd['id_region'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos={'message':'ERROR: no fue posible modificar la ciudad'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra la ciudad"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        ciudades = list(Ciudad.objects.filter(id_ciudad=id_ciudad).values())
-        if len(ciudades) > 0:
-            try:
-                salida = modificar_ciudad(id_ciudad=jd['id_ciudad'],nombre_ciudad=jd['nombre_ciudad'],codigo_postal=jd['codigo_postal'],id_region=jd['id_region'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos={'message':'ERROR: no fue posible modificar la ciudad'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra la ciudad"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_ciudad):

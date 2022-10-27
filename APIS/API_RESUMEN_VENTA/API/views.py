@@ -66,46 +66,46 @@ class ResumenVentaView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
         try:
-            salida = agregar_resumen_venta(monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta=jd['id_venta'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message':'ERORR: no fue posible agregar el resumen de venta'}
+            jd = json.loads(request.body)
+            try:
+                salida = agregar_resumen_venta(monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta=jd['id_venta'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible agregar el resumen de venta'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
-            datos = {'message':'ERROR: Validar datos'}
+            datos = {'message':'ERORR: Json invalido'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_resumen):
         try:
             jd = json.loads(request.body)
+            resumenes = list(ResumenVenta.objects.filter(id_resumen=id_resumen).values())
+            if len(resumenes) > 0:
+                try:
+                    salida = modificar_resumen_venta(id_resumen=jd['id_resumen'],monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta=jd['id_venta'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: error no fue posible modificar el resumen de la venta'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra el resumen de venta"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        resumenes = list(ResumenVenta.objects.filter(id_resumen=id_resumen).values())
-        if len(resumenes) > 0:
-            try:
-                salida = modificar_resumen_venta(id_resumen=jd['id_resumen'],monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta=jd['id_venta'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos = {'message':'ERORR: error no fue posible modificar el resumen de la venta'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra el resumen de venta"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_resumen):
         resumenes = list(ResumenVenta.objects.filter(id_resumen=id_resumen).values())
-        try:
-            jd = json.loads(request.body)
-        except:
-            datos = {'message':'ERORR: Json invalido'}
         if len(resumenes) > 0:
             try:
-                salida = eliminar_resumen_venta(id_resumen=jd['id_resumen'])
+                salida = eliminar_resumen_venta(id_resumen)
                 if salida == 1:
                     datos={'message':"Success"}
                 elif salida == 0:

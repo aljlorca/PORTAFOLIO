@@ -71,46 +71,44 @@ class SubastaView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida = agregar_subasta(monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
+                if salida == 0:
+                    datos = {'message':'ERORR: no fue posible agregar la subasta'}
+                else:
+                    datos = {'message':'Success','id_subasta':salida}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida = agregar_subasta(monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
-            if salida == 0:
-                datos = {'message':'ERORR: no fue posible agregar la subasta'}
-            else:
-                datos = {'message':'Success','id_subasta':salida}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
 
     def put(self, request,id_subasta):
         try:
             jd = json.loads(request.body)
+            subasteas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
+            if len(subasteas) > 0:
+                try:
+                    salida = modificar_subasta(id_subasta=jd['id_subasta'],monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
+                    if salida == 0:
+                        datos = {'message':'ERORR: no fue posible modificar la subasta'}
+                    else:
+                        datos = {'message':'Success'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra la subasta"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        subasteas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
-        if len(subasteas) > 0:
-            try:
-                salida = modificar_subasta(id_subasta=jd['id_subasta'],monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
-                if salida == 0:
-                    datos = {'message':'ERORR: no fue posible modificar la subasta'}
-                else:
-                    datos = {'message':'Success'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra la subasta"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_subasta):
         subastas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
-        try:
-            jd = json.loads(request.body)
-        except:
-            datos = {'message':'ERORR: Json invalido'}
         if len(subastas) > 0:
             try:
-                salida = eliminar_subasta(id_subasta=jd['id_subasta'])
+                salida = eliminar_subasta(id_subasta)
                 if salida == 1:
                     datos={'message':"Success"}
                 elif salida == 0:

@@ -68,55 +68,55 @@ class PedidoView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida = agregar_pedido(descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message': 'ERROR: no fue posible agregar el pedido'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida = agregar_pedido(descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message': 'ERROR: no fue posible agregar el pedido'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
         
 
     def put(self, request,id_pedido):
         try:
             jd = json.loads(request.body)
+            empresas = list(Pedido.objects.filter(id_pedido=id_pedido).values())
+            if len(empresas) > 0:
+                try:
+                    salida = modificar_pedido(id_pedido=jd['id_pedido'],descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos={'message':'ERROR: no fue posible modificar el pedido'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra el pedido"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        empresas = list(Pedido.objects.filter(id_pedido=id_pedido).values())
-        if len(empresas) > 0:
-            try:
-                salida = modificar_pedido(id_pedido=jd['id_pedido'],descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos={'message':'ERROR: no fue posible modificar el pedido'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra el pedido"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_pedido):
         pedidos = list(Pedido.objects.filter(id_pedido=id_pedido).values())
-        try:
-            jd = json.loads(request.body)
-        except:
-            datos = {'message':'ERORR: Json invalido'}
         if len(pedidos) > 0:
             try: 
-                salida  = eliminar_pedido(id_pedido=jd['id_pedido'])
+                salida  = eliminar_pedido(id_pedido)
                 if salida == 1:
                     datos={'message':"Success"}
                 elif salida == 0:
                     datos = {'message':'ERROR: no fue posible eliminar el pedido'}
             except:
-                datos = {'message':'ERROR: Validar datos'}
+                    datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: no fue posible eliminar el pedido"}
+
+
         return JsonResponse(datos)
 
 class PedidoViewset(viewsets.ModelViewSet):

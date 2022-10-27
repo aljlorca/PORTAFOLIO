@@ -69,36 +69,36 @@ class CarritoView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida = agregar_carrito(fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERROR: No fue posible registrar el carrito'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida = agregar_carrito(fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message':'ERROR: No fue posible registrar el carrito'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_carrito):
         try:
             jd = json.loads(request.body)
+            cargos = list(Carrito.objects.filter(id_carrito=id_carrito).values())
+            if len(cargos) > 0:
+                try:
+                    salida = modificar_carrito(id_carrito=jd['id_carrito'],fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos={'message':'ERROR: No fue posible modificar el carrito'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra el carrito"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        cargos = list(Carrito.objects.filter(id_carrito=id_carrito).values())
-        if len(cargos) > 0:
-            try:
-                salida = modificar_carrito(id_carrito=jd['id_carrito'],fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos={'message':'ERROR: No fue posible modificar el carrito'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra el carrito"}
         return JsonResponse(datos)
 
     def delete(self, request,id_carrito):

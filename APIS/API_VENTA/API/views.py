@@ -70,55 +70,58 @@ class VentaView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida = agregar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible agregar la venta'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida = agregar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message':'ERORR: no fue posible agregar la venta'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
         
 
     def put(self, request,id_venta):
         try:
             jd = json.loads(request.body)
+            ventas = list(Venta.objects.filter(id_venta=id_venta).values())
+            if len(ventas) > 0:
+                try:
+                    salida = modificar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: no fue posible modificar la venta'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra la venta"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        ventas = list(Venta.objects.filter(id_venta=id_venta).values())
-        if len(ventas) > 0:
-            try:
-                salida = modificar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos = {'message':'ERORR: no fue posible modificar la venta'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra la venta"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_venta):
-        ventas = list(Venta.objects.filter(id_venta=id_venta).values())
         try:
+            ventas = list(Venta.objects.filter(id_venta=id_venta).values())
             jd = json.loads(request.body)
+            if len(ventas) > 0:
+                try:
+                    salida = eliminar_venta(id_venta=jd['id_venta'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: no fue posible elimiar la venta'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: no se encuentra la venta"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        if len(ventas) > 0:
-            try:
-                salida = eliminar_venta(id_venta=jd['id_venta'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos = {'message':'ERORR: no fue posible elimiar la venta'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: no se encuentra la venta"}
+
         return JsonResponse(datos)
 
 class VentaViewset(viewsets.ModelViewSet):

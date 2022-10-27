@@ -69,35 +69,37 @@ class ContratoView(View):
     def post(self,request):
         try:
             jd = json.loads(request.body)
+            try: 
+                salida = agregar_contrato(documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
+                if salida == 1:
+                    datos={'message':'Success'}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible agregar el contrato'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try: 
-            salida = agregar_contrato(documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
-            if salida == 1:
-                datos={'message':'Success'}
-            elif salida == 0:
-                datos={'message':'ERROR: no fue posible agregar el contrato'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
     
     def put(self,request,id_contrato):
         try:
             jd = json.loads(request.body)
+            contratos = list(Contrato.objects.filter(id_contrato=id_contrato).values())
+            if len(contratos)>0:
+                try:
+                    salida = modificar_contrato(id_contrato=jd['id_contrato'],documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
+                    if salida == 1:
+                        datos={'message':'Success'}
+                    elif salida == 0:
+                        datos={'message':'ERROR: no fue posible modificar el contrato'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':'ERROR: Contrato NO encontrado'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        contratos = list(Contrato.objects.filter(id_contrato=id_contrato).values())
-        if len(contratos)>0:
-            try:
-                salida = modificar_contrato(id_contrato=jd['id_contrato'],documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
-                if salida == 1:
-                    datos={'message':'Success'}
-                elif salida == 0:
-                    datos={'message':'ERROR: no fue posible modificar el contrato'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':'ERROR: Contrato NO encontrado'}
+        
         return JsonResponse(datos)
     
     def delete(self,request,id_contrato):

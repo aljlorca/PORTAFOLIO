@@ -68,36 +68,38 @@ class EmpresaView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try: 
+                salida = agregar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERROR: no fue posible registrar la empresa'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try: 
-            salida = agregar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message':'ERROR: no fue posible registrar la empresa'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
         
 
     def put(self, request,id_empresa):
         try:
             jd = json.loads(request.body)
+            empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
+            if len(empresas) > 0:
+                try:
+                    salida = modificar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos={'message':'ERROR: no fue posible modificar la empresa'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra la empresa"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
-        if len(empresas) > 0:
-            try:
-                salida = modificar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos={'message':'ERROR: no fue posible modificar la empresa'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra la empresa"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_empresa):

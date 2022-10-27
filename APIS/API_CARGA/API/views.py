@@ -68,36 +68,37 @@ class CargaView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try: 
+                salida = agregar_carga(capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERROR: No fue posible registrar la carga'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try: 
-            salida = agregar_carga(capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message':'ERROR: No fue posible registrar la carga'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_carga):
         try:
             jd = json.loads(request.body)
+            cargas = list(Carga.objects.filter(id_carga=id_carga).values())
+            if len(cargas) > 0:
+                try:
+                    salida = modificar_carga(id_carga=jd['id_carga'],capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERROR: No fue posible actualizar la carga'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else: 
+                datos={'message':"ERROR: No se encuentra la carga"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        cargas = list(Carga.objects.filter(id_carga=id_carga).values())
-        if len(cargas) > 0:
-            try:
-                salida = modificar_carga(id_carga=jd['id_carga'],capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos = {'message':'ERROR: No fue posible actualizar la carga'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra la carga"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_carga):
@@ -112,7 +113,7 @@ class CargaView(View):
             except:
                 datos = {'message':'ERROR: Validar datos'}
         else:
-            datos={'message':"ERROR: no fue posible eliminar el cargo"}
+            datos={'message':"ERROR: No se encuentra la carga"}
         return JsonResponse(datos)
     
     

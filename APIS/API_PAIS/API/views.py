@@ -69,36 +69,38 @@ class PaisView(View):
     def post(self, request):
         try:
             jd = json.loads(request.body)
+            try:
+                salida = agregar_pais(nombre_pais=jd['nombre_pais'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible agregar el pais'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        try:
-            salida = agregar_pais(nombre_pais=jd['nombre_pais'])
-            if salida == 1:
-                datos = {'message':'Success'}
-            elif salida == 0:
-                datos = {'message':'ERORR: no fue posible agregar el pais'}
-        except:
-            datos = {'message':'ERROR: Validar datos'}
+
         return JsonResponse(datos)
         
 
     def put(self, request,id_pais):
         try:
             jd = json.loads(request.body)
+            paises = list(Pais.objects.filter(id_pais=id_pais).values())
+            if len(paises) > 0:
+                try:
+                    salida = modificar_pais(id_pais=jd['id_pais'],nombre_pais=jd['nombre_pais'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: no fue posible modificar el pais'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra el pais"}
         except:
             datos = {'message':'ERORR: Json invalido'}
-        paises = list(Pais.objects.filter(id_pais=id_pais).values())
-        if len(paises) > 0:
-            try:
-                salida = modificar_pais(id_pais=jd['id_pais'],nombre_pais=jd['nombre_pais'])
-                if salida == 1:
-                    datos={'message':"Success"}
-                elif salida == 0:
-                    datos = {'message':'ERORR: no fue posible modificar el pais'}
-            except:
-                datos = {'message':'ERROR: Validar datos'}
-        else:
-            datos={'message':"ERROR: No se encuentra el pais"}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_pais):
