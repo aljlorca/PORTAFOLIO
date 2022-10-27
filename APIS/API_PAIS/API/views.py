@@ -17,19 +17,21 @@ def agregar_pais(nombre_pais):
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
     cursor.callproc('PAIS_AGREGAR',[nombre_pais,estado_fila,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_pais(id_pais,nombre_pais):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('PAIS_MODIFICAR',[id_pais,nombre_pais,salida])
+    return round(salida.getvalue())
 
 def eliminar_pais(id_pais):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('PAIS_ELIMINAR',[id_pais,salida])
+    return round(salida.getvalue())
 
 def lista_pais():
     django_cursor = connection.cursor()
@@ -65,18 +67,36 @@ class PaisView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_pais(nombre_pais=jd['nombre_pais'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+        try:
+            salida = agregar_pais(nombre_pais=jd['nombre_pais'])
+            if salida == 1:
+                datos = {'message':'Success'}
+            elif salida == 0:
+                datos = {'message':'ERORR: no fue posible agregar el pais'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_pais):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         paises = list(Pais.objects.filter(id_pais=id_pais).values())
         if len(paises) > 0:
-            modificar_pais(id_pais=jd['id_pais'],nombre_pais=jd['nombre_pais'])
-            datos={'message':"Success"}
+            try:
+                salida = modificar_pais(id_pais=jd['id_pais'],nombre_pais=jd['nombre_pais'])
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible modificar el pais'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: No se encuentra el pais"}
         return JsonResponse(datos)
@@ -84,10 +104,16 @@ class PaisView(View):
     def delete(self, request,id_pais):
         paises = list(Pais.objects.filter(id_pais=id_pais).values())
         if len(paises) > 0:
-            salida = eliminar_pais(id_pais)
-            datos={'message':"Success"}
+            try:
+                salida = eliminar_pais(id_pais)
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible eliminar el pais'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
-            datos={'message':"ERROR: no fue posible eliminar el pais"}
+            datos={'message':"ERROR: no se encuentra el pais"}
         return JsonResponse(datos)
     
     

@@ -67,7 +67,10 @@ class CargoView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         try:
             salida = agregar_cargo(nombre=jd['nombre_cargo'])
             if salida == 1:
@@ -80,7 +83,10 @@ class CargoView(View):
         
 
     def put(self, request,id_cargo):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         cargos = list(Cargo.objects.filter(id_cargo=id_cargo).values())
         if len(cargos) > 0:
             try:

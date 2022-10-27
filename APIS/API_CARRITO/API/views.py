@@ -67,7 +67,10 @@ class CarritoView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         try:
             salida = agregar_carrito(fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
             if salida == 1:
@@ -80,7 +83,10 @@ class CarritoView(View):
         
 
     def put(self, request,id_carrito):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         cargos = list(Carrito.objects.filter(id_carrito=id_carrito).values())
         if len(cargos) > 0:
             try:

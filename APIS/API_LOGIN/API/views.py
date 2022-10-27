@@ -28,7 +28,10 @@ class UsuarioAuthView(View):
 
 
     def post(self, request):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         try:
             usuarios = request_usuario(correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'])
             if len(usuarios) > 0:

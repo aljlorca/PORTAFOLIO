@@ -17,19 +17,21 @@ def agregar_postulacion(descripcion_postulacion,id_venta,id_usuario,id_producto)
     estado_fila = '1'
     estado_postulacion = 'En Licitacion'
     cursor.callproc('POSTULACION_AGREGAR',[descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto,estado_fila,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_postulacion(id_postulacion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('POSTULACION_ACEPTAR',[id_postulacion,salida])
+    return round(salida.getvalue())
 
 def eliminar_postulacion(id_postulacion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('POSTULACION_ELIMINAR',[id_postulacion,salida])
+    return round(salida.getvalue())
 
 def lista_postulacion():
     django_cursor = connection.cursor()
@@ -65,28 +67,55 @@ class PostulacionView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_postulacion(descripcion_postulacion=jd['descripcion_postulacion'],estado_postulacion=jd['estado_postulacion'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'],id_producto=jd['id_producto'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+        try:
+            salida = agregar_postulacion(descripcion_postulacion=jd['descripcion_postulacion'],estado_postulacion=jd['estado_postulacion'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'],id_producto=jd['id_producto'])
+            if salida == 1:
+                datos = {'message':'Success'}
+            elif salida == 0:
+                datos = {'message':'ERROR: no fue posible agregar la postulacion'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_postulacion):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         postulaciones = list(Postulacion.objects.filter(id_postulacion=id_postulacion).values())
         if len(postulaciones) > 0:
-            modificar_postulacion(id_postulacion=jd['id_postulacion'])
-            datos={'message':"Success"}
+            try:
+                salida = modificar_postulacion(id_postulacion=jd['id_postulacion'])
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible modificar la postulacion'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: No se encuentra la postulacion"}
         return JsonResponse(datos)
 
     def delete(self, request,id_postulacion):
         postulaciones = list(Postulacion.objects.filter(id_postulacion=id_postulacion).values())
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         if len(postulaciones) > 0:
-            eliminar_postulacion(id_postulacion=jd['id_postulacion'])
-            datos={'message':"Success"}
+            try: 
+                salida = eliminar_postulacion(id_postulacion=jd['id_postulacion'])
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible elimiar la postulacion'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: no fue posible eliminar la postulacion"}
         return JsonResponse(datos)

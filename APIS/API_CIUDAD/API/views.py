@@ -67,7 +67,10 @@ class CiudadView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         try:
             salida = agregar_ciudad(nombre_ciudad=jd['nombre_ciudad'],codigo_postal=jd['codigo_postal'],id_region=jd['id_region'])
             if salida == 1:
@@ -79,7 +82,10 @@ class CiudadView(View):
         return JsonResponse(datos)
 
     def put(self, request,id_ciudad):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         ciudades = list(Ciudad.objects.filter(id_ciudad=id_ciudad).values())
         if len(ciudades) > 0:
             try:

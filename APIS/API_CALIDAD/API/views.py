@@ -68,7 +68,10 @@ class CalidadView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         try:
             salida = agregar_calidad(descripcion_calidad=jd['descripcion_calidad'])
             if salida == 1:
@@ -82,7 +85,10 @@ class CalidadView(View):
         
 
     def put(self, request,id_calidad):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         calidades = list(Calidad.objects.filter(id_calidad=id_calidad).values())
         if len(calidades) > 0:
             try: 

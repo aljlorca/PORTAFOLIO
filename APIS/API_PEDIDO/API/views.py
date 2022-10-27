@@ -66,7 +66,10 @@ class PedidoView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         try:
             salida = agregar_pedido(descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
             if salida == 1:
@@ -79,7 +82,10 @@ class PedidoView(View):
         
 
     def put(self, request,id_pedido):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         empresas = list(Pedido.objects.filter(id_pedido=id_pedido).values())
         if len(empresas) > 0:
             try:
@@ -96,7 +102,10 @@ class PedidoView(View):
 
     def delete(self, request,id_pedido):
         pedidos = list(Pedido.objects.filter(id_pedido=id_pedido).values())
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         if len(pedidos) > 0:
             try: 
                 salida  = eliminar_pedido(id_pedido=jd['id_pedido'])

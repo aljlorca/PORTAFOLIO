@@ -67,7 +67,10 @@ class ContratoView(View):
             return JsonResponse(datos)
     
     def post(self,request):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         try: 
             salida = agregar_contrato(documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
             if salida == 1:
@@ -79,7 +82,10 @@ class ContratoView(View):
         return JsonResponse(datos)
     
     def put(self,request,id_contrato):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         contratos = list(Contrato.objects.filter(id_contrato=id_contrato).values())
         if len(contratos)>0:
             try:

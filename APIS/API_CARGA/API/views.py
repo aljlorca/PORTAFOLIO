@@ -66,7 +66,10 @@ class CargaView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         try: 
             salida = agregar_carga(capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
             if salida == 1:
@@ -79,7 +82,10 @@ class CargaView(View):
         
 
     def put(self, request,id_carga):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         cargas = list(Carga.objects.filter(id_carga=id_carga).values())
         if len(cargas) > 0:
             try:

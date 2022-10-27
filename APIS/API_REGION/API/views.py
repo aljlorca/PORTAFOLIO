@@ -17,19 +17,21 @@ def agregar_region(nombre_region,id_pais):
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
     cursor.callproc('REGION_AGREGAR',[nombre_region,id_pais,estado_fila,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_region(id_region,nombre_region,id_pais):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('REGION_MODIFICAR',[id_region,nombre_region,id_pais,salida])
+    return round(salida.getvalue())
 
 def eliminar_region(id_region):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('REGION_ELIMINAR',[id_region,salida])
+    return round(salida.getvalue())
 
 def lista_region():
     django_cursor = connection.cursor()
@@ -65,17 +67,35 @@ class RegionView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_region(nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+        try:
+            salida = agregar_region(nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
+            if salida == 1:
+                datos = {'message':'Success'}
+            elif salida == 0:
+                datos = {'message':'ERORR: No fue posible agregar la region'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
 
     def put(self, request,id_region):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         regiones = list(Region.objects.filter(id_region=id_region).values())
         if len(regiones) > 0:
-            modificar_region(id_region=jd['id_region'],nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
-            datos={'message':"Success"}
+            try:
+                salida = modificar_region(id_region=jd['id_region'],nombre_region=jd['nombre_region'],id_pais=jd['id_pais'])
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posiuble modificar la region'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: No se encuentra la region"}
         return JsonResponse(datos)
@@ -83,10 +103,16 @@ class RegionView(View):
     def delete(self, request,id_region):
         regiones = list(Region.objects.filter(id_region=id_region).values())
         if len(regiones) > 0:
-            salida = eliminar_region(id_region)
-            datos={'message':"Success"}
+            try:
+                salida = eliminar_region(id_region)
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible eliminar la region'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else: 
-            datos={'message':"ERROR: no fue posible eliminar la region"}
+            datos={'message':"ERROR: no se encuentra la region"}
         return JsonResponse(datos)
     
     

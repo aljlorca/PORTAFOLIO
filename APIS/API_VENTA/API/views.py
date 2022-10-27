@@ -18,7 +18,7 @@ def agregar_venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,
     fecha_venta = datetime.date.today()
     estado_fila = '1'
     cursor.callproc('VENTA_AGREGAR',[id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,tipo_venta,id_usuario,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta,estado_fila,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,tipo_venta,id_usuario,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta):
     django_cursor = connection.cursor()
@@ -26,12 +26,14 @@ def modificar_venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iv
     salida = cursor.var(cx_Oracle.NUMBER)
     fecha_venta = datetime.date.today()
     cursor.callproc('VENTA_MODIFICAR',[id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,tipo_venta,id_usuario,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta,salida])
+    return round(salida.getvalue())
 
 def eliminar_venta(id_venta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('VENTA_ELIMINAR',[id_venta,salida])
+    return round(salida.getvalue())
 
 def lista_venta():
     django_cursor = connection.cursor()
@@ -66,30 +68,57 @@ class VentaView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+        try:
+            salida = agregar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
+            if salida == 1:
+                datos = {'message':'Success'}
+            elif salida == 0:
+                datos = {'message':'ERORR: no fue posible agregar la venta'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_venta):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         ventas = list(Venta.objects.filter(id_venta=id_venta).values())
         if len(ventas) > 0:
-            modificar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
-            datos={'message':"Success"}
+            try:
+                salida = modificar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible modificar la venta'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: No se encuentra la venta"}
         return JsonResponse(datos)
 
     def delete(self, request,id_venta):
         ventas = list(Venta.objects.filter(id_venta=id_venta).values())
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         if len(ventas) > 0:
-            eliminar_venta(id_venta=jd['id_venta'])
-            datos={'message':"Success"}
+            try:
+                salida = eliminar_venta(id_venta=jd['id_venta'])
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible elimiar la venta'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
-            datos={'message':"ERROR: no fue posible eliminar la venta"}
+            datos={'message':"ERROR: no se encuentra la venta"}
         return JsonResponse(datos)
 
 class VentaViewset(viewsets.ModelViewSet):

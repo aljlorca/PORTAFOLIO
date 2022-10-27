@@ -16,19 +16,21 @@ def agregar_reporte(descripcion_reporte,productos_entregados_reporte,productos_p
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
     cursor.callproc('REPORTE_AGREGAR',[descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,estado_fila,id_venta,id_usuario,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_reporte(id_reporte,descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('REPORTE_MODIFICAR',[id_reporte,descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta,id_usuario,salida])
+    return round(salida.getvalue())
 
 def eliminar_reporte(id_reporte):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('REPORTE_ELIMINAR',[id_reporte,salida])
+    return round(salida.getvalue())
 
 def lista_reporte():
     django_cursor = connection.cursor()
@@ -64,28 +66,51 @@ class ReporteView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_reporte(descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+        try:
+            salida = agregar_reporte(descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
+            if salida == 1:
+                datos = {'message':'Success'}
+            elif salida == 0:
+                datos = {'message':'ERORR: no fue posible agregar el reporte'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_reporte):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         reportes = list(Reporte.objects.filter(id_reporte=id_reporte).values())
         if len(reportes) > 0:
-            modificar_reporte(id_reporte=jd['id_reporte'],descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
-            datos={'message':"Success"}
+            try:
+                salida  = modificar_reporte(id_reporte=jd['id_reporte'],descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible modificar el reporte'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: No se encuentra el reporte"}
         return JsonResponse(datos)
 
     def delete(self, request,id_reporte):
         reportes = list(Reporte.objects.filter(id_reporte=id_reporte).values())
-        jd = json.loads(request.body)
         if len(reportes) > 0:
-            eliminar_reporte(id_reporte=jd['id_reporte'])
-            datos={'message':"Success"}
+            try:
+                salida = eliminar_reporte(id_reporte)
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible elimiar el reporte'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: no fue posible eliminar el reporte"}
         return JsonResponse(datos)

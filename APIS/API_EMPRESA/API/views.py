@@ -66,7 +66,10 @@ class EmpresaView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         try: 
             salida = agregar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
             if salida == 1:
@@ -79,7 +82,10 @@ class EmpresaView(View):
         
 
     def put(self, request,id_empresa):
-        jd = json.loads(request.body)
+        try:
+            jd = json.loads(request.body)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
         if len(empresas) > 0:
             try:
@@ -96,10 +102,9 @@ class EmpresaView(View):
 
     def delete(self, request,id_empresa):
         empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
-        jd = json.loads(request.body)
         if len(empresas) > 0:
             try:
-                salida = eliminar_empresa(id_empresa=jd['id_empresa'])
+                salida = eliminar_empresa(id_empresa)
                 if salida == 1:
                     datos={'message':"Success"}
                 elif salida == 0:
