@@ -17,18 +17,21 @@ def agregar_contrato(documento_contrato,fecha_contrato,tipo_contrato,id_empresa)
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
     cursor.callproc('CONTRATO_AGREGAR',[documento_contrato,fecha_contrato,tipo_contrato,id_empresa,estado_fila,salida])
+    return round(salida.getvalue())
 
 def modificar_contrato(id_contrato,documento_contrato,fecha_contrato,tipo_contrato,id_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('CONTRATO_MODIFICAR',[id_contrato,documento_contrato,fecha_contrato,tipo_contrato,id_empresa,salida])
+    return round(salida.getvalue())
 
 def eliminar_contrato(id_contrato):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('CONTRATO_ELIMINAR',[id_contrato,salida])
+    return round(salida.getvalue())
 
 def listar_contrato():
     django_cursor = connection.cursor()
@@ -65,25 +68,43 @@ class ContratoView(View):
     
     def post(self,request):
         jd = json.loads(request.body)
-        agregar_contrato(documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
-        datos={'message':'Success'}
+        try: 
+            salida = agregar_contrato(documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
+            if salida == 1:
+                datos={'message':'Success'}
+            elif salida == 0:
+                datos={'message':'ERROR: no fue posible agregar el contrato'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
     
     def put(self,request,id_contrato):
         jd = json.loads(request.body)
         contratos = list(Contrato.objects.filter(id_contrato=id_contrato).values())
         if len(contratos)>0:
-            modificar_contrato(id_contrato=jd['id_contrato'],documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
-            datos={'message':'Success'}
+            try:
+                salida = modificar_contrato(id_contrato=jd['id_contrato'],documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
+                if salida == 1:
+                    datos={'message':'Success'}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible modificar el contrato'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
-            datos={'message':'ERROR: Contrato NO fue posible actualizar sus datos'}
+            datos={'message':'ERROR: Contrato NO encontrado'}
         return JsonResponse(datos)
     
     def delete(self,request,id_contrato):
         contratos = list(Contrato.objects.filter(id_contrato=id_contrato).values())
         if len(contratos) > 0:
-            eliminar_contrato(id_contrato)
-            datos={'message':'Success'}
+            try:
+                salida = eliminar_contrato(id_contrato)
+                if salida == 1:
+                    datos={'message':'Success'}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible eliminar el contrato'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':'ERROR: NO fue posible eliminar el Contrato'}
         return JsonResponse(datos)
@@ -98,27 +119,46 @@ class ContratoViewset(viewsets.ModelViewSet):
         return super().dispatch(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
-        id_contrato = request.data['id_contrato']
-        documento_contrato = request.data['documento_contrato']
-        fecha_contrato = request.data['fecha_contrato']
-        tipo_contrato = request.data['tipo_contrato']
-        id_empresa = request.data['id_empresa']
-        estado_fila = '1'
-        Contrato.objects.create(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
-        return HttpResponse({'message': 'Success'}, status=200)
+        try:
+            id_contrato = request.data['id_contrato']
+            documento_contrato = request.data['documento_contrato']
+            fecha_contrato = request.data['fecha_contrato']
+            tipo_contrato = request.data['tipo_contrato']
+            id_empresa = request.data['id_empresa']
+            estado_fila = '1'
+            Contrato.objects.create(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
+            datos = {'message': 'Success'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
+
+        return HttpResponse(datos, status=200)
+
     def put(self, request, *args, **kwargs):
-        id_contrato = request.data['id_contrato']
-        documento_contrato = request.data['documento_contrato']
-        fecha_contrato = request.data['fecha_contrato']
-        tipo_contrato = request.data['tipo_contrato']
-        id_empresa = request.data['id_empresa']
-        estado_fila = '1'
-        Contrato.objects.update(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
-        return HttpResponse({'message': 'Success'}, status=200)
+        try:
+            id_contrato = request.data['id_contrato']
+            documento_contrato = request.data['documento_contrato']
+            fecha_contrato = request.data['fecha_contrato']
+            tipo_contrato = request.data['tipo_contrato']
+            id_empresa = request.data['id_empresa']
+            estado_fila = '1'
+            Contrato.objects.update(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
+            datos = {'message': 'Success'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
+        
+        return HttpResponse(datos, status=200)
+
     def delete(self, request, *args, **kwargs):
-        id_contrato = request.data['id_contrato']
-        eliminar_contrato(id_contrato)
-        return HttpResponse({'message': 'Success'}, status=200)
+        try:
+            id_contrato = request.data['id_contrato']
+            salida = eliminar_contrato(id_contrato)
+            if salida == 1:
+                datos = {'message':'Success'}
+            elif salida == 0:
+                datos = {'message':'ERROR: no fue posible eliminar el contrato'}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
+        return HttpResponse(datos, status=200)
 
 class ContratoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Contrato.objects.all()
