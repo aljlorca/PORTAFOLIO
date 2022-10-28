@@ -16,19 +16,21 @@ def agregar_carga(capacidad_carga,refrigeracion,tamano_carga,id_subasta,id_usuar
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('CARGA_AGREGAR',[capacidad_carga,refrigeracion,tamano_carga,id_subasta,id_usuario,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_carga(id_carga,capacidad_carga,refrigeracion,tamano_carga,id_subasta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('CARGA_MODIFICAR',[id_carga,capacidad_carga,refrigeracion,tamano_carga,id_subasta,id_usuario,salida])
+    return round(salida.getvalue())
 
 def eliminar_carga(id_carga):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('CARGA_ELIMINAR',[id_carga,salida])
+    return round(salida.getvalue())
 
 def lista_carga():
     django_cursor = connection.cursor()
@@ -64,29 +66,54 @@ class CargaView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_carga(capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+            try: 
+                salida = agregar_carga(capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERROR: No fue posible registrar la carga'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_carga):
-        jd = json.loads(request.body)
-        cargas = list(Carga.objects.filter(id_carga=id_carga).values())
-        if len(cargas) > 0:
-            modificar_carga(id_carga=jd['id_carga'],capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
-            datos={'message':"Success"}
-        else:
-            datos={'message':"ERROR: No se encuentra la carga"}
+        try:
+            jd = json.loads(request.body)
+            cargas = list(Carga.objects.filter(id_carga=id_carga).values())
+            if len(cargas) > 0:
+                try:
+                    salida = modificar_carga(id_carga=jd['id_carga'],capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERROR: No fue posible actualizar la carga'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else: 
+                datos={'message':"ERROR: No se encuentra la carga"}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_carga):
         cargas = list(Carga.objects.filter(id_carga=id_carga).values())
         if len(cargas) > 0:
-            salida = eliminar_carga(id_carga)
-            datos={'message':"Success"}
+            try: 
+                salida = eliminar_carga(id_carga)
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0: 
+                    datos={'message':"ERROR: no fue posible eliminar la carga"}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
-            datos={'message':"ERROR: no fue posible eliminar el cargo"}
+            datos={'message':"ERROR: No se encuentra la carga"}
         return JsonResponse(datos)
     
     

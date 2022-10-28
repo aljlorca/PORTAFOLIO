@@ -16,19 +16,21 @@ def agregar_empresa(duns_empresa,razon_social_empresa,direccion_empresa,giro_emp
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
     cursor.callproc('EMPRESA_AGREGAR',[duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,estado_fila,id_region,id_pais,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_empresa(duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,id_region,id_pais):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('EMPRESA_MODIFICAR',[duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,id_region,id_pais,salida])
+    return round(salida.getvalue())
 
 def eliminar_empresa(id_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('EMPRESA_ELIMINAR',[id_empresa,salida])
+    return round(salida.getvalue())
 
 def lista_empresa():
     django_cursor = connection.cursor()
@@ -64,28 +66,53 @@ class EmpresaView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+            try: 
+                salida = agregar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERROR: no fue posible registrar la empresa'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
         
 
     def put(self, request,id_empresa):
-        jd = json.loads(request.body)
-        empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
-        if len(empresas) > 0:
-            modificar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
-            datos={'message':"Success"}
-        else:
-            datos={'message':"ERROR: No se encuentra la empresa"}
+        try:
+            jd = json.loads(request.body)
+            empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
+            if len(empresas) > 0:
+                try:
+                    salida = modificar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos={'message':'ERROR: no fue posible modificar la empresa'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra la empresa"}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_empresa):
         empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
-        jd = json.loads(request.body)
         if len(empresas) > 0:
-            eliminar_empresa(id_empresa=jd['id_empresa'])
-            datos={'message':"Success"}
+            try:
+                salida = eliminar_empresa(id_empresa)
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible eliminar la empresa'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: no fue posible eliminar la empresa"}
         return JsonResponse(datos)

@@ -17,19 +17,21 @@ def agregar_carrito(fecha_carrito,monto_carrito,id_producto):
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
     cursor.callproc('CARRITO_AGREGAR',[fecha_carrito,monto_carrito,id_producto,estado_fila,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_carrito(id_carrito,fecha_carrito,monto_carrito,id_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('CARRITO_MODIFICAR',[id_carrito,fecha_carrito,monto_carrito,id_producto,salida])
+    return round(salida.getvalue())
 
 def eliminar_carrito(id_carrito):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('CARRITO_ELIMINAR',[id_carrito,salida])
+    return round(salida.getvalue())
 
 def lista_carrito():
     django_cursor = connection.cursor()
@@ -65,27 +67,51 @@ class CarritoView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_carrito(fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+            try:
+                salida = agregar_carrito(fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERROR: No fue posible registrar el carrito'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         return JsonResponse(datos)
         
 
     def put(self, request,id_carrito):
-        jd = json.loads(request.body)
-        cargos = list(Carrito.objects.filter(id_carrito=id_carrito).values())
-        if len(cargos) > 0:
-            modificar_carrito(id_carrito=jd['id_carrito'],fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
-            datos={'message':"Success"}
-        else:
-            datos={'message':"ERROR: No se encuentra el carrito"}
+        try:
+            jd = json.loads(request.body)
+            cargos = list(Carrito.objects.filter(id_carrito=id_carrito).values())
+            if len(cargos) > 0:
+                try:
+                    salida = modificar_carrito(id_carrito=jd['id_carrito'],fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos={'message':'ERROR: No fue posible modificar el carrito'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra el carrito"}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
         return JsonResponse(datos)
 
     def delete(self, request,id_carrito):
         carritos = list(Carrito.objects.filter(id_carrito=id_carrito).values())
         if len(carritos) > 0:
-            salida = eliminar_carrito(id_carrito)
-            datos={'message':"Success"}
+            try:
+                salida = eliminar_carrito(id_carrito)
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible eliminar el carrito'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
             datos={'message':"ERROR: no fue posible eliminar el carrito"}
         return JsonResponse(datos)

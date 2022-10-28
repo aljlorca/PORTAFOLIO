@@ -121,9 +121,19 @@
         </nav>
     </div>
     <!-- Navbar End -->
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div id="contenido" class="">
-        
+        {% if messages %}
+            {% for m in messages %}
+                <Script>
+                    Swal.fire({
+                        "title": "Felicitaciones",
+                        "text":"{{m}}",
+                        "icon": "success"
+                    })
+                </Script>
+            {% endfor %}
+        {% endif %}
         {% block contenido %}
         {% endblock %}
 
@@ -149,6 +159,10 @@
     {% endblock %}
     <!-- Template Javascript -->
     <script src="{% static 'app/js/main.js' %}"></script>
+    
+
+
+
 </body>
 <footer>
     <div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">

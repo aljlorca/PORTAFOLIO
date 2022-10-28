@@ -17,19 +17,21 @@ def agregar_ciudad(nombre_ciudad,codigo_postal,id_region):
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
     cursor.callproc('CIUDAD_AGREGAR',[nombre_ciudad,codigo_postal,id_region,estado_fila,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_ciudad(id_ciudad,nombre_ciudad,codigo_postal,id_region):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('CIUDAD_MODIFICAR',[id_ciudad,nombre_ciudad,codigo_postal,id_region,salida])
+    return round(salida.getvalue())
 
 def eliminar_ciudad(id_ciudad):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('CIUDAD_ELIMINAR',[id_ciudad,salida])
+    return round(salida.getvalue())
 
 def lista_ciudad():
     django_cursor = connection.cursor()
@@ -65,26 +67,52 @@ class CiudadView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_ciudad(nombre_ciudad=jd['nombre_ciudad'],codigo_postal=jd['codigo_postal'],id_region=jd['id_region'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+            try:
+                salida = agregar_ciudad(nombre_ciudad=jd['nombre_ciudad'],codigo_postal=jd['codigo_postal'],id_region=jd['id_region'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible registrar la ciudad'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
 
     def put(self, request,id_ciudad):
-        jd = json.loads(request.body)
-        ciudades = list(Ciudad.objects.filter(id_ciudad=id_ciudad).values())
-        if len(ciudades) > 0:
-            modificar_ciudad(id_ciudad=jd['id_ciudad'],nombre_ciudad=jd['nombre_ciudad'],codigo_postal=jd['codigo_postal'],id_region=jd['id_region'])
-            datos={'message':"Success"}
-        else:
-            datos={'message':"ERROR: No se encuentra la ciudad"}
+        try:
+            jd = json.loads(request.body)
+            ciudades = list(Ciudad.objects.filter(id_ciudad=id_ciudad).values())
+            if len(ciudades) > 0:
+                try:
+                    salida = modificar_ciudad(id_ciudad=jd['id_ciudad'],nombre_ciudad=jd['nombre_ciudad'],codigo_postal=jd['codigo_postal'],id_region=jd['id_region'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos={'message':'ERROR: no fue posible modificar la ciudad'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra la ciudad"}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_ciudad):
         ciudades = list(Ciudad.objects.filter(id_ciudad=id_ciudad).values())
         if len(ciudades) > 0:
-            salida = eliminar_ciudad(id_ciudad)
-            datos={'message':"Success"}
+            try:
+                salida = eliminar_ciudad(id_ciudad)
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible eliminar la ciudad'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else: 
             datos={'message':"ERROR: no fue posible eliminar la region"}
         return JsonResponse(datos)

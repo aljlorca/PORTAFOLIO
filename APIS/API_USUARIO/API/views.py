@@ -18,19 +18,21 @@ def agregar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuar
     usuario_vigente = '1'
     fecha_creacion_usuario = datetime.date.today()
     cursor.callproc('USUARIO_AGREGAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,usuario_vigente,fecha_creacion_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('USUARIO_MODIFICAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais,salida])
+    return round(salida.getvalue())
 
 def eliminar_usuario(correo_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('USUARIO_ELIMINAR',[correo_usuario,salida])
+    return round(salida.getvalue())
 
 def lista_usuario():
     django_cursor = connection.cursor()
@@ -66,30 +68,60 @@ class UsuarioView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+            try:
+                salida = agregar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible agregar al usuario'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
         
 
     def put(self, request,id_usuario):
-        jd = json.loads(request.body)
-        usuarios = list(Usuario.objects.filter(id_usuario=id_usuario).values())
-        if len(usuarios) > 0:
-            modificar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
-            datos={'message':"Success"}
-        else:
-            datos={'message':"ERROR: No se encuentra el usuario"}
+        try:
+            jd = json.loads(request.body)
+            usuarios = list(Usuario.objects.filter(id_usuario=id_usuario).values())
+            if len(usuarios) > 0:
+                try:
+                    salida = modificar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: no fue posible modificar al usuario'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra el usuario"}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_usuario):
-        usuarios = list(Usuario.objects.filter(id_usuario=id_usuario).values())
-        jd = json.loads(request.body)
-        if len(usuarios) > 0:
-            eliminar_usuario(correo_usuario=jd['correo_usuario'])
-            datos={'message':"Success"}
-        else:
-            datos={'message':"ERROR: no fue posible eliminar el cargo"}
+        try:
+            usuarios = list(Usuario.objects.filter(id_usuario=id_usuario).values())
+            jd = json.loads(request.body)
+            if len(usuarios) > 0:
+                try:
+                    salida = eliminar_usuario(correo_usuario=jd['correo_usuario'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: no fue posible elminar el usuario'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: no se encuentra el usuario"}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
 
 class UsuarioViewset(viewsets.ModelViewSet):

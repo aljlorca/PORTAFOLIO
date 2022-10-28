@@ -16,19 +16,21 @@ def agregar_tipo_empresa(tipo_empresa):
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
     cursor.callproc('TIPO_EMPRESA_AGREGAR',[tipo_empresa,estado_fila,salida])
-    return salida
+    return round(salida.getvalue())
 
 def modificar_tipo_empresa(id_tipo_empresa,tipo_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('TIPO_EMPRESA_MODIFICAR',[id_tipo_empresa,tipo_empresa,salida])
+    return round(salida.getvalue())
 
 def eliminar_tipo_empresa(id_tipo_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('TIPO_EMPRESA_ELIMINAR',[id_tipo_empresa,salida])
+    return round(salida.getvalue())
 
 def lista_tipo_empresa():
     django_cursor = connection.cursor()
@@ -64,30 +66,55 @@ class TipoEmpresaView(View):
             return JsonResponse(datos)
 
     def post(self, request):
-        jd = json.loads(request.body)
-        agregar_tipo_empresa(tipo_empresa=jd['tipo_empresa'])
-        datos = {'message':'Success'}
+        try:
+            jd = json.loads(request.body)
+            try:
+                salida  = agregar_tipo_empresa(tipo_empresa=jd['tipo_empresa'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible agregar el tipo de empresa'}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
         
 
     def put(self, request,id_tipo_empresa):
-        jd = json.loads(request.body)
-        tipos = list(TipoEmpresa.objects.filter(id_tipo_empresa=id_tipo_empresa).values())
-        if len(tipos) > 0:
-            modificar_tipo_empresa(id_tipo_empresa=jd['id_tipo_empresa'],tipo_empresa=jd['tipo_empresa'])
-            datos={'message':"Success"}
-        else:
-            datos={'message':"ERROR: No se encuentra el tipo de empresa"}
+        try:
+            jd = json.loads(request.body)
+            tipos = list(TipoEmpresa.objects.filter(id_tipo_empresa=id_tipo_empresa).values())
+            if len(tipos) > 0:
+                try:
+                    salida = modificar_tipo_empresa(tipo_empresa=jd['tipo_empresa'])
+                    if salida == 1:
+                        datos={'message':"Success"}
+                    elif salida == 0:
+                        datos = {'message':'ERORR: no fue posible modificar el tipo de empresa'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra el tipo de empresa"}
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+
         return JsonResponse(datos)
 
     def delete(self, request,id_tipo_empresa):
         tipos = list(TipoEmpresa.objects.filter(id_tipo_empresa=id_tipo_empresa).values())
-        jd = json.loads(request.body)
         if len(tipos) > 0:
-            eliminar_tipo_empresa(id_tipo_empresa=jd['id_tipo_empresa'])
-            datos={'message':"Success"}
+            try:
+                salida = eliminar_tipo_empresa(id_tipo_empresa)
+                if salida == 1:
+                    datos={'message':"Success"}
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible eliminar el tipo de empresa '}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
         else:
-            datos={'message':"ERROR: no fue posible eliminar el tipo de empresa"}
+            datos={'message':"ERROR: No se encuentra el tipo de empresa"}
         return JsonResponse(datos)
 
 class TipoEmpresaViewset(viewsets.ModelViewSet):

@@ -11,6 +11,7 @@ from django.contrib.sessions import *
 import datetime
 from carro.context_processor import *
 import carro
+from django.contrib import messages
 # Create your views here.
 
 def home(request):
@@ -163,6 +164,7 @@ def pedido_cliente_interno(request):
             data = pedido_post(descripcion,fecha_sla,id_usuario)
     except:
         data={'error':'no fue posible crear el pedido'}
+    messages.success(request,"Pedido Creado Correctamente")
     return render(request, 'app/Cliente_Interno/pedido.html',data)
 
 
@@ -204,6 +206,7 @@ def pedido(request):
             data = pedido_post(descripcion,fecha_sla,id_usuario)
     except:
         data={'error':'no fue posible crear el pedido'}
+    messages.success(request,"Pedido Creado Correctamente")
     return render(request, 'app/cliente_externo/pedido.html',data)
 
 def listado_ventas(request):
@@ -264,7 +267,7 @@ def productores(request):
                 ruta_proyecto = os.getcwd()+'/media/'
                 ruta = ruta_proyecto+buscar
                 crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
-                
+                messages.success(request,"Producto Creado Correctamente")
                 return render(request, 'app/proveedor/productores.html')
         return render(request, 'app/proveedor/productores.html',data)
     except:
@@ -334,6 +337,7 @@ def ingreso_postulacion(request,id_venta):
             ruta = ruta_proyecto+buscar
             crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
             Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto)
+            messages.success(request,"Postulacion Creada Correctamente")
     return render(request, 'app/proveedor/Ingreso_postulacion.html',data)
 
 #########################
@@ -410,6 +414,7 @@ def detalle_subasta(request,id_venta):
         monto = request.POST.get('monto')
         id_subasta=subasta_post(monto,id_venta,id_usuario)
         carga_post(capacidad_carga,tamano_carga,refrigeracion_carga,id_usuario,id_subasta)
+        messages.success(request,"Subasta Creada Correctamente")
     
 
     return render(request, 'app/transportista/Ingreso_subasta.html',data)
@@ -430,6 +435,7 @@ def carga(request):
         refrigeracion = request.POST.get('refrigeracion-carga')
         data['carga']={'capacidad_carga':capacidad,'tamano_carga':tamano,'refrigeracion_carga':refrigeracion}
         request.session['carga'] = data['carga']
+        messages.success(request,"Carga Creada Correctamente")
         return redirect(to='http://127.0.0.1:3000/subasta/')
             
     return render(request, 'app/transportista/ingreso_carga.html',data)
