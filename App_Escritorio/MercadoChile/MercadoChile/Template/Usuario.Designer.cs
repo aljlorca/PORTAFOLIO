@@ -303,10 +303,10 @@ namespace MercadoChile
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.DgvClientes);
             this.tabPage4.Controls.Add(this.label3);
             this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Controls.Add(this.groupBox1);
-            this.tabPage4.Controls.Add(this.DgvClientes);
             this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -547,9 +547,9 @@ namespace MercadoChile
             this.cnRegion,
             this.cnPais});
             this.DgvClientes.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.DgvClientes.Location = new System.Drawing.Point(240, 57);
+            this.DgvClientes.Location = new System.Drawing.Point(240, 49);
             this.DgvClientes.Name = "DgvClientes";
-            this.DgvClientes.Size = new System.Drawing.Size(793, 521);
+            this.DgvClientes.Size = new System.Drawing.Size(793, 529);
             this.DgvClientes.TabIndex = 94;
             // 
             // cnNumeIdenUsuar

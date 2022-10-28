@@ -61,9 +61,9 @@ namespace MercadoChile.Template
         }
         private void btnSelProd_Click(object sender, EventArgs e)
         {
-            txtDescrip.Text = DgvProducto.CurrentRow.Cells[2].Value.ToString();
-            txtFecha.Text = DgvProducto.CurrentRow.Cells[3].Value.ToString();
-            txtCliente.Text = DgvProducto.CurrentRow.Cells[9].Value.ToString();
+            txtDescrip.Text = DgvProducto.CurrentRow.Cells[1].Value.ToString();
+            txtFecha.Text = DgvProducto.CurrentRow.Cells[2].Value.ToString();
+            txtCliente.Text = DgvProducto.CurrentRow.Cells[3].Value.ToString();
         }
         private async void btnPublicar_Click(object sender, EventArgs e)
         {
