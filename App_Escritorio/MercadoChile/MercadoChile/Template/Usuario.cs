@@ -298,6 +298,9 @@ namespace MercadoChile
                                 var postResult = JsonSerializer.Deserialize<Usuarios>(result);
                                 this.Hide();
 
+                            }else
+                            {
+                                MessageBox.Show("ingrese todos los campos");
                             }
                         }
                         else
@@ -426,10 +429,10 @@ namespace MercadoChile
             cmbPaisEdit.ValueMember = "id_pais";
             cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells[7].Value.ToString();
             cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();
-            cmbCiudadEdit.Text = DgvClientes.CurrentRow.Cells[9].Value.ToString();
-            cmbRegionEdit.Text = DgvClientes.CurrentRow.Cells[10].Value.ToString();
-            cmbPaisEdit.Text = DgvClientes.CurrentRow.Cells[11].Value.ToString();
-            
+            cmbCiudadEdit.Text = DgvClientes.CurrentRow.Cells["cnCiudad"].Value.ToString();
+            cmbRegionEdit.Text = DgvClientes.CurrentRow.Cells["cnRegion"].Value.ToString();
+            cmbPaisEdit.SelectedIndex= (int)DgvClientes.CurrentRow.Cells["cnPais"].Value;
+           
             
         }
 
