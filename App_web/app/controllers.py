@@ -115,6 +115,17 @@ def subasta_get_id(id):
         content = json.loads(response.content)
         return content
 
+def subasta_delete(id):
+    url='http://127.0.0.1:8014/api/subasta_old/'+str(id)
+    try: 
+        response = requests.delete(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+
 #PEDIDO CONTROLLERS
 def pedido_get():
     url = 'http://127.0.0.1:8008/api/pedido/'
@@ -202,15 +213,18 @@ def get_region_id(id):
 def Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto):
     url = 'http://127.0.0.1:8009/api/postulacion_old/'
     body = {"descripcion_postulacion": descripcion_postulacion,"estado_postulacion":estado_postulacion,"id_venta":id_venta,"id_usuario":id_usuario,"id_producto":id_producto}
-    response = requests.post(url,json=body)
+    try:
+        response = requests.post(url,json=body)
+    except:
+        response = {'error':'Tenemos problemas en estos momentos'}
     return response
 
 #Venta Controllers       
 def ventas_get():
     url='http://127.0.0.1:8017/api/venta/'
-    r = requests.get(url)
-    if r.status_code == 200:
-        content = json.loads(r.content)
+    response = requests.get(url)
+    if response.status_code == 200:
+        content = json.loads(response.content)
         return content
 
 def Ventas_get_id(id):
@@ -227,11 +241,11 @@ def Ventas_get_id(id):
         data = 'ERROR: Usuario no encontrado'
         return data
 
-
 #CARGA CONTROLLERS 
-def carga_post(capacidad, tamano,refrigeracion,id_usuario,subasta):
-    url="http://127.0.0.1:8008/api/pedido_old/"
-    body = {"capacidad_carga": capacidad,"refrigeracion_carga":refrigeracion,"tamano_carga":tamano,'id_usuario':id_usuario,'id_subasta':subasta}
+def carga_post(capacidad,tamano,refrigeracion,id_usuario,id_subasta):
+    url="http://127.0.0.1:8001/api/carga_old/"
+    body ={"capacidad_carga": str(capacidad),"refrigeracion_carga": str(refrigeracion),"tamano_carga": str(tamano),"id_subasta":id_subasta ,"id_usuario": id_usuario}
+    print(body)
     try: 
         response = requests.post(url,json=body)
     except:

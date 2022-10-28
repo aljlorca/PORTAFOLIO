@@ -2,6 +2,7 @@ from distutils.log import error
 import imp
 import os
 from random import randrange
+import re
 from django.shortcuts import render,redirect
 from urllib3 import Retry
 from .models import Producto
@@ -12,6 +13,7 @@ import datetime
 from carro.context_processor import *
 import carro
 from django.contrib import messages
+import time 
 # Create your views here.
 
 def home(request):
@@ -412,8 +414,16 @@ def detalle_subasta(request,id_venta):
     
     if request.method == 'POST':
         monto = request.POST.get('monto')
-        id_subasta=subasta_post(monto,id_venta,id_usuario)
-        carga_post(capacidad_carga,tamano_carga,refrigeracion_carga,id_usuario,id_subasta)
+        try: 
+            id_subasta=subasta_post(monto,id_venta,id_usuario)
+        except:
+            messages.error(request,'error al crear la subasta')
+        time.sleep(2)
+        try: 
+            salida = carga_post(capacidad_carga,tamano_carga,refrigeracion_carga,id_usuario,id_subasta)
+        except: 
+            messages.error(request,'error al registrar su carga')
+            subasta_delete(id_subasta)
         messages.success(request,"Subasta Creada Correctamente")
     
 

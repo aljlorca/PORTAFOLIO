@@ -19,12 +19,12 @@
                     </div>
                 </div>
             </div>
+            {% if error == 'error de conexion' %} 
             <div class="col-M-2 align-items-center m-3">
-                {% if error == 'error de conexion' %} 
                     <p>Tenemos problemas en estos momentos</p>
                     <img class="img-fluid w-75" src="https://reygif.com/media/5/hombre-pico-62712.gif" alt="">
-                {% endif %}
             </div>
+            {% endif %}
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">

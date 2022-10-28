@@ -11,18 +11,19 @@ import cx_Oracle
 # Create your views here.
 
 
-def agregar_carga(capacidad_carga,refrigeracion,tamano_carga,id_subasta,id_usuario):
+def agregar_carga(capacidad_carga,refrigeracion_carga,tamano_carga,id_subasta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('CARGA_AGREGAR',[capacidad_carga,refrigeracion,tamano_carga,id_subasta,id_usuario,salida])
+    estado_fila = '1'
+    cursor.callproc('CARGA_AGREGAR',[capacidad_carga,refrigeracion_carga,tamano_carga,id_subasta,id_usuario,estado_fila,salida])
     return round(salida.getvalue())
 
-def modificar_carga(id_carga,capacidad_carga,refrigeracion,tamano_carga,id_subasta,id_usuario):
+def modificar_carga(id_carga,capacidad_carga,refrigeracion_carga,tamano_carga,id_subasta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('CARGA_MODIFICAR',[id_carga,capacidad_carga,refrigeracion,tamano_carga,id_subasta,id_usuario,salida])
+    cursor.callproc('CARGA_MODIFICAR',[id_carga,capacidad_carga,refrigeracion_carga,tamano_carga,id_subasta,id_usuario,salida])
     return round(salida.getvalue())
 
 def eliminar_carga(id_carga):
@@ -69,7 +70,7 @@ class CargaView(View):
         try:
             jd = json.loads(request.body)
             try: 
-                salida = agregar_carga(capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
+                salida = agregar_carga(capacidad_carga=jd['capacidad_carga'],refrigeracion_carga=jd['refrigeracion_carga'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
                 if salida == 1:
                     datos = {'message':'Success'}
                 elif salida == 0:
