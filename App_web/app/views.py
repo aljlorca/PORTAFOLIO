@@ -1,10 +1,6 @@
-from distutils.log import error
-import imp
 import os
 from random import randrange
-import re
 from django.shortcuts import render,redirect
-from urllib3 import Retry
 from .models import Producto
 from .controllers import *
 from django.views.decorators.csrf import csrf_exempt
@@ -25,8 +21,8 @@ def contacto(request):
     return render(request, 'app/contacto.html',data)
 
 def logout(request):
-    mensaje = logout_controller(request)
-    data = {'message':mensaje}
+    logout_controller(request)
+    messages.success(request,'Has cerrado session')
     return redirect(to="http://127.0.0.1:3000/")
 
 @csrf_exempt
@@ -68,9 +64,12 @@ def login(request):
 
 def cliente_interno(request):
     data = get_session(request)
-    if data['cargo']!='Cliente Interno':
+    try:
+        if data['cargo']!='Cliente Interno':
+            return redirect(to="http://127.0.0.1:3000/")
+    except:
         return redirect(to="http://127.0.0.1:3000/")
-    
+
     return render(request, 'app/Cliente_Interno/menu.html',data)
 
 def carrito(request):
@@ -92,22 +91,15 @@ def cliente_ecomerce(request):
     return render(request, 'app/Cliente_Interno/listado_productos.html',data)
 
 def detalle_producto(request, id_producto):
-    session = get_session(request)
+    data = get_session(request)
     try:
-        cargo=request.session['cargo']
-        if cargo!='Cliente Interno':
+        if data['cargo']!='Cliente Interno':
             return redirect(to="http://127.0.0.1:3000/")
 
     except:
         return redirect(to="http://127.0.0.1:3000/")
-    data = {
-        'producto':producto_get_id(id_producto),
-        'cargo': session['cargo'],
-        'usuario': session['usuario'],
-        'empresa': session['correo'],
-        'id_user': session['id_user'],
-        'empresa':session['empresa'],
-    }
+
+    data['producto']=producto_get_id(id_producto)
     return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 
 def checkout(request):
@@ -163,10 +155,17 @@ def pedido_cliente_interno(request):
             descripcion = request.POST.get('descripcion')
             fecha_sla = request.POST.get('fecha-sla')
             id_usuario = request.session['id_user']
-            data = pedido_post(descripcion,fecha_sla,id_usuario)
+            try: 
+                res = pedido_post(descripcion,fecha_sla,id_usuario)
+                if res['message'] == 'Success':
+                    messages.success(request,"Pedido Creado Correctamente")
+                else:
+                    data={'error':'no fue posible crear el pedido'}
+            except:
+                data={'error':'Estamos teniendo problemas en estos momentos'}
     except:
-        data={'error':'no fue posible crear el pedido'}
-    messages.success(request,"Pedido Creado Correctamente")
+        data={'error':'Error intente nuevamente'}
+    
     return render(request, 'app/Cliente_Interno/pedido.html',data)
 
 
@@ -191,10 +190,8 @@ def cliente_externo(request):
 @csrf_exempt
 def pedido(request):
     data = get_session(request)
-
     try:
-        cargo=request.session['cargo']
-        if cargo!='Cliente Externo':
+        if data['cargo']!='Cliente Externo':
             return redirect(to="http://127.0.0.1:3000/")
 
     except:
@@ -205,10 +202,16 @@ def pedido(request):
             descripcion = request.POST.get('descripcion')
             fecha_sla = request.POST.get('fecha-sla')
             id_usuario = request.session['id_user']
-            data = pedido_post(descripcion,fecha_sla,id_usuario)
+            try: 
+                res = pedido_post(descripcion,fecha_sla,id_usuario)
+                if res['message'] == 'Success':
+                    messages.success(request,"Pedido Creado Correctamente")
+                else:
+                    data={'error':'no fue posible crear el pedido'}
+            except:
+                data={'error':'Estamos teniendo problemas en estos momentos'}
     except:
-        data={'error':'no fue posible crear el pedido'}
-    messages.success(request,"Pedido Creado Correctamente")
+        data={'error':'Error intente nuevamente'}
     return render(request, 'app/cliente_externo/pedido.html',data)
 
 def listado_ventas(request):
@@ -405,6 +408,7 @@ def detalle_subasta(request,id_venta):
         return redirect(to="http://127.0.0.1:3000/")
     data['venta']=Ventas_get_id(id_venta)
     data['subasta']=subasta_get()
+    
     try:
         carga=request.session['carga'] 
     except:
@@ -417,14 +421,17 @@ def detalle_subasta(request,id_venta):
         try: 
             id_subasta=subasta_post(monto,id_venta,id_usuario)
         except:
-            messages.error(request,'error al crear la subasta')
-        time.sleep(2)
+            data['error']='favor ingrese un monto'
+        time.sleep(1)
         try: 
             salida = carga_post(capacidad_carga,tamano_carga,refrigeracion_carga,id_usuario,id_subasta)
+            messages.success(request,"Subasta Creada Correctamente")
         except: 
-            messages.error(request,'error al registrar su carga')
-            subasta_delete(id_subasta)
-        messages.success(request,"Subasta Creada Correctamente")
+            data['error']='error al registrar su carga'
+            try:
+                subasta_delete(id_subasta)
+            except:
+                data['error']='favor ingrese un monto'
     
 
     return render(request, 'app/transportista/Ingreso_subasta.html',data)

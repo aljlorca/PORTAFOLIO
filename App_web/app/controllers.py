@@ -245,7 +245,6 @@ def Ventas_get_id(id):
 def carga_post(capacidad,tamano,refrigeracion,id_usuario,id_subasta):
     url="http://127.0.0.1:8001/api/carga_old/"
     body ={"capacidad_carga": str(capacidad),"refrigeracion_carga": str(refrigeracion),"tamano_carga": str(tamano),"id_subasta":id_subasta ,"id_usuario": id_usuario}
-    print(body)
     try: 
         response = requests.post(url,json=body)
     except:
