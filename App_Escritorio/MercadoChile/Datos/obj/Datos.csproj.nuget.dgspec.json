@@ -1,43 +1,21 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {}
+    "C:\\Users\\MiniBalto\\Desktop\\portafoli\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {}
   },
   "projects": {
-    "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {
+    "C:\\Users\\MiniBalto\\Desktop\\portafoli\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+        "projectUniqueName": "C:\\Users\\MiniBalto\\Desktop\\portafoli\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
         "projectName": "Datos",
-        "projectPath": "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
-        "packagesPath": "C:\\Users\\Alan\\.nuget\\packages\\",
-        "outputPath": "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
-=======
-    "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {}
-  },
-  "projects": {
-    "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
-        "projectName": "Datos",
-        "projectPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
-        "packagesPath": "C:\\Users\\sebac\\.nuget\\packages\\",
-        "outputPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
->>>>>>> 63c51fb0df30c0e1a520f06010730504f1bcc7f0
+        "projectPath": "C:\\Users\\MiniBalto\\Desktop\\portafoli\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+        "packagesPath": "C:\\Users\\MiniBalto\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MiniBalto\\Desktop\\portafoli\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-<<<<<<< HEAD
-          "C:\\Users\\Alan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-=======
-          "C:\\Users\\sebac\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 63c51fb0df30c0e1a520f06010730504f1bcc7f0
+          "C:\\Users\\MiniBalto\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -45,7 +23,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://www.nuget.org/api/v2": {}
         },
         "frameworks": {
           "net48": {
