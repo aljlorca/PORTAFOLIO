@@ -186,7 +186,18 @@ namespace MercadoChile.Template
 
         private async void btnCrear_Click(object sender, EventArgs e)
         {
+
+
+
+            if (cmbCiudad.Text == "" || txtDunsEmp.Text == "")
             {
+                MessageBox.Show("ingrese datos en todos los campos ");
+               
+            }
+            
+            else
+            {
+                {
                 int empresa = (int)cmbEmpresa.SelectedValue;
                 int ciudad = (int)cmbCiudad.SelectedValue;
                 int pais = (int)cmbPais.SelectedValue;
@@ -207,6 +218,8 @@ namespace MercadoChile.Template
 
 
                 };
+
+
                 var data = JsonSerializer.Serialize<Empresas>(post2);
                 HttpContent content =
                     new StringContent(data, System.Text.Encoding.UTF8, "application/json");
@@ -221,6 +234,7 @@ namespace MercadoChile.Template
                     this.Hide();
 
                 }
+             }
             }
         }
 
@@ -331,20 +345,20 @@ namespace MercadoChile.Template
 
         private void txtRazonSocial_Enter(object sender, EventArgs e)
         {
-            if (txtDunsEmp.Text == "Razon Social")
+            if (txtRazonSocial.Text == "Razon social")
             {
-                txtDunsEmp.Text = "";
-                txtDunsEmp.ForeColor = System.Drawing.Color.Black;
+                txtRazonSocial.Text = "";
+                txtRazonSocial.ForeColor = System.Drawing.Color.Black;
 
             }
         }
 
         private void txtRazonSocial_Leave(object sender, EventArgs e)
         {
-            if (txtDunsEmp.Text == "")
+            if (txtRazonSocial.Text == "")
             {
-                txtDunsEmp.Text = "Razon Social";
-                txtDunsEmp.ForeColor = System.Drawing.Color.DimGray;
+                txtRazonSocial.Text = "Razon social";
+                txtRazonSocial.ForeColor = System.Drawing.Color.DimGray;
 
             }
         }
@@ -372,7 +386,7 @@ namespace MercadoChile.Template
 
         private void txtGiroEmp_Enter(object sender, EventArgs e)
         {
-            if (txtGiroEmp.Text == "Giro Empresa ")
+            if (txtGiroEmp.Text == "Giro Empresa")
             {
                 txtGiroEmp.Text = "";
                 txtGiroEmp.ForeColor = System.Drawing.Color.Black;
@@ -384,7 +398,7 @@ namespace MercadoChile.Template
         {
             if (txtGiroEmp.Text == "")
             {
-                txtGiroEmp.Text = "Giro Empresa ";
+                txtGiroEmp.Text = "Giro Empresa";
                 txtGiroEmp.ForeColor = System.Drawing.Color.DimGray;
 
             }
@@ -402,80 +416,80 @@ namespace MercadoChile.Template
 
         private void txtDunsEdit_Enter(object sender, EventArgs e)
         {
-            if (txtDunsEmp.Text == "")
+            if (txtDunsEdit.Text == "Duns Empresa")
             {
-                txtDunsEmp.Text = "Duns Empresa";
-                txtDunsEmp.ForeColor = System.Drawing.Color.Black;
+                txtDunsEdit.Text = "";
+                txtDunsEdit.ForeColor = System.Drawing.Color.Black;
 
             }
         }
 
         private void txtDunsEdit_Leave(object sender, EventArgs e)
         {
-            if (txtDunsEmp.Text == "")
+            if (txtDunsEdit.Text == "")
             {
-                txtDunsEmp.Text = "Duns Empresa";
-                txtDunsEmp.ForeColor = System.Drawing.Color.DimGray;
+                txtDunsEdit.Text = "Duns Empresa";
+                txtDunsEdit.ForeColor = System.Drawing.Color.DimGray;
 
             }
         }
 
         private void txtRazonEdit_Enter(object sender, EventArgs e)
         {
-            if (txtDunsEmp.Text == "Razon Social")
+            if (txtRazonEdit.Text == "Razon Social")
             {
-                txtDunsEmp.Text = "";
-                txtDunsEmp.ForeColor = System.Drawing.Color.Black;
+                txtRazonEdit.Text = "";
+                txtRazonEdit.ForeColor = System.Drawing.Color.Black;
 
             }
         }
 
         private void txtRazonEdit_Leave(object sender, EventArgs e)
         {
-            if (txtDunsEmp.Text == "")
+            if (txtRazonEdit.Text == "")
             {
-                txtDunsEmp.Text = "Razon Social";
-                txtDunsEmp.ForeColor = System.Drawing.Color.DimGray;
+                txtRazonEdit.Text = "Razon Social";
+                txtRazonEdit.ForeColor = System.Drawing.Color.DimGray;
 
             }
         }
 
         private void txtDirEdit_Enter(object sender, EventArgs e)
         {
-            if (txtDirecEmp.Text == "Direccion")
+            if (txtDirEdit.Text == "Direccion")
             {
-                txtDirecEmp.Text = "";
-                txtDirecEmp.ForeColor = System.Drawing.Color.Black;
+                txtDirEdit.Text = "";
+                txtDirEdit.ForeColor = System.Drawing.Color.Black;
 
             }
         }
 
         private void txtDirEdit_Leave(object sender, EventArgs e)
         {
-            if (txtDirecEmp.Text == "")
+            if (txtDirEdit.Text == "")
             {
-                txtDirecEmp.Text = "Direccion";
-                txtDirecEmp.ForeColor = System.Drawing.Color.DimGray;
+                txtDirEdit.Text = "Direccion";
+                txtDirEdit.ForeColor = System.Drawing.Color.DimGray;
 
             }
         }
 
         private void txtGiroEdit_Enter(object sender, EventArgs e)
         {
-            if (txtGiroEmp.Text == "Giro Empresa ")
+            if (txtGiroEdit.Text == "Giro Empresa")
             {
-                txtGiroEmp.Text = "";
-                txtGiroEmp.ForeColor = System.Drawing.Color.Black;
+                txtGiroEdit.Text = "";
+                txtGiroEdit.ForeColor = System.Drawing.Color.Black;
 
             }
         }
 
         private void txtGiroEdit_Leave(object sender, EventArgs e)
         {
-            if (txtGiroEmp.Text == "")
+            if (txtGiroEdit.Text == "")
             {
-                txtGiroEmp.Text = "Giro Empresa ";
-                txtGiroEmp.ForeColor = System.Drawing.Color.DimGray;
+                txtGiroEdit.Text = "Giro Empresa";
+                txtGiroEdit.ForeColor = System.Drawing.Color.DimGray;
 
             }
         }
@@ -502,12 +516,12 @@ namespace MercadoChile.Template
 
         private void cmbCiudad_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            cmbRegion.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void cmbRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            cmbRegion.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void cmbPais_SelectedIndexChanged(object sender, EventArgs e)
@@ -528,6 +542,16 @@ namespace MercadoChile.Template
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbRegion_Enter(object sender, EventArgs e)
+        {
+            cmbRegion.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void cmbCiudad_Enter(object sender, EventArgs e)
+        {
+            cmbCiudad.DropDownStyle = ComboBoxStyle.DropDownList;
         }
     }
 }

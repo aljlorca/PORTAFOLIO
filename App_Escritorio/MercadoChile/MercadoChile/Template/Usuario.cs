@@ -198,132 +198,160 @@ namespace MercadoChile
             {
                 if (list.numero_identificacion_usuario == txtRutEdit.Text)
                 {
-                    if (cmbCiudadEdit.Text == "")
-                    {
-                        MessageBox.Show("ingrese una ciudad");
-                    }
-                    else
-                    {
-                        int id = list.id_usuario;
 
-                        int cargo = (int)cmbCargoEdit.SelectedValue;
-                        int empresa = (int)cmbEmpresaEdit.SelectedValue;
-                        int ciudad = (int)cmbCiudadEdit.SelectedValue;
-                        int pais = (int)cmbPaisEdit.SelectedValue;
-                        int region = (int)cmbRegionEdit.SelectedValue;
-                        Uri myUri = new Uri(baseUri, id.ToString());
-                        var client = new HttpClient();
-                        Usuarios post = new Usuarios()
+
+                        if (cmbCiudad.Text == "")
+                         {
+                        MessageBox.Show("ingrese datos en todos los campos ");
+                          }
+                         else
                         {
-                            numero_identificacion_usuario = txtRutEdit.Text,
-                            nombre_usuario = txtNomEdit.Text,
-                            direccion_usuario = txtDirEdit.Text,
-                            telefono_usuario = txtTeleEdit.Text,
-                            correo_usuario = txtCorEdit.Text,
-                            contrasena_usuario = txtConEdit.Text,
-                            administrador_usuario = '0',
-                            id_cargo = cargo,
-                            id_empresa = empresa,
-                            id_ciudad = ciudad,
-                            id_pais = pais,
-                            id_region = region,
-                        };
-                        var data = JsonSerializer.Serialize<Usuarios>(post);
-                        HttpContent content =
-                            new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                        var httpResponse = await client.PutAsync(myUri, content);
+                            int id = list.id_usuario;
+
+                            int cargo = (int)cmbCargoEdit.SelectedValue;
+                            int empresa = (int)cmbEmpresaEdit.SelectedValue;
+                            int ciudad = (int)cmbCiudadEdit.SelectedValue;
+                            int pais = (int)cmbPaisEdit.SelectedValue;
+                            int region = (int)cmbRegionEdit.SelectedValue;
+                            Uri myUri = new Uri(baseUri, id.ToString());
+                            var client = new HttpClient();
+                            Usuarios post = new Usuarios()
+                            {
+                                numero_identificacion_usuario = txtRutEdit.Text,
+                                nombre_usuario = txtNomEdit.Text,
+                                direccion_usuario = txtDirEdit.Text,
+                                telefono_usuario = txtTeleEdit.Text,
+                                correo_usuario = txtCorEdit.Text,
+                                contrasena_usuario = txtConEdit.Text,
+                                administrador_usuario = '0',
+                                id_cargo = cargo,
+                                id_empresa = empresa,
+                                id_ciudad = ciudad,
+                                id_pais = pais,
+                                id_region = region,
+                            };
+                            var data = JsonSerializer.Serialize<Usuarios>(post);
+                            HttpContent content =
+                                new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                            var httpResponse = await client.PutAsync(myUri, content);
 
 
-                        if (httpResponse.IsSuccessStatusCode)
-                        {
-                            var result = await httpResponse.Content.ReadAsStringAsync();
-                            var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                            MessageBox.Show(postResult.ToString());
-                            this.Hide();
+                            if (httpResponse.IsSuccessStatusCode)
+                            {
+                                var result = await httpResponse.Content.ReadAsStringAsync();
+                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                                MessageBox.Show(postResult.ToString());
+                                this.Hide();
 
+                            }
                         }
-                    }
+                                 
                 }
             }
         }
 
         private async void btnCrear_Click(object sender, EventArgs e)
         {
-            if (cmbCiudad.Text == "")
-            {
-                MessageBox.Show("ingrese una ciudad");
-            }
-            else
-            {
-                int cargo = (int)cmbCargo.SelectedValue;
-                int empresa = (int)cmbEmpresa.SelectedValue;
-                int ciudad = (int)cmbCiudad.SelectedValue;
-                int pais = (int)cmbPais.SelectedValue;
-                int region = (int)cmbRegion.SelectedValue;
-                var client = new HttpClient();
+            
+
+            
+              if (cmbCiudad.Text == "" || txtRutUsua.Text == "" || txtNombreUsua.Text =="" )
+              {
+                 MessageBox.Show("ingrese datos en todos los campos ");
+              }
 
 
-                Usuarios post2 = new Usuarios()
-                {
+        
+              else
+              {
 
-                    numero_identificacion_usuario = txtRutUsua.Text,
-                    nombre_usuario = txtNombreUsua.Text,
-                    direccion_usuario = txtDirecUsua.Text,
-                    telefono_usuario = txtTelUsua.Text,
-                    correo_usuario = txtCorUsua.Text,
-                    contrasena_usuario = txtConUsua.Text,
-                    administrador_usuario = '0',
-                    id_cargo = cargo,
-                    id_empresa = empresa,
-                    id_ciudad = ciudad,
-                    id_region = region,
-                    id_pais = pais,
-                };
+                 
+                   int cargo = (int)cmbCargo.SelectedValue;
+                   int empresa = (int)cmbEmpresa.SelectedValue;
+                
+                   int ciudad = (int)cmbCiudad.SelectedValue;
+                   int pais = (int)cmbPais.SelectedValue;
+                   int region = (int)cmbRegion.SelectedValue;
+                
+                   var client = new HttpClient();
+                    
+
+
+                    
+                    Usuarios post2 = new Usuarios()
+                 {
+
+                        numero_identificacion_usuario = txtRutUsua.Text,
+                        nombre_usuario = txtNombreUsua.Text,
+                        direccion_usuario = txtDirecUsua.Text,
+                        telefono_usuario = txtTelUsua.Text,
+                        correo_usuario = txtCorUsua.Text,
+                        contrasena_usuario = txtConUsua.Text,
+                        administrador_usuario = '0',
+                        id_cargo = cargo,
+                        id_empresa = empresa,
+                        id_ciudad = ciudad,
+                        id_region = region,
+                        id_pais = pais,
+                   
+                    
+                    
+                    
+                  };
+             
+
+
+
                 var data = JsonSerializer.Serialize<Usuarios>(post2);
-                HttpContent content =
-                    new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                var valido = validarRut(txtRutUsua.Text);
-                if (IsValidEmail(txtCorUsua.Text))
-                {
-                    if (cmbCiudad.Text == "Chile")
+                   HttpContent content =
+                        new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                    var valido = validarRut(txtRutUsua.Text);
+                   if (IsValidEmail(txtCorUsua.Text))
                     {
-                        if (valido == true)
-                        {
+                        if (cmbCiudad.Text == "Chile")
+                       {
+                           if (valido == true)
+                          {
+                                var httpResponse = await client.PostAsync(baseUri, content);
+                              if (httpResponse.IsSuccessStatusCode)
+
+                               {
+
+                                 var result = await httpResponse.Content.ReadAsStringAsync();
+                                 var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                                    this.Hide();
+
+                              }else
+                              {
+                                   MessageBox.Show("ingrese datos en todos los campos ");
+                              }
+                          }
+                           else
+
+                          {
+                              MessageBox.Show("rut malo");
+                          }
+                        }
+                        else
+                     {
                             var httpResponse = await client.PostAsync(baseUri, content);
-                            if (httpResponse.IsSuccessStatusCode)
+                          if (httpResponse.IsSuccessStatusCode)
 
                             {
-
+                                    
                                 var result = await httpResponse.Content.ReadAsStringAsync();
                                 var postResult = JsonSerializer.Deserialize<Usuarios>(result);
                                 this.Hide();
 
-                            }else
-                            {
-                                MessageBox.Show("ingrese todos los campos");
                             }
                         }
-                        else
-
-                        {
-                            MessageBox.Show("rut malo");
-                        }
-                    }
-                    else
-                    {
-                        var httpResponse = await client.PostAsync(baseUri, content);
-                        if (httpResponse.IsSuccessStatusCode)
-
-                        {
-
-                            var result = await httpResponse.Content.ReadAsStringAsync();
-                            var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                            this.Hide();
-
-                        }
+                
                     }
                 }
-            }
+            
+
+
+
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -431,7 +459,7 @@ namespace MercadoChile
             cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();
             cmbCiudadEdit.Text = DgvClientes.CurrentRow.Cells["cnCiudad"].Value.ToString();
             cmbRegionEdit.Text = DgvClientes.CurrentRow.Cells["cnRegion"].Value.ToString();
-            cmbPaisEdit.SelectedIndex= (int)DgvClientes.CurrentRow.Cells["cnPais"].Value;
+            cmbPaisEdit.Text = DgvClientes.CurrentRow.Cells["cnPais"].Value.ToString();
            
             
         }
@@ -468,20 +496,20 @@ namespace MercadoChile
 
         private void txtNombreUsua_Enter(object sender, EventArgs e)
         {
-            if (txtNombreUsua.Text == "")
+            if (txtNombreUsua.Text == "Nombre Cliente")
             {
-                txtNombreUsua.Text = "Nombre Cliente";
-                txtNombreUsua.ForeColor = Color.DimGray;
+                txtNombreUsua.Text = "";
+                txtNombreUsua.ForeColor = Color.Black;
 
             }
         }
 
         private void txtNombreUsua_Leave(object sender, EventArgs e)
         {
-            if (txtNombreUsua.Text == "Nombre Cliente")
+            if (txtNombreUsua.Text == "")
             {
-                txtNombreUsua.Text = "";
-                txtNombreUsua.ForeColor = Color.Black;
+                txtNombreUsua.Text = "Nombre Cliente";
+                txtNombreUsua.ForeColor = Color.DimGray;
 
             }
         }
@@ -588,7 +616,7 @@ namespace MercadoChile
 
         private void cmbRegion_Enter(object sender, EventArgs e)
         {
-
+            cmbRegion.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void cmbRegion_Leave(object sender, EventArgs e)
@@ -598,7 +626,7 @@ namespace MercadoChile
 
         private void cmbCiudad_Enter(object sender, EventArgs e)
         {
-
+            cmbCiudad.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void cmbCiudad_Leave(object sender, EventArgs e)
@@ -618,7 +646,7 @@ namespace MercadoChile
 
         private void cmbCargo_Enter(object sender, EventArgs e)
         {
-
+            cmbCargo.ForeColor = Color.Black;
         }
 
         private void cmbCargo_Leave(object sender, EventArgs e)
@@ -757,6 +785,27 @@ namespace MercadoChile
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbRegion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+             
+        }
+
+        private void cmbPais_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombreUsua_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbEmpresa_Click(object sender, EventArgs e)
+        {
+            cmbEmpresa.ForeColor = Color.Black;
         }
     }
 }

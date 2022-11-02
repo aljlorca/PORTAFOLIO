@@ -173,3 +173,37 @@ C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Dato
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.CopyComplete
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.dll
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.pdb
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Datos.dll.config
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Datos.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Datos.pdb
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Castle.Core.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Configuration.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Http.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Moq.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Moq.pdb
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Moq.Contrib.HttpClient.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\Newtonsoft.Json.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\RestSharp.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Buffers.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Memory.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Net.Http.Json.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Text.Json.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.ValueTuple.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\bin\Debug\System.Threading.AccessControl.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.CopyComplete
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.dll
+C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.pdb
