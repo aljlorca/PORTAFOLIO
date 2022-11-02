@@ -152,20 +152,45 @@ namespace MercadoChile.Template
 
         private void txtFecha_Enter(object sender, EventArgs e)
         {
+            if (txtFecha.Text == "Fecha")
+            {
+                txtFecha.Text = "";
+                txtFecha.ForeColor = Color.Black;
 
+            }
         }
 
         private void txtFecha_Leave(object sender, EventArgs e)
         {
+            if (txtFecha.Text == "")
+            {
+                txtFecha.Text = "Fecha";
+                txtFecha.ForeColor = Color.DimGray;
 
+            }
         }
 
-        private void txtCliente_Enter(object sender, EventArgs e)
+    private void txtCliente_Enter(object sender, EventArgs e)
         {
+            if (txtCliente.Text == "Cliente")
+            {
+                txtCliente.Text = "";
+                txtCliente.ForeColor = Color.Black;
 
+            }
         }
 
         private void txtCliente_Leave(object sender, EventArgs e)
+        {
+            if (txtCliente.Text == "")
+            {
+                txtCliente.Text = "Cliente";
+                txtCliente.ForeColor = Color.DimGray;
+
+            }
+        }
+
+        private void txtDescrip_TextChanged(object sender, EventArgs e)
         {
 
         }

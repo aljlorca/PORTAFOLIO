@@ -47,6 +47,18 @@ namespace MercadoChile
             this.txtNombreUsua = new System.Windows.Forms.TextBox();
             this.txtRutUsua = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.DgvClientes = new System.Windows.Forms.DataGridView();
+            this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnFeha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -64,24 +76,12 @@ namespace MercadoChile
             this.txtDirEdit = new System.Windows.Forms.TextBox();
             this.txtNomEdit = new System.Windows.Forms.TextBox();
             this.txtCorEdit = new System.Windows.Forms.TextBox();
-            this.DgvClientes = new System.Windows.Forms.DataGridView();
-            this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnFeha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -153,32 +153,32 @@ namespace MercadoChile
             this.cmbEmpresa.Size = new System.Drawing.Size(214, 26);
             this.cmbEmpresa.TabIndex = 39;
             this.cmbEmpresa.Text = "Empresa";
+            this.cmbEmpresa.Click += new System.EventHandler(this.cmbEmpresa_Click);
             this.cmbEmpresa.Enter += new System.EventHandler(this.cmbEmpresa_Enter);
             this.cmbEmpresa.Leave += new System.EventHandler(this.cmbEmpresa_Leave);
             // 
             // cmbCiudad
             // 
             this.cmbCiudad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCiudad.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbCiudad.ForeColor = System.Drawing.Color.Black;
             this.cmbCiudad.FormattingEnabled = true;
             this.cmbCiudad.Location = new System.Drawing.Point(373, 294);
             this.cmbCiudad.Name = "cmbCiudad";
             this.cmbCiudad.Size = new System.Drawing.Size(214, 26);
             this.cmbCiudad.TabIndex = 38;
-            this.cmbCiudad.Text = "Ciudad";
             this.cmbCiudad.Enter += new System.EventHandler(this.cmbCiudad_Enter);
             this.cmbCiudad.Leave += new System.EventHandler(this.cmbCiudad_Leave);
             // 
             // cmbRegion
             // 
             this.cmbRegion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRegion.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbRegion.ForeColor = System.Drawing.Color.Black;
             this.cmbRegion.FormattingEnabled = true;
             this.cmbRegion.Location = new System.Drawing.Point(373, 239);
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(214, 26);
             this.cmbRegion.TabIndex = 37;
-            this.cmbRegion.Text = "Region";
+            this.cmbRegion.SelectedIndexChanged += new System.EventHandler(this.cmbRegion_SelectedIndexChanged);
             this.cmbRegion.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             this.cmbRegion.Enter += new System.EventHandler(this.cmbRegion_Enter);
             this.cmbRegion.Leave += new System.EventHandler(this.cmbRegion_Leave);
@@ -186,13 +186,13 @@ namespace MercadoChile
             // cmbPais
             // 
             this.cmbPais.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPais.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbPais.ForeColor = System.Drawing.Color.Black;
             this.cmbPais.FormattingEnabled = true;
             this.cmbPais.Location = new System.Drawing.Point(373, 182);
             this.cmbPais.Name = "cmbPais";
             this.cmbPais.Size = new System.Drawing.Size(214, 26);
             this.cmbPais.TabIndex = 36;
-            this.cmbPais.Text = "Pais";
+            this.cmbPais.SelectedIndexChanged += new System.EventHandler(this.cmbPais_SelectedIndexChanged);
             this.cmbPais.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
             this.cmbPais.Enter += new System.EventHandler(this.cmbPais_Enter);
             this.cmbPais.Leave += new System.EventHandler(this.cmbPais_Leave);
@@ -284,6 +284,7 @@ namespace MercadoChile
             this.txtNombreUsua.Size = new System.Drawing.Size(214, 26);
             this.txtNombreUsua.TabIndex = 28;
             this.txtNombreUsua.Text = "Nombre Cliente";
+            this.txtNombreUsua.TextChanged += new System.EventHandler(this.txtNombreUsua_TextChanged);
             this.txtNombreUsua.Enter += new System.EventHandler(this.txtNombreUsua_Enter);
             this.txtNombreUsua.Leave += new System.EventHandler(this.txtNombreUsua_Leave);
             // 
@@ -313,6 +314,95 @@ namespace MercadoChile
             this.tabPage4.Size = new System.Drawing.Size(1036, 584);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Listar Cliente";
+            // 
+            // DgvClientes
+            // 
+            this.DgvClientes.AllowUserToAddRows = false;
+            this.DgvClientes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cnNumeIdenUsuar,
+            this.cnNombre,
+            this.cnDireccion,
+            this.cnTelefono,
+            this.cnCorreo,
+            this.cnFeha,
+            this.cnCargo,
+            this.cnEmpresa,
+            this.cnCiudad,
+            this.cnRegion,
+            this.cnPais});
+            this.DgvClientes.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.DgvClientes.Location = new System.Drawing.Point(240, 49);
+            this.DgvClientes.Name = "DgvClientes";
+            this.DgvClientes.Size = new System.Drawing.Size(793, 529);
+            this.DgvClientes.TabIndex = 94;
+            // 
+            // cnNumeIdenUsuar
+            // 
+            this.cnNumeIdenUsuar.DataPropertyName = "numero_identificacion_usuario";
+            this.cnNumeIdenUsuar.HeaderText = "Numero Identificacion Usuario";
+            this.cnNumeIdenUsuar.Name = "cnNumeIdenUsuar";
+            // 
+            // cnNombre
+            // 
+            this.cnNombre.DataPropertyName = "nombre_usuario";
+            this.cnNombre.HeaderText = "Nombre Usuario";
+            this.cnNombre.Name = "cnNombre";
+            // 
+            // cnDireccion
+            // 
+            this.cnDireccion.DataPropertyName = "direccion_usuario";
+            this.cnDireccion.HeaderText = "Direccion Usuario";
+            this.cnDireccion.Name = "cnDireccion";
+            // 
+            // cnTelefono
+            // 
+            this.cnTelefono.DataPropertyName = "telefono_usuario";
+            this.cnTelefono.HeaderText = "Telefono Usuario";
+            this.cnTelefono.Name = "cnTelefono";
+            // 
+            // cnCorreo
+            // 
+            this.cnCorreo.DataPropertyName = "correo_usuario";
+            this.cnCorreo.HeaderText = "Correo";
+            this.cnCorreo.Name = "cnCorreo";
+            // 
+            // cnFeha
+            // 
+            this.cnFeha.DataPropertyName = "fecha_creacion_usuario";
+            this.cnFeha.HeaderText = "Fecha Creacion";
+            this.cnFeha.Name = "cnFeha";
+            // 
+            // cnCargo
+            // 
+            this.cnCargo.DataPropertyName = "id_cargo";
+            this.cnCargo.HeaderText = "Cargo Usuario";
+            this.cnCargo.Name = "cnCargo";
+            // 
+            // cnEmpresa
+            // 
+            this.cnEmpresa.DataPropertyName = "id_empresa";
+            this.cnEmpresa.HeaderText = "Empresa";
+            this.cnEmpresa.Name = "cnEmpresa";
+            // 
+            // cnCiudad
+            // 
+            this.cnCiudad.DataPropertyName = "id_ciudad";
+            this.cnCiudad.HeaderText = "Ciudad";
+            this.cnCiudad.Name = "cnCiudad";
+            // 
+            // cnRegion
+            // 
+            this.cnRegion.DataPropertyName = "id_region";
+            this.cnRegion.HeaderText = "Region";
+            this.cnRegion.Name = "cnRegion";
+            // 
+            // cnPais
+            // 
+            this.cnPais.DataPropertyName = "id_pais";
+            this.cnPais.HeaderText = "Pais";
+            this.cnPais.Name = "cnPais";
             // 
             // label3
             // 
@@ -425,7 +515,6 @@ namespace MercadoChile
             this.cmbCiudadEdit.Name = "cmbCiudadEdit";
             this.cmbCiudadEdit.Size = new System.Drawing.Size(214, 27);
             this.cmbCiudadEdit.TabIndex = 85;
-            this.cmbCiudadEdit.Text = "Ciudad";
             // 
             // cmbRegionEdit
             // 
@@ -435,7 +524,6 @@ namespace MercadoChile
             this.cmbRegionEdit.Name = "cmbRegionEdit";
             this.cmbRegionEdit.Size = new System.Drawing.Size(214, 27);
             this.cmbRegionEdit.TabIndex = 84;
-            this.cmbRegionEdit.Text = "Region";
             this.cmbRegionEdit.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             this.cmbRegionEdit.TextUpdate += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             // 
@@ -529,95 +617,6 @@ namespace MercadoChile
             this.txtCorEdit.Enter += new System.EventHandler(this.txtCorEdit_Enter);
             this.txtCorEdit.Leave += new System.EventHandler(this.txtCorEdit_Leave);
             // 
-            // DgvClientes
-            // 
-            this.DgvClientes.AllowUserToAddRows = false;
-            this.DgvClientes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cnNumeIdenUsuar,
-            this.cnNombre,
-            this.cnDireccion,
-            this.cnTelefono,
-            this.cnCorreo,
-            this.cnFeha,
-            this.cnCargo,
-            this.cnEmpresa,
-            this.cnCiudad,
-            this.cnRegion,
-            this.cnPais});
-            this.DgvClientes.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.DgvClientes.Location = new System.Drawing.Point(240, 49);
-            this.DgvClientes.Name = "DgvClientes";
-            this.DgvClientes.Size = new System.Drawing.Size(793, 529);
-            this.DgvClientes.TabIndex = 94;
-            // 
-            // cnNumeIdenUsuar
-            // 
-            this.cnNumeIdenUsuar.DataPropertyName = "numero_identificacion_usuario";
-            this.cnNumeIdenUsuar.HeaderText = "Numero Identificacion Usuario";
-            this.cnNumeIdenUsuar.Name = "cnNumeIdenUsuar";
-            // 
-            // cnNombre
-            // 
-            this.cnNombre.DataPropertyName = "nombre_usuario";
-            this.cnNombre.HeaderText = "Nombre Usuario";
-            this.cnNombre.Name = "cnNombre";
-            // 
-            // cnDireccion
-            // 
-            this.cnDireccion.DataPropertyName = "direccion_usuario";
-            this.cnDireccion.HeaderText = "Direccion Usuario";
-            this.cnDireccion.Name = "cnDireccion";
-            // 
-            // cnTelefono
-            // 
-            this.cnTelefono.DataPropertyName = "telefono_usuario";
-            this.cnTelefono.HeaderText = "Telefono Usuario";
-            this.cnTelefono.Name = "cnTelefono";
-            // 
-            // cnCorreo
-            // 
-            this.cnCorreo.DataPropertyName = "correo_usuario";
-            this.cnCorreo.HeaderText = "Correo";
-            this.cnCorreo.Name = "cnCorreo";
-            // 
-            // cnFeha
-            // 
-            this.cnFeha.DataPropertyName = "fecha_creacion_usuario";
-            this.cnFeha.HeaderText = "Fecha Creacion";
-            this.cnFeha.Name = "cnFeha";
-            // 
-            // cnCargo
-            // 
-            this.cnCargo.DataPropertyName = "id_cargo";
-            this.cnCargo.HeaderText = "Cargo Usuario";
-            this.cnCargo.Name = "cnCargo";
-            // 
-            // cnEmpresa
-            // 
-            this.cnEmpresa.DataPropertyName = "id_empresa";
-            this.cnEmpresa.HeaderText = "Empresa";
-            this.cnEmpresa.Name = "cnEmpresa";
-            // 
-            // cnCiudad
-            // 
-            this.cnCiudad.DataPropertyName = "id_ciudad";
-            this.cnCiudad.HeaderText = "Ciudad";
-            this.cnCiudad.Name = "cnCiudad";
-            // 
-            // cnRegion
-            // 
-            this.cnRegion.DataPropertyName = "id_region";
-            this.cnRegion.HeaderText = "Region";
-            this.cnRegion.Name = "cnRegion";
-            // 
-            // cnPais
-            // 
-            this.cnPais.DataPropertyName = "id_pais";
-            this.cnPais.HeaderText = "Pais";
-            this.cnPais.Name = "cnPais";
-            // 
             // button1
             // 
             this.button1.FlatAppearance.BorderSize = 0;
@@ -647,9 +646,9 @@ namespace MercadoChile
             this.tabPage1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).EndInit();
             this.ResumeLayout(false);
 
         }

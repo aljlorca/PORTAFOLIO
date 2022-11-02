@@ -124,45 +124,44 @@
             // cmbCiudad
             // 
             this.cmbCiudad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCiudad.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbCiudad.ForeColor = System.Drawing.Color.Black;
             this.cmbCiudad.FormattingEnabled = true;
             this.cmbCiudad.Location = new System.Drawing.Point(548, 303);
             this.cmbCiudad.Name = "cmbCiudad";
             this.cmbCiudad.Size = new System.Drawing.Size(214, 28);
             this.cmbCiudad.TabIndex = 38;
-            this.cmbCiudad.Text = "Ciudad";
             this.cmbCiudad.SelectedIndexChanged += new System.EventHandler(this.cmbCiudad_SelectedIndexChanged);
+            this.cmbCiudad.Enter += new System.EventHandler(this.cmbCiudad_Enter);
             // 
             // cmbRegion
             // 
             this.cmbRegion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRegion.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbRegion.ForeColor = System.Drawing.Color.Black;
             this.cmbRegion.FormattingEnabled = true;
             this.cmbRegion.Location = new System.Drawing.Point(548, 252);
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(214, 28);
             this.cmbRegion.TabIndex = 37;
-            this.cmbRegion.Text = "Region";
             this.cmbRegion.SelectedIndexChanged += new System.EventHandler(this.cmbRegion_SelectedIndexChanged);
             this.cmbRegion.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
+            this.cmbRegion.Enter += new System.EventHandler(this.cmbRegion_Enter);
             // 
             // cmbPais
             // 
             this.cmbPais.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPais.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbPais.ForeColor = System.Drawing.Color.Black;
             this.cmbPais.FormattingEnabled = true;
             this.cmbPais.Location = new System.Drawing.Point(548, 195);
             this.cmbPais.Name = "cmbPais";
             this.cmbPais.Size = new System.Drawing.Size(214, 28);
             this.cmbPais.TabIndex = 36;
-            this.cmbPais.Text = "Pais";
             this.cmbPais.SelectedIndexChanged += new System.EventHandler(this.cmbPais_SelectedIndexChanged);
             this.cmbPais.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
             // 
             // cmbEmpresa
             // 
             this.cmbEmpresa.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEmpresa.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbEmpresa.ForeColor = System.Drawing.Color.Black;
             this.cmbEmpresa.FormattingEnabled = true;
             this.cmbEmpresa.Location = new System.Drawing.Point(548, 142);
             this.cmbEmpresa.Name = "cmbEmpresa";
@@ -409,7 +408,7 @@
             this.txtGiroEdit.Name = "txtGiroEdit";
             this.txtGiroEdit.Size = new System.Drawing.Size(214, 26);
             this.txtGiroEdit.TabIndex = 76;
-            this.txtGiroEdit.Text = "Giro empresa";
+            this.txtGiroEdit.Text = "Giro Empresa";
             this.txtGiroEdit.TextChanged += new System.EventHandler(this.txtGiroEdit_TextChanged);
             this.txtGiroEdit.Enter += new System.EventHandler(this.txtGiroEdit_Enter);
             this.txtGiroEdit.Leave += new System.EventHandler(this.txtGiroEdit_Leave);
@@ -434,7 +433,7 @@
             this.txtRazonEdit.Name = "txtRazonEdit";
             this.txtRazonEdit.Size = new System.Drawing.Size(214, 26);
             this.txtRazonEdit.TabIndex = 74;
-            this.txtRazonEdit.Text = "Rason Social";
+            this.txtRazonEdit.Text = "Razon Social";
             this.txtRazonEdit.Enter += new System.EventHandler(this.txtRazonEdit_Enter);
             this.txtRazonEdit.Leave += new System.EventHandler(this.txtRazonEdit_Leave);
             // 
