@@ -15,7 +15,7 @@ def agregar_empresa(duns_empresa,razon_social_empresa,direccion_empresa,giro_emp
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('EMPRESA_AGREGAR',[duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,estado_fila,id_region,id_pais,salida])
+    cursor.callproc('EMPRESA_AGREGAR',[duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,id_region,id_pais,estado_fila,salida])
     return round(salida.getvalue())
 
 def modificar_empresa(duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,id_region,id_pais):
@@ -72,10 +72,13 @@ class EmpresaView(View):
                 salida = agregar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    print(datos)
                 elif salida == 0:
                     datos = {'message':'ERROR: no fue posible registrar la empresa'}
+                    print(datos)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                print(datos)
         except:
             datos = {'message':'ERORR: Json invalido'}
 

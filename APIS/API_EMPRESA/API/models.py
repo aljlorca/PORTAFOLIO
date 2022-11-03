@@ -50,7 +50,7 @@ class Empresa(models.Model):
     direccion_empresa = models.CharField(max_length=150)
     giro_empresa = models.CharField(max_length=150)
     id_tipo_empresa = models.ForeignKey('TipoEmpresa', models.DO_NOTHING, db_column='id_tipo_empresa')
-    id_ciudad = models.ForeignKey(Ciudad, models.DO_NOTHING, db_column='id_ciudad')
+    id_ciudad = models.ForeignKey('Ciudad', models.DO_NOTHING, db_column='id_ciudad')
     estado_fila = models.CharField(max_length=1)
     id_region = models.ForeignKey('Region', models.DO_NOTHING, db_column='id_region')
     id_pais = models.ForeignKey('Pais', models.DO_NOTHING, db_column='id_pais')
