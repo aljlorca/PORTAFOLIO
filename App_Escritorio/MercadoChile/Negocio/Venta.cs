@@ -17,6 +17,11 @@ namespace Negocio
         public string fecha_venta { get; set; }
         public string tipo_venta { get; set; }
         public int id_usuario { get; set; }
+        public string cantidad_venta { get; set; }     
+        public string monto_transporte { get; set; }     
+        public string monto_aduanas { get; set; }
+        public string pago_servicio  { get; set; }
+        public string comision_venta { get; set; } 
         
 
 

@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC Gaming\\Desktop\\actualizable\\PORTAFOLIO-2\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {}
+    "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC Gaming\\Desktop\\actualizable\\PORTAFOLIO-2\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {
+    "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC Gaming\\Desktop\\actualizable\\PORTAFOLIO-2\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+        "projectUniqueName": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
         "projectName": "Datos",
-        "projectPath": "C:\\Users\\PC Gaming\\Desktop\\actualizable\\PORTAFOLIO-2\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
-        "packagesPath": "C:\\Users\\PC Gaming\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC Gaming\\Desktop\\actualizable\\PORTAFOLIO-2\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
+        "projectPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+        "packagesPath": "C:\\Users\\sebac\\.nuget\\packages\\",
+        "outputPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\PC Gaming\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sebac\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
