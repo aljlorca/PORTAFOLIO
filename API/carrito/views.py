@@ -11,19 +11,19 @@ import cx_Oracle
 # Create your views here.
 
 
-def agregar_carrito(fecha_carrito,monto_carrito,id_producto):
+def agregar_carrito(fecha_carrito,monto_carrito,id_producto,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('CARRITO_AGREGAR',[fecha_carrito,monto_carrito,id_producto,estado_fila,salida])
+    cursor.callproc('CARRITO_AGREGAR',[fecha_carrito,monto_carrito,id_producto,id_usuario,estado_fila,salida])
     return round(salida.getvalue())
 
-def modificar_carrito(id_carrito,fecha_carrito,monto_carrito,id_producto):
+def modificar_carrito(id_carrito,fecha_carrito,monto_carrito,id_producto,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('CARRITO_MODIFICAR',[id_carrito,fecha_carrito,monto_carrito,id_producto,salida])
+    cursor.callproc('CARRITO_MODIFICAR',[id_carrito,fecha_carrito,monto_carrito,id_producto,id_usuario,salida])
     return round(salida.getvalue())
 
 def eliminar_carrito(id_carrito):
@@ -70,7 +70,7 @@ class CarritoView(View):
         try:
             jd = json.loads(request.body)
             try:
-                salida = agregar_carrito(fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
+                salida = agregar_carrito(fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'],id_usuario=jd['id_usuario'])
                 if salida == 1:
                     datos = {'message':'Success'}
                 elif salida == 0:
@@ -88,7 +88,7 @@ class CarritoView(View):
             cargos = list(Carrito.objects.filter(id_carrito=id_carrito).values())
             if len(cargos) > 0:
                 try:
-                    salida = modificar_carrito(id_carrito=jd['id_carrito'],fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'])
+                    salida = modificar_carrito(id_carrito=jd['id_carrito'],fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'],id_usuario=jd['id_usuario'])
                     if salida == 1:
                         datos={'message':"Success"}
                     elif salida == 0:
@@ -113,7 +113,7 @@ class CarritoView(View):
             except:
                 datos = {'message':'ERROR: Validar datos'}
         else:
-            datos={'message':"ERROR: no fue posible eliminar el carrito"}
+            datos={'message':"ERROR: no se encuentra el carrito"}
         return JsonResponse(datos)
     
     

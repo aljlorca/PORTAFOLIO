@@ -85,6 +85,7 @@ class Carrito(models.Model):
     monto_carrito = models.BigIntegerField()
     id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='id_producto', blank=True, null=True)
     estado_fila = models.CharField(max_length=1)
+    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
 
     class Meta:
         managed = False

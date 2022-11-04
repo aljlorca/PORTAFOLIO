@@ -5,7 +5,7 @@ class CarritoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Carrito
-        fields = ['id_carrito','fecha_carrito','monto_carrito','id_producto']
+        fields = ['id_carrito','fecha_carrito','monto_carrito','id_producto',['id_usuario']]
 
 class CarritoHistoricoSerializer(serializers.ModelSerializer):
 
