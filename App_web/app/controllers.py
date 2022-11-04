@@ -7,7 +7,7 @@ from django.http import HttpResponse
 
 #AUTH CONTROLLERS 
 def login_controller(correo,contrasena):
-    url = 'http://127.0.0.1:8006/api/usuario_auth/'
+    url = 'http://127.0.0.1:8000/api_login/usuario_auth/'
     body = {"correo_usuario": correo,"contrasena_usuario": contrasena}
     response = requests.post(url,json=body)
 
@@ -48,14 +48,14 @@ def get_session(request):
 #PRODUCTOS CONTROLLERS
 def crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario): 
 
-    url= 'http://127.0.0.1:8010/api/producto/'
+    url= 'http://127.0.0.1:8000/api_producto/producto/'
     files = {"imagen_producto":open(imagen_producto, 'rb')}
     body ={"id_producto":id_producto,"nombre_producto":nombre_producto,"cantidad_producto":cantidad_producto,"precio_producto":precio_producto,"id_calidad":id_calidad,"saldo_producto":saldo_producto,"estado_fila":estado_fila,"id_usuario":id_usuario}
     response = requests.post(url,data=body, files=files)
     return response
 
 def productos_get():
-    url='http://127.0.0.1:8010/api/producto/'
+    url='http://127.0.0.1:8000/api_producto/producto/'
     try: 
         response = requests.get(url)
     except:
@@ -66,7 +66,7 @@ def productos_get():
         return content
 
 def producto_get_id(id):
-    url='http://127.0.0.1:8010/api/producto/'+str(id)
+    url='http://127.0.0.1:8000/api_producto/producto/'+str(id)
     try: 
         response = requests.get(url)
     except:
@@ -81,7 +81,7 @@ def producto_get_id(id):
 
 #SUBASTA CONTROLLERS
 def subasta_post(monto,id_venta,id_usuario):
-    url = 'http://127.0.0.1:8014/api/subasta_old/'
+    url = 'http://127.0.0.1:8000/api_subasta/subasta_old/'
     body = {"monto_subasta": monto,"id_venta":id_venta,"id_usuario":id_usuario}
     try:
         response = requests.post(url,json=body)
@@ -94,7 +94,7 @@ def subasta_post(monto,id_venta,id_usuario):
         return content['id_subasta']
 
 def subasta_get():
-    url='http://127.0.0.1:8014/api/subasta/'
+    url='http://127.0.0.1:8000/api_subasta/subasta/'
     try: 
         response = requests.get(url)
     except:
@@ -105,7 +105,7 @@ def subasta_get():
         return content
 
 def subasta_get_id(id):
-    url='http://127.0.0.1:8014/api/subasta/'+str(id)
+    url='http://127.0.0.1:8000/api_subasta/subasta/'+str(id)
     try: 
         response = requests.get(url)
     except:
@@ -116,7 +116,7 @@ def subasta_get_id(id):
         return content
 
 def subasta_delete(id):
-    url='http://127.0.0.1:8014/api/subasta_old/'+str(id)
+    url='http://127.0.0.1:8000/api_subasta/subasta_old/'+str(id)
     try: 
         response = requests.delete(url)
     except:
@@ -128,7 +128,7 @@ def subasta_delete(id):
 
 #PEDIDO CONTROLLERS
 def pedido_get():
-    url = 'http://127.0.0.1:8008/api/pedido/'
+    url = 'http://127.0.0.1:8000/api_pedido/pedido/'
     try: 
         response = requests.get(url)
     except:
@@ -139,7 +139,7 @@ def pedido_get():
         return content
 
 def pedido_post(descripcion, fecha_sla,id_usuario):
-    url="http://127.0.0.1:8008/api/pedido_old/"
+    url="http://127.0.0.1:8000/api_pedido/pedido_old/"
     body = {"descripcion_pedido": descripcion,"fecha_sla_pedido":fecha_sla,"id_usuario":id_usuario}
     try: 
         response = requests.post(url,json=body)
@@ -152,7 +152,7 @@ def pedido_post(descripcion, fecha_sla,id_usuario):
 
 #USUARIO CONTROLLERS
 def usuario_get_id(id):
-    url = 'http://127.0.0.1:8016/api/usuario/'+str(id)
+    url = 'http://127.0.0.1:8000/api_usuario/usuario/'+str(id)
     try: 
      response = requests.get(url)
     except:
@@ -167,7 +167,7 @@ def usuario_get_id(id):
 
 #PAIS CONTROLLER
 def get_pais_id(id):
-    url = 'http://127.0.0.1:8007/api/pais/'+str(id)
+    url = 'http://127.0.0.1:8000/api_pais/pais/'+str(id)
     try: 
      response = requests.get(url)
     except:
@@ -182,7 +182,7 @@ def get_pais_id(id):
     
 #Ciudad CONTROLLER
 def get_ciudad_id(id):
-    url = 'http://127.0.0.1:8003/api/ciudad/'+str(id)
+    url = 'http://127.0.0.1:8000/api_ciudad/ciudad/'+str(id)
     try: 
      response = requests.get(url)
     except:
@@ -196,7 +196,7 @@ def get_ciudad_id(id):
         return data
 #Region CONTROLLER
 def get_region_id(id):
-    url = 'http://127.0.0.1:8011/api/region/'+str(id)
+    url = 'http://127.0.0.1:8000/api_region/region/'+str(id)
     try: 
      response = requests.get(url)
     except:
@@ -211,7 +211,7 @@ def get_region_id(id):
 
 #Postulacion POST CONTROLLER
 def Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto):
-    url = 'http://127.0.0.1:8009/api/postulacion_old/'
+    url = 'http://127.0.0.1:8000/api_postulacion/postulacion_old/'
     body = {"descripcion_postulacion": descripcion_postulacion,"estado_postulacion":estado_postulacion,"id_venta":id_venta,"id_usuario":id_usuario,"id_producto":id_producto}
     try:
         response = requests.post(url,json=body)
@@ -221,14 +221,14 @@ def Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,i
 
 #Venta Controllers       
 def ventas_get():
-    url='http://127.0.0.1:8017/api/venta/'
+    url='http://127.0.0.1:8000/api_venta/venta/'
     response = requests.get(url)
     if response.status_code == 200:
         content = json.loads(response.content)
         return content
 
 def Ventas_get_id(id):
-    url = 'http://127.0.0.1:8017/api/venta/'+str(id)
+    url = 'http://127.0.0.1:8000/api_venta/venta/'+str(id)
     try: 
      response = requests.get(url)
     except:
@@ -243,7 +243,7 @@ def Ventas_get_id(id):
 
 #CARGA CONTROLLERS 
 def carga_post(capacidad,tamano,refrigeracion,id_usuario,id_subasta):
-    url="http://127.0.0.1:8001/api/carga_old/"
+    url="http://127.0.0.1:8000/api_carga/carga_old/"
     body ={"capacidad_carga": str(capacidad),"refrigeracion_carga": str(refrigeracion),"tamano_carga": str(tamano),"id_subasta":id_subasta ,"id_usuario": id_usuario}
     try: 
         response = requests.post(url,json=body)
