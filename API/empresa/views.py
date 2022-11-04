@@ -10,19 +10,19 @@ import json
 import cx_Oracle
 
 # Create your views here.
-def agregar_empresa(duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,id_region,id_pais):
+def agregar_empresa(duns_empresa,razon_social_empresa,direccion_empresa,id_tipo_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('EMPRESA_AGREGAR',[duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,id_region,id_pais,estado_fila,salida])
+    cursor.callproc('EMPRESA_AGREGAR',[duns_empresa,razon_social_empresa,direccion_empresa,id_tipo_empresa,estado_fila,salida])
     return round(salida.getvalue())
 
-def modificar_empresa(duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,id_region,id_pais):
+def modificar_empresa(duns_empresa,razon_social_empresa,direccion_empresa,id_tipo_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('EMPRESA_MODIFICAR',[duns_empresa,razon_social_empresa,direccion_empresa,giro_empresa,id_tipo_empresa,id_ciudad,id_region,id_pais,salida])
+    cursor.callproc('EMPRESA_MODIFICAR',[duns_empresa,razon_social_empresa,direccion_empresa,id_tipo_empresa,salida])
     return round(salida.getvalue())
 
 def eliminar_empresa(id_empresa):
@@ -69,7 +69,7 @@ class EmpresaView(View):
         try:
             jd = json.loads(request.body)
             try: 
-                salida = agregar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                salida = agregar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],id_tipo_empresa=jd['id_tipo_empresa'])
                 if salida == 1:
                     datos = {'message':'Success'}
                     print(datos)
@@ -91,7 +91,7 @@ class EmpresaView(View):
             empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
             if len(empresas) > 0:
                 try:
-                    salida = modificar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],giro_empresa=jd['giro_empresa'],id_tipo_empresa=jd['id_tipo_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                    salida = modificar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],id_tipo_empresa=jd['id_tipo_empresa'])
                     if salida == 1:
                         datos={'message':"Success"}
                     elif salida == 0:
