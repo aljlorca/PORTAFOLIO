@@ -119,7 +119,6 @@
             this.groupBox1.TabIndex = 101;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Productos";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // txtCliente
             // 
@@ -171,7 +170,6 @@
             this.txtFecha.Size = new System.Drawing.Size(214, 26);
             this.txtFecha.TabIndex = 77;
             this.txtFecha.Text = "Fecha";
-            this.txtFecha.TextChanged += new System.EventHandler(this.txtFecha_TextChanged);
             this.txtFecha.Enter += new System.EventHandler(this.txtFecha_Enter);
             this.txtFecha.Leave += new System.EventHandler(this.txtFecha_Leave);
             // 
@@ -200,7 +198,6 @@
             this.label1.TabIndex = 104;
             this.label1.Text = "---------------------------------------------------------------------------------" +
     "------------------------------------------------------";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -211,7 +208,6 @@
             this.label2.Size = new System.Drawing.Size(104, 28);
             this.label2.TabIndex = 103;
             this.label2.Text = "Pedidos";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Publicacion
             // 

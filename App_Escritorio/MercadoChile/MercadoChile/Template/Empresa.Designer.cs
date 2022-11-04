@@ -32,9 +32,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbCiudad = new System.Windows.Forms.ComboBox();
-            this.cmbRegion = new System.Windows.Forms.ComboBox();
-            this.cmbPais = new System.Windows.Forms.ComboBox();
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
             this.btnCrear = new System.Windows.Forms.Button();
             this.txtGiroEmp = new System.Windows.Forms.TextBox();
@@ -67,6 +64,9 @@
             this.cnPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnBusDirc = new System.Windows.Forms.Button();
+            this.btnLimpiarDir = new System.Windows.Forms.Button();
+            this.cmbDire = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -91,10 +91,10 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.cmbDire);
+            this.tabPage1.Controls.Add(this.btnBusDirc);
+            this.tabPage1.Controls.Add(this.btnLimpiarDir);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.cmbCiudad);
-            this.tabPage1.Controls.Add(this.cmbRegion);
-            this.tabPage1.Controls.Add(this.cmbPais);
             this.tabPage1.Controls.Add(this.cmbEmpresa);
             this.tabPage1.Controls.Add(this.btnCrear);
             this.tabPage1.Controls.Add(this.txtGiroEmp);
@@ -119,44 +119,6 @@
             this.label3.TabIndex = 103;
             this.label3.Text = "---------------------------------------------------------------------------------" +
     "------------------------------------------------------";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // cmbCiudad
-            // 
-            this.cmbCiudad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCiudad.ForeColor = System.Drawing.Color.Black;
-            this.cmbCiudad.FormattingEnabled = true;
-            this.cmbCiudad.Location = new System.Drawing.Point(548, 303);
-            this.cmbCiudad.Name = "cmbCiudad";
-            this.cmbCiudad.Size = new System.Drawing.Size(214, 28);
-            this.cmbCiudad.TabIndex = 38;
-            this.cmbCiudad.SelectedIndexChanged += new System.EventHandler(this.cmbCiudad_SelectedIndexChanged);
-            this.cmbCiudad.Enter += new System.EventHandler(this.cmbCiudad_Enter);
-            // 
-            // cmbRegion
-            // 
-            this.cmbRegion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRegion.ForeColor = System.Drawing.Color.Black;
-            this.cmbRegion.FormattingEnabled = true;
-            this.cmbRegion.Location = new System.Drawing.Point(548, 252);
-            this.cmbRegion.Name = "cmbRegion";
-            this.cmbRegion.Size = new System.Drawing.Size(214, 28);
-            this.cmbRegion.TabIndex = 37;
-            this.cmbRegion.SelectedIndexChanged += new System.EventHandler(this.cmbRegion_SelectedIndexChanged);
-            this.cmbRegion.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
-            this.cmbRegion.Enter += new System.EventHandler(this.cmbRegion_Enter);
-            // 
-            // cmbPais
-            // 
-            this.cmbPais.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPais.ForeColor = System.Drawing.Color.Black;
-            this.cmbPais.FormattingEnabled = true;
-            this.cmbPais.Location = new System.Drawing.Point(548, 195);
-            this.cmbPais.Name = "cmbPais";
-            this.cmbPais.Size = new System.Drawing.Size(214, 28);
-            this.cmbPais.TabIndex = 36;
-            this.cmbPais.SelectedIndexChanged += new System.EventHandler(this.cmbPais_SelectedIndexChanged);
-            this.cmbPais.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
             // 
             // cmbEmpresa
             // 
@@ -528,6 +490,48 @@
             this.button1.Tag = "";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // btnBusDirc
+            // 
+            this.btnBusDirc.FlatAppearance.BorderSize = 0;
+            this.btnBusDirc.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnBusDirc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBusDirc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBusDirc.Image = ((System.Drawing.Image)(resources.GetObject("btnBusDirc.Image")));
+            this.btnBusDirc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBusDirc.Location = new System.Drawing.Point(535, 289);
+            this.btnBusDirc.Name = "btnBusDirc";
+            this.btnBusDirc.Size = new System.Drawing.Size(183, 40);
+            this.btnBusDirc.TabIndex = 106;
+            this.btnBusDirc.Text = "     Buscar Direccion";
+            this.btnBusDirc.UseVisualStyleBackColor = true;
+            this.btnBusDirc.Click += new System.EventHandler(this.btnBusDirc_Click);
+            // 
+            // btnLimpiarDir
+            // 
+            this.btnLimpiarDir.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarDir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnLimpiarDir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarDir.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarDir.Image")));
+            this.btnLimpiarDir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiarDir.Location = new System.Drawing.Point(724, 289);
+            this.btnLimpiarDir.Name = "btnLimpiarDir";
+            this.btnLimpiarDir.Size = new System.Drawing.Size(174, 40);
+            this.btnLimpiarDir.TabIndex = 105;
+            this.btnLimpiarDir.Text = "      Limpiar direccion";
+            this.btnLimpiarDir.UseVisualStyleBackColor = true;
+            this.btnLimpiarDir.Click += new System.EventHandler(this.btnLimpiarDir_Click);
+            // 
+            // cmbDire
+            // 
+            this.cmbDire.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDire.ForeColor = System.Drawing.Color.Black;
+            this.cmbDire.FormattingEnabled = true;
+            this.cmbDire.Location = new System.Drawing.Point(548, 250);
+            this.cmbDire.Name = "cmbDire";
+            this.cmbDire.Size = new System.Drawing.Size(300, 28);
+            this.cmbDire.TabIndex = 107;
+            // 
             // Empresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -578,9 +582,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnRegion;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnPais;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ComboBox cmbCiudad;
-        private System.Windows.Forms.ComboBox cmbRegion;
-        private System.Windows.Forms.ComboBox cmbPais;
         private System.Windows.Forms.ComboBox cmbEmpresa;
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.TextBox txtGiroEmp;
@@ -590,5 +591,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnBusDirc;
+        private System.Windows.Forms.Button btnLimpiarDir;
+        private System.Windows.Forms.ComboBox cmbDire;
     }
 }

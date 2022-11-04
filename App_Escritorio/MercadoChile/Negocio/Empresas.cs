@@ -14,8 +14,5 @@ namespace MercadoChile.Modelos
         public string direccion_empresa { get; set; }
         public string giro_empresa { get; set; }
         public int id_tipo_empresa { get; set; }
-        public int id_pais { get; set; }
-        public int id_region { get; set; }
-        public int id_ciudad { get; set; }
     }
 }

@@ -23,6 +23,7 @@ using Negocio;
 using Datos;
 using System.Windows.Media;
 using System.Drawing;
+using Newtonsoft.Json.Linq;
 
 
 namespace MercadoChile.Template
@@ -44,43 +45,12 @@ namespace MercadoChile.Template
         
         private async void  Empresa_Carga(object sender, EventArgs e)
         {
-
-            string respuesta2 = await Get.GetHttp2();
             string respuesta5 = await Get.GetHttp5();
-
-
-            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
-            
             List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
-
-            cmbPais.DataSource = lista2;
-            cmbEmpresa.DataSource = lista5;
-            cmbPais.DisplayMember = "nombre_pais";
-            cmbPais.ValueMember = "id_pais";
+            cmbEmpresa.DataSource = lista5;;
             cmbEmpresa.DisplayMember = "tipo_empresa";
             cmbEmpresa.ValueMember = "id_tipo_empresa";
-        }
-        private async void cmbPais_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            var id_pais = Convert.ToInt32(((ComboBox)sender).SelectedValue);
-            string respuesta3 = await Get.GetHttp3();
-            List<Regiones> lista3 = JsonConvert.DeserializeObject<List<Regiones>>(respuesta3);
-            cmbRegion.DisplayMember = "nombre_region";
-            cmbRegion.ValueMember = "id_region";
-            cmbRegion.DataSource = lista3.Where(x => x.id_pais == id_pais).ToList();
-
-        }
-        private async void cmbRegion_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            var id_region = Convert.ToInt32(((ComboBox)sender).SelectedValue);
-
-            string respuesta4 = await Get.GetHttp4();
-            List<Ciudad> lista3 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);
-            cmbCiudad.DisplayMember = "nombre_ciudad";
-            cmbCiudad.ValueMember = "id_ciudad";
-            cmbCiudad.DataSource = lista3.Where(x => x.id_region == id_region).ToList();
-        }
-       
+        }      
 
         
     
@@ -120,7 +90,7 @@ namespace MercadoChile.Template
                         cmbPaisEdit.Text = "";
                         cmbRegionEdit.Text = "";
                         cmbEmpresa.Text = "";
-                        cmbCiudad.Text = "";
+
                     }
 
 
@@ -147,11 +117,6 @@ namespace MercadoChile.Template
                         int id = list.id_usuario;
 
                         int empresa = (int)cmbTipoEmpEdit.SelectedValue;
-                        int ciudad = (int)cmbCiudadEdit.SelectedValue;
-                        int pais = (int)cmbPaisEdit.SelectedValue;
-                        int region = (int)cmbRegionEdit.SelectedValue;
-
-
                         Uri myUri = new Uri(baseUri, id.ToString());
                         var client = new HttpClient();
                         Empresas post = new Empresas()
@@ -160,10 +125,8 @@ namespace MercadoChile.Template
                             razon_social_empresa = txtRazonEdit.Text,
                             direccion_empresa = txtDirEdit.Text,
                             giro_empresa = txtGiroEdit.Text,
-                            id_pais = pais,
-                            id_region = region,
                             id_tipo_empresa = empresa,
-                            id_ciudad = ciudad,
+
                         };
                         var data = JsonSerializer.Serialize<Empresas>(post);
                         HttpContent content =
@@ -187,21 +150,8 @@ namespace MercadoChile.Template
         private async void btnCrear_Click(object sender, EventArgs e)
         {
 
-
-
-            if (cmbCiudad.Text == "" || txtDunsEmp.Text == "")
             {
-                MessageBox.Show("ingrese datos en todos los campos ");
-               
-            }
-            
-            else
-            {
-                {
                 int empresa = (int)cmbEmpresa.SelectedValue;
-                int ciudad = (int)cmbCiudad.SelectedValue;
-                int pais = (int)cmbPais.SelectedValue;
-                int region = (int)cmbRegion.SelectedValue;
                 var client = new HttpClient();
                 Empresas post2 = new Empresas()
                 {
@@ -210,11 +160,7 @@ namespace MercadoChile.Template
                     razon_social_empresa = txtRazonSocial.Text,
                     direccion_empresa = txtDirecEmp.Text,
                     giro_empresa = txtGiroEmp.Text,
-                    id_pais = pais,
-                    id_region = region,
                     id_tipo_empresa = empresa,
-                    id_ciudad = ciudad,
-
 
 
                 };
@@ -234,64 +180,29 @@ namespace MercadoChile.Template
                     this.Hide();
 
                 }
-             }
             }
         }
+        
 
         private async void button1_Click(object sender, EventArgs e)
         {
             dynamic response = DBApi.Get("http://127.0.0.1:8005/api/empresa/?format=json");
             DgvEmpresa.DataSource = response;
-            string respuesta4 = await Get.GetHttp4();
-            List<Ciudad> lista4 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);            
-            string respuesta2 = await Get.GetHttp2();
-            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
-            string respuesta3 = await Get.GetHttp3();
-            List<Regiones> lista3 = JsonConvert.DeserializeObject<List<Regiones>>(respuesta3);
             string respuesta5 = await Get.GetHttp5();
             List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
             this.DgvEmpresa.Columns[0].Visible = false;
             this.DgvEmpresa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             foreach (DataGridViewRow fila in DgvEmpresa.Rows)
             {
-                foreach (var fila2 in lista4)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnCiudad"].Value) == fila2.id_ciudad)
-                    {
-                        fila.Cells["cnCiudad"].Value = fila2.nombre_ciudad;
-                        break;
-                    }
-
-                }
-                foreach (var fila3 in lista3)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnRegion"].Value) == fila3.id_region)
-                    {
-                        fila.Cells["cnRegion"].Value = fila3.nombre_region;
-
-                        break;
-                    }
-                }
-                foreach (var fila3 in lista2)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnPais"].Value) == fila3.id_pais)
-                    {
-                        fila.Cells["cnPais"].Value = fila3.nombre_pais;
-
-                        break;
-                    }
-                }
                 foreach (var fila3 in lista5)
                 {
                     if (Convert.ToInt32(fila.Cells["cnTipoEmpresa"].Value) == fila3.id_tipo_empresa)
                     {
                         fila.Cells["cnTipoEmpresa"].Value = fila3.tipo_empresa;
-
                         break;
                     }
                 }
             }
-
         }
         private async void btnModificar_Click(object sender, EventArgs e)
         {
@@ -299,25 +210,47 @@ namespace MercadoChile.Template
             txtRazonEdit.Text = DgvEmpresa.CurrentRow.Cells[2].Value.ToString();
             txtDirEdit.Text = DgvEmpresa.CurrentRow.Cells[3].Value.ToString();
             txtGiroEdit.Text = DgvEmpresa.CurrentRow.Cells[4].Value.ToString();
-
-            string respuesta4 = await Get.GetHttp4();
             string respuesta5 = await Get.GetHttp5();
-            List<Ciudad> lista3 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
-            cmbCiudadEdit.DataSource = lista3;
             cmbTipoEmpEdit.DisplayMember = "nombre_cargo";
             cmbTipoEmpEdit.ValueMember = "id_cargo";
-            cmbCiudadEdit.DisplayMember = "nombre_ciudad";
-            cmbCiudadEdit.ValueMember = "id_ciudad";
             cmbTipoEmpEdit.Text = DgvEmpresa.CurrentRow.Cells[6].Value.ToString();
-            cmbCiudadEdit.Text = DgvEmpresa.CurrentRow.Cells[8].Value.ToString();
-            string respuesta2 = await Get.GetHttp2();
-            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
-            cmbPaisEdit.DataSource = lista2;
-            cmbPaisEdit.DisplayMember = "nombre_pais";
-            cmbPaisEdit.ValueMember = "id_pais";
         }
-       
+        public async Task<string> GetHttp()
+        {
+            string street = cmbDire.Text;
+            Uri baseUri = new Uri("https://api.mapbox.com/geocoding/v5/mapbox.places/" + street + ".json?access_token=pk.eyJ1IjoiYWxqbG9yY2EiLCJhIjoiY2w5dGM2MzhmMWtuMDNwbzBtZjYwYmthOCJ9.B2_1lvG4ivhYRMLkBdxP6w");
+            WebRequest oRequest = WebRequest.Create(baseUri);
+            WebResponse oResponse = oRequest.GetResponse();
+            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+            return await sr.ReadToEndAsync();
+        }
+        private async void btnBusDirc_Click(object sender, EventArgs e)
+        {
+            AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+            string respuesta = await GetHttp();
+            var myDetails = JObject.Parse(respuesta);
+            dynamic data = JObject.Parse(respuesta);
+            var features = myDetails["features"];
+            for (int i = 0; i < 4; i++)
+            {
+                foreach (var a in features)
+                {
+                    var dir = features[i];
+                    lista.Add(dir["place_name"].ToString());
+                    break;
+                }
+            }
+            cmbDire.DataSource = lista;
+
+            cmbDire.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void btnLimpiarDir_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void txtDunsEmp_TextChanged(object sender, EventArgs e)
         {
 
@@ -508,22 +441,10 @@ namespace MercadoChile.Template
         {
 
         }
-
         private void txtGiroEmp_TextChanged(object sender, EventArgs e)
         {
 
         }
-
-        private void cmbCiudad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbRegion.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
-
-        private void cmbRegion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbRegion.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
-
         private void cmbPais_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -539,19 +460,7 @@ namespace MercadoChile.Template
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void cmbRegion_Enter(object sender, EventArgs e)
-        {
-            cmbRegion.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
-
-        private void cmbCiudad_Enter(object sender, EventArgs e)
-        {
-            cmbCiudad.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
+        
     }
 }

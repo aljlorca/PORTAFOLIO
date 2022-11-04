@@ -1299,3 +1299,9 @@ C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile
 C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.CopyComplete
 C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
 C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Google.Protobuf.dll
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Http.dll
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Google.Protobuf.pdb
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Google.Protobuf.xml
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Http.xml
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\GoogleMapsApi.dll

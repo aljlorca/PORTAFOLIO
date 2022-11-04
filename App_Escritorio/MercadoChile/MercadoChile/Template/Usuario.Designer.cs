@@ -32,12 +32,12 @@ namespace MercadoChile
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuario));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cmbDire = new System.Windows.Forms.ComboBox();
+            this.btnBuscDir = new System.Windows.Forms.Button();
+            this.btnLimpiarDir = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
-            this.cmbCiudad = new System.Windows.Forms.ComboBox();
-            this.cmbRegion = new System.Windows.Forms.ComboBox();
-            this.cmbPais = new System.Windows.Forms.ComboBox();
             this.cmbCargo = new System.Windows.Forms.ComboBox();
             this.btnCrear = new System.Windows.Forms.Button();
             this.txtConUsua = new System.Windows.Forms.TextBox();
@@ -100,12 +100,12 @@ namespace MercadoChile
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.cmbDire);
+            this.tabPage1.Controls.Add(this.btnBuscDir);
+            this.tabPage1.Controls.Add(this.btnLimpiarDir);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.cmbEmpresa);
-            this.tabPage1.Controls.Add(this.cmbCiudad);
-            this.tabPage1.Controls.Add(this.cmbRegion);
-            this.tabPage1.Controls.Add(this.cmbPais);
             this.tabPage1.Controls.Add(this.cmbCargo);
             this.tabPage1.Controls.Add(this.btnCrear);
             this.tabPage1.Controls.Add(this.txtConUsua);
@@ -122,6 +122,48 @@ namespace MercadoChile
             this.tabPage1.Text = "Crear Cliente";
             this.tabPage1.Enter += new System.EventHandler(this.tabPage1_Enter);
             this.tabPage1.Leave += new System.EventHandler(this.tabPage1_Leave);
+            // 
+            // cmbDire
+            // 
+            this.cmbDire.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDire.ForeColor = System.Drawing.Color.Black;
+            this.cmbDire.FormattingEnabled = true;
+            this.cmbDire.Location = new System.Drawing.Point(364, 239);
+            this.cmbDire.Name = "cmbDire";
+            this.cmbDire.Size = new System.Drawing.Size(300, 28);
+            this.cmbDire.TabIndex = 108;
+            // 
+            // btnBuscDir
+            // 
+            this.btnBuscDir.FlatAppearance.BorderSize = 0;
+            this.btnBuscDir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnBuscDir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscDir.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscDir.Image")));
+            this.btnBuscDir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscDir.Location = new System.Drawing.Point(345, 305);
+            this.btnBuscDir.Name = "btnBuscDir";
+            this.btnBuscDir.Size = new System.Drawing.Size(183, 40);
+            this.btnBuscDir.TabIndex = 49;
+            this.btnBuscDir.Text = "     Buscar Direccion";
+            this.btnBuscDir.UseVisualStyleBackColor = true;
+            this.btnBuscDir.Click += new System.EventHandler(this.btnBuscDir_Click);
+            // 
+            // btnLimpiarDir
+            // 
+            this.btnLimpiarDir.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarDir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnLimpiarDir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarDir.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarDir.Image")));
+            this.btnLimpiarDir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiarDir.Location = new System.Drawing.Point(543, 305);
+            this.btnLimpiarDir.Name = "btnLimpiarDir";
+            this.btnLimpiarDir.Size = new System.Drawing.Size(174, 40);
+            this.btnLimpiarDir.TabIndex = 48;
+            this.btnLimpiarDir.Text = "       Limpiar Direccion";
+            this.btnLimpiarDir.UseVisualStyleBackColor = true;
+            this.btnLimpiarDir.Click += new System.EventHandler(this.btnLimpiarDir_Click);
             // 
             // label9
             // 
@@ -148,54 +190,12 @@ namespace MercadoChile
             this.cmbEmpresa.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEmpresa.ForeColor = System.Drawing.Color.DimGray;
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(373, 354);
+            this.cmbEmpresa.Location = new System.Drawing.Point(373, 164);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(214, 26);
             this.cmbEmpresa.TabIndex = 39;
             this.cmbEmpresa.Text = "Empresa";
             this.cmbEmpresa.Click += new System.EventHandler(this.cmbEmpresa_Click);
-            this.cmbEmpresa.Enter += new System.EventHandler(this.cmbEmpresa_Enter);
-            this.cmbEmpresa.Leave += new System.EventHandler(this.cmbEmpresa_Leave);
-            // 
-            // cmbCiudad
-            // 
-            this.cmbCiudad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCiudad.ForeColor = System.Drawing.Color.Black;
-            this.cmbCiudad.FormattingEnabled = true;
-            this.cmbCiudad.Location = new System.Drawing.Point(373, 294);
-            this.cmbCiudad.Name = "cmbCiudad";
-            this.cmbCiudad.Size = new System.Drawing.Size(214, 26);
-            this.cmbCiudad.TabIndex = 38;
-            this.cmbCiudad.Enter += new System.EventHandler(this.cmbCiudad_Enter);
-            this.cmbCiudad.Leave += new System.EventHandler(this.cmbCiudad_Leave);
-            // 
-            // cmbRegion
-            // 
-            this.cmbRegion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRegion.ForeColor = System.Drawing.Color.Black;
-            this.cmbRegion.FormattingEnabled = true;
-            this.cmbRegion.Location = new System.Drawing.Point(373, 239);
-            this.cmbRegion.Name = "cmbRegion";
-            this.cmbRegion.Size = new System.Drawing.Size(214, 26);
-            this.cmbRegion.TabIndex = 37;
-            this.cmbRegion.SelectedIndexChanged += new System.EventHandler(this.cmbRegion_SelectedIndexChanged);
-            this.cmbRegion.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
-            this.cmbRegion.Enter += new System.EventHandler(this.cmbRegion_Enter);
-            this.cmbRegion.Leave += new System.EventHandler(this.cmbRegion_Leave);
-            // 
-            // cmbPais
-            // 
-            this.cmbPais.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPais.ForeColor = System.Drawing.Color.Black;
-            this.cmbPais.FormattingEnabled = true;
-            this.cmbPais.Location = new System.Drawing.Point(373, 182);
-            this.cmbPais.Name = "cmbPais";
-            this.cmbPais.Size = new System.Drawing.Size(214, 26);
-            this.cmbPais.TabIndex = 36;
-            this.cmbPais.SelectedIndexChanged += new System.EventHandler(this.cmbPais_SelectedIndexChanged);
-            this.cmbPais.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
-            this.cmbPais.Enter += new System.EventHandler(this.cmbPais_Enter);
-            this.cmbPais.Leave += new System.EventHandler(this.cmbPais_Leave);
             // 
             // cmbCargo
             // 
@@ -209,7 +209,6 @@ namespace MercadoChile
             this.cmbCargo.Text = "Cargo";
             this.cmbCargo.SelectedIndexChanged += new System.EventHandler(this.cmbCargo_SelectedIndexChanged);
             this.cmbCargo.Enter += new System.EventHandler(this.cmbCargo_Enter);
-            this.cmbCargo.Leave += new System.EventHandler(this.cmbCargo_Leave);
             // 
             // btnCrear
             // 
@@ -284,7 +283,6 @@ namespace MercadoChile
             this.txtNombreUsua.Size = new System.Drawing.Size(214, 26);
             this.txtNombreUsua.TabIndex = 28;
             this.txtNombreUsua.Text = "Nombre Cliente";
-            this.txtNombreUsua.TextChanged += new System.EventHandler(this.txtNombreUsua_TextChanged);
             this.txtNombreUsua.Enter += new System.EventHandler(this.txtNombreUsua_Enter);
             this.txtNombreUsua.Leave += new System.EventHandler(this.txtNombreUsua_Leave);
             // 
@@ -413,7 +411,6 @@ namespace MercadoChile
             this.label3.TabIndex = 102;
             this.label3.Text = "---------------------------------------------------------------------------------" +
     "------------------------------------------------------";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label8
             // 
@@ -424,7 +421,6 @@ namespace MercadoChile
             this.label8.Size = new System.Drawing.Size(205, 28);
             this.label8.TabIndex = 101;
             this.label8.Text = "Lista De Usuarios";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // groupBox1
             // 
@@ -524,8 +520,6 @@ namespace MercadoChile
             this.cmbRegionEdit.Name = "cmbRegionEdit";
             this.cmbRegionEdit.Size = new System.Drawing.Size(214, 27);
             this.cmbRegionEdit.TabIndex = 84;
-            this.cmbRegionEdit.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
-            this.cmbRegionEdit.TextUpdate += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             // 
             // cmbPaisEdit
             // 
@@ -536,8 +530,6 @@ namespace MercadoChile
             this.cmbPaisEdit.Size = new System.Drawing.Size(214, 27);
             this.cmbPaisEdit.TabIndex = 83;
             this.cmbPaisEdit.Text = "Pais";
-            this.cmbPaisEdit.SelectionChangeCommitted += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
-            this.cmbPaisEdit.TextUpdate += new System.EventHandler(this.cmbPais_SelectionChangeCommitted);
             // 
             // cmbCargoEdit
             // 
@@ -665,9 +657,6 @@ namespace MercadoChile
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.ComboBox cmbEmpresa;
-        private System.Windows.Forms.ComboBox cmbCiudad;
-        private System.Windows.Forms.ComboBox cmbRegion;
-        private System.Windows.Forms.ComboBox cmbPais;
         private System.Windows.Forms.ComboBox cmbCargo;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -701,5 +690,8 @@ namespace MercadoChile
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnBuscDir;
+        private System.Windows.Forms.Button btnLimpiarDir;
+        private System.Windows.Forms.ComboBox cmbDire;
     }
 }

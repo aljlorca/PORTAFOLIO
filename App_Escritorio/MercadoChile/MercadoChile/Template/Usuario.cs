@@ -2,7 +2,9 @@
 using Datos;
 using MercadoChile.Modelos;
 using Microsoft.AspNetCore.Mvc;
+using Negocio;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -93,43 +95,14 @@ namespace MercadoChile
             List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             cmbCargo.DataSource = lista1;
-            cmbPais.DataSource = lista2;
             cmbEmpresa.DataSource = lista5;
             lista1.RemoveAt(0);
             cmbCargo.DisplayMember = "nombre_cargo";
             cmbCargo.ValueMember = "id_cargo";
-            cmbPais.DisplayMember = "nombre_pais";
-            cmbPais.ValueMember = "id_pais";
             cmbEmpresa.DisplayMember = "razon_social_empresa";
             cmbEmpresa.ValueMember = "id_empresa";
         }
-        private async void cmbPais_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            var id_pais = Convert.ToInt32(((ComboBox)sender).SelectedValue);
-            string respuesta3 = await Get.GetHttp3();
-            List<Regiones> lista3 = JsonConvert.DeserializeObject<List<Regiones>>(respuesta3);
-            cmbRegion.DisplayMember = "nombre_region";
-            cmbRegion.ValueMember = "id_region";
-            cmbRegion.DataSource = lista3.Where(x => x.id_pais == id_pais).ToList();
-            cmbRegionEdit.DisplayMember = "nombre_region";
-            cmbRegionEdit.ValueMember = "id_region";
-            cmbRegionEdit.DataSource = lista3.Where(x => x.id_pais == id_pais).ToList();
-
-
-        }
-        private async void cmbRegion_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            var id_region = Convert.ToInt32(((ComboBox)sender).SelectedValue);
-
-            string respuesta4 = await Get.GetHttp4();
-            List<Ciudad> lista3 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);
-            cmbCiudad.DisplayMember = "nombre_ciudad";
-            cmbCiudad.ValueMember = "id_ciudad";
-            cmbCiudad.DataSource = lista3.Where(x => x.id_region == id_region).ToList();
-            cmbCiudadEdit.DisplayMember = "nombre_ciudad";
-            cmbCiudadEdit.ValueMember = "id_ciudad";
-            cmbCiudadEdit.DataSource = lista3.Where(x => x.id_region == id_region).ToList();
-        }
+        
         #endregion
 
      
@@ -139,7 +112,7 @@ namespace MercadoChile
         {
             string respuesta = await Get.GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
-
+            
             foreach (var list in lista)
             {
                 if (list.correo_usuario == txtCorEdit.Text)
@@ -180,7 +153,6 @@ namespace MercadoChile
                         cmbRegionEdit.Text = "";
                         cmbCargo.Text = "";
                         cmbEmpresa.Text = "";
-                        cmbCiudad.Text = "";
                     }
 
 
@@ -200,159 +172,136 @@ namespace MercadoChile
                 {
 
 
-                        if (cmbCiudad.Text == "")
-                         {
-                        MessageBox.Show("ingrese datos en todos los campos ");
-                          }
-                         else
-                        {
-                            int id = list.id_usuario;
 
-                            int cargo = (int)cmbCargoEdit.SelectedValue;
-                            int empresa = (int)cmbEmpresaEdit.SelectedValue;
-                            int ciudad = (int)cmbCiudadEdit.SelectedValue;
-                            int pais = (int)cmbPaisEdit.SelectedValue;
-                            int region = (int)cmbRegionEdit.SelectedValue;
-                            Uri myUri = new Uri(baseUri, id.ToString());
-                            var client = new HttpClient();
-                            Usuarios post = new Usuarios()
-                            {
-                                numero_identificacion_usuario = txtRutEdit.Text,
-                                nombre_usuario = txtNomEdit.Text,
-                                direccion_usuario = txtDirEdit.Text,
-                                telefono_usuario = txtTeleEdit.Text,
-                                correo_usuario = txtCorEdit.Text,
-                                contrasena_usuario = txtConEdit.Text,
-                                administrador_usuario = '0',
-                                id_cargo = cargo,
-                                id_empresa = empresa,
-                                id_ciudad = ciudad,
-                                id_pais = pais,
-                                id_region = region,
-                            };
-                            var data = JsonSerializer.Serialize<Usuarios>(post);
-                            HttpContent content =
-                                new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                            var httpResponse = await client.PutAsync(myUri, content);
+                    int id = list.id_usuario;
+
+                    string cargo = cmbCargoEdit.SelectedValue.ToString();
+                    string empresa = cmbEmpresaEdit.SelectedValue.ToString();
+                    string ciudad = cmbCiudadEdit.SelectedValue.ToString();
+                    string pais = cmbPaisEdit.SelectedValue.ToString();
+                    string region = cmbRegionEdit.SelectedValue.ToString();
+                    Uri myUri = new Uri(baseUri, id.ToString());
+                    var client = new HttpClient();
+                    Usuarios post = new Usuarios()
+                    {
+                        numero_identificacion_usuario = txtRutEdit.Text,
+                        nombre_usuario = txtNomEdit.Text,
+                        direccion_usuario = cmbDire.Text,
+                        telefono_usuario = txtTeleEdit.Text,
+                        correo_usuario = txtCorEdit.Text,
+                        contrasena_usuario = txtConEdit.Text,
+                        administrador_usuario = '0',
+                        id_cargo = cargo,
+                        id_empresa = empresa,
+
+                    };
+                    var data = JsonSerializer.Serialize<Usuarios>(post);
+                    HttpContent content =
+                        new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                    var httpResponse = await client.PutAsync(myUri, content);
 
 
-                            if (httpResponse.IsSuccessStatusCode)
-                            {
-                                var result = await httpResponse.Content.ReadAsStringAsync();
-                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                                MessageBox.Show(postResult.ToString());
-                                this.Hide();
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        var result = await httpResponse.Content.ReadAsStringAsync();
+                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                        MessageBox.Show(postResult.ToString());
+                        this.Hide();
 
-                            }
-                        }
-                                 
+                    }
+
+
                 }
             }
         }
 
         private async void btnCrear_Click(object sender, EventArgs e)
         {
-            
-
-            
-              if (cmbCiudad.Text == "" || txtRutUsua.Text == "" || txtNombreUsua.Text =="" )
-              {
-                 MessageBox.Show("ingrese datos en todos los campos ");
-              }
-
-
-        
-              else
-              {
-
-                 
-                   int cargo = (int)cmbCargo.SelectedValue;
-                   int empresa = (int)cmbEmpresa.SelectedValue;
-                
-                   int ciudad = (int)cmbCiudad.SelectedValue;
-                   int pais = (int)cmbPais.SelectedValue;
-                   int region = (int)cmbRegion.SelectedValue;
-                
-                   var client = new HttpClient();
-                    
-
-
-                    
-                    Usuarios post2 = new Usuarios()
-                 {
-
-                        numero_identificacion_usuario = txtRutUsua.Text,
-                        nombre_usuario = txtNombreUsua.Text,
-                        direccion_usuario = txtDirecUsua.Text,
-                        telefono_usuario = txtTelUsua.Text,
-                        correo_usuario = txtCorUsua.Text,
-                        contrasena_usuario = txtConUsua.Text,
-                        administrador_usuario = '0',
-                        id_cargo = cargo,
-                        id_empresa = empresa,
-                        id_ciudad = ciudad,
-                        id_region = region,
-                        id_pais = pais,
-                   
-                    
-                    
-                    
-                  };
-             
 
 
 
-                var data = JsonSerializer.Serialize<Usuarios>(post2);
-                   HttpContent content =
-                        new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    var valido = validarRut(txtRutUsua.Text);
-                   if (IsValidEmail(txtCorUsua.Text))
+
+
+
+            string cargo = cmbCargo.SelectedValue.ToString();
+            string empresa = cmbEmpresa.SelectedValue.ToString();
+
+
+
+            var client = new HttpClient();
+
+
+
+
+            RegistrarUsuario post2 = new RegistrarUsuario()
+            {
+
+                numero_identificacion_usuario = txtRutUsua.Text,
+                nombre_usuario = txtNombreUsua.Text,
+                direccion_usuario = txtDirecUsua.Text,
+                telefono_usuario = txtTelUsua.Text,
+                correo_usuario = txtCorUsua.Text,
+                contrasena_usuario = txtConUsua.Text,
+                administrador_usuario = '0',
+                id_cargo = cargo,
+                id_empresa = empresa,
+
+
+
+
+
+            };
+
+
+
+
+            var data = JsonSerializer.Serialize<RegistrarUsuario>(post2);
+            HttpContent content =
+                 new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+            var valido = validarRut(txtRutUsua.Text);
+            if (IsValidEmail(txtCorUsua.Text))
+            {
+
+                if (valido == true)
+                {
+                    var httpResponse = await client.PostAsync(baseUri, content);
+                    if (httpResponse.IsSuccessStatusCode)
+
                     {
-                        if (cmbCiudad.Text == "Chile")
-                       {
-                           if (valido == true)
-                          {
-                                var httpResponse = await client.PostAsync(baseUri, content);
-                              if (httpResponse.IsSuccessStatusCode)
 
-                               {
+                        var result = await httpResponse.Content.ReadAsStringAsync();
+                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                        this.Hide();
 
-                                 var result = await httpResponse.Content.ReadAsStringAsync();
-                                 var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                                    this.Hide();
-
-                              }else
-                              {
-                                   MessageBox.Show("ingrese datos en todos los campos ");
-                              }
-                          }
-                           else
-
-                          {
-                              MessageBox.Show("rut malo");
-                          }
-                        }
-                        else
-                     {
-                            var httpResponse = await client.PostAsync(baseUri, content);
-                          if (httpResponse.IsSuccessStatusCode)
-
-                            {
-                                    
-                                var result = await httpResponse.Content.ReadAsStringAsync();
-                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                                this.Hide();
-
-                            }
-                        }
-                
+                    }
+                    else
+                    {
+                        MessageBox.Show("ingrese datos en todos los campos ");
                     }
                 }
-            
+                else
 
+                {
+                    MessageBox.Show("rut malo");
+                }
+            }
+            else
+            {
+                var httpResponse = await client.PostAsync(baseUri, content);
+                if (httpResponse.IsSuccessStatusCode)
+
+                {
+
+                    var result = await httpResponse.Content.ReadAsStringAsync();
+                    var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                    this.Hide();
+
+                }
+            }
 
 
         }
+            
 
         private async void button1_Click(object sender, EventArgs e)
         {
@@ -360,16 +309,13 @@ namespace MercadoChile
             DgvClientes.DataSource = response;
             string respuesta1 = await Get.GetHttp1();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            string respuesta4 = await Get.GetHttp4();
-            List<Ciudad> lista4 = JsonConvert.DeserializeObject<List<Ciudad>>(respuesta4);
             string respuesta5 = await Get.GetHttp5();
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             string respuesta = await Get.GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
-            string respuesta2 = await Get.GetHttp2();
-            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
-            string respuesta3 = await Get.GetHttp3();
-            List<Regiones> lista3 = JsonConvert.DeserializeObject<List<Regiones>>(respuesta3);
+            DgvClientes.DataSource = (from p in lista
+                                         orderby p.id_cargo descending
+                                         select p).ToList();
             this.DgvClientes.Columns[0].Visible = false;
             this.DgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;    
             foreach (DataGridViewRow fila in DgvClientes.Rows)
@@ -391,33 +337,9 @@ namespace MercadoChile
                         break;
                     }
                 }
-                foreach (var fila2 in lista4)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnCiudad"].Value) == fila2.id_ciudad)
-                    {
-                        fila.Cells["cnCiudad"].Value = fila2.nombre_ciudad;
-                        break;
-                    }
-
-                }
-                foreach (var fila1 in lista2)
-                {
-
-                    if (Convert.ToInt32(fila.Cells["cnPais"].Value) == fila1.id_pais)
-                    {
-                        fila.Cells["cnPais"].Value = fila1.nombre_pais;
-                        break;
-                    }
-                }
-                foreach (var fila1 in lista3)
-                {
-
-                    if (Convert.ToInt32(fila.Cells["cnRegion"].Value) == fila1.id_region)
-                    {
-                        fila.Cells["cnRegion"].Value = fila1.nombre_region;
-                        break;
-                    }
-                }
+                
+                
+                
                 foreach (var fila3 in lista5)
                 {
                     if (Convert.ToInt32(fila.Cells["cnEmpresa"].Value) == fila3.id_empresa)
@@ -434,34 +356,60 @@ namespace MercadoChile
         {
             txtRutEdit.Text = DgvClientes.CurrentRow.Cells[1].Value.ToString();
             txtNomEdit.Text = DgvClientes.CurrentRow.Cells[2].Value.ToString();
-            txtDirEdit.Text = DgvClientes.CurrentRow.Cells[3].Value.ToString();
+            cmbDire.Text = DgvClientes.CurrentRow.Cells[3].Value.ToString();
             txtTeleEdit.Text = DgvClientes.CurrentRow.Cells[4].Value.ToString();
-            txtCorEdit.Text = DgvClientes.CurrentRow.Cells[5].Value.ToString();
-            
+            txtCorEdit.Text = DgvClientes.CurrentRow.Cells[5].Value.ToString();           
             string respuesta1 = await Get.GetHttp1();
             string respuesta5 = await Get.GetHttp5();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            string respuesta2 = await Get.GetHttp2();
-            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             lista1.RemoveAt(0);
             cmbCargoEdit.DataSource = lista1;
-           
             cmbEmpresaEdit.DataSource = lista5;
             cmbCargoEdit.DisplayMember = "nombre_cargo";
             cmbCargoEdit.ValueMember = "id_cargo";
             cmbEmpresaEdit.DisplayMember = "razon_social_empresa";
             cmbEmpresaEdit.ValueMember = "id_empresa";
-            cmbPaisEdit.DataSource = lista2;
             cmbPaisEdit.DisplayMember = "nombre_pais";
             cmbPaisEdit.ValueMember = "id_pais";
             cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells[7].Value.ToString();
-            cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();
-            cmbCiudadEdit.Text = DgvClientes.CurrentRow.Cells["cnCiudad"].Value.ToString();
-            cmbRegionEdit.Text = DgvClientes.CurrentRow.Cells["cnRegion"].Value.ToString();
-            cmbPaisEdit.Text = DgvClientes.CurrentRow.Cells["cnPais"].Value.ToString();
-           
+            cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();          
             
+        }
+        public async Task<string> GetHttp()
+        {
+            string street = cmbDire.Text;
+            Uri baseUri = new Uri("https://api.mapbox.com/geocoding/v5/mapbox.places/" + street + ".json?access_token=pk.eyJ1IjoiYWxqbG9yY2EiLCJhIjoiY2w5dGM2MzhmMWtuMDNwbzBtZjYwYmthOCJ9.B2_1lvG4ivhYRMLkBdxP6w");
+            WebRequest oRequest = WebRequest.Create(baseUri);
+            WebResponse oResponse = oRequest.GetResponse();
+            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+            return await sr.ReadToEndAsync();
+        }
+        private async void btnBuscDir_Click(object sender, EventArgs e)
+        {
+            AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+            string respuesta = await GetHttp();
+            var myDetails = JObject.Parse(respuesta);
+            var features = myDetails["features"];
+            for (int i = 0; i < 4; i++)
+            {
+                foreach (var a in features)
+                {
+                    var dir = features[i];
+                    lista.Add(dir["place_name"].ToString());
+                    break;
+                }
+            }
+            cmbDire.DataSource = lista;
+
+            cmbDire.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void btnLimpiarDir_Click(object sender, EventArgs e)
+        {
+            AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+            cmbDire.DataSource = lista;
+            cmbDire.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private void cmbCargo_SelectedIndexChanged(object sender, EventArgs e)
@@ -604,55 +552,14 @@ namespace MercadoChile
 
         }
 
-        private void cmbPais_Enter(object sender, EventArgs e)
-        {
 
-        }
-
-        private void cmbPais_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbRegion_Enter(object sender, EventArgs e)
-        {
-            cmbRegion.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
-
-        private void cmbRegion_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbCiudad_Enter(object sender, EventArgs e)
-        {
-            cmbCiudad.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
-
-        private void cmbCiudad_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbEmpresa_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbEmpresa_Leave(object sender, EventArgs e)
-        {
-
-        }
 
         private void cmbCargo_Enter(object sender, EventArgs e)
         {
             cmbCargo.ForeColor = Color.Black;
         }
 
-        private void cmbCargo_Leave(object sender, EventArgs e)
-        {
 
-        }
 
         private void txtRutEdit_Enter(object sender, EventArgs e)
         {
@@ -777,36 +684,12 @@ namespace MercadoChile
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbRegion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-             
-        }
-
-        private void cmbPais_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNombreUsua_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void cmbEmpresa_Click(object sender, EventArgs e)
         {
             cmbEmpresa.ForeColor = Color.Black;
         }
+
+
     }
 }
 #endregion
