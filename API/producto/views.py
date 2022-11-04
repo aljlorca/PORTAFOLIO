@@ -12,12 +12,12 @@ import json
 import cx_Oracle
 # Create your views here.
 
-def agregar_producto(nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,id_usuario):
+def agregar_producto(nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,id_usuario,descripcion_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('PRODUCTO_AGREGAR',[nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario,salida])
+    cursor.callproc('PRODUCTO_AGREGAR',[nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario,descripcion_producto,salida])
     return round(salida.getvalue())
 
 def modificar_producto(id_producto,saldo_producto):
@@ -141,7 +141,8 @@ class ProductoViewset(viewsets.ModelViewSet):
             saldo_producto = request.data['saldo_producto']
             estado_fila = request.data['estado_fila']
             id_usuario = request.data['id_usuario']
-            Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
+            descripcion_producto = request.data['descripcion_producto']
+            Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario,descripcion_producto=descripcion_producto)
             datos={'message':'Success'}
         except:
             datos = {'message':'ERROR: Validar datos'}
@@ -159,16 +160,17 @@ class ProductoViewset(viewsets.ModelViewSet):
             saldo_producto = request.data['saldo_producto']
             estado_fila = request.data['estado_fila']
             id_usuario = request.data['id_usuario']
-            Producto.objects.update(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
+            descripcion_producto = request.data['descripcion_producto']
+            Producto.objects.update(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario,descripcion_producto=descripcion_producto)
             datos = {'message': 'Success'}
         except: 
             datos = {'message':'ERROR: Validar datos'}
         return Response(datos, status=200)
 
     def delete(self, request, *args, **kwargs):
-        id_contrato = request.data['id_contrato']
+        id_producto = request.data['id_producto']
         try:
-            salida = eliminar_producto(id_contrato)
+            salida = eliminar_producto(id_producto)
             if salida == 1:
                 datos={'message':'Success'}
             elif salida == 0:

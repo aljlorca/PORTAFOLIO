@@ -11,20 +11,20 @@ import cx_Oracle
 import datetime
 
 # Create your views here.
-def agregar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais):
+def agregar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     usuario_vigente = '1'
     fecha_creacion_usuario = datetime.date.today()
-    cursor.callproc('USUARIO_AGREGAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,usuario_vigente,fecha_creacion_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais,salida])
+    cursor.callproc('USUARIO_AGREGAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,usuario_vigente,fecha_creacion_usuario,administrador_usuario,id_cargo,id_empresa,salida])
     return round(salida.getvalue())
 
-def modificar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais):
+def modificar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('USUARIO_MODIFICAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais,salida])
+    cursor.callproc('USUARIO_MODIFICAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,salida])
     return round(salida.getvalue())
 
 def eliminar_usuario(correo_usuario):
@@ -71,7 +71,7 @@ class UsuarioView(View):
         try:
             jd = json.loads(request.body)
             try:
-                salida = agregar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                salida = agregar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'])
                 if salida == 1:
                     datos = {'message':'Success'}
                 elif salida == 0:
@@ -90,7 +90,7 @@ class UsuarioView(View):
             usuarios = list(Usuario.objects.filter(id_usuario=id_usuario).values())
             if len(usuarios) > 0:
                 try:
-                    salida = modificar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'],id_ciudad=jd['id_ciudad'],id_region=jd['id_region'],id_pais=jd['id_pais'])
+                    salida = modificar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'])
                     if salida == 1:
                         datos={'message':"Success"}
                     elif salida == 0:
