@@ -154,7 +154,7 @@ def pedido_post(descripcion, fecha_sla,id_usuario):
 def usuario_get_id(id):
     url = 'http://127.0.0.1:8000/api_usuario/usuario/'+str(id)
     try: 
-     response = requests.get(url)
+        response = requests.get(url)
     except:
         data = 'error de conexion'
         return data
@@ -169,7 +169,7 @@ def usuario_get_id(id):
 def get_pais_id(id):
     url = 'http://127.0.0.1:8000/api_pais/pais/'+str(id)
     try: 
-     response = requests.get(url)
+        response = requests.get(url)
     except:
         data = 'error de conexion'
         return data
@@ -184,7 +184,7 @@ def get_pais_id(id):
 def get_ciudad_id(id):
     url = 'http://127.0.0.1:8000/api_ciudad/ciudad/'+str(id)
     try: 
-     response = requests.get(url)
+        response = requests.get(url)
     except:
         data = 'error de conexion'
         return data
@@ -198,7 +198,7 @@ def get_ciudad_id(id):
 def get_region_id(id):
     url = 'http://127.0.0.1:8000/api_region/region/'+str(id)
     try: 
-     response = requests.get(url)
+        response = requests.get(url)
     except:
         data = 'error de conexion'
         return data
@@ -230,7 +230,7 @@ def ventas_get():
 def Ventas_get_id(id):
     url = 'http://127.0.0.1:8000/api_venta/venta/'+str(id)
     try: 
-     response = requests.get(url)
+        response = requests.get(url)
     except:
         data = 'error de conexion'
         return data
