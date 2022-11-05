@@ -39,13 +39,13 @@ namespace MercadoChile.Template
         DBApi DBApi = new DBApi();
         getEmpresa Get = new getEmpresa();
 
-        Uri baseUri = new Uri("http://127.0.0.1:8005/api/empresa_old/");
+        Uri baseUri = new Uri("http://127.0.0.1:8000/api_empresa/empresa_old/");
         
 
         
         private async void  Empresa_Carga(object sender, EventArgs e)
         {
-            string respuesta5 = await Get.GetHttp5();
+            string respuesta5 = await Get.GetHttp2();
             List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
             cmbEmpresa.DataSource = lista5;;
             cmbEmpresa.DisplayMember = "tipo_empresa";
@@ -186,9 +186,9 @@ namespace MercadoChile.Template
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            dynamic response = DBApi.Get("http://127.0.0.1:8005/api/empresa/?format=json");
+            dynamic response = DBApi.Get("http://127.0.0.1:8000/api_empresa/empresa/?format=json");
             DgvEmpresa.DataSource = response;
-            string respuesta5 = await Get.GetHttp5();
+            string respuesta5 = await Get.GetHttp2();
             List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
             this.DgvEmpresa.Columns[0].Visible = false;
             this.DgvEmpresa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -210,7 +210,7 @@ namespace MercadoChile.Template
             txtRazonEdit.Text = DgvEmpresa.CurrentRow.Cells[2].Value.ToString();
             txtDirEdit.Text = DgvEmpresa.CurrentRow.Cells[3].Value.ToString();
             txtGiroEdit.Text = DgvEmpresa.CurrentRow.Cells[4].Value.ToString();
-            string respuesta5 = await Get.GetHttp5();
+            string respuesta5 = await Get.GetHttp2();
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             cmbTipoEmpEdit.DisplayMember = "nombre_cargo";
             cmbTipoEmpEdit.ValueMember = "id_cargo";

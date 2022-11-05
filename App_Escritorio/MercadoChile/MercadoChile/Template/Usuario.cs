@@ -74,7 +74,7 @@ namespace MercadoChile
         #endregion
 
 
-        Uri baseUri = new Uri("http://127.0.0.1:8016/api/usuario_old/");
+        Uri baseUri = new Uri("http://127.0.0.1:8000/api_usuario/usuario_old/");
         
 
 
@@ -88,11 +88,9 @@ namespace MercadoChile
         {
             string respuesta = await Get.GetHttp();
             string respuesta1 = await Get.GetHttp1();
-            string respuesta2 = await Get.GetHttp2();
-            string respuesta5 = await Get.GetHttp5();
+            string respuesta5 = await Get.GetHttp2();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            List<Pais> lista2 = JsonConvert.DeserializeObject<List<Pais>>(respuesta2);
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             cmbCargo.DataSource = lista1;
             cmbEmpresa.DataSource = lista5;
@@ -145,12 +143,10 @@ namespace MercadoChile
                     {
                         txtRutEdit.Text = "";
                         txtNomEdit.Text = "";
-                        txtDirEdit.Text = "";
+                        cmbDireEdit.Text = "";
                         txtTeleEdit.Text = "";
                         txtCorEdit.Text = "";
                         txtConEdit.Text = "";
-                        cmbPaisEdit.Text = "";
-                        cmbRegionEdit.Text = "";
                         cmbCargo.Text = "";
                         cmbEmpresa.Text = "";
                     }
@@ -177,9 +173,6 @@ namespace MercadoChile
 
                     string cargo = cmbCargoEdit.SelectedValue.ToString();
                     string empresa = cmbEmpresaEdit.SelectedValue.ToString();
-                    string ciudad = cmbCiudadEdit.SelectedValue.ToString();
-                    string pais = cmbPaisEdit.SelectedValue.ToString();
-                    string region = cmbRegionEdit.SelectedValue.ToString();
                     Uri myUri = new Uri(baseUri, id.ToString());
                     var client = new HttpClient();
                     Usuarios post = new Usuarios()
@@ -238,7 +231,7 @@ namespace MercadoChile
 
                 numero_identificacion_usuario = txtRutUsua.Text,
                 nombre_usuario = txtNombreUsua.Text,
-                direccion_usuario = txtDirecUsua.Text,
+                direccion_usuario = cmbDire.Text,
                 telefono_usuario = txtTelUsua.Text,
                 correo_usuario = txtCorUsua.Text,
                 contrasena_usuario = txtConUsua.Text,
@@ -305,11 +298,11 @@ namespace MercadoChile
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            dynamic response = DBApi.Get("http://127.0.0.1:8016/api/usuario/?format=json");
+            dynamic response = DBApi.Get("http://127.0.0.1:8000/api_usuario/usuario/?format=json");
             DgvClientes.DataSource = response;
             string respuesta1 = await Get.GetHttp1();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            string respuesta5 = await Get.GetHttp5();
+            string respuesta5 = await Get.GetHttp2();
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             string respuesta = await Get.GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
@@ -360,7 +353,7 @@ namespace MercadoChile
             txtTeleEdit.Text = DgvClientes.CurrentRow.Cells[4].Value.ToString();
             txtCorEdit.Text = DgvClientes.CurrentRow.Cells[5].Value.ToString();           
             string respuesta1 = await Get.GetHttp1();
-            string respuesta5 = await Get.GetHttp5();
+            string respuesta5 = await Get.GetHttp2();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
             lista1.RemoveAt(0);
@@ -370,8 +363,6 @@ namespace MercadoChile
             cmbCargoEdit.ValueMember = "id_cargo";
             cmbEmpresaEdit.DisplayMember = "razon_social_empresa";
             cmbEmpresaEdit.ValueMember = "id_empresa";
-            cmbPaisEdit.DisplayMember = "nombre_pais";
-            cmbPaisEdit.ValueMember = "id_pais";
             cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells[7].Value.ToString();
             cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();          
             
@@ -411,17 +402,6 @@ namespace MercadoChile
             cmbDire.DataSource = lista;
             cmbDire.DropDownStyle = ComboBoxStyle.DropDown;
         }
-
-        private void cmbCargo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtRutUsua_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtRutUsua_Enter(object sender, EventArgs e)
         {
             if (txtRutUsua.Text == "Rut Cliente")
@@ -464,20 +444,20 @@ namespace MercadoChile
 
         private void txtDirecUsua_Enter(object sender, EventArgs e)
         {
-            if (txtDirecUsua.Text == "Direccion")
+            if (cmbDire.Text == "Direccion")
             {
-                txtDirecUsua.Text = "";
-                txtDirecUsua.ForeColor = Color.Black;
+                cmbDire.Text = "";
+                cmbDire.ForeColor = Color.Black;
 
             }
         }
 
         private void txtDirecUsua_Leave(object sender, EventArgs e)
         {
-            if (txtDirecUsua.Text == "")
+            if (cmbDire.Text == "")
             {
-                txtDirecUsua.Text = "Direccion";
-                txtDirecUsua.ForeColor = Color.DimGray;
+                cmbDire.Text = "Direccion";
+                cmbDire.ForeColor = Color.DimGray;
 
             }
         }
@@ -541,26 +521,10 @@ namespace MercadoChile
 
             }
         }
-
-        private void tabPage1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-
-
         private void cmbCargo_Enter(object sender, EventArgs e)
         {
             cmbCargo.ForeColor = Color.Black;
         }
-
-
-
         private void txtRutEdit_Enter(object sender, EventArgs e)
         {
             if (txtRutEdit.Text == "Rut Cliente")
@@ -569,7 +533,6 @@ namespace MercadoChile
                 txtRutEdit.ForeColor = Color.Black;
 
             }
-
         }
 
         private void txtRutEdit_Leave(object sender, EventArgs e)
@@ -602,27 +565,6 @@ namespace MercadoChile
 
             }
         }
-
-        private void txtDirEdit_Enter(object sender, EventArgs e)
-        {
-            if (txtDirEdit.Text == "Direccion")
-            {
-                txtDirEdit.Text = "";
-                txtDirEdit.ForeColor = Color.Black;
-
-            }
-        }
-
-        private void txtDirEdit_Leave(object sender, EventArgs e)
-        {
-            if (txtDirEdit.Text == "")
-            {
-                txtDirEdit.Text = "Direccion";
-                txtDirEdit.ForeColor = Color.DimGray;
-
-            }
-        }
-
         private void txtTeleEdit_Enter(object sender, EventArgs e)
         {
             if (txtTeleEdit.Text == "Telefono")

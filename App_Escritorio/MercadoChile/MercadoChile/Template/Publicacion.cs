@@ -25,7 +25,7 @@ namespace MercadoChile.Template
     public partial class Publicacion : Form
     {
         getPublicacion Get = new getPublicacion();
-        private string url = "http://127.0.0.1:8017/api/venta_old/";
+        private string url = "http://127.0.0.1:8000/api_venta/venta_old/";
         public Publicacion()
         {
             InitializeComponent();
@@ -174,11 +174,6 @@ namespace MercadoChile.Template
                 txtCliente.ForeColor = Color.DimGray;
 
             }
-        }
-
-        private void txtDescrip_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

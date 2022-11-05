@@ -22,7 +22,7 @@ namespace MercadoChile.Template
     public partial class Imagenes : Form
     {
         getProcesos Get = new getProcesos();
-        Uri baseUri = new Uri("http://127.0.0.1:8010/api/producto_old/");
+        Uri baseUri = new Uri("http://127.0.0.1:8000/api_producto/producto_old/");
         public Imagenes(string name, Image img)
         {
             InitializeComponent ();

@@ -27,7 +27,7 @@ namespace MercadoChile
         {
             string json = "{\"nombre_cargo\": \"" + txtCargo.Text + "\"}";
 
-            dynamic respuesta = dBApi.Post("http://127.0.0.1:8002/api/cargo/?format=json", json);
+            dynamic respuesta = dBApi.Post("http://127.0.0.1:8000/api_cargo/cargo/?format=json", json);
 
             MessageBox.Show(respuesta.ToString());
         }

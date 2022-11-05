@@ -43,11 +43,25 @@ namespace MercadoChile
             this.txtConUsua = new System.Windows.Forms.TextBox();
             this.txtCorUsua = new System.Windows.Forms.TextBox();
             this.txtTelUsua = new System.Windows.Forms.TextBox();
-            this.txtDirecUsua = new System.Windows.Forms.TextBox();
             this.txtNombreUsua = new System.Windows.Forms.TextBox();
             this.txtRutUsua = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.DgvClientes = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.cmbEmpresaEdit = new System.Windows.Forms.ComboBox();
+            this.cmbCargoEdit = new System.Windows.Forms.ComboBox();
+            this.txtConEdit = new System.Windows.Forms.TextBox();
+            this.txtRutEdit = new System.Windows.Forms.TextBox();
+            this.txtTeleEdit = new System.Windows.Forms.TextBox();
+            this.txtNomEdit = new System.Windows.Forms.TextBox();
+            this.txtCorEdit = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cmbDireEdit = new System.Windows.Forms.ComboBox();
             this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,27 +70,8 @@ namespace MercadoChile
             this.cnFeha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCiudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.cmbEmpresaEdit = new System.Windows.Forms.ComboBox();
-            this.cmbCiudadEdit = new System.Windows.Forms.ComboBox();
-            this.cmbRegionEdit = new System.Windows.Forms.ComboBox();
-            this.cmbPaisEdit = new System.Windows.Forms.ComboBox();
-            this.cmbCargoEdit = new System.Windows.Forms.ComboBox();
-            this.txtConEdit = new System.Windows.Forms.TextBox();
-            this.txtRutEdit = new System.Windows.Forms.TextBox();
-            this.txtTeleEdit = new System.Windows.Forms.TextBox();
-            this.txtDirEdit = new System.Windows.Forms.TextBox();
-            this.txtNomEdit = new System.Windows.Forms.TextBox();
-            this.txtCorEdit = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBuscarDire = new System.Windows.Forms.Button();
+            this.btnLimpiarDire = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -111,7 +106,6 @@ namespace MercadoChile
             this.tabPage1.Controls.Add(this.txtConUsua);
             this.tabPage1.Controls.Add(this.txtCorUsua);
             this.tabPage1.Controls.Add(this.txtTelUsua);
-            this.tabPage1.Controls.Add(this.txtDirecUsua);
             this.tabPage1.Controls.Add(this.txtNombreUsua);
             this.tabPage1.Controls.Add(this.txtRutUsua);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -120,8 +114,6 @@ namespace MercadoChile
             this.tabPage1.Size = new System.Drawing.Size(1036, 584);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Crear Cliente";
-            this.tabPage1.Enter += new System.EventHandler(this.tabPage1_Enter);
-            this.tabPage1.Leave += new System.EventHandler(this.tabPage1_Leave);
             // 
             // cmbDire
             // 
@@ -132,6 +124,7 @@ namespace MercadoChile
             this.cmbDire.Name = "cmbDire";
             this.cmbDire.Size = new System.Drawing.Size(300, 28);
             this.cmbDire.TabIndex = 108;
+            this.cmbDire.Text = "cmbDire";
             // 
             // btnBuscDir
             // 
@@ -207,7 +200,6 @@ namespace MercadoChile
             this.cmbCargo.Size = new System.Drawing.Size(214, 26);
             this.cmbCargo.TabIndex = 35;
             this.cmbCargo.Text = "Cargo";
-            this.cmbCargo.SelectedIndexChanged += new System.EventHandler(this.cmbCargo_SelectedIndexChanged);
             this.cmbCargo.Enter += new System.EventHandler(this.cmbCargo_Enter);
             // 
             // btnCrear
@@ -230,7 +222,7 @@ namespace MercadoChile
             // 
             this.txtConUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConUsua.ForeColor = System.Drawing.Color.DimGray;
-            this.txtConUsua.Location = new System.Drawing.Point(24, 432);
+            this.txtConUsua.Location = new System.Drawing.Point(24, 370);
             this.txtConUsua.Name = "txtConUsua";
             this.txtConUsua.Size = new System.Drawing.Size(214, 26);
             this.txtConUsua.TabIndex = 32;
@@ -242,7 +234,7 @@ namespace MercadoChile
             // 
             this.txtCorUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorUsua.ForeColor = System.Drawing.Color.DimGray;
-            this.txtCorUsua.Location = new System.Drawing.Point(24, 354);
+            this.txtCorUsua.Location = new System.Drawing.Point(24, 301);
             this.txtCorUsua.Name = "txtCorUsua";
             this.txtCorUsua.Size = new System.Drawing.Size(214, 26);
             this.txtCorUsua.TabIndex = 31;
@@ -254,25 +246,13 @@ namespace MercadoChile
             // 
             this.txtTelUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelUsua.ForeColor = System.Drawing.Color.DimGray;
-            this.txtTelUsua.Location = new System.Drawing.Point(24, 294);
+            this.txtTelUsua.Location = new System.Drawing.Point(24, 241);
             this.txtTelUsua.Name = "txtTelUsua";
             this.txtTelUsua.Size = new System.Drawing.Size(214, 26);
             this.txtTelUsua.TabIndex = 30;
             this.txtTelUsua.Text = "Telefono";
             this.txtTelUsua.Enter += new System.EventHandler(this.txtTelUsua_Enter);
             this.txtTelUsua.Leave += new System.EventHandler(this.txtTelUsua_Leave);
-            // 
-            // txtDirecUsua
-            // 
-            this.txtDirecUsua.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDirecUsua.ForeColor = System.Drawing.Color.DimGray;
-            this.txtDirecUsua.Location = new System.Drawing.Point(24, 239);
-            this.txtDirecUsua.Name = "txtDirecUsua";
-            this.txtDirecUsua.Size = new System.Drawing.Size(214, 26);
-            this.txtDirecUsua.TabIndex = 29;
-            this.txtDirecUsua.Text = "Direccion";
-            this.txtDirecUsua.Enter += new System.EventHandler(this.txtDirecUsua_Enter);
-            this.txtDirecUsua.Leave += new System.EventHandler(this.txtDirecUsua_Leave);
             // 
             // txtNombreUsua
             // 
@@ -295,7 +275,6 @@ namespace MercadoChile
             this.txtRutUsua.Size = new System.Drawing.Size(214, 26);
             this.txtRutUsua.TabIndex = 27;
             this.txtRutUsua.Text = "Rut Cliente";
-            this.txtRutUsua.TextChanged += new System.EventHandler(this.txtRutUsua_TextChanged);
             this.txtRutUsua.Enter += new System.EventHandler(this.txtRutUsua_Enter);
             this.txtRutUsua.Leave += new System.EventHandler(this.txtRutUsua_Leave);
             // 
@@ -326,15 +305,204 @@ namespace MercadoChile
             this.cnCorreo,
             this.cnFeha,
             this.cnCargo,
-            this.cnEmpresa,
-            this.cnCiudad,
-            this.cnRegion,
-            this.cnPais});
+            this.cnEmpresa});
             this.DgvClientes.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.DgvClientes.Location = new System.Drawing.Point(240, 49);
             this.DgvClientes.Name = "DgvClientes";
             this.DgvClientes.Size = new System.Drawing.Size(793, 529);
             this.DgvClientes.TabIndex = 94;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(464, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(412, 13);
+            this.label3.TabIndex = 102;
+            this.label3.Text = "---------------------------------------------------------------------------------" +
+    "------------------------------------------------------";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(572, 5);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(205, 28);
+            this.label8.TabIndex = 101;
+            this.label8.Text = "Lista De Usuarios";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnBuscarDire);
+            this.groupBox1.Controls.Add(this.cmbDireEdit);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btnLimpiarDire);
+            this.groupBox1.Controls.Add(this.btnEdit);
+            this.groupBox1.Controls.Add(this.btnModificar);
+            this.groupBox1.Controls.Add(this.cmbEmpresaEdit);
+            this.groupBox1.Controls.Add(this.cmbCargoEdit);
+            this.groupBox1.Controls.Add(this.txtConEdit);
+            this.groupBox1.Controls.Add(this.txtRutEdit);
+            this.groupBox1.Controls.Add(this.txtTeleEdit);
+            this.groupBox1.Controls.Add(this.txtNomEdit);
+            this.groupBox1.Controls.Add(this.txtCorEdit);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(3, 18);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(232, 566);
+            this.groupBox1.TabIndex = 96;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Modificar Usuario";
+            // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(6, 520);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(250, 40);
+            this.button2.TabIndex = 98;
+            this.button2.Text = "Eliminar Cliente";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(10, 437);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(216, 40);
+            this.btnEdit.TabIndex = 68;
+            this.btnEdit.Text = "Editar Cliente";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.FlatAppearance.BorderSize = 0;
+            this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificar.Location = new System.Drawing.Point(6, 474);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(216, 40);
+            this.btnModificar.TabIndex = 97;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // cmbEmpresaEdit
+            // 
+            this.cmbEmpresaEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbEmpresaEdit.FormattingEnabled = true;
+            this.cmbEmpresaEdit.Location = new System.Drawing.Point(12, 244);
+            this.cmbEmpresaEdit.Name = "cmbEmpresaEdit";
+            this.cmbEmpresaEdit.Size = new System.Drawing.Size(214, 27);
+            this.cmbEmpresaEdit.TabIndex = 86;
+            this.cmbEmpresaEdit.Text = "Empresa";
+            // 
+            // cmbCargoEdit
+            // 
+            this.cmbCargoEdit.DisplayMember = "1";
+            this.cmbCargoEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbCargoEdit.FormattingEnabled = true;
+            this.cmbCargoEdit.Location = new System.Drawing.Point(12, 211);
+            this.cmbCargoEdit.Name = "cmbCargoEdit";
+            this.cmbCargoEdit.Size = new System.Drawing.Size(214, 27);
+            this.cmbCargoEdit.TabIndex = 82;
+            this.cmbCargoEdit.Text = "Cargo";
+            this.cmbCargoEdit.ValueMember = "0";
+            // 
+            // txtConEdit
+            // 
+            this.txtConEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtConEdit.Location = new System.Drawing.Point(12, 178);
+            this.txtConEdit.Name = "txtConEdit";
+            this.txtConEdit.Size = new System.Drawing.Size(214, 27);
+            this.txtConEdit.TabIndex = 78;
+            this.txtConEdit.Text = "Nueva contraseña";
+            this.txtConEdit.Enter += new System.EventHandler(this.txtConEdit_Enter);
+            this.txtConEdit.Leave += new System.EventHandler(this.txtConEdit_Leave);
+            // 
+            // txtRutEdit
+            // 
+            this.txtRutEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtRutEdit.Location = new System.Drawing.Point(12, 46);
+            this.txtRutEdit.Name = "txtRutEdit";
+            this.txtRutEdit.Size = new System.Drawing.Size(214, 27);
+            this.txtRutEdit.TabIndex = 81;
+            this.txtRutEdit.Text = "Rut Cliente";
+            this.txtRutEdit.Enter += new System.EventHandler(this.txtRutEdit_Enter);
+            this.txtRutEdit.Leave += new System.EventHandler(this.txtRutEdit_Leave);
+            // 
+            // txtTeleEdit
+            // 
+            this.txtTeleEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtTeleEdit.Location = new System.Drawing.Point(12, 112);
+            this.txtTeleEdit.Name = "txtTeleEdit";
+            this.txtTeleEdit.Size = new System.Drawing.Size(214, 27);
+            this.txtTeleEdit.TabIndex = 76;
+            this.txtTeleEdit.Text = "Telefono";
+            this.txtTeleEdit.Enter += new System.EventHandler(this.txtTeleEdit_Enter);
+            this.txtTeleEdit.Leave += new System.EventHandler(this.txtTeleEdit_Leave);
+            // 
+            // txtNomEdit
+            // 
+            this.txtNomEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNomEdit.Location = new System.Drawing.Point(12, 79);
+            this.txtNomEdit.Name = "txtNomEdit";
+            this.txtNomEdit.Size = new System.Drawing.Size(214, 27);
+            this.txtNomEdit.TabIndex = 74;
+            this.txtNomEdit.Text = "Nombre Cliente";
+            this.txtNomEdit.Enter += new System.EventHandler(this.txtNomEdit_Enter);
+            this.txtNomEdit.Leave += new System.EventHandler(this.txtNomEdit_Leave);
+            // 
+            // txtCorEdit
+            // 
+            this.txtCorEdit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtCorEdit.Location = new System.Drawing.Point(12, 145);
+            this.txtCorEdit.Name = "txtCorEdit";
+            this.txtCorEdit.Size = new System.Drawing.Size(214, 27);
+            this.txtCorEdit.TabIndex = 77;
+            this.txtCorEdit.Text = "Correo";
+            this.txtCorEdit.Enter += new System.EventHandler(this.txtCorEdit_Enter);
+            this.txtCorEdit.Leave += new System.EventHandler(this.txtCorEdit_Leave);
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(38, 131);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(10, 10);
+            this.button1.TabIndex = 95;
+            this.button1.Tag = "";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // cmbDireEdit
+            // 
+            this.cmbDireEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDireEdit.ForeColor = System.Drawing.Color.Black;
+            this.cmbDireEdit.FormattingEnabled = true;
+            this.cmbDireEdit.Location = new System.Drawing.Point(0, 277);
+            this.cmbDireEdit.Name = "cmbDireEdit";
+            this.cmbDireEdit.Size = new System.Drawing.Size(227, 28);
+            this.cmbDireEdit.TabIndex = 109;
+            this.cmbDireEdit.Text = "Direccion";
             // 
             // cnNumeIdenUsuar
             // 
@@ -384,244 +552,35 @@ namespace MercadoChile
             this.cnEmpresa.HeaderText = "Empresa";
             this.cnEmpresa.Name = "cnEmpresa";
             // 
-            // cnCiudad
+            // btnBuscarDire
             // 
-            this.cnCiudad.DataPropertyName = "id_ciudad";
-            this.cnCiudad.HeaderText = "Ciudad";
-            this.cnCiudad.Name = "cnCiudad";
+            this.btnBuscarDire.FlatAppearance.BorderSize = 0;
+            this.btnBuscarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnBuscarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarDire.Image")));
+            this.btnBuscarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscarDire.Location = new System.Drawing.Point(21, 311);
+            this.btnBuscarDire.Name = "btnBuscarDire";
+            this.btnBuscarDire.Size = new System.Drawing.Size(183, 40);
+            this.btnBuscarDire.TabIndex = 111;
+            this.btnBuscarDire.Text = "     Buscar Direccion";
+            this.btnBuscarDire.UseVisualStyleBackColor = true;
             // 
-            // cnRegion
+            // btnLimpiarDire
             // 
-            this.cnRegion.DataPropertyName = "id_region";
-            this.cnRegion.HeaderText = "Region";
-            this.cnRegion.Name = "cnRegion";
-            // 
-            // cnPais
-            // 
-            this.cnPais.DataPropertyName = "id_pais";
-            this.cnPais.HeaderText = "Pais";
-            this.cnPais.Name = "cnPais";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(464, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(412, 13);
-            this.label3.TabIndex = 102;
-            this.label3.Text = "---------------------------------------------------------------------------------" +
-    "------------------------------------------------------";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(572, 5);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(205, 28);
-            this.label8.TabIndex = 101;
-            this.label8.Text = "Lista De Usuarios";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.btnEdit);
-            this.groupBox1.Controls.Add(this.btnModificar);
-            this.groupBox1.Controls.Add(this.cmbEmpresaEdit);
-            this.groupBox1.Controls.Add(this.cmbCiudadEdit);
-            this.groupBox1.Controls.Add(this.cmbRegionEdit);
-            this.groupBox1.Controls.Add(this.cmbPaisEdit);
-            this.groupBox1.Controls.Add(this.cmbCargoEdit);
-            this.groupBox1.Controls.Add(this.txtConEdit);
-            this.groupBox1.Controls.Add(this.txtRutEdit);
-            this.groupBox1.Controls.Add(this.txtTeleEdit);
-            this.groupBox1.Controls.Add(this.txtDirEdit);
-            this.groupBox1.Controls.Add(this.txtNomEdit);
-            this.groupBox1.Controls.Add(this.txtCorEdit);
-            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(3, 18);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(232, 566);
-            this.groupBox1.TabIndex = 96;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Modificar Usuario";
-            // 
-            // button2
-            // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(6, 520);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(250, 40);
-            this.button2.TabIndex = 98;
-            this.button2.Text = "Eliminar Cliente";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(6, 437);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(216, 40);
-            this.btnEdit.TabIndex = 68;
-            this.btnEdit.Text = "Editar Cliente";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.FlatAppearance.BorderSize = 0;
-            this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(6, 474);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(216, 40);
-            this.btnModificar.TabIndex = 97;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // cmbEmpresaEdit
-            // 
-            this.cmbEmpresaEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.cmbEmpresaEdit.FormattingEnabled = true;
-            this.cmbEmpresaEdit.Location = new System.Drawing.Point(17, 395);
-            this.cmbEmpresaEdit.Name = "cmbEmpresaEdit";
-            this.cmbEmpresaEdit.Size = new System.Drawing.Size(214, 27);
-            this.cmbEmpresaEdit.TabIndex = 86;
-            this.cmbEmpresaEdit.Text = "Empresa";
-            // 
-            // cmbCiudadEdit
-            // 
-            this.cmbCiudadEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.cmbCiudadEdit.FormattingEnabled = true;
-            this.cmbCiudadEdit.Location = new System.Drawing.Point(17, 362);
-            this.cmbCiudadEdit.Name = "cmbCiudadEdit";
-            this.cmbCiudadEdit.Size = new System.Drawing.Size(214, 27);
-            this.cmbCiudadEdit.TabIndex = 85;
-            // 
-            // cmbRegionEdit
-            // 
-            this.cmbRegionEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.cmbRegionEdit.FormattingEnabled = true;
-            this.cmbRegionEdit.Location = new System.Drawing.Point(17, 329);
-            this.cmbRegionEdit.Name = "cmbRegionEdit";
-            this.cmbRegionEdit.Size = new System.Drawing.Size(214, 27);
-            this.cmbRegionEdit.TabIndex = 84;
-            // 
-            // cmbPaisEdit
-            // 
-            this.cmbPaisEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.cmbPaisEdit.FormattingEnabled = true;
-            this.cmbPaisEdit.Location = new System.Drawing.Point(17, 296);
-            this.cmbPaisEdit.Name = "cmbPaisEdit";
-            this.cmbPaisEdit.Size = new System.Drawing.Size(214, 27);
-            this.cmbPaisEdit.TabIndex = 83;
-            this.cmbPaisEdit.Text = "Pais";
-            // 
-            // cmbCargoEdit
-            // 
-            this.cmbCargoEdit.DisplayMember = "1";
-            this.cmbCargoEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.cmbCargoEdit.FormattingEnabled = true;
-            this.cmbCargoEdit.Location = new System.Drawing.Point(17, 263);
-            this.cmbCargoEdit.Name = "cmbCargoEdit";
-            this.cmbCargoEdit.Size = new System.Drawing.Size(214, 27);
-            this.cmbCargoEdit.TabIndex = 82;
-            this.cmbCargoEdit.Text = "Cargo";
-            this.cmbCargoEdit.ValueMember = "0";
-            // 
-            // txtConEdit
-            // 
-            this.txtConEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtConEdit.Location = new System.Drawing.Point(17, 230);
-            this.txtConEdit.Name = "txtConEdit";
-            this.txtConEdit.Size = new System.Drawing.Size(214, 27);
-            this.txtConEdit.TabIndex = 78;
-            this.txtConEdit.Text = "Nueva contraseña";
-            this.txtConEdit.Enter += new System.EventHandler(this.txtConEdit_Enter);
-            this.txtConEdit.Leave += new System.EventHandler(this.txtConEdit_Leave);
-            // 
-            // txtRutEdit
-            // 
-            this.txtRutEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtRutEdit.Location = new System.Drawing.Point(17, 59);
-            this.txtRutEdit.Name = "txtRutEdit";
-            this.txtRutEdit.Size = new System.Drawing.Size(214, 27);
-            this.txtRutEdit.TabIndex = 81;
-            this.txtRutEdit.Text = "Rut Cliente";
-            this.txtRutEdit.Enter += new System.EventHandler(this.txtRutEdit_Enter);
-            this.txtRutEdit.Leave += new System.EventHandler(this.txtRutEdit_Leave);
-            // 
-            // txtTeleEdit
-            // 
-            this.txtTeleEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtTeleEdit.Location = new System.Drawing.Point(17, 164);
-            this.txtTeleEdit.Name = "txtTeleEdit";
-            this.txtTeleEdit.Size = new System.Drawing.Size(214, 27);
-            this.txtTeleEdit.TabIndex = 76;
-            this.txtTeleEdit.Text = "Telefono";
-            this.txtTeleEdit.Enter += new System.EventHandler(this.txtTeleEdit_Enter);
-            this.txtTeleEdit.Leave += new System.EventHandler(this.txtTeleEdit_Leave);
-            // 
-            // txtDirEdit
-            // 
-            this.txtDirEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtDirEdit.Location = new System.Drawing.Point(17, 129);
-            this.txtDirEdit.Name = "txtDirEdit";
-            this.txtDirEdit.Size = new System.Drawing.Size(214, 27);
-            this.txtDirEdit.TabIndex = 75;
-            this.txtDirEdit.Text = "Direccion";
-            this.txtDirEdit.Enter += new System.EventHandler(this.txtDirEdit_Enter);
-            this.txtDirEdit.Leave += new System.EventHandler(this.txtDirEdit_Leave);
-            // 
-            // txtNomEdit
-            // 
-            this.txtNomEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtNomEdit.Location = new System.Drawing.Point(17, 96);
-            this.txtNomEdit.Name = "txtNomEdit";
-            this.txtNomEdit.Size = new System.Drawing.Size(214, 27);
-            this.txtNomEdit.TabIndex = 74;
-            this.txtNomEdit.Text = "Nombre Cliente";
-            this.txtNomEdit.Enter += new System.EventHandler(this.txtNomEdit_Enter);
-            this.txtNomEdit.Leave += new System.EventHandler(this.txtNomEdit_Leave);
-            // 
-            // txtCorEdit
-            // 
-            this.txtCorEdit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtCorEdit.Location = new System.Drawing.Point(17, 197);
-            this.txtCorEdit.Name = "txtCorEdit";
-            this.txtCorEdit.Size = new System.Drawing.Size(214, 27);
-            this.txtCorEdit.TabIndex = 77;
-            this.txtCorEdit.Text = "Correo";
-            this.txtCorEdit.Enter += new System.EventHandler(this.txtCorEdit_Enter);
-            this.txtCorEdit.Leave += new System.EventHandler(this.txtCorEdit_Leave);
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(38, 131);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(10, 10);
-            this.button1.TabIndex = 95;
-            this.button1.Tag = "";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLimpiarDire.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnLimpiarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarDire.Image")));
+            this.btnLimpiarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiarDire.Location = new System.Drawing.Point(21, 357);
+            this.btnLimpiarDire.Name = "btnLimpiarDire";
+            this.btnLimpiarDire.Size = new System.Drawing.Size(174, 40);
+            this.btnLimpiarDire.TabIndex = 110;
+            this.btnLimpiarDire.Text = "       Limpiar Direccion";
+            this.btnLimpiarDire.UseVisualStyleBackColor = true;
             // 
             // Usuario
             // 
@@ -651,7 +610,6 @@ namespace MercadoChile
         private System.Windows.Forms.TextBox txtConUsua;
         private System.Windows.Forms.TextBox txtCorUsua;
         private System.Windows.Forms.TextBox txtTelUsua;
-        private System.Windows.Forms.TextBox txtDirecUsua;
         private System.Windows.Forms.TextBox txtNombreUsua;
         private System.Windows.Forms.TextBox txtRutUsua;
         private System.Windows.Forms.Button btnCrear;
@@ -662,19 +620,22 @@ namespace MercadoChile
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ComboBox cmbEmpresaEdit;
-        private System.Windows.Forms.ComboBox cmbCiudadEdit;
-        private System.Windows.Forms.ComboBox cmbRegionEdit;
-        private System.Windows.Forms.ComboBox cmbPaisEdit;
         private System.Windows.Forms.ComboBox cmbCargoEdit;
         private System.Windows.Forms.TextBox txtConEdit;
         private System.Windows.Forms.TextBox txtRutEdit;
         private System.Windows.Forms.TextBox txtTeleEdit;
-        private System.Windows.Forms.TextBox txtDirEdit;
         private System.Windows.Forms.TextBox txtNomEdit;
         private System.Windows.Forms.TextBox txtCorEdit;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView DgvClientes;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnBuscDir;
+        private System.Windows.Forms.Button btnLimpiarDir;
+        private System.Windows.Forms.ComboBox cmbDire;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNumeIdenUsuar;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnDireccion;
@@ -683,15 +644,8 @@ namespace MercadoChile
         private System.Windows.Forms.DataGridViewTextBoxColumn cnFeha;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCargo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnEmpresa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnCiudad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnRegion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnPais;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnBuscDir;
-        private System.Windows.Forms.Button btnLimpiarDir;
-        private System.Windows.Forms.ComboBox cmbDire;
+        private System.Windows.Forms.ComboBox cmbDireEdit;
+        private System.Windows.Forms.Button btnBuscarDire;
+        private System.Windows.Forms.Button btnLimpiarDire;
     }
 }

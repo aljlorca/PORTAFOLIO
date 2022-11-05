@@ -157,7 +157,6 @@
             this.txtDescrip.Size = new System.Drawing.Size(214, 26);
             this.txtDescrip.TabIndex = 76;
             this.txtDescrip.Text = "Descripcion";
-            this.txtDescrip.TextChanged += new System.EventHandler(this.txtDescrip_TextChanged);
             this.txtDescrip.Enter += new System.EventHandler(this.txtDescrip_Enter);
             this.txtDescrip.Leave += new System.EventHandler(this.txtDescrip_Leave);
             // 

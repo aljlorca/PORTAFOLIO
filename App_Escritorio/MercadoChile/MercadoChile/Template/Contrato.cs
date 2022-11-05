@@ -24,7 +24,7 @@ namespace MercadoChile.Template
 
     public partial class Contrato : Form
     {
-        private string url = "http://127.0.0.1:8004/api/contrato/";
+        private string url = "http://127.0.0.1:8000/api_contrato/contrato/";
         getContrato Get = new getContrato();
         public Contrato()
         {
@@ -33,7 +33,7 @@ namespace MercadoChile.Template
 
         private async void Cargar_Empresa(object sender, EventArgs e)
         {
-            string respuesta2 = await Get.GetHttp2();
+            string respuesta2 = await Get.GetHttp();
             List<Empresas> lista2 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta2);
             cmb_TipoEmpresa.DataSource = lista2;
             cmb_TipoEmpresa.DisplayMember = "razon_social_empresa";

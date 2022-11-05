@@ -10,9 +10,9 @@ namespace Datos
 {
     public class getPublicacion
     {
-        private string url = "http://127.0.0.1:8008/api/pedido/?format=json";
-        private string url2 = "http://127.0.0.1:8016/api/usuario/";
-        private string url3 = "http://127.0.0.1:8017/api/venta/";
+        private string url = "http://127.0.0.1:8000/api_pedido/pedido/?format=json";
+        private string url2 = "http://127.0.0.1:8000/api_usuario/usuario/";
+        private string url3 = "http://127.0.0.1:8000/api_venta/venta/";
         public async Task<string> GetHttp()
         {
             WebRequest oRequest = WebRequest.Create(url);

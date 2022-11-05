@@ -25,7 +25,7 @@ namespace MercadoChile.Template
 
     public partial class Procesos : Form
     {
-        Uri baseUri = new Uri("http://127.0.0.1:8009/api/postulacion_old/");
+        Uri baseUri = new Uri("http://127.0.0.1:8000/api/postulacion_old/");
         getProcesos Get = new getProcesos();
         public Procesos()
         {

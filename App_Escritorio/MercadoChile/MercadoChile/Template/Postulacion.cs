@@ -23,8 +23,8 @@ namespace MercadoChile.Template
 {
     public partial class Postulacion : Form
     {
-        private string url = "http://127.0.0.1:8001/api/carga_old/";
-        private string url2 = "http://127.0.0.1:8014/api/subasta_old/";
+        private string url = "http://127.0.0.1:8000/api_carga/carga_old/";
+        private string url2 = "http://127.0.0.1:8000/api_subasta/subasta_old/";
         getPostulacion Get = new getPostulacion();
         public Postulacion()
         {
