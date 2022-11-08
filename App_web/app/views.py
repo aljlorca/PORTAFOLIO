@@ -87,6 +87,8 @@ def cliente_ecomerce(request):
     if data['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
     data['producto'] = productos_get()
+    data['calidad'] = calidad_get()
+
 
     return render(request, 'app/Cliente_Interno/listado_productos.html',data)
 
@@ -119,9 +121,7 @@ def checkout(request):
         'usuario': session['usuario'],
         'empresa': session['correo'],
         'empresa':session['empresa'],
-        'country':get_pais_id(str(user['id_pais'])),
-        'ciudad' :get_ciudad_id(str(user['id_ciudad'])),
-        'region' :get_region_id(str(user['id_region'])),
+        
     }    
     return render(request, 'app/carro/checkout.html',data)
 
@@ -216,10 +216,8 @@ def pedido(request):
 
 def listado_ventas(request):
     data = get_session(request)
-
     try:
-        cargo=request.session['cargo']
-        if cargo!='Cliente Externo':
+        if data['cargo']!='Cliente Externo':
             return redirect(to="http://127.0.0.1:3000/")
 
     except:
@@ -245,7 +243,9 @@ def proveedor(request):
 @csrf_exempt
 def productores(request):
     data = get_session(request)
+
     try:
+        data['calidad']=calidad_get()
         if data['cargo']!='Proveedor':
             return redirect(to="http://127.0.0.1:3000/")
         if request.method == 'POST':
@@ -258,10 +258,12 @@ def productores(request):
                 cantidad_producto = request.POST.get('cantidad-producto')
                 precio_producto = request.POST.get('precio-producto')
                 imagen_producto =  request.FILES['imagen-producto']
+                descripcion_producto = request.POST.get('descripcion-producto')
                 id_calidad = request.POST.get('calidad-producto')
                 saldo_producto = '1'
                 estado_fila= '1'
                 id_usuario = request.session['id_user']
+                print(id,nombre_producto,cantidad_producto,precio_producto,imagen_producto,descripcion_producto,id_calidad,id_usuario)
                 try: 
                     producto=Producto.objects.get(id_producto=id,imagen_producto=imagen_producto)
                 except Producto.DoesNotExist:
@@ -271,9 +273,9 @@ def productores(request):
                 buscar = str(producto)
                 ruta_proyecto = os.getcwd()+'/media/'
                 ruta = ruta_proyecto+buscar
-                crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
+                res = crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario,descripcion_producto)
+                print(res)
                 messages.success(request,"Producto Creado Correctamente")
-                return render(request, 'app/proveedor/productores.html')
         return render(request, 'app/proveedor/productores.html',data)
     except:
         data = get_session(request)

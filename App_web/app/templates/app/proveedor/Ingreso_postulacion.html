@@ -58,6 +58,12 @@
                         <div class="form-floating">
                             <input type="number" class="form-control" name="calidad-producto" placeholder="Calidad" >
                             <label for="calidad-producto">Calidad</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                {% for c in calidad %}
+                                <option value="c.id_calidad">{{c.descripcion_calidad}}</option>
+                                {% endfor %}
+                              </select>
                         </div>
                     </div>
                     <div class="col-12">

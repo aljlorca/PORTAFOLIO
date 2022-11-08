@@ -1,5 +1,6 @@
 {% extends 'app/Base.html' %}
 {% load static %}
+{% load humanize %}
 {% block contenido %}
 
 <div id="productos" class="container-xxl py-5">
@@ -29,7 +30,12 @@
                                 </div>
                                 <div class="text-center p-4">
                                     <a class="d-block h5 mb-2">{{pro.nombre_producto}}</a>
-                                    <span class="text-primary me-1">${{pro.precio_producto}}</span>
+                                    {% for c in calidad %}
+                                        {% if c.id_calidad == pro.id_calidad %}
+                                        <a class="d-block h5 mb-2">Calidad: {{c.descripcion_calidad}}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <span class="text-primary me-1">${{pro.precio_producto | intcomma}}</span>
                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">

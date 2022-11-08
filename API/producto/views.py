@@ -147,7 +147,7 @@ class ProductoViewset(viewsets.ModelViewSet):
         except:
             datos = {'message':'ERROR: Validar datos'}
 
-        return Response(datos, status=200)
+        return HttpResponse(datos, status=200)
 
     def put(self, request, *args, **kwargs):
         try:
@@ -165,7 +165,7 @@ class ProductoViewset(viewsets.ModelViewSet):
             datos = {'message': 'Success'}
         except: 
             datos = {'message':'ERROR: Validar datos'}
-        return Response(datos, status=200)
+        return HttpResponse(datos, status=201)
 
     def delete(self, request, *args, **kwargs):
         id_producto = request.data['id_producto']
@@ -178,7 +178,7 @@ class ProductoViewset(viewsets.ModelViewSet):
         except:
             datos = {'message':'ERROR: Validar datos'}
 
-        return Response(datos, status=200)
+        return HttpResponse(datos, status=200)
 
 class ProductoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Producto.objects.filter(estado_fila = '1')
