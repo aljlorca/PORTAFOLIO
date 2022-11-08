@@ -143,10 +143,6 @@ namespace MercadoChile
                         cmbCargo.Text = "";
                         cmbEmpresa.Text = "";
                     }
-
-
-
-
                 }
             }
         }
@@ -217,36 +213,29 @@ namespace MercadoChile
                      new StringContent(data, System.Text.Encoding.UTF8, "application/json");
                 if (cmbDire.DropDownStyle == ComboBoxStyle.DropDownList)
                 {
-                    if (IsValidEmail(txtCorUsua.Text))
+                    var valido = validarRut(txtRutUsua.Text);
+                    if (IsValidEmail(txtCorUsua.Text) && valido == true)
                     {
-                        var valido = validarRut(txtRutUsua.Text);
-                        if (valido == true)
-                        {
-                            var httpResponse = await client.PostAsync(baseUri, content);
-                            if (httpResponse.IsSuccessStatusCode)
-                            {
-                                var result = await httpResponse.Content.ReadAsStringAsync();
-                                Console.WriteLine(result);
-                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                                this.Hide();
 
-                            }
-                            else
-                            {
-                                MessageBox.Show("ingrese datos en todos los campos ");
-                            }
-                        }
-                        else
-
+                        var httpResponse = await client.PostAsync(baseUri, content);
+                        if (httpResponse.IsSuccessStatusCode)
                         {
-                            MessageBox.Show("rut malo");
+                            var result = await httpResponse.Content.ReadAsStringAsync();
+                            Console.WriteLine(result);
+                            var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                            this.Hide();
+
                         }
                     }
                     else
                     {
-                        MessageBox.Show("ingrese una ciudad");
+                        MessageBox.Show("rut incorrecto o correo no valido");
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Ingrese una Direccion");
+                }              
             }
             catch (Exception ex)
             {
