@@ -53,7 +53,8 @@ class ProductoView(View):
     
     def get(self,request,id_producto=0):
         if(id_producto>0):
-            productos=list(Producto.objects.filter(id_producto=id_producto).values())
+            productos=list(Producto.objects.filter(id_producto=id_producto).values().order_by('id_calidad'))
+            print(productos)
             if len(productos) > 0:
                 producto = productos[0]
                 datos={'message':'Success','Producto':producto}
@@ -123,7 +124,7 @@ class ProductoView(View):
 
 
 class ProductoViewset(viewsets.ModelViewSet):
-    queryset = Producto.objects.filter(estado_fila = '1')
+    queryset = Producto.objects.filter(estado_fila = '1').order_by('id_calidad')
     serializer_class = ProductoSerializer
 
     @method_decorator(csrf_exempt)

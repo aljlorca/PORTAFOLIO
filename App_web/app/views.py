@@ -102,6 +102,7 @@ def detalle_producto(request, id_producto):
         return redirect(to="http://127.0.0.1:3000/")
 
     data['producto']=producto_get_id(id_producto)
+    data['calidad'] = calidad_get()
     return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 
 def checkout(request):
