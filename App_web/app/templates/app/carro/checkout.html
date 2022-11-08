@@ -42,25 +42,9 @@
                         <label>Número de Telefono</label>
                         <input class="form-control" type="text" placeholder="{{user.telefono_usuario}}" disabled>
                     </div>
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-12 form-group">
                         <label>Direccion</label>
                         <input class="form-control" type="text" placeholder="{{user.direccion_usuario}}" disabled>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Pais</label>
-                        <input class="form-control" type="text" placeholder="{{country.nombre_pais}}" disabled>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Ciudad</label>
-                        <input class="form-control" type="text" placeholder="{{ciudad.nombre_ciudad}}"disabled>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Region</label>
-                        <input class="form-control" type="text" placeholder="{{region.nombre_region}}" disabled>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Codigo Postal</label>
-                        <input class="form-control" type="text" placeholder="{{ciudad.codigo_postal}}" disabled>
                     </div>
                 </div>
             </div>
@@ -99,12 +83,18 @@
                             <label class="custom-control-label" for="paypal">Seras redireccionado a Transbank</label>
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary border-2 py-2 px-5 rounded-pill">Pago</button>
+                    <form method="POST" enctype="multipart/form-data" action="{{resultado.url}}?token_ws={{resultado.token}}">
+                        <input type="hidden" name="precio_total" value="{{importe_total_carro}}">
+                        <input type="hidden" name="token_ws" value="{{resultado.token}}" disabled>
+                        <button class="btn btn-outline-primary border-2 py-2 px-5 rounded-pill">Pago</button>       
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <!-- Checkout End -->
 
 <!-- JavaScript Libraries -->

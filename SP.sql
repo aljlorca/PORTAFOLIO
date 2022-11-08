@@ -71,7 +71,7 @@ create sequence sec_usuario
   minvalue 1;
 
 
-create or replace PROCEDURE USUARIO_ELIMINAR (v_correo varchar2, v_salida out number) is
+create or replace PROCEDURE                   "USUARIO_ELIMINAR" (v_correo varchar2, v_salida out number) is
 begin 
     UPDATE usuario
     SET usuario_vigente = '0'
@@ -84,7 +84,7 @@ begin
 end USUARIO_ELIMINAR;
 
 
-create or replace PROCEDURE USUARIO_AGREGAR 
+create or replace PROCEDURE                   "USUARIO_AGREGAR" 
 (
     v_numero_identeificacion_usuario varchar2,
     v_nombre_usuario varchar2,
@@ -97,24 +97,21 @@ create or replace PROCEDURE USUARIO_AGREGAR
     v_administrador_usuario char,
     v_id_cargo Integer,
     v_id_empresa Integer,
-    v_id_ciudad Integer,
-    v_id_region integer,
-    v_id_pais integer,
     v_salida OUT NUMBER
 
 ) is
 begin 
-  insert into USUARIO(id_usuario,NUMERO_IDENTIFICACION_USUARIO,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,usuario_vigente,fecha_creacion_usuario,administrador_usuario,id_cargo,id_empresa,id_ciudad,id_region,id_pais) 
-  values(sec_usuario.nextval,v_numero_identeificacion_usuario,v_nombre_usuario,v_direccion_usuario,v_telefono_usuario,v_correo_usuario,v_contrasena_usuario,v_usuario_vigente,v_fecha_creacion_usuario,v_administrador_usuario,v_id_cargo,v_id_empresa,v_id_ciudad,v_id_region,v_id_pais);
+  insert into USUARIO(id_usuario,NUMERO_IDENTIFICACION_USUARIO,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,usuario_vigente,fecha_creacion_usuario,administrador_usuario,id_cargo,id_empresa) 
+  values(sec_usuario.nextval,v_numero_identeificacion_usuario,v_nombre_usuario,v_direccion_usuario,v_telefono_usuario,v_correo_usuario,v_contrasena_usuario,v_usuario_vigente,v_fecha_creacion_usuario,v_administrador_usuario,v_id_cargo,v_id_empresa);
   commit;
   v_salida:=1; 
-  
+
   exception when others then v_salida:=0;
 
 end USUARIO_AGREGAR;
 
 
-create or replace PROCEDURE USUARIO_MODIFICAR (
+create or replace PROCEDURE                   "USUARIO_MODIFICAR" (
     v_numero_identeificacion_usuario varchar2,
     v_nombre_usuario varchar2,
     v_direccion_usuario varchar2,
@@ -124,9 +121,6 @@ create or replace PROCEDURE USUARIO_MODIFICAR (
     v_administrador_usuario char,
     v_id_cargo Integer,
     v_id_empresa Integer,
-    v_id_ciudad Integer,
-    v_id_region integer,
-    v_id_pais integer,
     v_salida OUT NUMBER
 
 ) is
@@ -139,18 +133,13 @@ begin
     contrasena_usuario = v_contrasena_usuario,
     administrador_usuario = v_administrador_usuario,
     id_cargo = v_id_cargo,
-    id_empresa = v_id_empresa,
-    id_ciudad = v_id_ciudad,
-    id_region = v_id_region,
-    id_pais = v_id_pais
+    id_empresa = v_id_empresa
     WHERE NUMERO_IDENTIFICACION_USUARIO = v_numero_identeificacion_usuario;
     commit;
     v_salida:=1;
-  
+
   exception when others then v_salida:=0;
 
-
-end USUARIO_MODIFICAR;
 
  
 
@@ -180,7 +169,7 @@ begin
 end PRODUCTO_ELIMINAR;
 
 
-create or replace PROCEDURE PRODUCTO_AGREGAR
+create or replace PROCEDURE                   "PRODUCTO_AGREGAR" 
 (
     v_nombre_producto varchar2, 
     v_cantidad_producto float,
@@ -190,20 +179,21 @@ create or replace PROCEDURE PRODUCTO_AGREGAR
     v_saldo_producto char,
     v_id_usuario integer,
     v_estado_fila char,
+    v_descripcion_producto varchar2,
     v_salida OUT NUMBER
 ) 
 is
 begin 
-  insert into PRODUCTO(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_usuario,id_calidad,estado_fila) 
-  values(sec_producto.nextval,v_nombre_producto,v_cantidad_producto,v_precio_producto,v_imagen_producto,v_id_usuario,v_id_calidad,v_estado_fila);
+  insert into PRODUCTO(id_producto,nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_usuario,id_calidad,estado_fila,descripcion_producto) 
+  values(sec_producto.nextval,v_nombre_producto,v_cantidad_producto,v_precio_producto,v_imagen_producto,v_id_usuario,v_id_calidad,v_estado_fila,v_descripcion_producto);
   commit;
   v_salida:=1;
   exception when others then v_salida:=0;
-end PRODUCTO_AGREGAR;
+end ;
 
 
- create or replace PROCEDURE PRODUCTO_MODIFICAR (
-    v_id_producto varchar2,
+create or replace PROCEDURE                   "PRODUCTO_MODIFICAR" (
+    v_id_producto integer,
     v_nombre_producto varchar2, 
     v_cantidad_producto integer,
     v_precio_producto integer,
@@ -211,6 +201,7 @@ end PRODUCTO_AGREGAR;
     v_id_calidad integer,
     v_saldo_producto char,
     v_id_usuario integer,
+    v_descripcion_producto varchar2,
     v_salida OUT NUMBER
 
 ) is
@@ -222,15 +213,13 @@ begin
     imagen_producto = v_imagen_producto,
     id_usuario = v_id_usuario,
     saldo_producto = v_saldo_producto,
-    id_calidad = v_id_calidad
+    id_calidad = v_id_calidad,
+    descripcion_producto = v_descripcion_producto
     WHERE id_producto = v_id_producto;
     commit;
     v_salida:=1;
-  
+
   exception when others then v_salida:=0;
-
-
-end PRODUCTO_MODIFICAR;
 
  CREATE OR REPLACE EDITIONABLE PROCEDURE PRODUCTO_LISTAR (cur_listar out SYS_REFCURSOR) 
 is

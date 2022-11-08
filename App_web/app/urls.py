@@ -33,5 +33,8 @@ urlpatterns = [
     path("detalle_subasta/<int:id_venta>", detalle_subasta, name="detalle_subasta"),
     path("carga/", carga, name="carga"),
 
+    #tbk
+    path('tbk_respuesta/',tbk_respuesta,name='tbk_respuesta  ')
+
 
 ]
