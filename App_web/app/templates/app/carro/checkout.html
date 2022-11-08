@@ -42,7 +42,7 @@
                         <label>Número de Telefono</label>
                         <input class="form-control" type="text" placeholder="{{user.telefono_usuario}}" disabled>
                     </div>
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-12 form-group">
                         <label>Direccion</label>
                         <input class="form-control" type="text" placeholder="{{user.direccion_usuario}}" disabled>
                     </div>
@@ -83,12 +83,18 @@
                             <label class="custom-control-label" for="paypal">Seras redireccionado a Transbank</label>
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary border-2 py-2 px-5 rounded-pill">Pago</button>
+                    <form method="POST" enctype="multipart/form-data" action="{{resultado.url}}?token_ws={{resultado.token}}">
+                        <input type="hidden" name="precio_total" value="{{importe_total_carro}}">
+                        <input type="hidden" name="token_ws" value="{{resultado.token}}" disabled>
+                        <button class="btn btn-outline-primary border-2 py-2 px-5 rounded-pill">Pago</button>       
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <!-- Checkout End -->
 
 <!-- JavaScript Libraries -->

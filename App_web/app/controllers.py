@@ -277,11 +277,13 @@ def generate_request_tbk(url, body):
         return response
 
 def get_initTrxTBK(monto, id_usuario):
-    fecha = datetime.datetime.now()
-    fecha=fecha.strftime("%d%m%y%H%M%S")
+    fecha_hoy = datetime.datetime.now()
+    fecha=fecha_hoy.strftime("%d%m%y%H%M%S")
+    fecha_session=fecha_hoy.strftime("%d%m%y%H%M")
     orden= id_usuario+'_'+fecha
-    body = json.dumps({"buy_order": orden, "session_id": "sesion1234557545", "amount": monto , "return_url": "http://127.0.0.1:3000/tbk_respuesta/" })
-    url = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.0/transactions"
+    session = id_usuario+'_'+fecha_session
+    body = json.dumps({"buy_order": orden, "session_id": session, "amount": monto , "return_url": "http://127.0.0.1:3000/tbk_respuesta/" })
+    url = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions"
     response = generate_request_tbk(url, body)
     if response:
        return response

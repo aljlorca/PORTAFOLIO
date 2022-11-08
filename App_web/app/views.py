@@ -88,8 +88,6 @@ def cliente_ecomerce(request):
         return redirect(to="http://127.0.0.1:3000/")
     data['producto'] = productos_get()
     data['calidad'] = calidad_get()
-
-
     return render(request, 'app/Cliente_Interno/listado_productos.html',data)
 
 def detalle_producto(request, id_producto):
@@ -105,39 +103,25 @@ def detalle_producto(request, id_producto):
     data['calidad'] = calidad_get()
     return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 
+@csrf_exempt
 def checkout(request):
+    data = get_session(request)
     try:
-        cargo=request.session['cargo']
-        if cargo!='Cliente Interno':
+        if data['cargo']!='Cliente Interno':
             return redirect(to="http://127.0.0.1:3000/")
 
     except:
         return redirect(to="http://127.0.0.1:3000/")
-
-    session = get_session(request)
-    user =  usuario_get_id(str(session['id_user']))
-    data = {
-        'user':user,
-        'cargo': session['cargo'],
-        'usuario': session['usuario'],
-        'empresa': session['correo'],
-        'empresa':session['empresa'],
-        
-    }    
+    data['user'] =  usuario_get_id(str(data['id_user']))
+    total = request.POST.get('precio_total')
+    data['resultado']=get_initTrxTBK(total,str(data['id_user']))
     return render(request, 'app/carro/checkout.html',data)
 
 def detalle_venta(request,id_venta):
-    session = get_session(request)
-    if session['cargo']!='Cliente Interno':
+    data = get_session(request)
+    if data['cargo']!='Cliente Interno':
         return redirect(to="http://127.0.0.1:3000/")
-    data = {
-        'ventas':Ventas_get_id(id_venta),
-        'cargo': session['cargo'],
-        'usuario': session['usuario'],
-        'empresa': session['correo'],
-        'id_user': session['id_user'],
-        'empresa':session['empresa'],
-    }
+    data['ventas'] = Ventas_get_id(id_venta)
     id_venta=request.session["id_venta"]
     return render(request, 'app/proveedor/Ver_ventas.html', data)
 
@@ -460,3 +444,7 @@ def carga(request):
             
     return render(request, 'app/transportista/ingreso_carga.html',data)
 
+@csrf_exempt
+def tbk_respuesta(request):
+    data = get_session(request)
+    return render(request, 'app/tbk/respt.html',data)
