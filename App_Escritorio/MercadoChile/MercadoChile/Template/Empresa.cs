@@ -47,6 +47,7 @@ namespace MercadoChile.Template
         {
             string respuesta5 = await Get.GetHttp2();
             List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
+            lista5.RemoveAt(0);
             cmbEmpresa.DataSource = lista5;;
             cmbEmpresa.DisplayMember = "tipo_empresa";
             cmbEmpresa.ValueMember = "id_tipo_empresa";
@@ -84,18 +85,10 @@ namespace MercadoChile.Template
                     {
                         txtDunsEdit.Text = "";
                         txtRazonEdit.Text = "";
-                        txtDirEdit.Text = "";
-                        txtGiroEdit.Text = "";
+                        cmbDireEdit.Text = "";
                         cmbTipoEmpEdit.Text = "";
-                        cmbPaisEdit.Text = "";
-                        cmbRegionEdit.Text = "";
                         cmbEmpresa.Text = "";
-
                     }
-
-
-
-
                 }
             }
         }
@@ -108,44 +101,39 @@ namespace MercadoChile.Template
             {
                 if (list.numero_identificacion_usuario == txtDunsEdit.Text)
                 {
-                    if (cmbCiudadEdit.Text == "")
+
+
+                    int id = list.id_usuario;
+
+                    int empresa = (int)cmbTipoEmpEdit.SelectedValue;
+                    Uri myUri = new Uri(baseUri, id.ToString());
+                    var client = new HttpClient();
+                    Empresas post = new Empresas()
                     {
-                        MessageBox.Show("ingrese una ciudad");
-                    }
-                    else
+                        duns_empresa = txtDunsEdit.Text,
+                        razon_social_empresa = txtRazonEdit.Text,
+                        direccion_empresa = cmbDireEdit.Text,
+                        id_tipo_empresa = empresa,
+
+                    };
+                    var data = JsonSerializer.Serialize<Empresas>(post);
+                    HttpContent content =
+                        new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                    var httpResponse = await client.PutAsync(myUri, content);
+
+
+                    if (httpResponse.IsSuccessStatusCode)
                     {
-                        int id = list.id_usuario;
+                        var result = await httpResponse.Content.ReadAsStringAsync();
+                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                        MessageBox.Show(postResult.ToString());
+                        this.Hide();
 
-                        int empresa = (int)cmbTipoEmpEdit.SelectedValue;
-                        Uri myUri = new Uri(baseUri, id.ToString());
-                        var client = new HttpClient();
-                        Empresas post = new Empresas()
-                        {
-                            duns_empresa = txtDunsEdit.Text,
-                            razon_social_empresa = txtRazonEdit.Text,
-                            direccion_empresa = txtDirEdit.Text,
-                            giro_empresa = txtGiroEdit.Text,
-                            id_tipo_empresa = empresa,
-
-                        };
-                        var data = JsonSerializer.Serialize<Empresas>(post);
-                        HttpContent content =
-                            new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                        var httpResponse = await client.PutAsync(myUri, content);
-
-
-                        if (httpResponse.IsSuccessStatusCode)
-                        {
-                            var result = await httpResponse.Content.ReadAsStringAsync();
-                            var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                            MessageBox.Show(postResult.ToString());
-                            this.Hide();
-
-                        }
                     }
                 }
             }
         }
+        
 
         private async void btnCrear_Click(object sender, EventArgs e)
         {
@@ -158,8 +146,7 @@ namespace MercadoChile.Template
 
                     duns_empresa = txtDunsEmp.Text,
                     razon_social_empresa = txtRazonSocial.Text,
-                    direccion_empresa = txtDirecEmp.Text,
-                    giro_empresa = txtGiroEmp.Text,
+                    direccion_empresa = cmbDire.Text,
                     id_tipo_empresa = empresa,
 
 
@@ -206,15 +193,15 @@ namespace MercadoChile.Template
         }
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            txtDunsEdit.Text = DgvEmpresa.CurrentRow.Cells[1].Value.ToString();
-            txtRazonEdit.Text = DgvEmpresa.CurrentRow.Cells[2].Value.ToString();
-            txtDirEdit.Text = DgvEmpresa.CurrentRow.Cells[3].Value.ToString();
-            txtGiroEdit.Text = DgvEmpresa.CurrentRow.Cells[4].Value.ToString();
+            txtDunsEdit.Text = DgvEmpresa.CurrentRow.Cells["cnDunsEmpresa"].Value.ToString();
+            txtRazonEdit.Text = DgvEmpresa.CurrentRow.Cells["cnRazonSocial"].Value.ToString();
+            cmbDireEdit.Text = DgvEmpresa.CurrentRow.Cells["cnDireccion"].Value.ToString();
             string respuesta5 = await Get.GetHttp2();
-            List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
-            cmbTipoEmpEdit.DisplayMember = "nombre_cargo";
-            cmbTipoEmpEdit.ValueMember = "id_cargo";
-            cmbTipoEmpEdit.Text = DgvEmpresa.CurrentRow.Cells[6].Value.ToString();
+            List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
+            cmbTipoEmpEdit.DataSource = lista5;
+            cmbTipoEmpEdit.DisplayMember = "tipo_empresa";
+            cmbTipoEmpEdit.ValueMember = "id_tipo_empresa";
+            cmbTipoEmpEdit.Text = DgvEmpresa.CurrentRow.Cells["cnTipoEmpresa"].Value.ToString();
         }
         public async Task<string> GetHttp()
         {
@@ -296,46 +283,7 @@ namespace MercadoChile.Template
             }
         }
 
-        private void txtDirecEmp_Enter(object sender, EventArgs e)
-        {
-            if (txtDirecEmp.Text == "Direccion")
-            {
-                txtDirecEmp.Text = "";
-                txtDirecEmp.ForeColor = System.Drawing.Color.Black;
-
-            }
-
-        }
-
-        private void txtDirecEmp_Leave(object sender, EventArgs e)
-        {
-            if (txtDirecEmp.Text == "")
-            {
-                txtDirecEmp.Text = "Direccion";
-                txtDirecEmp.ForeColor = System.Drawing.Color.DimGray;
-
-            }
-        }
-
-        private void txtGiroEmp_Enter(object sender, EventArgs e)
-        {
-            if (txtGiroEmp.Text == "Giro Empresa")
-            {
-                txtGiroEmp.Text = "";
-                txtGiroEmp.ForeColor = System.Drawing.Color.Black;
-            }
-
-        }
-
-        private void txtGiroEmp_Leave(object sender, EventArgs e)
-        {
-            if (txtGiroEmp.Text == "")
-            {
-                txtGiroEmp.Text = "Giro Empresa";
-                txtGiroEmp.ForeColor = System.Drawing.Color.DimGray;
-
-            }
-        }
+        
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -386,47 +334,6 @@ namespace MercadoChile.Template
 
             }
         }
-
-        private void txtDirEdit_Enter(object sender, EventArgs e)
-        {
-            if (txtDirEdit.Text == "Direccion")
-            {
-                txtDirEdit.Text = "";
-                txtDirEdit.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void txtDirEdit_Leave(object sender, EventArgs e)
-        {
-            if (txtDirEdit.Text == "")
-            {
-                txtDirEdit.Text = "Direccion";
-                txtDirEdit.ForeColor = System.Drawing.Color.DimGray;
-
-            }
-        }
-
-        private void txtGiroEdit_Enter(object sender, EventArgs e)
-        {
-            if (txtGiroEdit.Text == "Giro Empresa")
-            {
-                txtGiroEdit.Text = "";
-                txtGiroEdit.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void txtGiroEdit_Leave(object sender, EventArgs e)
-        {
-            if (txtGiroEdit.Text == "")
-            {
-                txtGiroEdit.Text = "Giro Empresa";
-                txtGiroEdit.ForeColor = System.Drawing.Color.DimGray;
-
-            }
-        }
-
         private void txtDunsEdit_TextChanged(object sender, EventArgs e)
         {
 
@@ -460,7 +367,9 @@ namespace MercadoChile.Template
 
         }
 
+        private void cmbDire_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-        
+        }
     }
 }

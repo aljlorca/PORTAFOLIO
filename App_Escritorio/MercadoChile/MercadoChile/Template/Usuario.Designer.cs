@@ -62,16 +62,18 @@ namespace MercadoChile
             this.txtCorEdit = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.cmbDireEdit = new System.Windows.Forms.ComboBox();
+            this.btnBuscarDire = new System.Windows.Forms.Button();
+            this.btnLimpiarDire = new System.Windows.Forms.Button();
             this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnUsAd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnContraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnFeha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBuscarDire = new System.Windows.Forms.Button();
-            this.btnLimpiarDire = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -299,7 +301,9 @@ namespace MercadoChile
             this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cnNumeIdenUsuar,
+            this.cnUsAd,
             this.cnNombre,
+            this.cnContraseña,
             this.cnDireccion,
             this.cnTelefono,
             this.cnCorreo,
@@ -307,9 +311,9 @@ namespace MercadoChile
             this.cnCargo,
             this.cnEmpresa});
             this.DgvClientes.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.DgvClientes.Location = new System.Drawing.Point(240, 49);
+            this.DgvClientes.Location = new System.Drawing.Point(274, 49);
             this.DgvClientes.Name = "DgvClientes";
-            this.DgvClientes.Size = new System.Drawing.Size(793, 529);
+            this.DgvClientes.Size = new System.Drawing.Size(733, 399);
             this.DgvClientes.TabIndex = 94;
             // 
             // label3
@@ -504,17 +508,60 @@ namespace MercadoChile
             this.cmbDireEdit.TabIndex = 109;
             this.cmbDireEdit.Text = "Direccion";
             // 
+            // btnBuscarDire
+            // 
+            this.btnBuscarDire.FlatAppearance.BorderSize = 0;
+            this.btnBuscarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnBuscarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarDire.Image")));
+            this.btnBuscarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscarDire.Location = new System.Drawing.Point(21, 311);
+            this.btnBuscarDire.Name = "btnBuscarDire";
+            this.btnBuscarDire.Size = new System.Drawing.Size(183, 40);
+            this.btnBuscarDire.TabIndex = 111;
+            this.btnBuscarDire.Text = "     Buscar Direccion";
+            this.btnBuscarDire.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiarDire
+            // 
+            this.btnLimpiarDire.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnLimpiarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarDire.Image")));
+            this.btnLimpiarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiarDire.Location = new System.Drawing.Point(21, 357);
+            this.btnLimpiarDire.Name = "btnLimpiarDire";
+            this.btnLimpiarDire.Size = new System.Drawing.Size(174, 40);
+            this.btnLimpiarDire.TabIndex = 110;
+            this.btnLimpiarDire.Text = "       Limpiar Direccion";
+            this.btnLimpiarDire.UseVisualStyleBackColor = true;
+            // 
             // cnNumeIdenUsuar
             // 
             this.cnNumeIdenUsuar.DataPropertyName = "numero_identificacion_usuario";
             this.cnNumeIdenUsuar.HeaderText = "Numero Identificacion Usuario";
             this.cnNumeIdenUsuar.Name = "cnNumeIdenUsuar";
             // 
+            // cnUsAd
+            // 
+            this.cnUsAd.DataPropertyName = "administrador_usuario";
+            this.cnUsAd.HeaderText = "usad";
+            this.cnUsAd.Name = "cnUsAd";
+            this.cnUsAd.Visible = false;
+            // 
             // cnNombre
             // 
             this.cnNombre.DataPropertyName = "nombre_usuario";
             this.cnNombre.HeaderText = "Nombre Usuario";
             this.cnNombre.Name = "cnNombre";
+            // 
+            // cnContraseña
+            // 
+            this.cnContraseña.DataPropertyName = "contrasena_usuario";
+            this.cnContraseña.HeaderText = "Contraseña Usuario";
+            this.cnContraseña.Name = "cnContraseña";
             // 
             // cnDireccion
             // 
@@ -551,36 +598,6 @@ namespace MercadoChile
             this.cnEmpresa.DataPropertyName = "id_empresa";
             this.cnEmpresa.HeaderText = "Empresa";
             this.cnEmpresa.Name = "cnEmpresa";
-            // 
-            // btnBuscarDire
-            // 
-            this.btnBuscarDire.FlatAppearance.BorderSize = 0;
-            this.btnBuscarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnBuscarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarDire.Image")));
-            this.btnBuscarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscarDire.Location = new System.Drawing.Point(21, 311);
-            this.btnBuscarDire.Name = "btnBuscarDire";
-            this.btnBuscarDire.Size = new System.Drawing.Size(183, 40);
-            this.btnBuscarDire.TabIndex = 111;
-            this.btnBuscarDire.Text = "     Buscar Direccion";
-            this.btnBuscarDire.UseVisualStyleBackColor = true;
-            // 
-            // btnLimpiarDire
-            // 
-            this.btnLimpiarDire.FlatAppearance.BorderSize = 0;
-            this.btnLimpiarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnLimpiarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarDire.Image")));
-            this.btnLimpiarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiarDire.Location = new System.Drawing.Point(21, 357);
-            this.btnLimpiarDire.Name = "btnLimpiarDire";
-            this.btnLimpiarDire.Size = new System.Drawing.Size(174, 40);
-            this.btnLimpiarDire.TabIndex = 110;
-            this.btnLimpiarDire.Text = "       Limpiar Direccion";
-            this.btnLimpiarDire.UseVisualStyleBackColor = true;
             // 
             // Usuario
             // 
@@ -636,16 +653,18 @@ namespace MercadoChile
         private System.Windows.Forms.Button btnBuscDir;
         private System.Windows.Forms.Button btnLimpiarDir;
         private System.Windows.Forms.ComboBox cmbDire;
+        private System.Windows.Forms.ComboBox cmbDireEdit;
+        private System.Windows.Forms.Button btnBuscarDire;
+        private System.Windows.Forms.Button btnLimpiarDire;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNumeIdenUsuar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnUsAd;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnContraseña;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnDireccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnTelefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCorreo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnFeha;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCargo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnEmpresa;
-        private System.Windows.Forms.ComboBox cmbDireEdit;
-        private System.Windows.Forms.Button btnBuscarDire;
-        private System.Windows.Forms.Button btnLimpiarDire;
     }
 }

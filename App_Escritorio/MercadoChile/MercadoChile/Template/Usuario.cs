@@ -1,7 +1,5 @@
-﻿using Amazon.Runtime.Internal;
-using Datos;
+﻿using Datos;
 using MercadoChile.Modelos;
-using Microsoft.AspNetCore.Mvc;
 using Negocio;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,14 +12,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Markup;
-using static MercadoChile.Form1;
 using Cargo = MercadoChile.Modelos.Cargo;
-using ComboBox = System.Windows.Forms.ComboBox;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace MercadoChile
@@ -166,9 +159,6 @@ namespace MercadoChile
             {
                 if (list.numero_identificacion_usuario == txtRutEdit.Text)
                 {
-
-
-
                     int id = list.id_usuario;
 
                     string cargo = cmbCargoEdit.SelectedValue.ToString();
@@ -192,110 +182,78 @@ namespace MercadoChile
                     HttpContent content =
                         new StringContent(data, System.Text.Encoding.UTF8, "application/json");
                     var httpResponse = await client.PutAsync(myUri, content);
-
-
                     if (httpResponse.IsSuccessStatusCode)
                     {
                         var result = await httpResponse.Content.ReadAsStringAsync();
                         var postResult = JsonSerializer.Deserialize<Usuarios>(result);
                         MessageBox.Show(postResult.ToString());
                         this.Hide();
-
                     }
-
-
                 }
             }
         }
 
         private async void btnCrear_Click(object sender, EventArgs e)
         {
-
-
-
-
-
-
-            string cargo = cmbCargo.SelectedValue.ToString();
-            string empresa = cmbEmpresa.SelectedValue.ToString();
-
-
-
-            var client = new HttpClient();
-
-
-
-
-            RegistrarUsuario post2 = new RegistrarUsuario()
+            try
             {
-
-                numero_identificacion_usuario = txtRutUsua.Text,
-                nombre_usuario = txtNombreUsua.Text,
-                direccion_usuario = cmbDire.Text,
-                telefono_usuario = txtTelUsua.Text,
-                correo_usuario = txtCorUsua.Text,
-                contrasena_usuario = txtConUsua.Text,
-                administrador_usuario = '0',
-                id_cargo = cargo,
-                id_empresa = empresa,
-
-
-
-
-
-            };
-
-
-
-
-            var data = JsonSerializer.Serialize<RegistrarUsuario>(post2);
-            HttpContent content =
-                 new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            var valido = validarRut(txtRutUsua.Text);
-            if (IsValidEmail(txtCorUsua.Text))
-            {
-
-                if (valido == true)
+                string cargo = cmbCargo.SelectedValue.ToString();
+                string empresa = cmbEmpresa.SelectedValue.ToString();
+                var client = new HttpClient();
+                RegistrarUsuario post2 = new RegistrarUsuario()
                 {
-                    var httpResponse = await client.PostAsync(baseUri, content);
-                    if (httpResponse.IsSuccessStatusCode)
-
+                    numero_identificacion_usuario = txtRutUsua.Text,
+                    nombre_usuario = txtNombreUsua.Text,
+                    direccion_usuario = cmbDire.Text,
+                    telefono_usuario = txtTelUsua.Text,
+                    correo_usuario = txtCorUsua.Text,
+                    contrasena_usuario = txtConUsua.Text,
+                    administrador_usuario = '0',
+                    id_cargo = cargo,
+                    id_empresa = empresa,
+                };
+                var data = JsonSerializer.Serialize<RegistrarUsuario>(post2);
+                HttpContent content =
+                     new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                if (cmbDire.DropDownStyle == ComboBoxStyle.DropDownList)
+                {
+                    if (IsValidEmail(txtCorUsua.Text))
                     {
+                        var valido = validarRut(txtRutUsua.Text);
+                        if (valido == true)
+                        {
+                            var httpResponse = await client.PostAsync(baseUri, content);
+                            if (httpResponse.IsSuccessStatusCode)
+                            {
+                                var result = await httpResponse.Content.ReadAsStringAsync();
+                                Console.WriteLine(result);
+                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                                this.Hide();
 
-                        var result = await httpResponse.Content.ReadAsStringAsync();
-                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                        this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("ingrese datos en todos los campos ");
+                            }
+                        }
+                        else
 
+                        {
+                            MessageBox.Show("rut malo");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("ingrese datos en todos los campos ");
+                        MessageBox.Show("ingrese una ciudad");
                     }
                 }
-                else
-
-                {
-                    MessageBox.Show("rut malo");
-                }
             }
-            else
+            catch (Exception ex)
             {
-                var httpResponse = await client.PostAsync(baseUri, content);
-                if (httpResponse.IsSuccessStatusCode)
-
-                {
-
-                    var result = await httpResponse.Content.ReadAsStringAsync();
-                    var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                    this.Hide();
-
-                }
+                MessageBox.Show(ex.Message);
             }
-
 
         }
-            
-
         private async void button1_Click(object sender, EventArgs e)
         {
             dynamic response = DBApi.Get("http://127.0.0.1:8000/api_usuario/usuario/?format=json");
@@ -323,16 +281,12 @@ namespace MercadoChile
                 }
                 foreach (var fila1 in lista1)
                 {
-                    
                     if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == fila1.id_cargo)
                     {
                         fila.Cells["cnCargo"].Value = fila1.nombre_cargo;
                         break;
                     }
-                }
-                
-                
-                
+                }               
                 foreach (var fila3 in lista5)
                 {
                     if (Convert.ToInt32(fila.Cells["cnEmpresa"].Value) == fila3.id_empresa)
@@ -343,15 +297,14 @@ namespace MercadoChile
                     }
                 }
             }
-            
         }
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            txtRutEdit.Text = DgvClientes.CurrentRow.Cells[1].Value.ToString();
-            txtNomEdit.Text = DgvClientes.CurrentRow.Cells[2].Value.ToString();
-            cmbDire.Text = DgvClientes.CurrentRow.Cells[3].Value.ToString();
-            txtTeleEdit.Text = DgvClientes.CurrentRow.Cells[4].Value.ToString();
-            txtCorEdit.Text = DgvClientes.CurrentRow.Cells[5].Value.ToString();           
+            txtRutEdit.Text = DgvClientes.CurrentRow.Cells["cnNumeIdenUsuar"].Value.ToString();
+            txtNomEdit.Text = DgvClientes.CurrentRow.Cells["cnNombre"].Value.ToString();
+            cmbDireEdit.Text = DgvClientes.CurrentRow.Cells["cnDireccion"].Value.ToString();
+            txtTeleEdit.Text = DgvClientes.CurrentRow.Cells["cnTelefono"].Value.ToString();
+            txtCorEdit.Text = DgvClientes.CurrentRow.Cells["cnCorreo"].Value.ToString();           
             string respuesta1 = await Get.GetHttp1();
             string respuesta5 = await Get.GetHttp2();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
@@ -363,9 +316,9 @@ namespace MercadoChile
             cmbCargoEdit.ValueMember = "id_cargo";
             cmbEmpresaEdit.DisplayMember = "razon_social_empresa";
             cmbEmpresaEdit.ValueMember = "id_empresa";
-            cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells[7].Value.ToString();
-            cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells[8].Value.ToString();          
-            
+            txtConEdit.Text = DgvClientes.CurrentRow.Cells["cnContraseña"].Value.ToString();
+            cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells["cnCargo"].Value.ToString();
+            cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells["cnEmpresa"].Value.ToString();             
         }
         public async Task<string> GetHttp()
         {
@@ -408,7 +361,6 @@ namespace MercadoChile
             {
                 txtRutUsua.Text = "";
                 txtRutUsua.ForeColor = Color.Black;
-
             }
         }
 
@@ -438,7 +390,6 @@ namespace MercadoChile
             {
                 txtNombreUsua.Text = "Nombre Cliente";
                 txtNombreUsua.ForeColor = Color.DimGray;
-
             }
         }
 
