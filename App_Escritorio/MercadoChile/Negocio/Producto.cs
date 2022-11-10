@@ -10,7 +10,7 @@ namespace Negocio
     {
         public string id_producto { get; set; }
         public string nombre_producto { get; set; }
-        public int cantidad_producto { get; set; }
+        public string cantidad_producto { get; set; }
         public int precio_producto { get; set; }
         public string imagen_producto { get; set; }
         public string saldo_producto { get; set; }

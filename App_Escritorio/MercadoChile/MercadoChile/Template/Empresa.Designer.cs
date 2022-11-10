@@ -98,7 +98,6 @@
             this.tabPage1.Size = new System.Drawing.Size(1031, 572);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Crear Empresa";
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // cmbDire
             // 
@@ -109,7 +108,6 @@
             this.cmbDire.Name = "cmbDire";
             this.cmbDire.Size = new System.Drawing.Size(300, 28);
             this.cmbDire.TabIndex = 107;
-            this.cmbDire.SelectedIndexChanged += new System.EventHandler(this.cmbDire_SelectedIndexChanged);
             // 
             // btnBusDirc
             // 
@@ -163,7 +161,6 @@
             this.cmbEmpresa.Size = new System.Drawing.Size(214, 28);
             this.cmbEmpresa.TabIndex = 35;
             this.cmbEmpresa.Text = "Tipo Empresa";
-            this.cmbEmpresa.SelectedIndexChanged += new System.EventHandler(this.cmbEmpresa_SelectedIndexChanged);
             // 
             // btnCrear
             // 
@@ -190,7 +187,6 @@
             this.txtRazonSocial.Size = new System.Drawing.Size(214, 26);
             this.txtRazonSocial.TabIndex = 28;
             this.txtRazonSocial.Text = "Razon social";
-            this.txtRazonSocial.TextChanged += new System.EventHandler(this.txtRazonSocial_TextChanged);
             this.txtRazonSocial.Enter += new System.EventHandler(this.txtRazonSocial_Enter);
             this.txtRazonSocial.Leave += new System.EventHandler(this.txtRazonSocial_Leave);
             // 
@@ -285,6 +281,7 @@
             this.btnBuscarDirec.TabIndex = 109;
             this.btnBuscarDirec.Text = "     Buscar Direccion";
             this.btnBuscarDirec.UseVisualStyleBackColor = true;
+            this.btnBuscarDirec.Click += new System.EventHandler(this.btnBuscarDirec_Click);
             // 
             // btnLimpiarDire
             // 
@@ -300,6 +297,7 @@
             this.btnLimpiarDire.TabIndex = 108;
             this.btnLimpiarDire.Text = "      Limpiar direccion";
             this.btnLimpiarDire.UseVisualStyleBackColor = true;
+            this.btnLimpiarDire.Click += new System.EventHandler(this.btnLimpiarDire_Click);
             // 
             // btnEliminar
             // 
@@ -370,7 +368,6 @@
             this.txtDunsEdit.Size = new System.Drawing.Size(214, 26);
             this.txtDunsEdit.TabIndex = 81;
             this.txtDunsEdit.Text = "Duns Empresa";
-            this.txtDunsEdit.TextChanged += new System.EventHandler(this.txtDunsEdit_TextChanged);
             this.txtDunsEdit.Enter += new System.EventHandler(this.txtDunsEdit_Enter);
             this.txtDunsEdit.Leave += new System.EventHandler(this.txtDunsEdit_Leave);
             // 

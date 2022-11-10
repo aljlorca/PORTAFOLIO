@@ -34,46 +34,52 @@ namespace MercadoChile.Template
         }
         private async void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp();
-            List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
-            string respuesta2 = await Get.GetHttp2();
-            List<Calidad> lista2 = JsonConvert.DeserializeObject<List<Calidad>>(respuesta2);
-            string respuesta3 = await Get.GetHttp3();
-            List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);  
-            DgvProducto.DataSource = lista;
-            this.DgvProducto.Columns[7].Visible = false;
-            cnImagen.ImageLayout = DataGridViewImageCellLayout.Stretch;
-            DgvProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvProducto.DataSource];
-            currencyManager1.SuspendBinding();
-            foreach (DataGridViewRow fila in DgvProducto.Rows)
+            try
             {
-                foreach (var fila1 in lista)
+                string respuesta = await Get.GetHttp();
+                List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
+                string respuesta2 = await Get.GetHttp2();
+                List<Calidad> lista2 = JsonConvert.DeserializeObject<List<Calidad>>(respuesta2);
+                string respuesta3 = await Get.GetHttp3();
+                List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
+                DgvProducto.DataSource = lista;
+                this.DgvProducto.Columns[7].Visible = false;
+                cnImagen.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                DgvProducto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvProducto.DataSource];
+                currencyManager1.SuspendBinding();
+                foreach (DataGridViewRow fila in DgvProducto.Rows)
                 {
-                    if (Convert.ToInt32(fila.Cells["cnSaldo"].Value) == 1)
+                    foreach (var fila1 in lista)
                     {
-                        fila.Visible = false;
-                        currencyManager1.ResumeBinding();
-                        break;
+                        if (Convert.ToInt32(fila.Cells["cnSaldo"].Value) == 1)
+                        {
+                            fila.Visible = false;
+                            currencyManager1.ResumeBinding();
+                            break;
 
+                        }
+                    }
+                    string urlss = fila.Cells["cnUrl"].Value.ToString();
+                    WebClient wc = new WebClient();
+                    byte[] bytes = wc.DownloadData(urlss);
+                    MemoryStream ms = new MemoryStream(bytes);
+                    Image img = Image.FromStream(ms);
+                    DgvProducto.Rows[fila.Index].Cells["cnImagen"].Value = img;
+                    foreach (var fila1 in lista2)
+                    {
+                        fila.Cells["cnCalidad"].Value = fila1.descripcion_calidad;
+                        break;
+                    }
+                    foreach (var fila1 in lista3)
+                    {
+                        fila.Cells["cnProveedor"].Value = fila1.nombre_usuario;
+                        break;
                     }
                 }
-                string urlss = fila.Cells["cnUrl"].Value.ToString();
-                WebClient wc = new WebClient();
-                byte[] bytes = wc.DownloadData(urlss);
-                MemoryStream ms = new MemoryStream(bytes);
-                Image img = Image.FromStream(ms);
-                DgvProducto.Rows[fila.Index].Cells["cnImagen"].Value = img;
-                foreach (var fila1 in lista2)
-                {
-                    fila.Cells["cnCalidad"].Value = fila1.descripcion_calidad;
-                    break;
-                }
-                foreach (var fila1 in lista3)
-                {
-                    fila.Cells["cnProveedor"].Value = fila1.nombre_usuario;
-                    break;
-                }
+            }
+            catch  (Exception ex){
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -136,15 +142,30 @@ namespace MercadoChile.Template
 
             }
         }
-        private void txtBusVenta_TextChanged(object sender, EventArgs e)
+        private async void txtBusVenta_TextChanged(object sender, EventArgs e)
         {
-           
+            string respuesta = await Get.GetHttp5();
+            List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
             DgvPostulacion.CurrentCell = null;
+            CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvPostulacion.DataSource];
+            currencyManager1.SuspendBinding();
             foreach (DataGridViewRow fila in DgvPostulacion.Rows)
             {
-                
-                fila.Visible = fila.Cells["cnVenta"].Value.ToString().ToUpper().Contains(txtBusVenta.Text.ToUpper());
-                
+                foreach (var list in lista)
+                {
+                    if (fila.Cells["cnEstadoF"].Value.ToString() == "1")
+                    {
+                        fila.Visible = false;
+                        break;
+                    }
+                    if (fila.Cells["cnEstado"].Value.ToString() == "Rechazada")
+                    {
+                        fila.Visible = false;
+                        currencyManager1.ResumeBinding();
+                        break;
+                    }
+                    fila.Visible = fila.Cells["cnVenta"].Value.ToString().ToUpper().Contains(txtBusVenta.Text.ToUpper());
+                }
             }
 
         }

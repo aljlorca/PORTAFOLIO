@@ -47,10 +47,24 @@ namespace MercadoChile
             this.txtRutUsua = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.DgvClientes = new System.Windows.Forms.DataGridView();
+            this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnUsAdm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnUsAd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnContraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnFeha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnBuscarDire = new System.Windows.Forms.Button();
+            this.cmbDireEdit = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnLimpiarDire = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.cmbEmpresaEdit = new System.Windows.Forms.ComboBox();
@@ -61,19 +75,6 @@ namespace MercadoChile
             this.txtNomEdit = new System.Windows.Forms.TextBox();
             this.txtCorEdit = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.cmbDireEdit = new System.Windows.Forms.ComboBox();
-            this.btnBuscarDire = new System.Windows.Forms.Button();
-            this.btnLimpiarDire = new System.Windows.Forms.Button();
-            this.cnNumeIdenUsuar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnUsAd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnContraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnFeha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -126,7 +127,7 @@ namespace MercadoChile
             this.cmbDire.Name = "cmbDire";
             this.cmbDire.Size = new System.Drawing.Size(300, 28);
             this.cmbDire.TabIndex = 108;
-            this.cmbDire.Text = "cmbDire";
+            this.cmbDire.Text = "Ingrese Una Direccion";
             // 
             // btnBuscDir
             // 
@@ -301,6 +302,7 @@ namespace MercadoChile
             this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cnNumeIdenUsuar,
+            this.cnUsAdm,
             this.cnUsAd,
             this.cnNombre,
             this.cnContraseña,
@@ -315,6 +317,74 @@ namespace MercadoChile
             this.DgvClientes.Name = "DgvClientes";
             this.DgvClientes.Size = new System.Drawing.Size(733, 399);
             this.DgvClientes.TabIndex = 94;
+            // 
+            // cnNumeIdenUsuar
+            // 
+            this.cnNumeIdenUsuar.DataPropertyName = "numero_identificacion_usuario";
+            this.cnNumeIdenUsuar.HeaderText = "Numero Identificacion Usuario";
+            this.cnNumeIdenUsuar.Name = "cnNumeIdenUsuar";
+            // 
+            // cnUsAdm
+            // 
+            this.cnUsAdm.DataPropertyName = "administrador_usuario";
+            this.cnUsAdm.HeaderText = "usadm";
+            this.cnUsAdm.Name = "cnUsAdm";
+            this.cnUsAdm.Visible = false;
+            // 
+            // cnUsAd
+            // 
+            this.cnUsAd.DataPropertyName = "administrador_usuario";
+            this.cnUsAd.HeaderText = "usad";
+            this.cnUsAd.Name = "cnUsAd";
+            this.cnUsAd.Visible = false;
+            // 
+            // cnNombre
+            // 
+            this.cnNombre.DataPropertyName = "nombre_usuario";
+            this.cnNombre.HeaderText = "Nombre Usuario";
+            this.cnNombre.Name = "cnNombre";
+            // 
+            // cnContraseña
+            // 
+            this.cnContraseña.DataPropertyName = "contrasena_usuario";
+            this.cnContraseña.HeaderText = "Contraseña Usuario";
+            this.cnContraseña.Name = "cnContraseña";
+            // 
+            // cnDireccion
+            // 
+            this.cnDireccion.DataPropertyName = "direccion_usuario";
+            this.cnDireccion.HeaderText = "Direccion Usuario";
+            this.cnDireccion.Name = "cnDireccion";
+            // 
+            // cnTelefono
+            // 
+            this.cnTelefono.DataPropertyName = "telefono_usuario";
+            this.cnTelefono.HeaderText = "Telefono Usuario";
+            this.cnTelefono.Name = "cnTelefono";
+            // 
+            // cnCorreo
+            // 
+            this.cnCorreo.DataPropertyName = "correo_usuario";
+            this.cnCorreo.HeaderText = "Correo";
+            this.cnCorreo.Name = "cnCorreo";
+            // 
+            // cnFeha
+            // 
+            this.cnFeha.DataPropertyName = "fecha_creacion_usuario";
+            this.cnFeha.HeaderText = "Fecha Creacion";
+            this.cnFeha.Name = "cnFeha";
+            // 
+            // cnCargo
+            // 
+            this.cnCargo.DataPropertyName = "id_cargo";
+            this.cnCargo.HeaderText = "Cargo Usuario";
+            this.cnCargo.Name = "cnCargo";
+            // 
+            // cnEmpresa
+            // 
+            this.cnEmpresa.DataPropertyName = "id_empresa";
+            this.cnEmpresa.HeaderText = "Empresa";
+            this.cnEmpresa.Name = "cnEmpresa";
             // 
             // label3
             // 
@@ -359,6 +429,33 @@ namespace MercadoChile
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificar Usuario";
             // 
+            // btnBuscarDire
+            // 
+            this.btnBuscarDire.FlatAppearance.BorderSize = 0;
+            this.btnBuscarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnBuscarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarDire.Image")));
+            this.btnBuscarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscarDire.Location = new System.Drawing.Point(21, 311);
+            this.btnBuscarDire.Name = "btnBuscarDire";
+            this.btnBuscarDire.Size = new System.Drawing.Size(183, 40);
+            this.btnBuscarDire.TabIndex = 111;
+            this.btnBuscarDire.Text = "     Buscar Direccion";
+            this.btnBuscarDire.UseVisualStyleBackColor = true;
+            this.btnBuscarDire.Click += new System.EventHandler(this.btnBuscarDire_Click);
+            // 
+            // cmbDireEdit
+            // 
+            this.cmbDireEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDireEdit.ForeColor = System.Drawing.Color.Black;
+            this.cmbDireEdit.FormattingEnabled = true;
+            this.cmbDireEdit.Location = new System.Drawing.Point(0, 277);
+            this.cmbDireEdit.Name = "cmbDireEdit";
+            this.cmbDireEdit.Size = new System.Drawing.Size(227, 28);
+            this.cmbDireEdit.TabIndex = 109;
+            this.cmbDireEdit.Text = "Direccion";
+            // 
             // button2
             // 
             this.button2.FlatAppearance.BorderSize = 0;
@@ -374,6 +471,22 @@ namespace MercadoChile
             this.button2.Text = "Eliminar Cliente";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnLimpiarDire
+            // 
+            this.btnLimpiarDire.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnLimpiarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarDire.Image")));
+            this.btnLimpiarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiarDire.Location = new System.Drawing.Point(21, 357);
+            this.btnLimpiarDire.Name = "btnLimpiarDire";
+            this.btnLimpiarDire.Size = new System.Drawing.Size(174, 40);
+            this.btnLimpiarDire.TabIndex = 110;
+            this.btnLimpiarDire.Text = "       Limpiar Direccion";
+            this.btnLimpiarDire.UseVisualStyleBackColor = true;
+            this.btnLimpiarDire.Click += new System.EventHandler(this.btnLimpiarDire_Click);
             // 
             // btnEdit
             // 
@@ -497,108 +610,6 @@ namespace MercadoChile
             this.button1.Tag = "";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // cmbDireEdit
-            // 
-            this.cmbDireEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDireEdit.ForeColor = System.Drawing.Color.Black;
-            this.cmbDireEdit.FormattingEnabled = true;
-            this.cmbDireEdit.Location = new System.Drawing.Point(0, 277);
-            this.cmbDireEdit.Name = "cmbDireEdit";
-            this.cmbDireEdit.Size = new System.Drawing.Size(227, 28);
-            this.cmbDireEdit.TabIndex = 109;
-            this.cmbDireEdit.Text = "Direccion";
-            // 
-            // btnBuscarDire
-            // 
-            this.btnBuscarDire.FlatAppearance.BorderSize = 0;
-            this.btnBuscarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnBuscarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarDire.Image")));
-            this.btnBuscarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscarDire.Location = new System.Drawing.Point(21, 311);
-            this.btnBuscarDire.Name = "btnBuscarDire";
-            this.btnBuscarDire.Size = new System.Drawing.Size(183, 40);
-            this.btnBuscarDire.TabIndex = 111;
-            this.btnBuscarDire.Text = "     Buscar Direccion";
-            this.btnBuscarDire.UseVisualStyleBackColor = true;
-            // 
-            // btnLimpiarDire
-            // 
-            this.btnLimpiarDire.FlatAppearance.BorderSize = 0;
-            this.btnLimpiarDire.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnLimpiarDire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarDire.Image")));
-            this.btnLimpiarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiarDire.Location = new System.Drawing.Point(21, 357);
-            this.btnLimpiarDire.Name = "btnLimpiarDire";
-            this.btnLimpiarDire.Size = new System.Drawing.Size(174, 40);
-            this.btnLimpiarDire.TabIndex = 110;
-            this.btnLimpiarDire.Text = "       Limpiar Direccion";
-            this.btnLimpiarDire.UseVisualStyleBackColor = true;
-            // 
-            // cnNumeIdenUsuar
-            // 
-            this.cnNumeIdenUsuar.DataPropertyName = "numero_identificacion_usuario";
-            this.cnNumeIdenUsuar.HeaderText = "Numero Identificacion Usuario";
-            this.cnNumeIdenUsuar.Name = "cnNumeIdenUsuar";
-            // 
-            // cnUsAd
-            // 
-            this.cnUsAd.DataPropertyName = "administrador_usuario";
-            this.cnUsAd.HeaderText = "usad";
-            this.cnUsAd.Name = "cnUsAd";
-            this.cnUsAd.Visible = false;
-            // 
-            // cnNombre
-            // 
-            this.cnNombre.DataPropertyName = "nombre_usuario";
-            this.cnNombre.HeaderText = "Nombre Usuario";
-            this.cnNombre.Name = "cnNombre";
-            // 
-            // cnContraseña
-            // 
-            this.cnContraseña.DataPropertyName = "contrasena_usuario";
-            this.cnContraseña.HeaderText = "Contraseña Usuario";
-            this.cnContraseña.Name = "cnContraseña";
-            // 
-            // cnDireccion
-            // 
-            this.cnDireccion.DataPropertyName = "direccion_usuario";
-            this.cnDireccion.HeaderText = "Direccion Usuario";
-            this.cnDireccion.Name = "cnDireccion";
-            // 
-            // cnTelefono
-            // 
-            this.cnTelefono.DataPropertyName = "telefono_usuario";
-            this.cnTelefono.HeaderText = "Telefono Usuario";
-            this.cnTelefono.Name = "cnTelefono";
-            // 
-            // cnCorreo
-            // 
-            this.cnCorreo.DataPropertyName = "correo_usuario";
-            this.cnCorreo.HeaderText = "Correo";
-            this.cnCorreo.Name = "cnCorreo";
-            // 
-            // cnFeha
-            // 
-            this.cnFeha.DataPropertyName = "fecha_creacion_usuario";
-            this.cnFeha.HeaderText = "Fecha Creacion";
-            this.cnFeha.Name = "cnFeha";
-            // 
-            // cnCargo
-            // 
-            this.cnCargo.DataPropertyName = "id_cargo";
-            this.cnCargo.HeaderText = "Cargo Usuario";
-            this.cnCargo.Name = "cnCargo";
-            // 
-            // cnEmpresa
-            // 
-            this.cnEmpresa.DataPropertyName = "id_empresa";
-            this.cnEmpresa.HeaderText = "Empresa";
-            this.cnEmpresa.Name = "cnEmpresa";
-            // 
             // Usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -657,6 +668,7 @@ namespace MercadoChile
         private System.Windows.Forms.Button btnBuscarDire;
         private System.Windows.Forms.Button btnLimpiarDire;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNumeIdenUsuar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnUsAdm;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnUsAd;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnContraseña;

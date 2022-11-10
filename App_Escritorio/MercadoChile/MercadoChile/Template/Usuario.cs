@@ -146,6 +146,32 @@ namespace MercadoChile
                 }
             }
         }
+        private async void btnBuscarDire_Click(object sender, EventArgs e)
+        {
+            AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+            string respuesta = await GetHttp();
+            var myDetails = JObject.Parse(respuesta);
+            var features = myDetails["features"];
+            for (int i = 0; i < 4; i++)
+            {
+                foreach (var a in features)
+                {
+                    var dir = features[i];
+                    lista.Add(dir["place_name"].ToString());
+                    break;
+                }
+            }
+            cmbDire.DataSource = lista;
+
+            cmbDire.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void btnLimpiarDire_Click(object sender, EventArgs e)
+        {
+            AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+            cmbDire.DataSource = lista;
+            cmbDire.DropDownStyle = ComboBoxStyle.DropDown;
+        }
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             string respuesta = await Get.GetHttp();
@@ -582,8 +608,6 @@ namespace MercadoChile
         {
             cmbEmpresa.ForeColor = Color.Black;
         }
-
-
     }
 }
 #endregion

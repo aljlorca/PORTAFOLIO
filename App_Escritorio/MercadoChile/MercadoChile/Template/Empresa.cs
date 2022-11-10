@@ -235,7 +235,9 @@ namespace MercadoChile.Template
 
         private void btnLimpiarDir_Click(object sender, EventArgs e)
         {
-
+            AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+            cmbDire.DataSource = lista;
+            cmbDire.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private void txtDunsEmp_TextChanged(object sender, EventArgs e)
@@ -334,42 +336,32 @@ namespace MercadoChile.Template
 
             }
         }
-        private void txtDunsEdit_TextChanged(object sender, EventArgs e)
+        private void btnLimpiarDire_Click(object sender, EventArgs e)
         {
-
+            AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+            cmbDireEdit.DataSource = lista;
+            cmbDireEdit.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
-        private void txtRazonSocial_TextChanged(object sender, EventArgs e)
+        private async void btnBuscarDirec_Click(object sender, EventArgs e)
         {
+            AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+            string respuesta = await GetHttp();
+            var myDetails = JObject.Parse(respuesta);
+            dynamic data = JObject.Parse(respuesta);
+            var features = myDetails["features"];
+            for (int i = 0; i < 4; i++)
+            {
+                foreach (var a in features)
+                {
+                    var dir = features[i];
+                    lista.Add(dir["place_name"].ToString());
+                    break;
+                }
+            }
+            cmbDireEdit.DataSource = lista;
 
-        }
-
-        private void txtDirecEmp_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void txtGiroEmp_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void cmbPais_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbEmpresa_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbDire_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            cmbDireEdit.DropDownStyle = ComboBoxStyle.DropDownList;
         }
     }
 }
