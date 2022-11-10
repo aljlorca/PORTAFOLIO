@@ -149,7 +149,7 @@ namespace MercadoChile
         private async void btnBuscarDire_Click(object sender, EventArgs e)
         {
             AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
-            string respuesta = await GetHttp();
+            string respuesta = await GetHttp1();
             var myDetails = JObject.Parse(respuesta);
             var features = myDetails["features"];
             for (int i = 0; i < 4; i++)
@@ -161,16 +161,16 @@ namespace MercadoChile
                     break;
                 }
             }
-            cmbDire.DataSource = lista;
+            cmbDireEdit.DataSource = lista;
 
-            cmbDire.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDireEdit.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnLimpiarDire_Click(object sender, EventArgs e)
         {
             AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
-            cmbDire.DataSource = lista;
-            cmbDire.DropDownStyle = ComboBoxStyle.DropDown;
+            cmbDireEdit.DataSource = lista;
+            cmbDireEdit.DropDownStyle = ComboBoxStyle.DropDown;
         }
         private async void btnEditar_Click(object sender, EventArgs e)
         {
@@ -350,6 +350,15 @@ namespace MercadoChile
         public async Task<string> GetHttp()
         {
             string street = cmbDire.Text;
+            Uri baseUri = new Uri("https://api.mapbox.com/geocoding/v5/mapbox.places/" + street + ".json?access_token=pk.eyJ1IjoiYWxqbG9yY2EiLCJhIjoiY2w5dGM2MzhmMWtuMDNwbzBtZjYwYmthOCJ9.B2_1lvG4ivhYRMLkBdxP6w");
+            WebRequest oRequest = WebRequest.Create(baseUri);
+            WebResponse oResponse = oRequest.GetResponse();
+            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+            return await sr.ReadToEndAsync();
+        }
+        public async Task<string> GetHttp1()
+        {
+            string street = cmbDireEdit.Text;
             Uri baseUri = new Uri("https://api.mapbox.com/geocoding/v5/mapbox.places/" + street + ".json?access_token=pk.eyJ1IjoiYWxqbG9yY2EiLCJhIjoiY2w5dGM2MzhmMWtuMDNwbzBtZjYwYmthOCJ9.B2_1lvG4ivhYRMLkBdxP6w");
             WebRequest oRequest = WebRequest.Create(baseUri);
             WebResponse oResponse = oRequest.GetResponse();
