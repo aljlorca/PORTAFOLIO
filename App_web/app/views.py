@@ -79,7 +79,6 @@ def carrito(request):
             return redirect(to="http://127.0.0.1:3000/")
     except:
         return redirect(to="http://127.0.0.1:3000/")
-    data['user'] =  usuario_get_id(str(data['id_user']))
     total = request.POST.get('precio_total')
     data['resultado']=get_initTrxTBK(total,str(data['id_user']))
     print(data['resultado'])
@@ -454,4 +453,7 @@ def carga(request):
 @csrf_exempt
 def tbk_respuesta(request):
     data = get_session(request)
+    token=request.get_full_path()
+    token=token[-64:]
+    data['response']=get_statusTBK(token)
     return render(request, 'app/tbk/respt.html',data)

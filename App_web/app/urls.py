@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,re_path
 from .views import *
 
 urlpatterns = [
@@ -34,7 +34,6 @@ urlpatterns = [
     path("carga/", carga, name="carga"),
 
     #tbk
-    path('tbk_respuesta/',tbk_respuesta,name='tbk_respuesta  ')
-
+    path('tbk_respuesta/',tbk_respuesta,name='tbk_respuesta')
 
 ]
