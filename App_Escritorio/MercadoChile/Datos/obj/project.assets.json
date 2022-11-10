@@ -2207,20 +2207,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sebac\\.nuget\\packages\\": {}
+    "C:\\Users\\Alan\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+      "projectUniqueName": "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
       "projectName": "Datos",
-      "projectPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
-      "packagesPath": "C:\\Users\\sebac\\.nuget\\packages\\",
-      "outputPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
+      "projectPath": "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+      "packagesPath": "C:\\Users\\Alan\\.nuget\\packages\\",
+      "outputPath": "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\sebac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Alan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

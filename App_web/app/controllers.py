@@ -282,8 +282,25 @@ def get_initTrxTBK(monto, id_usuario):
     fecha_session=fecha_hoy.strftime("%d%m%y%H%M")
     orden= id_usuario+'_'+fecha
     session = id_usuario+'_'+fecha_session
-    body = json.dumps({"buy_order": orden, "session_id": session, "amount": monto , "return_url": "http://127.0.0.1:3000/tbk_respuesta/" })
+    body = json.dumps({"buy_order": orden, "session_id": session, "amount": monto , "return_url": "http://127.0.0.1:3000/tbk_respuesta/"})
     url = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions"
     response = generate_request_tbk(url, body)
     if response:
        return response
+
+def get_statusTBK(token):
+    header = {'Tbk-Api-Key-Id': '597055555532','Tbk-Api-Key-Secret': '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C','Content-Type': 'application/json'}
+    url = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions/"+token
+    try: 
+        autorizar = requests.put(url,headers=header).json()
+        try:    
+            if autorizar['error_message']=='Transaction has an invalid finished state: aborted':
+                return 'error transaccion abortada'
+        except:
+            try:
+                respuesta = requests.get(url,headers=header).json()
+                return respuesta
+            except:
+                return 'tuvimos un problema al obtener su transaccion'
+    except: 
+        return "Tenemos problemas en estos momentos"

@@ -2,7 +2,6 @@
 {% load static %}
 {% load humanize %}
 {% block contenido %}
-<!-- Cart Start -->
 <div class="container-xxl py-5">
     <div class="container-xxl py-5 row g-0 gx-5 align-items-end">
         <div class="col-lg-8 table-responsive mb-5">
@@ -24,26 +23,9 @@
                     {% for key, value in request.session.carro.items %}
                     <tr>
                         <td class="align-middle">{{value.nombre_producto}}</td>
-                        <td class="align-middle">
-                            <!-- NO RESTAR
-                            <div class="input-group quantity mx-auto" style="width: 100px;">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-primary btn-minus" >
-                                    <a href="{% url 'carro:restar' value.id_producto %}"><i class="fa fa-minus"></i></a>
-                                    </button>
-                                </div> -->   
-                                {{value.cantidad}} TN
-                                <!-- NO SUMAR  
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-primary btn-plus">
-                                        <a href="{% url 'carro:agregar' value.id_producto %}"><i class="fa fa-plus"></i></a>
-                                        
-                                    </button> --> 
-                                </div>
-                            </div>
-                        </td>
+                        <td class="align-middle">{{value.cantidad}} TN</td>
                         <td class="align-middle">$ {{value.precio_producto | intcomma}}</td>
-                        <td class="align-middle"><button class="btn btn-sm btn-danger"> <a href="{% url 'carro:eliminar' value.id_producto %}"><i class="fa fa-times"></i></a></button></td>
+                        <td class="align-middle"><a href="{% url 'carro:eliminar' value.id_producto %}"><button class="btn btn-sm btn-danger"> <i class="fa fa-times"></i></button></a></td>
                     </tr>
                     {% endfor %}
                     
@@ -56,22 +38,25 @@
             </table>
             
         </div>
-<!-- TOTALES -->   
             <div  class="col-lg-4 mb-0" style="margin-top: 50px">
                 <h5 class="section-title position-relative text-uppercase mb-3"><span>Total de productos</span></h5>
                 <div class="bg-light p-30 mb-5">
                         <div class="pt-2">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5>Total</h5>
-                                <h5>$ {{importe_total_carro | intcomma}}</h5>
+                                <h5 name="precio_total">$ {{importe_total_carro | intcomma}}</h5>
                             </div>
-                            <a class="btn btn-block btn-success font-weight-bold my-3 py-3" href="http://127.0.0.1:3000/checkout/">Realizar Compra</a>
+                            <form method="POST" enctype="multipart/form-data" action="http://127.0.0.1:3000/checkout/{{resultado.url}}?token_ws={{resultado.token}}">
+                                <input type="hidden" name="token_ws" value="{{resultado.token}}" disabled>
+                                <input type="hidden" name="precio_total" value="{{importe_total_carro}}">
+                                <input type="submit" value="Realizar Compra" class="btn btn-success">      
+                            </form>
                         </div>
                     </div>
                 </div>
-            
         </div>
 </div>
-<!-- Cart End -->
+
+
 
 {% endblock %}
