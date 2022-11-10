@@ -27,11 +27,11 @@ def modificar_usuario(numero_identificacion_usuario,nombre_usuario,direccion_usu
     cursor.callproc('USUARIO_MODIFICAR',[numero_identificacion_usuario,nombre_usuario,direccion_usuario,telefono_usuario,correo_usuario,contrasena_usuario,administrador_usuario,id_cargo,id_empresa,salida])
     return round(salida.getvalue())
 
-def eliminar_usuario(correo_usuario):
+def eliminar_usuario(id_usuario,correo_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('USUARIO_ELIMINAR',[correo_usuario,salida])
+    cursor.callproc('USUARIO_ELIMINAR',[id_usuario,correo_usuario,salida])
     return round(salida.getvalue())
 
 def lista_usuario():
@@ -110,7 +110,7 @@ class UsuarioView(View):
             jd = json.loads(request.body)
             if len(usuarios) > 0:
                 try:
-                    salida = eliminar_usuario(correo_usuario=jd['correo_usuario'])
+                    salida = eliminar_usuario(id_usuario,correo_usuario=jd['correo_usuario'])
                     if salida == 1:
                         datos={'message':"Success"}
                     elif salida == 0:
