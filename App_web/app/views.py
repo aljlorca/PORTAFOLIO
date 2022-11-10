@@ -81,7 +81,6 @@ def carrito(request):
         return redirect(to="http://127.0.0.1:3000/")
     total = request.POST.get('precio_total')
     data['resultado']=get_initTrxTBK(total,str(data['id_user']))
-    print(data['resultado'])
     return render(request, 'app/carro/carrito.html',data)
 
 def cliente_ecomerce(request):
@@ -118,7 +117,6 @@ def checkout(request):
     data['user'] =  usuario_get_id(str(data['id_user']))
     total = request.POST.get('precio_total')
     data['resultado']=get_initTrxTBK(total,str(data['id_user']))
-    print(data['resultado'])
     return render(request, 'app/carro/checkout.html',data)
 
 def detalle_venta(request,id_venta):

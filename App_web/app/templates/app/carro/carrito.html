@@ -25,7 +25,7 @@
                         <td class="align-middle">{{value.nombre_producto}}</td>
                         <td class="align-middle">{{value.cantidad}} TN</td>
                         <td class="align-middle">$ {{value.precio_producto | intcomma}}</td>
-                        <td class="align-middle"><a href="{% url 'carro:eliminar' value.id_producto %}"></a><button class="btn btn-sm btn-danger"> <i class="fa fa-times"></i></button></a></td>
+                        <td class="align-middle"><a href="{% url 'carro:eliminar' value.id_producto %}"><button class="btn btn-sm btn-danger"> <i class="fa fa-times"></i></button></a></td>
                     </tr>
                     {% endfor %}
                     

@@ -289,10 +289,8 @@ def get_initTrxTBK(monto, id_usuario):
        return response
 
 def get_statusTBK(token):
-    
     header = {'Tbk-Api-Key-Id': '597055555532','Tbk-Api-Key-Secret': '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C','Content-Type': 'application/json'}
     url = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions/"+token
-    print(url)
     try: 
         autorizar = requests.put(url,headers=header).json()
         try:    
