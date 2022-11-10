@@ -211,7 +211,7 @@ namespace MercadoChile
                 var data = JsonSerializer.Serialize<RegistrarUsuario>(post2);
                 HttpContent content =
                      new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                if (cmbDire.DropDownStyle == ComboBoxStyle.DropDownList)
+                if (cmbDire.DropDownStyle == ComboBoxStyle.DropDownList && cmbDire.Text.Contains("Chile")==true)
                 {
                     var valido = validarRut(txtRutUsua.Text);
                     if (IsValidEmail(txtCorUsua.Text) && valido == true)
@@ -232,10 +232,22 @@ namespace MercadoChile
                         MessageBox.Show("rut incorrecto o correo no valido");
                     }
                 }
+                else if(cmbDire.DropDownStyle == ComboBoxStyle.DropDownList && IsValidEmail(txtCorUsua.Text))
+                {
+                    var httpResponse = await client.PostAsync(baseUri, content);
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        var result = await httpResponse.Content.ReadAsStringAsync();
+                        Console.WriteLine(result);
+                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                        this.Hide();
+
+                    }
+                }
                 else
                 {
-                    MessageBox.Show("Ingrese una Direccion");
-                }              
+                    MessageBox.Show("ingrese un correo correcto");
+                }            
             }
             catch (Exception ex)
             {
