@@ -1,4 +1,5 @@
-﻿using Datos;
+﻿using Amazon.Runtime.Internal.Util;
+using Datos;
 using MercadoChile.Modelos;
 using Negocio;
 using Newtonsoft.Json;
@@ -203,15 +204,43 @@ namespace MercadoChile
                     var data = JsonSerializer.Serialize<Usuarios>(post);
                     HttpContent content =
                         new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    var httpResponse = await client.PutAsync(myUri, content);
-                    if (httpResponse.IsSuccessStatusCode)
+                    if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList && cmbDireEdit.Text.Contains("Chile") == true)
                     {
-                        var result = await httpResponse.Content.ReadAsStringAsync();
-                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                        MessageBox.Show(postResult.ToString());
-                        this.Hide();
+                        var valido = validarRut(txtRutEdit.Text);
+                        if (IsValidEmail(txtCorEdit.Text) && valido == true)
+                        {
+
+                            var httpResponse = await client.PutAsync(myUri, content);
+                            if (httpResponse.IsSuccessStatusCode)
+                            {
+                                var result = await httpResponse.Content.ReadAsStringAsync();
+                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                                MessageBox.Show(postResult.ToString());
+                                this.Hide();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("rut incorrecto o correo no valido");
+                        }
+                    }
+                    else if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList && IsValidEmail(txtCorEdit.Text))
+                    {
+                        var httpResponse = await client.PutAsync(myUri, content);
+                        if (httpResponse.IsSuccessStatusCode)
+                        {
+                            var result = await httpResponse.Content.ReadAsStringAsync();
+                            var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                            MessageBox.Show(postResult.ToString());
+                            this.Hide();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("ingrese un correo correcto");
                     }
                 }
+                
             }
         }
 

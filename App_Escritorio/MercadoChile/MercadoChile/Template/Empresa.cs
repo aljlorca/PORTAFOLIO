@@ -119,22 +119,24 @@ namespace MercadoChile.Template
                     var data = JsonSerializer.Serialize<Empresas>(post);
                     HttpContent content =
                         new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    var httpResponse = await client.PutAsync(myUri, content);
-
-
-                    if (httpResponse.IsSuccessStatusCode)
+                    if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList)
                     {
-                        var result = await httpResponse.Content.ReadAsStringAsync();
-                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                        MessageBox.Show(postResult.ToString());
-                        this.Hide();
-
+                        var httpResponse = await client.PutAsync(myUri, content);
+                        if (httpResponse.IsSuccessStatusCode)
+                        {
+                            var result = await httpResponse.Content.ReadAsStringAsync();
+                            var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                            MessageBox.Show(postResult.ToString());
+                            this.Hide();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("ingrese una direccion");
                     }
                 }
             }
         }
-        
-
         private async void btnCrear_Click(object sender, EventArgs e)
         {
 
@@ -156,21 +158,25 @@ namespace MercadoChile.Template
                 var data = JsonSerializer.Serialize<Empresas>(post2);
                 HttpContent content =
                     new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-
-                var httpResponse = await client.PostAsync(baseUri, content);
-                if (httpResponse.IsSuccessStatusCode)
-
+                if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList)
                 {
+                    var httpResponse = await client.PostAsync(baseUri, content);
+                    if (httpResponse.IsSuccessStatusCode)
 
-                    var result = await httpResponse.Content.ReadAsStringAsync();
-                    var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                    this.Hide();
+                    {
 
+                        var result = await httpResponse.Content.ReadAsStringAsync();
+                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                        this.Hide();
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ingrese una direccion");
                 }
             }
         }
-        
-
         private async void button1_Click(object sender, EventArgs e)
         {
             dynamic response = DBApi.Get("http://127.0.0.1:8000/api_empresa/empresa/?format=json");
@@ -212,12 +218,20 @@ namespace MercadoChile.Template
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
             return await sr.ReadToEndAsync();
         }
+        public async Task<string> GetHttp1()
+        {
+            string street = cmbDireEdit.Text;
+            Uri baseUri = new Uri("https://api.mapbox.com/geocoding/v5/mapbox.places/" + street + ".json?access_token=pk.eyJ1IjoiYWxqbG9yY2EiLCJhIjoiY2w5dGM2MzhmMWtuMDNwbzBtZjYwYmthOCJ9.B2_1lvG4ivhYRMLkBdxP6w");
+            WebRequest oRequest = WebRequest.Create(baseUri);
+            WebResponse oResponse = oRequest.GetResponse();
+            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+            return await sr.ReadToEndAsync();
+        }
         private async void btnBusDirc_Click(object sender, EventArgs e)
         {
             AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
             string respuesta = await GetHttp();
             var myDetails = JObject.Parse(respuesta);
-            dynamic data = JObject.Parse(respuesta);
             var features = myDetails["features"];
             for (int i = 0; i < 4; i++)
             {
@@ -232,19 +246,12 @@ namespace MercadoChile.Template
 
             cmbDire.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-
         private void btnLimpiarDir_Click(object sender, EventArgs e)
         {
             AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
             cmbDire.DataSource = lista;
             cmbDire.DropDownStyle = ComboBoxStyle.DropDown;
         }
-
-        private void txtDunsEmp_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtDunsEmp_Enter(object sender, EventArgs e)
         {
             if (txtDunsEmp.Text == "Duns Empresa")
@@ -254,7 +261,6 @@ namespace MercadoChile.Template
 
             }
         }
-
         private void txtDunsEmp_Leave(object sender, EventArgs e)
         {
             if (txtDunsEmp.Text == "")
@@ -264,7 +270,6 @@ namespace MercadoChile.Template
 
             }
         }
-
         private void txtRazonSocial_Enter(object sender, EventArgs e)
         {
             if (txtRazonSocial.Text == "Razon social")
@@ -274,7 +279,6 @@ namespace MercadoChile.Template
 
             }
         }
-
         private void txtRazonSocial_Leave(object sender, EventArgs e)
         {
             if (txtRazonSocial.Text == "")
@@ -284,19 +288,6 @@ namespace MercadoChile.Template
 
             }
         }
-
-        
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtGiroEdit_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtDunsEdit_Enter(object sender, EventArgs e)
         {
             if (txtDunsEdit.Text == "Duns Empresa")
@@ -306,7 +297,6 @@ namespace MercadoChile.Template
 
             }
         }
-
         private void txtDunsEdit_Leave(object sender, EventArgs e)
         {
             if (txtDunsEdit.Text == "")
@@ -316,7 +306,6 @@ namespace MercadoChile.Template
 
             }
         }
-
         private void txtRazonEdit_Enter(object sender, EventArgs e)
         {
             if (txtRazonEdit.Text == "Razon Social")
@@ -326,7 +315,6 @@ namespace MercadoChile.Template
 
             }
         }
-
         private void txtRazonEdit_Leave(object sender, EventArgs e)
         {
             if (txtRazonEdit.Text == "")
@@ -346,9 +334,8 @@ namespace MercadoChile.Template
         private async void btnBuscarDirec_Click(object sender, EventArgs e)
         {
             AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
-            string respuesta = await GetHttp();
+            string respuesta = await GetHttp1();
             var myDetails = JObject.Parse(respuesta);
-            dynamic data = JObject.Parse(respuesta);
             var features = myDetails["features"];
             for (int i = 0; i < 4; i++)
             {

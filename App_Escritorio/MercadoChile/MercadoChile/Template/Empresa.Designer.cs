@@ -199,7 +199,6 @@
             this.txtDunsEmp.Size = new System.Drawing.Size(214, 26);
             this.txtDunsEmp.TabIndex = 27;
             this.txtDunsEmp.Text = "Duns Empresa";
-            this.txtDunsEmp.TextChanged += new System.EventHandler(this.txtDunsEmp_TextChanged);
             this.txtDunsEmp.Enter += new System.EventHandler(this.txtDunsEmp_Enter);
             this.txtDunsEmp.Leave += new System.EventHandler(this.txtDunsEmp_Leave);
             // 
@@ -255,8 +254,7 @@
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificar Empresa";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
+            //
             // cmbDireEdit
             // 
             this.cmbDireEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
