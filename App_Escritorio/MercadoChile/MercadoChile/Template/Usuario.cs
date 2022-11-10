@@ -191,7 +191,7 @@ namespace MercadoChile
                     {
                         numero_identificacion_usuario = txtRutEdit.Text,
                         nombre_usuario = txtNomEdit.Text,
-                        direccion_usuario = cmbDire.Text,
+                        direccion_usuario = cmbDireEdit.Text,
                         telefono_usuario = txtTeleEdit.Text,
                         correo_usuario = txtCorEdit.Text,
                         contrasena_usuario = txtConEdit.Text,
