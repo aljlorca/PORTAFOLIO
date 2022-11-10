@@ -16,22 +16,32 @@
         </div>
         <div class="col-lg7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
             <form method="POST">
-                <div class="row g-3">
+                <div class="row g-4">
                     <div class="col-12">
-                        <div class="col-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" name="capacidad-carga" placeholder="capacidad-carga" >
-                                <label for="capacidad-carga">Capacidad de carga</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" name="tamano-carga" placeholder="tamano-carga" >
-                                <label for="tamano-carga">Tamaño carga</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" name="refrigeracion-carga" placeholder="refrigeracion-carga" >
-                                <label for="refrigeracion-carga">Cuenta con refrigeracion?</label>
-                            </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="capacidad-carga" placeholder="capacidad-carga" >
+                            <label for="capacidad-carga">Capacidad de carga</label>
                         </div>
+                    </div>
+                    
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="tamano-carga" placeholder="tamano-carga" >
+                            <label for="tamano-carga">Tamaño carga</label>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <div>
+                            <label class="">Cuenta con refrigeracion</label>
+                        </div>
+                        <div class="form-floating">
+                            <div class="form-floating">
+                                <select class="form-select form-select-lg mb-4" name="refrigeracion-carga" aria-label=".form-select-lg example">
+                                    <option selected value="0">No</option>
+                                    <option value="1">Si</option>
+                                </select>
+                            </div>
+                        </div> 
+                    </div>                      
                 </div>
                 <div class="col-12">
                     <input class="btn btn-primary rounded-pill py-3 px-5"  type="submit">

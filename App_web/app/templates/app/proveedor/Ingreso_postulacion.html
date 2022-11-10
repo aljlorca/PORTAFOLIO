@@ -38,6 +38,12 @@
                     </div>
                     <div class="col-12">
                         <div class="form-floating">
+                            <input type="text" class="form-control" name="descripcion-producto" placeholder="descripcion Producto">
+                            <label for="descripcion-producto">Descripcion Producto</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
                             <input type="number" class="form-control" name="cantidad-producto" placeholder="Cantidad">
                             <label for="cantidad-producto">Cantidad</label>
                         </div>
@@ -55,15 +61,15 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="form-floating">
-                            <input type="number" class="form-control" name="calidad-producto" placeholder="Calidad" >
+                        <div class="col-12">
                             <label for="calidad-producto">Calidad</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                {% for c in calidad %}
-                                <option value="c.id_calidad">{{c.descripcion_calidad}}</option>
-                                {% endfor %}
-                              </select>
+                            <div class="form-floating">
+                                <select class="form-select" name="calidad-producto" aria-label="Default select example">
+                                    {% for c in calidad %}
+                                    <option value="{{c.id_calidad}}">{{c.descripcion_calidad}}</option>
+                                    {% endfor %}
+                                  </select>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12">

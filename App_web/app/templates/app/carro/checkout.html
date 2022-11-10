@@ -84,8 +84,6 @@
                         </div>
                     </div>
                     <form method="POST" enctype="multipart/form-data" action="{{resultado.url}}?token_ws={{resultado.token}}">
-                        <input type="hidden" name="precio_total" value="{{importe_total_carro}}">
-                        <input type="hidden" name="token_ws" value="{{resultado.token}}" disabled>
                         <button class="btn btn-outline-primary border-2 py-2 px-5 rounded-pill">Pago</button>       
                     </form>
                 </div>
@@ -100,8 +98,7 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
 
 
 

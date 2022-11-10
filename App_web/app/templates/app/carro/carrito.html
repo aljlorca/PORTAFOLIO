@@ -43,7 +43,7 @@
                             </div>
                         </td>
                         <td class="align-middle">$ {{value.precio_producto | intcomma}}</td>
-                        <td class="align-middle"><button class="btn btn-sm btn-danger"> <a href="{% url 'carro:eliminar' value.id_producto %}"><i class="fa fa-times"></i></a></button></td>
+                        <td class="align-middle"><a href="{% url 'carro:eliminar' value.id_producto %}"></a><button class="btn btn-sm btn-danger"> <i class="fa fa-times"></i></button></a></td>
                     </tr>
                     {% endfor %}
                     
@@ -63,15 +63,20 @@
                         <div class="pt-2">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5>Total</h5>
-                                <h5>$ {{importe_total_carro | intcomma}}</h5>
+                                <h5 name="precio_total">$ {{importe_total_carro | intcomma}}</h5>
                             </div>
-                            <a class="btn btn-block btn-success font-weight-bold my-3 py-3" href="http://127.0.0.1:3000/checkout/">Realizar Compra</a>
+                            <form method="POST" enctype="multipart/form-data" action="http://127.0.0.1:3000/checkout/{{resultado.url}}?token_ws={{resultado.token}}">
+                                <input type="hidden" name="token_ws" value="{{resultado.token}}" disabled>
+                                <input type="hidden" name="precio_total" value="{{importe_total_carro}}">
+                                <input type="submit" value="Realizar Compra" class="btn btn-success">      
+                            </form>
                         </div>
                     </div>
                 </div>
-            
         </div>
 </div>
 <!-- Cart End -->
+
+
 
 {% endblock %}

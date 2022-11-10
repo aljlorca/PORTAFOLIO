@@ -71,7 +71,7 @@ def cliente_interno(request):
         return redirect(to="http://127.0.0.1:3000/")
 
     return render(request, 'app/Cliente_Interno/menu.html',data)
-
+@csrf_exempt
 def carrito(request):
     data = get_session(request)
     try:
@@ -79,7 +79,10 @@ def carrito(request):
             return redirect(to="http://127.0.0.1:3000/")
     except:
         return redirect(to="http://127.0.0.1:3000/")
-
+    data['user'] =  usuario_get_id(str(data['id_user']))
+    total = request.POST.get('precio_total')
+    data['resultado']=get_initTrxTBK(total,str(data['id_user']))
+    print(data['resultado'])
     return render(request, 'app/carro/carrito.html',data)
 
 def cliente_ecomerce(request):
@@ -112,9 +115,11 @@ def checkout(request):
 
     except:
         return redirect(to="http://127.0.0.1:3000/")
+    
     data['user'] =  usuario_get_id(str(data['id_user']))
     total = request.POST.get('precio_total')
     data['resultado']=get_initTrxTBK(total,str(data['id_user']))
+    print(data['resultado'])
     return render(request, 'app/carro/checkout.html',data)
 
 def detalle_venta(request,id_venta):
@@ -302,6 +307,7 @@ def ingreso_postulacion(request,id_venta):
     except:
         return redirect(to="http://127.0.0.1:3000/")
     
+    data['calidad']=calidad_get()
     if request.method == 'POST':
             company=request.session['company']
             company=company.replace(' ','_')
@@ -314,6 +320,7 @@ def ingreso_postulacion(request,id_venta):
             nombre_producto = request.POST.get('nombre-producto')
             cantidad_producto = request.POST.get('cantidad-producto')
             precio_producto = request.POST.get('precio-producto')
+            descripcion_producto = request.POST.get('descripcion-producto')
             imagen_producto =  request.FILES['imagen-producto']
             id_calidad = request.POST.get('calidad-producto')
             saldo_producto = '0'
@@ -327,7 +334,7 @@ def ingreso_postulacion(request,id_venta):
             buscar = str(producto)
             ruta_proyecto = os.getcwd()+'/media/'
             ruta = ruta_proyecto+buscar
-            crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario)
+            crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario,descripcion_producto)
             Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto)
             messages.success(request,"Postulacion Creada Correctamente")
     return render(request, 'app/proveedor/Ingreso_postulacion.html',data)
