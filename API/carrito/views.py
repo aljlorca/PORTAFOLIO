@@ -7,16 +7,18 @@ from .models import Carrito
 from .serializers import CarritoSerializer,CarritoHistoricoSerializer
 from rest_framework import viewsets
 import json
+import datetime
 import cx_Oracle
 # Create your views here.
 
 
-def agregar_carrito(fecha_carrito,monto_carrito,id_producto,id_usuario):
+def agregar_carrito(monto_carrito,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
+    fecha_carrito = datetime.date.today()
     estado_fila = '1'
-    cursor.callproc('CARRITO_AGREGAR',[fecha_carrito,monto_carrito,id_producto,id_usuario,estado_fila,salida])
+    cursor.callproc('CARRITO_AGREGAR',[fecha_carrito,monto_carrito,id_usuario,estado_fila,salida])
     return round(salida.getvalue())
 
 def modificar_carrito(id_carrito,fecha_carrito,monto_carrito,id_producto,id_usuario):
@@ -70,7 +72,7 @@ class CarritoView(View):
         try:
             jd = json.loads(request.body)
             try:
-                salida = agregar_carrito(fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'],id_usuario=jd['id_usuario'])
+                salida = agregar_carrito(monto_carrito=jd['monto_carrito'],id_usuario=jd['id_usuario'])
                 if salida == 1:
                     datos = {'message':'Success'}
                 elif salida == 0:

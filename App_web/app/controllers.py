@@ -304,3 +304,16 @@ def get_statusTBK(token):
                 return 'tuvimos un problema al obtener su transaccion'
     except: 
         return "Tenemos problemas en estos momentos"
+
+
+def carrito_post(monto,id_usuario):
+    url = 'http://127.0.0.1:8000/api_carrito/carrito_old/'
+    body = {"monto_carrito": monto,"id_producto": None,"id_usuario": id_usuario}
+    try: 
+        response = requests.post(url,json=body)
+    except:
+        data = {'message':'error de conexion'}
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
