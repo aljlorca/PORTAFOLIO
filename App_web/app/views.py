@@ -22,6 +22,7 @@ def contacto(request):
 
 def logout(request):
     logout_controller(request)
+    carro.Carro.limpiar_carro(request)
     messages.success(request,'Has cerrado session')
     return redirect(to="http://127.0.0.1:3000/")
 
@@ -44,6 +45,10 @@ def login(request):
                 elif respt[1]=='Transportista':
                     return redirect(to="http://127.0.0.1:3000/transportista/")
                 elif respt[1]=='Cliente Interno':
+                    try:
+                        carro.Carro.limpiar_carro(request)
+                    except:
+                        pass
                     return redirect(to="http://127.0.0.1:3000/cliente_interno/")
                 elif respt[1]=='Cliente Externo':
                     return redirect(to="http://127.0.0.1:3000/cliente_externo/")
@@ -52,7 +57,6 @@ def login(request):
             if salida['message'] == 'ERROR: usuario No Encontrado':
                 data = {"error":'Falló al iniciar sesion Usuario o contraseña incorrectos'}
                 return render(request, 'app/login.html',data)
-    
     except:
         data = {"error":'error de conexion'}
         return render(request, 'app/login.html',data)
@@ -133,7 +137,6 @@ def pedido_cliente_interno(request):
     try:
         if data['cargo']!='Cliente Interno' and data['empresa']!='Persona Natural':
             return redirect(to="http://127.0.0.1:3000/")
-
     except:
         return redirect(to="http://127.0.0.1:3000/")
 
@@ -161,18 +164,14 @@ def pedido_cliente_interno(request):
 ###########################
 
 def cliente_externo(request):
+    data = get_session(request)
     try:
-        cargo=request.session['cargo']
-        if cargo!='Cliente Externo':
+        if data['cargo']!='Cliente Externo':
             return redirect(to="http://127.0.0.1:3000/")
-
     except:
         return redirect(to="http://127.0.0.1:3000/")
-    
-    
-    session = get_session(request)
 
-    return render(request, 'app/cliente_externo/menu.html',session)
+    return render(request, 'app/cliente_externo/menu.html',data)
 
 @csrf_exempt
 def pedido(request):
@@ -180,10 +179,8 @@ def pedido(request):
     try:
         if data['cargo']!='Cliente Externo':
             return redirect(to="http://127.0.0.1:3000/")
-
     except:
         return redirect(to="http://127.0.0.1:3000/")
-
     try:
         if request.method == 'POST':
             descripcion = request.POST.get('descripcion')
@@ -230,7 +227,6 @@ def proveedor(request):
 @csrf_exempt
 def productores(request):
     data = get_session(request)
-
     try:
         data['calidad']=calidad_get()
         if data['cargo']!='Proveedor':
@@ -270,35 +266,24 @@ def productores(request):
         return render(request, 'app/proveedor/productores.html',data)
 
 def postulaciones(request):
-    session = get_session(request)
+    data = get_session(request)
     try:
-        try:
-            cargo=request.session['cargo']
-            if cargo!='Proveedor':
-                return redirect(to="http://127.0.0.1:3000/")
-
-        except:
+        if data['cargo']!='Proveedor':
             return redirect(to="http://127.0.0.1:3000/")
-        data = {
-            'ventas':ventas_get(),
-            'cargo': session['cargo'],
-            'usuario': session['usuario'],
-            'empresa': session['correo'],
-            'id_user': session['id_user'],
-            'empresa':session['empresa'],
-        }
-        return render(request, 'app/proveedor/Postulaciones.html',data)
+
     except:
-        data = get_session(request) 
-        data['error'] ='error de conexion'
-        return render(request, 'app/proveedor/Postulaciones.html',data)
+            return redirect(to="http://127.0.0.1:3000/")
+    try:
+        data['ventas']=ventas_get()
+    except:
+        data['error']='error de conexion'
+    return render(request, 'app/proveedor/Postulaciones.html',data)
 
 @csrf_exempt
 def ingreso_postulacion(request,id_venta):
     data = get_session(request)
     try:
-        cargo=request.session['cargo']
-        if cargo!='Proveedor':
+        if data['cargo']!='Proveedor':
             return redirect(to="http://127.0.0.1:3000/")
 
     except:
@@ -341,16 +326,13 @@ def ingreso_postulacion(request,id_venta):
 #########################
 
 def transportista(request):
+    data = get_session(request)
     try:
-        cargo=request.session['cargo']
-        if cargo!='Transportista':
+        if data['cargo']!='Transportista':
             return redirect(to="http://127.0.0.1:3000/")
 
     except:
         return redirect(to="http://127.0.0.1:3000/")
-
-    
-    data = get_session(request)
 
     return render(request, 'app/transportista/menu.html',data)
 
@@ -383,29 +365,24 @@ def subasta(request):
 def detalle_subasta(request,id_venta):
     try:
         data = get_session(request)
-        id_usuario = request.session['id_user']
-        carga=request.session['carga'] 
-        capacidad_carga = carga['capacidad_carga']
-        tamano_carga = carga['tamano_carga']
-        refrigeracion_carga = carga['refrigeracion_carga']
-    except:
-        return redirect(to="http://127.0.0.1:3000/carga/")
-    try:
-        cargo=request.session['cargo']
-        if cargo!='Transportista':
+        if data['cargo']!='Transportista':
             return redirect(to="http://127.0.0.1:3000/")
-
+        try:
+            id_usuario = request.session['id_user']
+            carga=request.session['carga'] 
+            capacidad_carga = carga['capacidad_carga']
+            tamano_carga = carga['tamano_carga']
+            refrigeracion_carga = carga['refrigeracion_carga']
+            try:
+                data['venta']=Ventas_get_id(id_venta)
+                data['subasta']=subasta_get()
+            except:
+                data['error']='Tenemos problemas en estos momentos'
+        except:
+            data['error']='Favor llenar los datos de carga'
+            return redirect(to="http://127.0.0.1:3000/carga/")
     except:
         return redirect(to="http://127.0.0.1:3000/")
-    data['venta']=Ventas_get_id(id_venta)
-    data['subasta']=subasta_get()
-    
-    try:
-        carga=request.session['carga'] 
-    except:
-        data['error']='Favor llenar los datos de carga'
-        return redirect(to="http://127.0.0.1:3000/carga/")
-
     
     if request.method == 'POST':
         monto = request.POST.get('monto')
@@ -423,8 +400,6 @@ def detalle_subasta(request,id_venta):
                 subasta_delete(id_subasta)
             except:
                 data['error']='favor ingrese un monto'
-    
-
     return render(request, 'app/transportista/Ingreso_subasta.html',data)
 
 @csrf_exempt
@@ -448,6 +423,10 @@ def carga(request):
             
     return render(request, 'app/transportista/ingreso_carga.html',data)
 
+#########################
+###Transportista TBK###
+#########################
+
 @csrf_exempt
 def tbk_respuesta(request):
     data = get_session(request)
@@ -455,20 +434,23 @@ def tbk_respuesta(request):
     token=token[-64:]
     res=get_statusTBK(token)
     data['response']=res
-    if res['status']=='AUTHORIZED':
-        salida = carrito_post(res['amount'],str(data['id_user']))
-        print(str(data['id_user']))
-        diccionario=carro.Carro.listar_carro(request)
-        productos = productos_get()
-        c = 0
-        for a in productos:
-            product = productos[c]
-            clave = product['id_producto']
-            c=c+1
-            try:
-                producto_carrito=diccionario[clave] 
-                salida_delete = producto_delete(str(producto_carrito['id_producto'])) 
-            except:
-                pass
+    try:
+        if res['status']=='AUTHORIZED':
+            salida = carrito_post(res['amount'],str(data['id_user']))
+            print(str(data['id_user']))
+            diccionario=carro.Carro.listar_carro(request)
+            productos = productos_get()
+            c = 0
+            for a in productos:
+                product = productos[c]
+                clave = product['id_producto']
+                c=c+1
+                try:
+                    producto_carrito=diccionario[clave] 
+                    producto_delete(str(producto_carrito['id_producto'])) 
+                except:
+                    pass
+    except:
+        pass
     carro.Carro.limpiar_carro(request)
     return render(request, 'app/tbk/respt.html',data)
