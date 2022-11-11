@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions import *
 import datetime
 from carro.context_processor import *
-import carro
+from carro import carro
 from django.contrib import messages
 import time 
 # Create your views here.
@@ -453,5 +453,10 @@ def tbk_respuesta(request):
     data = get_session(request)
     token=request.get_full_path()
     token=token[-64:]
-    data['response']=get_statusTBK(token)
+    res=get_statusTBK(token)
+    data['response']=res
+    if res['status']=='AUTHORIZED':
+        salida = carrito_post(res['amount'],str(data['id_user']))
+        print(str(data['id_user']))
+    carro.Carro.limpiar_carro(request)
     return render(request, 'app/tbk/respt.html',data)

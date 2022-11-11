@@ -1,1 +1,1 @@
-Python .\manage.py runserver 8000
+powershell Python .\manage.py runserver 8000

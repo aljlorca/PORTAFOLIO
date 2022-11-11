@@ -21,7 +21,7 @@ def restar_producto(request, producto_id):
 def limpiar_carro(request):
     carro=Carro(request)
     carro.limpiar_carro()
-    return redirect("cart")
+    return redirect("http://127.0.0.1:3000/mercado/")
 
 def limpiar_carro_producto(request):
     carro=Carro(request)
