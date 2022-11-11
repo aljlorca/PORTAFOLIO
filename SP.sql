@@ -159,14 +159,16 @@ create sequence sec_producto
   minvalue 1;
 
 
-create or replace PROCEDURE PRODUCTO_ELIMINAR (v_id_producto varchar2) is
+create or replace PROCEDURE                   "PRODUCTO_ELIMINAR" (v_id_producto varchar2,v_salida out number) is
 begin 
     UPDATE PRODUCTO
     SET estado_fila = '0'
     WHERE id_producto = v_id_producto;
     commit;
-
-end PRODUCTO_ELIMINAR;
+    v_salida:=1;
+    exception when others then v_salida:=0;
+    
+end PRODUCTO_ELIMINAR; 
 
 
 create or replace PROCEDURE                   "PRODUCTO_AGREGAR" 
@@ -193,7 +195,7 @@ end ;
 
 
 create or replace PROCEDURE                   "PRODUCTO_MODIFICAR" (
-    v_id_producto integer,
+    v_id_producto varchar2,
     v_nombre_producto varchar2, 
     v_cantidad_producto integer,
     v_precio_producto integer,
