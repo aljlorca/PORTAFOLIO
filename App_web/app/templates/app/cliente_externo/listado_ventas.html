@@ -53,16 +53,9 @@
                                     <td>{{v.comision_venta}}</td>
 
                                 </tr>
-                                {% else %}
-                                    <div class="alert alert-danger text-center">
-                                        Sin productos
-                                    </div>
                                 {% endif %}
                                 {% endfor %}
-                                
                             </tbody>
-                            
-
                         </table>
                         {% if error == 'error de conexion' %} 
                             <p>Tenemos problemas en estos momentos</p>

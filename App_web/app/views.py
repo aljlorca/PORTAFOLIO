@@ -158,6 +158,23 @@ def pedido_cliente_interno(request):
     
     return render(request, 'app/Cliente_Interno/pedido.html',data)
 
+def listado_ventas_locales(request):
+    data = get_session(request)
+    print(data)
+    try:
+        if data['cargo']!='Cliente Interno' and data['empresa']!='Persona Natural':
+            return redirect(to="http://127.0.0.1:3000/")
+        
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
+
+    try:
+        data['venta'] = ventas_get()
+
+    except:
+        data={'error':'error de conexion'}
+    return render(request, 'app/cliente_externo/listado_ventas.html',data)
+
 
 ###########################
 ###Cliente Externo Views###
@@ -203,7 +220,7 @@ def listado_ventas(request):
     try:
         if data['cargo']!='Cliente Externo':
             return redirect(to="http://127.0.0.1:3000/")
-
+        
     except:
         return redirect(to="http://127.0.0.1:3000/")
 

@@ -37,7 +37,7 @@ class Usuario(models.Model):
     id_usuario = models.BigIntegerField(primary_key=True)
     numero_identificacion_usuario = models.CharField(max_length=20)
     nombre_usuario = models.CharField(max_length=150)
-    direccion_usuario = models.CharField(max_length=150)
+    direccion_usuario = models.CharField(max_length=500)
     telefono_usuario = models.CharField(max_length=20)
     correo_usuario = models.CharField(max_length=150)
     contrasena_usuario = models.CharField(max_length=64)

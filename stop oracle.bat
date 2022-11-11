@@ -1,0 +1,4 @@
+net stop OracleOraDB21Home1MTSRecoveryService
+net stop OracleOraDB21Home1TNSListener
+net stop OracleServiceXE
+net stop OracleVssWriterXE
