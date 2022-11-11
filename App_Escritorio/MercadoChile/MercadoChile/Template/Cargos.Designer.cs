@@ -56,7 +56,6 @@ namespace MercadoChile
             this.txtCargo.Size = new System.Drawing.Size(186, 26);
             this.txtCargo.TabIndex = 1;
             this.txtCargo.Text = "Nombre Cargo";
-            this.txtCargo.TextChanged += new System.EventHandler(this.txtCargo_TextChanged);
             this.txtCargo.Enter += new System.EventHandler(this.txtCargo_Enter);
             this.txtCargo.Leave += new System.EventHandler(this.txtCargo_Leave);
             // 
@@ -98,7 +97,6 @@ namespace MercadoChile
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Cargos";
             this.Text = "Cargos";
-            this.Load += new System.EventHandler(this.Cargos_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

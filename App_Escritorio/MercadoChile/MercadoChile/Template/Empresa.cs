@@ -57,77 +57,133 @@ namespace MercadoChile.Template
     
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
+            try { 
             string respuesta = await Get.GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
-            foreach (var list in lista)
-            {
-                if (list.correo_usuario == txtDunsEdit.Text)
+                foreach (var list in lista)
                 {
-
-                    int id = list.id_usuario;
-
-
-
-                    HttpRequestMessage request = new HttpRequestMessage
+                    if (list.correo_usuario == txtDunsEdit.Text)
                     {
-                        Method = HttpMethod.Delete,
-                        RequestUri = new Uri(baseUri, id.ToString()),
-                    };
-                    var httpClient = new HttpClient();
 
-                    if (MessageBox.Show("Desea Eliminar" + txtDunsEdit, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        await httpClient.SendAsync(request);
-                        this.Hide();
-                    }
-                    else
-                    {
-                        txtDunsEdit.Text = "";
-                        txtRazonEdit.Text = "";
-                        cmbDireEdit.Text = "";
-                        cmbTipoEmpEdit.Text = "";
-                        cmbEmpresa.Text = "";
-                    }
+                        int id = list.id_usuario;
+
+
+
+                        HttpRequestMessage request = new HttpRequestMessage
+                        {
+                            Method = HttpMethod.Delete,
+                            RequestUri = new Uri(baseUri, id.ToString()),
+                        };
+                        var httpClient = new HttpClient();
+
+                        if (MessageBox.Show("Desea Eliminar" + txtDunsEdit, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            await httpClient.SendAsync(request);
+                            this.Hide();
+                        }
+                        else
+                        {
+                            txtDunsEdit.Text = "";
+                            txtRazonEdit.Text = "";
+                            cmbDireEdit.Text = "";
+                            cmbTipoEmpEdit.Text = "";
+                            cmbEmpresa.Text = "";
+                        }
+                    } 
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private async void btnEditar_Click(object sender, EventArgs e)
         {
+            try
+            {
+            
             string respuesta = await Get.GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
-            foreach (var list in lista)
-            {
-                if (list.numero_identificacion_usuario == txtDunsEdit.Text)
+                foreach (var list in lista)
                 {
-
-
-                    int id = list.id_usuario;
-
-                    int empresa = (int)cmbTipoEmpEdit.SelectedValue;
-                    Uri myUri = new Uri(baseUri, id.ToString());
-                    var client = new HttpClient();
-                    Empresas post = new Empresas()
+                    if (list.numero_identificacion_usuario == txtDunsEdit.Text)
                     {
-                        duns_empresa = txtDunsEdit.Text,
-                        razon_social_empresa = txtRazonEdit.Text,
-                        direccion_empresa = cmbDireEdit.Text,
+
+
+                        int id = list.id_usuario;
+
+                        int empresa = (int)cmbTipoEmpEdit.SelectedValue;
+                        Uri myUri = new Uri(baseUri, id.ToString());
+                        var client = new HttpClient();
+                        Empresas post = new Empresas()
+                        {
+                            duns_empresa = txtDunsEdit.Text,
+                            razon_social_empresa = txtRazonEdit.Text,
+                            direccion_empresa = cmbDireEdit.Text,
+                            id_tipo_empresa = empresa,
+
+                        };
+                        var data = JsonSerializer.Serialize<Empresas>(post);
+                        HttpContent content =
+                            new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                        if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList)
+                        {
+                            var httpResponse = await client.PutAsync(myUri, content);
+                            if (httpResponse.IsSuccessStatusCode)
+                            {
+                                var result = await httpResponse.Content.ReadAsStringAsync();
+                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                                MessageBox.Show(postResult.ToString());
+                                this.Hide();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("ingrese una direccion");
+                        }
+                    } 
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private async void btnCrear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                {
+                    int empresa = (int)cmbEmpresa.SelectedValue;
+                    var client = new HttpClient();
+                    Empresas post2 = new Empresas()
+                    {
+
+                        duns_empresa = txtDunsEmp.Text,
+                        razon_social_empresa = txtRazonSocial.Text,
+                        direccion_empresa = cmbDire.Text,
                         id_tipo_empresa = empresa,
 
+
                     };
-                    var data = JsonSerializer.Serialize<Empresas>(post);
+
+
+                    var data = JsonSerializer.Serialize<Empresas>(post2);
                     HttpContent content =
                         new StringContent(data, System.Text.Encoding.UTF8, "application/json");
                     if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList)
                     {
-                        var httpResponse = await client.PutAsync(myUri, content);
+                        var httpResponse = await client.PostAsync(baseUri, content);
                         if (httpResponse.IsSuccessStatusCode)
+
                         {
+
                             var result = await httpResponse.Content.ReadAsStringAsync();
                             var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                            MessageBox.Show(postResult.ToString());
                             this.Hide();
+
                         }
                     }
                     else
@@ -136,78 +192,54 @@ namespace MercadoChile.Template
                     }
                 }
             }
-        }
-        private async void btnCrear_Click(object sender, EventArgs e)
-        {
-
+            catch (Exception ex)
             {
-                int empresa = (int)cmbEmpresa.SelectedValue;
-                var client = new HttpClient();
-                Empresas post2 = new Empresas()
-                {
-
-                    duns_empresa = txtDunsEmp.Text,
-                    razon_social_empresa = txtRazonSocial.Text,
-                    direccion_empresa = cmbDire.Text,
-                    id_tipo_empresa = empresa,
-
-
-                };
-
-
-                var data = JsonSerializer.Serialize<Empresas>(post2);
-                HttpContent content =
-                    new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList)
-                {
-                    var httpResponse = await client.PostAsync(baseUri, content);
-                    if (httpResponse.IsSuccessStatusCode)
-
-                    {
-
-                        var result = await httpResponse.Content.ReadAsStringAsync();
-                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                        this.Hide();
-
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("ingrese una direccion");
-                }
+                MessageBox.Show(ex.Message);
             }
         }
         private async void button1_Click(object sender, EventArgs e)
         {
-            dynamic response = DBApi.Get("http://127.0.0.1:8000/api_empresa/empresa/?format=json");
-            DgvEmpresa.DataSource = response;
-            string respuesta5 = await Get.GetHttp2();
-            List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
-            this.DgvEmpresa.Columns[0].Visible = false;
-            this.DgvEmpresa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            foreach (DataGridViewRow fila in DgvEmpresa.Rows)
+            try
             {
-                foreach (var fila3 in lista5)
+                dynamic response = DBApi.Get("http://127.0.0.1:8000/api_empresa/empresa/?format=json");
+                DgvEmpresa.DataSource = response;
+                string respuesta5 = await Get.GetHttp2();
+                List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
+                this.DgvEmpresa.Columns[0].Visible = false;
+                this.DgvEmpresa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                foreach (DataGridViewRow fila in DgvEmpresa.Rows)
                 {
-                    if (Convert.ToInt32(fila.Cells["cnTipoEmpresa"].Value) == fila3.id_tipo_empresa)
+                    foreach (var fila3 in lista5)
                     {
-                        fila.Cells["cnTipoEmpresa"].Value = fila3.tipo_empresa;
-                        break;
+                        if (Convert.ToInt32(fila.Cells["cnTipoEmpresa"].Value) == fila3.id_tipo_empresa)
+                        {
+                            fila.Cells["cnTipoEmpresa"].Value = fila3.tipo_empresa;
+                            break;
+                        }
                     }
                 }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            txtDunsEdit.Text = DgvEmpresa.CurrentRow.Cells["cnDunsEmpresa"].Value.ToString();
-            txtRazonEdit.Text = DgvEmpresa.CurrentRow.Cells["cnRazonSocial"].Value.ToString();
-            cmbDireEdit.Text = DgvEmpresa.CurrentRow.Cells["cnDireccion"].Value.ToString();
-            string respuesta5 = await Get.GetHttp2();
-            List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
-            cmbTipoEmpEdit.DataSource = lista5;
-            cmbTipoEmpEdit.DisplayMember = "tipo_empresa";
-            cmbTipoEmpEdit.ValueMember = "id_tipo_empresa";
-            cmbTipoEmpEdit.Text = DgvEmpresa.CurrentRow.Cells["cnTipoEmpresa"].Value.ToString();
+            try {
+                txtDunsEdit.Text = DgvEmpresa.CurrentRow.Cells["cnDunsEmpresa"].Value.ToString();
+                txtRazonEdit.Text = DgvEmpresa.CurrentRow.Cells["cnRazonSocial"].Value.ToString();
+                cmbDireEdit.Text = DgvEmpresa.CurrentRow.Cells["cnDireccion"].Value.ToString();
+                string respuesta5 = await Get.GetHttp2();
+                List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
+                cmbTipoEmpEdit.DataSource = lista5;
+                cmbTipoEmpEdit.DisplayMember = "tipo_empresa";
+                cmbTipoEmpEdit.ValueMember = "id_tipo_empresa";
+                cmbTipoEmpEdit.Text = DgvEmpresa.CurrentRow.Cells["cnTipoEmpresa"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         public async Task<string> GetHttp()
         {

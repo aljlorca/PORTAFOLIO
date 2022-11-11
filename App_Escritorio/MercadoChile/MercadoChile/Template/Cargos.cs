@@ -25,17 +25,17 @@ namespace MercadoChile
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string json = "{\"nombre_cargo\": \"" + txtCargo.Text + "\"}";
+            try {
+                string json = "{\"nombre_cargo\": \"" + txtCargo.Text + "\"}";
 
-            dynamic respuesta = dBApi.Post("http://127.0.0.1:8000/api_cargo/cargo/?format=json", json);
+                dynamic respuesta = dBApi.Post("http://127.0.0.1:8000/api_cargo/cargo/?format=json", json);
 
-            MessageBox.Show(respuesta.ToString());
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
+                MessageBox.Show(respuesta.ToString());
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            }
 
         private void txtCargo_Enter(object sender, EventArgs e)
         {
@@ -55,21 +55,6 @@ namespace MercadoChile
                 txtCargo.ForeColor = System.Drawing.Color.DimGray;
 
             }
-        }
-
-        private void txtCargo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDescripcion_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Cargos_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

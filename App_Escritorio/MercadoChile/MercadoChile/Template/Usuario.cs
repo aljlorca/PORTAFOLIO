@@ -102,49 +102,55 @@ namespace MercadoChile
         #region Buttons
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp();
-            List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
-            
-            foreach (var list in lista)
+            try
             {
-                if (list.correo_usuario == txtCorEdit.Text)
+                string respuesta = await Get.GetHttp();
+                List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
+
+                foreach (var list in lista)
                 {
-
-                    int id = list.id_usuario;
-
-                    Usuarios post = new Usuarios()
+                    if (list.correo_usuario == txtCorEdit.Text)
                     {
 
-                        correo_usuario = txtCorEdit.Text,
+                        int id = list.id_usuario;
 
-                    };
-                    var data = JsonSerializer.Serialize<Usuarios>(post);
-                    HttpRequestMessage request = new HttpRequestMessage
-                    {
+                        Usuarios post = new Usuarios()
+                        {
 
-                        Content = new StringContent(data, Encoding.UTF8, "application/json"),
-                        Method = HttpMethod.Delete,
-                        RequestUri = new Uri(baseUri, id.ToString()),
-                    };
-                    var httpClient = new HttpClient();
+                            correo_usuario = txtCorEdit.Text,
 
-                    if (MessageBox.Show("Desea Eliminar" + txtCorEdit, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        await httpClient.SendAsync(request);
-                        this.Hide();
-                    }
-                    else
-                    {
-                        txtRutEdit.Text = "";
-                        txtNomEdit.Text = "";
-                        cmbDireEdit.Text = "";
-                        txtTeleEdit.Text = "";
-                        txtCorEdit.Text = "";
-                        txtConEdit.Text = "";
-                        cmbCargo.Text = "";
-                        cmbEmpresa.Text = "";
+                        };
+                        var data = JsonSerializer.Serialize<Usuarios>(post);
+                        HttpRequestMessage request = new HttpRequestMessage
+                        {
+
+                            Content = new StringContent(data, Encoding.UTF8, "application/json"),
+                            Method = HttpMethod.Delete,
+                            RequestUri = new Uri(baseUri, id.ToString()),
+                        };
+                        var httpClient = new HttpClient();
+
+                        if (MessageBox.Show("Desea Eliminar" + txtCorEdit, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            await httpClient.SendAsync(request);
+                            this.Hide();
+                        }
+                        else
+                        {
+                            txtRutEdit.Text = "";
+                            txtNomEdit.Text = "";
+                            cmbDireEdit.Text = "";
+                            txtTeleEdit.Text = "";
+                            txtCorEdit.Text = "";
+                            txtConEdit.Text = "";
+                            cmbCargo.Text = "";
+                            cmbEmpresa.Text = "";
+                        }
                     }
                 }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private async void btnBuscarDire_Click(object sender, EventArgs e)
@@ -175,41 +181,58 @@ namespace MercadoChile
         }
         private async void btnEditar_Click(object sender, EventArgs e)
         {
+            try { 
             string respuesta = await Get.GetHttp();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
-            foreach (var list in lista)
-            {
-                if (list.numero_identificacion_usuario == txtRutEdit.Text)
+                foreach (var list in lista)
                 {
-                    int id = list.id_usuario;
-
-                    string cargo = cmbCargoEdit.SelectedValue.ToString();
-                    string empresa = cmbEmpresaEdit.SelectedValue.ToString();
-                    Uri myUri = new Uri(baseUri, id.ToString());
-                    var client = new HttpClient();
-                    Usuarios post = new Usuarios()
+                    if (list.numero_identificacion_usuario == txtRutEdit.Text)
                     {
-                        numero_identificacion_usuario = txtRutEdit.Text,
-                        nombre_usuario = txtNomEdit.Text,
-                        direccion_usuario = cmbDireEdit.Text,
-                        telefono_usuario = txtTeleEdit.Text,
-                        correo_usuario = txtCorEdit.Text,
-                        contrasena_usuario = txtConEdit.Text,
-                        administrador_usuario = '0',
-                        id_cargo = cargo,
-                        id_empresa = empresa,
+                        int id = list.id_usuario;
 
-                    };
-                    var data = JsonSerializer.Serialize<Usuarios>(post);
-                    HttpContent content =
-                        new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList && cmbDireEdit.Text.Contains("Chile") == true)
-                    {
-                        var valido = validarRut(txtRutEdit.Text);
-                        if (IsValidEmail(txtCorEdit.Text) && valido == true)
+                        string cargo = cmbCargoEdit.SelectedValue.ToString();
+                        string empresa = cmbEmpresaEdit.SelectedValue.ToString();
+                        Uri myUri = new Uri(baseUri, id.ToString());
+                        var client = new HttpClient();
+                        Usuarios post = new Usuarios()
                         {
+                            numero_identificacion_usuario = txtRutEdit.Text,
+                            nombre_usuario = txtNomEdit.Text,
+                            direccion_usuario = cmbDireEdit.Text,
+                            telefono_usuario = txtTeleEdit.Text,
+                            correo_usuario = txtCorEdit.Text,
+                            contrasena_usuario = txtConEdit.Text,
+                            administrador_usuario = '0',
+                            id_cargo = cargo,
+                            id_empresa = empresa,
 
+                        };
+                        var data = JsonSerializer.Serialize<Usuarios>(post);
+                        HttpContent content =
+                            new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                        if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList && cmbDireEdit.Text.Contains("Chile") == true)
+                        {
+                            var valido = validarRut(txtRutEdit.Text);
+                            if (IsValidEmail(txtCorEdit.Text) && valido == true)
+                            {
+
+                                var httpResponse = await client.PutAsync(myUri, content);
+                                if (httpResponse.IsSuccessStatusCode)
+                                {
+                                    var result = await httpResponse.Content.ReadAsStringAsync();
+                                    var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                                    MessageBox.Show(postResult.ToString());
+                                    this.Hide();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("rut incorrecto o correo no valido");
+                            }
+                        }
+                        else if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList && IsValidEmail(txtCorEdit.Text))
+                        {
                             var httpResponse = await client.PutAsync(myUri, content);
                             if (httpResponse.IsSuccessStatusCode)
                             {
@@ -221,26 +244,14 @@ namespace MercadoChile
                         }
                         else
                         {
-                            MessageBox.Show("rut incorrecto o correo no valido");
+                            MessageBox.Show("ingrese un correo correcto");
                         }
-                    }
-                    else if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList && IsValidEmail(txtCorEdit.Text))
-                    {
-                        var httpResponse = await client.PutAsync(myUri, content);
-                        if (httpResponse.IsSuccessStatusCode)
-                        {
-                            var result = await httpResponse.Content.ReadAsStringAsync();
-                            var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                            MessageBox.Show(postResult.ToString());
-                            this.Hide();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("ingrese un correo correcto");
                     }
                 }
-                
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -312,69 +323,82 @@ namespace MercadoChile
         }
         private async void button1_Click(object sender, EventArgs e)
         {
-            dynamic response = DBApi.Get("http://127.0.0.1:8000/api_usuario/usuario/?format=json");
-            DgvClientes.DataSource = response;
-            string respuesta1 = await Get.GetHttp1();
-            List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            string respuesta5 = await Get.GetHttp2();
-            List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
-            string respuesta = await Get.GetHttp();
-            List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
-            DgvClientes.DataSource = (from p in lista
-                                         orderby p.id_cargo descending
-                                         select p).ToList();
-            this.DgvClientes.Columns[0].Visible = false;
-            this.DgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;    
-            foreach (DataGridViewRow fila in DgvClientes.Rows)
+            try
             {
-                foreach (var fila1 in lista)
+                dynamic response = DBApi.Get("http://127.0.0.1:8000/api_usuario/usuario/?format=json");
+                DgvClientes.DataSource = response;
+                string respuesta1 = await Get.GetHttp1();
+                List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
+                string respuesta5 = await Get.GetHttp2();
+                List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
+                string respuesta = await Get.GetHttp();
+                List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
+                DgvClientes.DataSource = (from p in lista
+                                          orderby p.id_cargo descending
+                                          select p).ToList();
+                this.DgvClientes.Columns[0].Visible = false;
+                this.DgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                foreach (DataGridViewRow fila in DgvClientes.Rows)
                 {
-                    if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == 1)
+                    foreach (var fila1 in lista)
                     {
-                        fila.Visible = false;
-                        break;
+                        if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == 1)
+                        {
+                            fila.Visible = false;
+                            break;
+                        }
                     }
-                }
-                foreach (var fila1 in lista1)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == fila1.id_cargo)
+                    foreach (var fila1 in lista1)
                     {
-                        fila.Cells["cnCargo"].Value = fila1.nombre_cargo;
-                        break;
+                        if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == fila1.id_cargo)
+                        {
+                            fila.Cells["cnCargo"].Value = fila1.nombre_cargo;
+                            break;
+                        }
                     }
-                }               
-                foreach (var fila3 in lista5)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnEmpresa"].Value) == fila3.id_empresa)
+                    foreach (var fila3 in lista5)
                     {
-                        fila.Cells["cnEmpresa"].Value = fila3.razon_social_empresa;
+                        if (Convert.ToInt32(fila.Cells["cnEmpresa"].Value) == fila3.id_empresa)
+                        {
+                            fila.Cells["cnEmpresa"].Value = fila3.razon_social_empresa;
 
-                        break;
+                            break;
+                        }
                     }
                 }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-            txtRutEdit.Text = DgvClientes.CurrentRow.Cells["cnNumeIdenUsuar"].Value.ToString();
-            txtNomEdit.Text = DgvClientes.CurrentRow.Cells["cnNombre"].Value.ToString();
-            cmbDireEdit.Text = DgvClientes.CurrentRow.Cells["cnDireccion"].Value.ToString();
-            txtTeleEdit.Text = DgvClientes.CurrentRow.Cells["cnTelefono"].Value.ToString();
-            txtCorEdit.Text = DgvClientes.CurrentRow.Cells["cnCorreo"].Value.ToString();           
-            string respuesta1 = await Get.GetHttp1();
-            string respuesta5 = await Get.GetHttp2();
-            List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-            List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
-            lista1.RemoveAt(0);
-            cmbCargoEdit.DataSource = lista1;
-            cmbEmpresaEdit.DataSource = lista5;
-            cmbCargoEdit.DisplayMember = "nombre_cargo";
-            cmbCargoEdit.ValueMember = "id_cargo";
-            cmbEmpresaEdit.DisplayMember = "razon_social_empresa";
-            cmbEmpresaEdit.ValueMember = "id_empresa";
-            txtConEdit.Text = DgvClientes.CurrentRow.Cells["cnContraseña"].Value.ToString();
-            cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells["cnCargo"].Value.ToString();
-            cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells["cnEmpresa"].Value.ToString();             
+            try
+            {
+                txtRutEdit.Text = DgvClientes.CurrentRow.Cells["cnNumeIdenUsuar"].Value.ToString();
+                txtNomEdit.Text = DgvClientes.CurrentRow.Cells["cnNombre"].Value.ToString();
+                cmbDireEdit.Text = DgvClientes.CurrentRow.Cells["cnDireccion"].Value.ToString();
+                txtTeleEdit.Text = DgvClientes.CurrentRow.Cells["cnTelefono"].Value.ToString();
+                txtCorEdit.Text = DgvClientes.CurrentRow.Cells["cnCorreo"].Value.ToString();
+                string respuesta1 = await Get.GetHttp1();
+                string respuesta5 = await Get.GetHttp2();
+                List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
+                List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
+                lista1.RemoveAt(0);
+                cmbCargoEdit.DataSource = lista1;
+                cmbEmpresaEdit.DataSource = lista5;
+                cmbCargoEdit.DisplayMember = "nombre_cargo";
+                cmbCargoEdit.ValueMember = "id_cargo";
+                cmbEmpresaEdit.DisplayMember = "razon_social_empresa";
+                cmbEmpresaEdit.ValueMember = "id_empresa";
+                txtConEdit.Text = DgvClientes.CurrentRow.Cells["cnContraseña"].Value.ToString();
+                cmbCargoEdit.Text = DgvClientes.CurrentRow.Cells["cnCargo"].Value.ToString();
+                cmbEmpresaEdit.Text = DgvClientes.CurrentRow.Cells["cnEmpresa"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         public async Task<string> GetHttp()
         {

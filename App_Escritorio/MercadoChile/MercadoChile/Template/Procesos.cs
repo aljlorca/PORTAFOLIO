@@ -85,97 +85,157 @@ namespace MercadoChile.Template
 
         private void DgvProducto_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string name = DgvProducto.SelectedRows[0].Cells["cnNomProd"].Value.ToString();
-            Image img = (Image)DgvProducto.SelectedRows[0].Cells["cnImagen"].Value;
-            Imagenes i = new Imagenes(name, img);
-            this.Hide();
-            i.Show();
+            try {
+                string name = DgvProducto.SelectedRows[0].Cells["cnNomProd"].Value.ToString();
+                Image img = (Image)DgvProducto.SelectedRows[0].Cells["cnImagen"].Value;
+                Imagenes i = new Imagenes(name, img);
+                this.Hide();
+                i.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private async void btnListar_Click(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp5();
-            List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
-            string respuesta2 = await Get.GetHttp();
-            List<Producto> lista2 = JsonConvert.DeserializeObject<List<Producto>>(respuesta2);
-            string respuesta3 = await Get.GetHttp3();
-            List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
-            string respuesta4 = await Get.GetHttp4();
-            List<Venta> lista4 = JsonConvert.DeserializeObject<List<Venta>>(respuesta4);
-            DgvPostulacion.DataSource = lista;
-            DgvPostulacion.DataSource = (from p in lista
-                                         orderby p.id_venta descending
-                                         select p).ToList();
-            CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvPostulacion.DataSource];
-            currencyManager1.SuspendBinding();
-            foreach (DataGridViewRow fila in DgvPostulacion.Rows)
+            try
             {
-                foreach (var list in lista)
+                string respuesta = await Get.GetHttp5();
+                List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
+                string respuesta2 = await Get.GetHttp();
+                List<Producto> lista2 = JsonConvert.DeserializeObject<List<Producto>>(respuesta2);
+                string respuesta3 = await Get.GetHttp3();
+                List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
+                string respuesta4 = await Get.GetHttp4();
+                List<Venta> lista4 = JsonConvert.DeserializeObject<List<Venta>>(respuesta4);
+                DgvPostulacion.DataSource = lista;
+                DgvPostulacion.DataSource = (from p in lista
+                                             orderby p.id_venta descending
+                                             select p).ToList();
+                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvPostulacion.DataSource];
+                currencyManager1.SuspendBinding();
+                foreach (DataGridViewRow fila in DgvPostulacion.Rows)
                 {
-                    if (fila.Cells["cnEstadoF"].Value.ToString() == "1")
+                    foreach (var list in lista)
                     {
-                        fila.Visible = false;
-                        break;
+                        if (fila.Cells["cnEstadoF"].Value.ToString() == "1")
+                        {
+                            fila.Visible = false;
+                            break;
+                        }
+                        if (fila.Cells["cnEstado"].Value.ToString() == "Rechazada")
+                        {
+                            fila.Visible = false;
+                            currencyManager1.ResumeBinding();
+                            break;
+                        }
+                        foreach (var fila1 in lista3)
+                        {
+                            fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
+                            break;
+                        }
+                        foreach (var fila1 in lista2)
+                        {
+                            fila.Cells["cnProduto"].Value = fila1.nombre_producto;
+                            break;
+                        }
+                        foreach (var fila1 in lista4)
+                        {
+                            fila.Cells["cnVenta"].Value = fila1.descripcion_venta;
+                            break;
+                        }
                     }
-                    if (fila.Cells["cnEstado"].Value.ToString() == "Rechazada")
-                    {
-                        fila.Visible = false;
-                        currencyManager1.ResumeBinding();
-                        break;
-                    }
-                    foreach (var fila1 in lista3)
-                    {
-                        fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
-                        break;
-                    }
-                    foreach (var fila1 in lista2)
-                    {
-                        fila.Cells["cnProduto"].Value = fila1.nombre_producto;
-                        break;
-                    }
-                    foreach (var fila1 in lista4)
-                    {
-                        fila.Cells["cnVenta"].Value = fila1.descripcion_venta;
-                        break;
-                    }
-                }
-                DgvPostulacion.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
+                    DgvPostulacion.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
 
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private async void txtBusVenta_TextChanged(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp5();
-            List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
-            DgvPostulacion.CurrentCell = null;
-            CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvPostulacion.DataSource];
-            currencyManager1.SuspendBinding();
-            foreach (DataGridViewRow fila in DgvPostulacion.Rows)
+            try
             {
-                foreach (var list in lista)
+                string respuesta = await Get.GetHttp5();
+                List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
+                DgvPostulacion.CurrentCell = null;
+                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvPostulacion.DataSource];
+                currencyManager1.SuspendBinding();
+                foreach (DataGridViewRow fila in DgvPostulacion.Rows)
                 {
-                    if (fila.Cells["cnEstadoF"].Value.ToString() == "1")
+                    foreach (var list in lista)
                     {
-                        fila.Visible = false;
-                        break;
+                        if (fila.Cells["cnEstadoF"].Value.ToString() == "1")
+                        {
+                            fila.Visible = false;
+                            break;
+                        }
+                        if (fila.Cells["cnEstado"].Value.ToString() == "Rechazada")
+                        {
+                            fila.Visible = false;
+                            currencyManager1.ResumeBinding();
+                            break;
+                        }
+                        fila.Visible = fila.Cells["cnVenta"].Value.ToString().ToUpper().Contains(txtBusVenta.Text.ToUpper());
                     }
-                    if (fila.Cells["cnEstado"].Value.ToString() == "Rechazada")
-                    {
-                        fila.Visible = false;
-                        currencyManager1.ResumeBinding();
-                        break;
-                    }
-                    fila.Visible = fila.Cells["cnVenta"].Value.ToString().ToUpper().Contains(txtBusVenta.Text.ToUpper());
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }
         private async void Click_Aceptar(object sender, DataGridViewCellEventArgs e)
         {
-            if (DgvPostulacion.CurrentCell.ColumnIndex == 0)
+            try
+            {
+                if (DgvPostulacion.CurrentCell.ColumnIndex == 0)
+                {
+                    foreach (DataGridViewRow fila in DgvPostulacion.Rows)
+                    {
+                        if (fila.Cells["cnIdP"].Value == DgvPostulacion.CurrentRow.Cells[1].Value)
+                        {
+                            string id = fila.Cells["cnIdP"].Value.ToString();
+                            Console.WriteLine(id);
+                            Postul post = new Postul()
+                            {
+                                id_postulacion = id,
+                            };
+                            var data = JsonSerializer.Serialize<Postul>(post);
+                            HttpRequestMessage request = new HttpRequestMessage
+                            {
+                                Content = new StringContent(data, Encoding.UTF8, "application/json"),
+                                Method = HttpMethod.Put,
+                                RequestUri = new Uri(baseUri, id),
+                            };
+                            var httpClient = new HttpClient();
+                            if (MessageBox.Show("Desea Publicar esta postulacion para la Venta "
+                                   + DgvPostulacion.CurrentRow.Cells[4].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                await httpClient.SendAsync(request);
+                                this.Hide();
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private async void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
             {
                 foreach (DataGridViewRow fila in DgvPostulacion.Rows)
                 {
-                    if (fila.Cells["cnIdP"].Value == DgvPostulacion.CurrentRow.Cells[1].Value)
+                    int i = DgvPostulacion.SelectedCells[0].RowIndex;
+                    if (fila.Cells["cnIdP"].Value == DgvPostulacion.Rows[i].Cells[1].Value)
                     {
                         string id = fila.Cells["cnIdP"].Value.ToString();
                         Console.WriteLine(id);
@@ -187,12 +247,12 @@ namespace MercadoChile.Template
                         HttpRequestMessage request = new HttpRequestMessage
                         {
                             Content = new StringContent(data, Encoding.UTF8, "application/json"),
-                            Method = HttpMethod.Put,
+                            Method = HttpMethod.Delete,
                             RequestUri = new Uri(baseUri, id),
                         };
                         var httpClient = new HttpClient();
-                        if (MessageBox.Show("Desea Publicar esta postulacion para la Venta "
-                               + DgvPostulacion.CurrentRow.Cells[4].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show("Desea eliminar esta postulacion del Proveedor "
+                               + DgvPostulacion.CurrentRow.Cells[6].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             await httpClient.SendAsync(request);
                             this.Hide();
@@ -200,35 +260,9 @@ namespace MercadoChile.Template
                     }
                 }
             }
-        }
-        private async void btnEliminar_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow fila in DgvPostulacion.Rows)
+            catch (Exception ex)
             {
-                int i = DgvPostulacion.SelectedCells[0].RowIndex;
-                if (fila.Cells["cnIdP"].Value == DgvPostulacion.Rows[i].Cells[1].Value)
-                {
-                    string id = fila.Cells["cnIdP"].Value.ToString();
-                    Console.WriteLine(id);
-                    Postul post = new Postul()
-                    {
-                        id_postulacion = id,
-                    };
-                    var data = JsonSerializer.Serialize<Postul>(post);
-                    HttpRequestMessage request = new HttpRequestMessage
-                    {
-                        Content = new StringContent(data, Encoding.UTF8, "application/json"),
-                        Method = HttpMethod.Delete,
-                        RequestUri = new Uri(baseUri, id),
-                    };
-                    var httpClient = new HttpClient();
-                    if (MessageBox.Show("Desea eliminar esta postulacion del Proveedor "
-                           + DgvPostulacion.CurrentRow.Cells[6].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        await httpClient.SendAsync(request);
-                        this.Hide();
-                    }
-                }
+                MessageBox.Show(ex.Message);
             }
         }
     }
