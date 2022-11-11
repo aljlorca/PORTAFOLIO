@@ -38,33 +38,38 @@ namespace MercadoChile
 
         private async void iniciar_Click(object sender, EventArgs e)
         {
-            var client = new HttpClient();
-            Login post = new Login()
+            try
             {
-                correo_usuario = txtCorreo.Text,
-                contrasena_usuario = txtContraseña.Text
-            };
-            var respuesta = await client.PostAsJsonAsync(url, post);
-            var cuerpo = await respuesta.Content.ReadAsStringAsync();
-            
-            if (cuerpo.ToString().Contains("Success") == true)
-            {
-                if(cuerpo.ToString().Contains("Administrador")==true)
+                var client = new HttpClient();
+                Login post = new Login()
                 {
-                    form1 = new Form1();
-                    form1.Show();
-                    this.Hide();
+                    correo_usuario = txtCorreo.Text,
+                    contrasena_usuario = txtContraseña.Text
+                };
+                var respuesta = await client.PostAsJsonAsync(url, post);
+                var cuerpo = await respuesta.Content.ReadAsStringAsync();
+
+                if (cuerpo.ToString().Contains("Success") == true)
+                {
+                    if (cuerpo.ToString().Contains("Administrador") == true)
+                    {
+                        form1 = new Form1();
+                        form1.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("ingrese un usuario Administrador");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("ingrese un usuario Administrador");
+                    MessageBox.Show("ingrese un usuario");
                 }
-            }
-            else
+            }catch(Exception ex)
             {
-                MessageBox.Show("ingrese un usuario");
+                MessageBox.Show(ex.Message);
             }
-            
             
         }
         private void IconCerrar_Click(object sender, EventArgs e)

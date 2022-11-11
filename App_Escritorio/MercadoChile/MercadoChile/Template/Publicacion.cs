@@ -32,86 +32,106 @@ namespace MercadoChile.Template
         }
         private async void btnListar_Click(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp();
-            List<Pedido> lista = JsonConvert.DeserializeObject<List<Pedido>>(respuesta);
-            string respuesta2 = await Get.GetHttp2();
-            List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
-            string respuesta3 = await Get.GetHttp3();
-            List<Venta> lista3 = JsonConvert.DeserializeObject<List<Venta>>(respuesta3);
-            DgvProducto.DataSource = lista;
-            CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvProducto.DataSource];
-            currencyManager1.SuspendBinding();
-            foreach (DataGridViewRow fila in DgvProducto.Rows)
+            try
             {
-                foreach (var fila1 in lista2)
+                string respuesta = await Get.GetHttp();
+                List<Pedido> lista = JsonConvert.DeserializeObject<List<Pedido>>(respuesta);
+                string respuesta2 = await Get.GetHttp2();
+                List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
+                string respuesta3 = await Get.GetHttp3();
+                List<Venta> lista3 = JsonConvert.DeserializeObject<List<Venta>>(respuesta3);
+                DgvProducto.DataSource = lista;
+                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvProducto.DataSource];
+                currencyManager1.SuspendBinding();
+                foreach (DataGridViewRow fila in DgvProducto.Rows)
                 {
-                    fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
-                    break;
-                }
-                foreach (var fila1 in lista3)
-                {
-                    if (Convert.ToInt32(fila.Cells["cnId"].Value) == fila1.id_venta) {
-                        fila.Visible = false;
-                        currencyManager1.ResumeBinding();
+                    foreach (var fila1 in lista2)
+                    {
+                        fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
                         break;
                     }
-                    
+                    foreach (var fila1 in lista3)
+                    {
+                        if (Convert.ToInt32(fila.Cells["cnId"].Value) == fila1.id_venta)
+                        {
+                            fila.Visible = false;
+                            currencyManager1.ResumeBinding();
+                            break;
+                        }
+
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void btnSelProd_Click(object sender, EventArgs e)
         {
-            txtDescrip.Text = DgvProducto.CurrentRow.Cells[1].Value.ToString();
-            txtFecha.Text = DgvProducto.CurrentRow.Cells[2].Value.ToString();
-            txtCliente.Text = DgvProducto.CurrentRow.Cells[3].Value.ToString();
+            try {
+                txtDescrip.Text = DgvProducto.CurrentRow.Cells[1].Value.ToString();
+                txtFecha.Text = DgvProducto.CurrentRow.Cells[2].Value.ToString();
+                txtCliente.Text = DgvProducto.CurrentRow.Cells[3].Value.ToString();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private async void btnPublicar_Click(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp();
-            List<Pedido> lista = JsonConvert.DeserializeObject<List<Pedido>>(respuesta);
-            foreach (var list in lista)
+            try
             {
-                if (list.descripcion_pedido == txtDescrip.Text)
+                string respuesta = await Get.GetHttp();
+                List<Pedido> lista = JsonConvert.DeserializeObject<List<Pedido>>(respuesta);
+                foreach (var list in lista)
                 {
-                    int id = list.id_pedido;
-                    var client = new HttpClient();
-                    Venta post2 = new Venta()
+                    if (list.descripcion_pedido == txtDescrip.Text)
                     {
-                        id_venta = id,
-                        descripcion_venta = txtDescrip.Text,
-                        estado_venta = "licitacion",
-                        monto_bruto_venta = 0,
-                        iva = "0",
-                        monto_neto_venta = 0,
-                        fecha_venta = txtFecha.Text,
-                        tipo_venta = "1",
-                        id_usuario = Convert.ToInt32(list.id_usuario),
-                        cantidad_venta = null,     
-                        monto_transporte = null,  
-                        monto_aduanas = null,   
-                        pago_servicio = null,    
-                        comision_venta = null
-                    };
-                    var data = JsonSerializer.Serialize<Venta>(post2);
-                    HttpContent content =
-                        new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    var httpResponse = await client.PostAsync(url, content);
-                    if (MessageBox.Show("Desea Publicar el Producto " + txtDescrip.Text, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        if (httpResponse.IsSuccessStatusCode)
+                        int id = list.id_pedido;
+                        var client = new HttpClient();
+                        Venta post2 = new Venta()
                         {
-                            var result = await httpResponse.Content.ReadAsStringAsync();
-                            var postResult = JsonSerializer.Deserialize<Venta>(result);
-                            this.Hide();
+                            id_venta = id,
+                            descripcion_venta = txtDescrip.Text,
+                            estado_venta = "licitacion",
+                            monto_bruto_venta = 0,
+                            iva = "0",
+                            monto_neto_venta = 0,
+                            fecha_venta = txtFecha.Text,
+                            tipo_venta = "1",
+                            id_usuario = Convert.ToInt32(list.id_usuario),
+                            cantidad_venta = null,
+                            monto_transporte = null,
+                            monto_aduanas = null,
+                            pago_servicio = null,
+                            comision_venta = null
+                        };
+                        var data = JsonSerializer.Serialize<Venta>(post2);
+                        HttpContent content =
+                            new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                        var httpResponse = await client.PostAsync(url, content);
+                        if (MessageBox.Show("Desea Publicar el Producto " + txtDescrip.Text, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            if (httpResponse.IsSuccessStatusCode)
+                            {
+                                var result = await httpResponse.Content.ReadAsStringAsync();
+                                var postResult = JsonSerializer.Deserialize<Venta>(result);
+                                this.Hide();
+                            }
+                        }
+                        else
+                        {
+                            txtDescrip.Text = "";
+                            txtFecha.Text = "";
+                            txtCliente.Text = "";
                         }
                     }
-                    else
-                    {
-                        txtDescrip.Text = "";
-                        txtFecha.Text = "";
-                        txtCliente.Text = "";
-                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -34,35 +34,40 @@ namespace MercadoChile.Template
 
         private async void btnEdit_Click(object sender, EventArgs e)
         {
+            try { 
             string respuesta = await Get.GetHttp();
             List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
             foreach (var list in lista)
             {
-                if (list.nombre_producto == txtNomProd.Text)
-                {
-                    string id = list.id_producto;
-                    Uri myUri = new Uri(baseUri, id);
-                    var client = new HttpClient();
-                    Producto post = new Producto()
+                    if (list.nombre_producto == txtNomProd.Text)
                     {
-                        id_producto = id,
-                        saldo_producto = txtSaldo.Text,
-                    };
-                    var data = JsonSerializer.Serialize<Producto>(post);
-                    HttpContent content =
-                        new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    var httpResponse = await client.PutAsync(myUri, content);
+                        string id = list.id_producto;
+                        Uri myUri = new Uri(baseUri, id);
+                        var client = new HttpClient();
+                        Producto post = new Producto()
+                        {
+                            id_producto = id,
+                            saldo_producto = txtSaldo.Text,
+                        };
+                        var data = JsonSerializer.Serialize<Producto>(post);
+                        HttpContent content =
+                            new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                        var httpResponse = await client.PutAsync(myUri, content);
 
 
-                    if (httpResponse.IsSuccessStatusCode)
-                    {
-                        var result = await httpResponse.Content.ReadAsStringAsync();
-                        var postResult = JsonSerializer.Deserialize<Producto>(result);
-                        MessageBox.Show(postResult.ToString());
-                        this.Hide();
+                        if (httpResponse.IsSuccessStatusCode)
+                        {
+                            var result = await httpResponse.Content.ReadAsStringAsync();
+                            var postResult = JsonSerializer.Deserialize<Producto>(result);
+                            MessageBox.Show(postResult.ToString());
+                            this.Hide();
 
+                        }
                     }
                 }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
