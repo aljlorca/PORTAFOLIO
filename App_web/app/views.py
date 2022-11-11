@@ -458,5 +458,18 @@ def tbk_respuesta(request):
     if res['status']=='AUTHORIZED':
         salida = carrito_post(res['amount'],str(data['id_user']))
         print(str(data['id_user']))
+        diccionario=carro.Carro.listar_carro(request)
+        productos = productos_get()
+        c = 0
+        for a in productos:
+            product = productos[c]
+            clave = product['id_producto']
+            c=c+1
+            try:
+                producto_carrito=diccionario[clave] 
+                salida_delete = producto_delete(str(producto_carrito['id_producto'])) 
+                print(salida_delete)
+            except:
+                pass
     carro.Carro.limpiar_carro(request)
     return render(request, 'app/tbk/respt.html',data)

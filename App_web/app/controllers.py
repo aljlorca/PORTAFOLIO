@@ -79,6 +79,20 @@ def producto_get_id(id):
         data = 'ERROR: Producto no encontrado'
         return data
 
+def producto_delete(id):
+    url='http://127.0.0.1:8000/api_producto/producto/'+str(id)
+    try: 
+        response = requests.delete(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
+        data = 'ERROR: Producto no encontrado'
+        return data
+
 #SUBASTA CONTROLLERS
 def subasta_post(monto,id_venta,id_usuario):
     url = 'http://127.0.0.1:8000/api_subasta/subasta_old/'

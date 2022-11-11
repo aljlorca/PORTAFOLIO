@@ -5,7 +5,6 @@ class Carro:
         carro=self.session.get("carro")
         if not carro:
             carro=self.session["carro"]={}
-        #else:
         self.carro=carro
 
     def agregar(self, Producto):
@@ -64,3 +63,6 @@ class Carro:
     def limpiar_carro(self):
         self.session["carro"]={}
         self.session.modified=True
+
+    def listar_carro(self):
+        return self.session["carro"]
