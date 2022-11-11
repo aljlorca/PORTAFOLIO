@@ -80,7 +80,7 @@ def producto_get_id(id):
         return data
 
 def producto_delete(id):
-    url='http://127.0.0.1:8000/api_producto/producto/'+str(id)
+    url='http://127.0.0.1:8000/api_producto/producto_old/'+str(id)
     try: 
         response = requests.delete(url)
     except:

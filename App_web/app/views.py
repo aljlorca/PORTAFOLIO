@@ -468,7 +468,6 @@ def tbk_respuesta(request):
             try:
                 producto_carrito=diccionario[clave] 
                 salida_delete = producto_delete(str(producto_carrito['id_producto'])) 
-                print(salida_delete)
             except:
                 pass
     carro.Carro.limpiar_carro(request)

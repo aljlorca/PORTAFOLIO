@@ -51,8 +51,8 @@ class ProductoView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
-    def get(self,request,id_producto=0):
-        if(id_producto>0):
+    def get(self,request,id_producto='0'):
+        if(id_producto!='0'):
             productos=list(Producto.objects.filter(id_producto=id_producto).values().order_by('id_calidad'))
             print(productos)
             if len(productos) > 0:
@@ -116,9 +116,9 @@ class ProductoView(View):
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible eliminar el producto'}
             except:
-                datos = {'message':'ERROR: Validar datos'}
+                datos = {'message':'ERORR: Json invalido'}
         else:
-            datos={'message':'ERROR: NO fue posible eliminar el Producto'}
+            datos={'message':'ERROR: No se encuentra el producto'}
         return JsonResponse(datos)
 
 
