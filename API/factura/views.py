@@ -3,128 +3,125 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from .models import Empresa
-from .serializers import EmpresaSerializer,EmpresaHistoricoSerializer
+from .models import Factura
+from .serializers import FacturaSerializer,FacturaHistoricoSerializer
 from rest_framework import viewsets
 import json
 import cx_Oracle
 
 # Create your views here.
-def agregar_factura(duns_empresa,razon_social_empresa,direccion_empresa,id_tipo_empresa):
+def agregar_factura(fecha_factura,monto_factura,id_usuario,id_venta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('EMPRESA_AGREGAR',[duns_empresa,razon_social_empresa,direccion_empresa,id_tipo_empresa,estado_fila,salida])
+    cursor.callproc('FACTURA_AGREGAR',[fecha_factura,monto_factura,id_usuario,id_venta,estado_fila,salida])
     return round(salida.getvalue())
 
-def modificar_factura(duns_empresa,razon_social_empresa,direccion_empresa,id_tipo_empresa):
+def modificar_factura(id_factura,fecha_factura,monto_factura,id_venta,id_usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('EMPRESA_MODIFICAR',[duns_empresa,razon_social_empresa,direccion_empresa,id_tipo_empresa,salida])
+    cursor.callproc('FACTURA_MODIFICAR',[id_factura,fecha_factura,monto_factura,id_venta,id_usuario,salida])
     return round(salida.getvalue())
 
-def eliminar_factura(id_empresa):
+def eliminar_factura(id_factura):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('EMPRESA_ELIMINAR',[id_empresa,salida])
+    cursor.callproc('FACTURA_ELIMINAR',[id_factura,salida])
     return round(salida.getvalue())
 
 def lista_factura():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
-    cursor.callproc('EMPRESA_LISTAR', [out_cur])
+    cursor.callproc('FACTURA_LISTAR', [out_cur])
     lista = []
     for fila in out_cur:
         lista.append(fila)
     return lista
     
 
-class EmpresaView(View):
+class FacturaView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id_empresa=0):
-        if(id_empresa > 0):
-            empresas=list(Empresa.objects.filter(id_empresa=id_empresa).values())
-            if len(empresas) > 0:
-                empresa = empresas[0]
-                datos={'message':"Success","empresa":empresa}
+    def get(self, request, id_factura=0):
+        if(id_factura > 0):
+            facturas=list(Factura.objects.filter(id_factura=id_factura).values())
+            if len(facturas) > 0:
+                factura = facturas[0]
+                datos={'message':"Success","factura":factura}
             else:
-                datos={'message':"ERROR: Cargo No Encontrado"}
+                datos={'message':"ERROR: factura No Encontrada"}
             return JsonResponse(datos)
         else:
-            empresas = list(Empresa.objects.values())
-            if len(empresas) > 0:
-                datos={'message':"Success","empresas":empresas}
+            facturas = list(Factura.objects.values())
+            if len(facturas) > 0:
+                datos={'message':"Success","facturas":facturas}
             else:
-                datos={'message':"ERROR: empresas No encontrados"}
+                datos={'message':"ERROR: facturas No encontradas"}
             return JsonResponse(datos)
 
     def post(self, request):
         try:
             jd = json.loads(request.body)
             try: 
-                salida = agregar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],id_tipo_empresa=jd['id_tipo_empresa'])
+                salida = agregar_factura(fecha_factura=jd['fecha_factura'],monto_factura=jd['monto_factura'],id_usuario=jd['id_usuario'],id_venta=jd['id_venta'])
                 if salida == 1:
                     datos = {'message':'Success'}
-                    print(datos)
                 elif salida == 0:
-                    datos = {'message':'ERROR: no fue posible registrar la empresa'}
-                    print(datos)
+                    datos = {'message':'ERROR: no fue posible registrar la factura'}
             except:
                 datos = {'message':'ERROR: Validar datos'}
-                print(datos)
         except:
             datos = {'message':'ERORR: Json invalido'}
 
         return JsonResponse(datos)
         
 
-    def put(self, request,id_empresa):
+    def put(self, request,id_factura):
         try:
             jd = json.loads(request.body)
-            empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
-            if len(empresas) > 0:
+            facturas = list(Factura.objects.filter(id_factura=id_factura).values())
+            if len(facturas) > 0:
                 try:
-                    salida = modificar_empresa(duns_empresa=jd['duns_empresa'],razon_social_empresa=jd['razon_social_empresa'],direccion_empresa=jd['direccion_empresa'],id_tipo_empresa=jd['id_tipo_empresa'])
+                    salida = modificar_factura(id_factura=jd['id_factura'],fecha_factura=jd['fecha_factura'],monto_factura=jd['monto_factura'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
                     if salida == 1:
                         datos={'message':"Success"}
                     elif salida == 0:
-                        datos={'message':'ERROR: no fue posible modificar la empresa'}
+                        datos={'message':'ERROR: no fue posible modificar la factura'}
                 except:
                     datos = {'message':'ERROR: Validar datos'}
             else:
-                datos={'message':"ERROR: No se encuentra la empresa"}
+                datos={'message':"ERROR: No se encuentra la factura"}
         except:
             datos = {'message':'ERORR: Json invalido'}
 
         return JsonResponse(datos)
 
-    def delete(self, request,id_empresa):
-        empresas = list(Empresa.objects.filter(id_empresa=id_empresa).values())
-        if len(empresas) > 0:
+    def delete(self, request,id_factura):
+        facturas = list(Factura.objects.filter(id_factura=id_factura).values())
+        if len(facturas) > 0:
             try:
-                salida = eliminar_empresa(id_empresa)
+                salida = eliminar_factura(id_factura)
                 if salida == 1:
                     datos={'message':"Success"}
                 elif salida == 0:
-                    datos={'message':'ERROR: no fue posible eliminar la empresa'}
+                    datos={'message':'ERROR: no fue posible eliminar la factura'}
             except:
                 datos = {'message':'ERROR: Validar datos'}
         else:
-            datos={'message':"ERROR: no fue posible eliminar la empresa"}
+            datos={'message':"ERROR: no se encuentra la factura"}
         return JsonResponse(datos)
 
-class EmpresaViewset(viewsets.ModelViewSet):
-    queryset = Empresa.objects.filter(estado_fila='1')
-    serializer_class = EmpresaSerializer
+class FacturaViewset(viewsets.ModelViewSet):
+    queryset = Factura.objects.filter(estado_fila='1')
+    serializer_class = FacturaSerializer
 
 
-class EmpresaHistoricoViewset(viewsets.ModelViewSet):
-    queryset = Empresa.objects.all()
-    serializer_class = EmpresaHistoricoSerializer
+class FacturaHistoricoViewset(viewsets.ModelViewSet):
+    queryset = Factura.objects.all()
+    serializer_class = FacturaHistoricoSerializer

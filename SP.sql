@@ -1257,6 +1257,14 @@ create sequence sec_carga
   maxvalue 99999999999999999999
   minvalue 1;
 
+create or replace PROCEDURE CARGA_ELIMINAR (v_id_carga Integer) is
+begin 
+    UPDATE carga
+    SET estado_fila = '0'
+    WHERE id_carga = v_id_carga;
+    commit;
+
+end CARGA_ELIMINAR;
 
 create or replace PROCEDURE CARGA_ELIMINAR (v_id_carga Integer) is
 begin 
@@ -1322,6 +1330,15 @@ create sequence sec_subasta
   increment by 1
   maxvalue 99999999999999999999
   minvalue 1;
+  
+create or replace PROCEDURE SUBASTA_ELIMINAR (v_id_subasta Integer) is
+begin 
+    UPDATE subasta
+    SET estado_fila = '0'
+    WHERE id_subasta = v_id_subasta;
+    commit;
+
+end SUBASTA_ELIMINAR;
 
 create or replace PROCEDURE SUBASTA_AGREGAR
 (
@@ -1369,3 +1386,67 @@ is
 begin
   open cur_listar for select * from subasta;
 end SUBASTA_LISTAR;
+------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------SP factura  ---------------------------------------------------------------------------
+
+create sequence sec_factura
+  start with 1
+  increment by 1
+  maxvalue 99999999999999999999
+  minvalue 1;
+  
+create or replace PROCEDURE FACTURA_ELIMINAR (v_id_factura Integer) is
+begin 
+    UPDATE factura
+    SET estado_fila = '0'
+    WHERE id_factura = v_id_factura;
+    commit;
+
+end FACTURA_ELIMINAR;
+
+create or replace PROCEDURE FACTURA_AGREGAR
+(
+    v_fecha date,
+    v_monto integer,
+    v_id_usuario integer,
+    v_id_venta integer,
+    v_estado_fila char,
+    v_salida OUT varchar2
+
+) is
+begin 
+  insert into factura(id_factura,fecha_factura,monto_factura,id_venta,id_usuario,estado_fila) 
+  values(sec_factura.nextval,v_fecha,v_monto,v_id_venta,v_id_usuario,v_estado_fila);
+  commit;
+  v_salida:=1; 
+
+  exception when others then v_salida:=0;
+
+end FACTURA_AGREGAR;
+
+create or replace PROCEDURE FACTURA_MODIFICAR (
+    v_id_factura integer,
+    v_fecha_factura date,
+    v_monto integer,
+    v_id_venta integer,
+    v_id_usuario integer,
+    v_salida OUT NUMBER
+) is
+begin 
+    UPDATE factura
+    SET monto_factura = v_monto,
+    id_venta = v_id_venta,
+    fecha_factura = v_fecha_factura,
+    ID_USUARIO = v_id_usuario
+    WHERE id_factura = v_id_factura;
+    commit;
+    v_salida:=1;
+  
+  exception when others then v_salida:=0;
+end FACTURA_MODIFICAR;
+
+create or replace PROCEDURE FACTURA_LISTAR (cur_listar out SYS_REFCURSOR) 
+is
+begin
+  open cur_listar for select * from factura;
+end FACTURA_LISTAR;
