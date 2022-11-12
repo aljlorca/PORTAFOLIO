@@ -23,6 +23,15 @@ class Empresa(models.Model):
         db_table = 'empresa'
         unique_together = (('duns_empresa', 'razon_social_empresa'),)
 
+class Cargo(models.Model):
+    id_cargo = models.BigIntegerField(primary_key=True)
+    nombre_cargo = models.CharField(max_length=50)
+    estado_fila = models.CharField(max_length=1)
+
+    class Meta:
+        managed = False
+        db_table = 'cargo'
+
 class Usuario(models.Model):
     id_usuario = models.BigIntegerField(primary_key=True)
     numero_identificacion_usuario = models.CharField(max_length=20)
@@ -53,7 +62,7 @@ class Venta(models.Model):
     fecha_venta = models.DateField()
     tipo_venta = models.CharField(max_length=1)
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
-    cantidad_venta = models.FloatField()
+    cantidad_venta = models.FloatField(blank=True, null=True)
     monto_transporte = models.BigIntegerField(blank=True, null=True)
     monto_aduanas = models.BigIntegerField(blank=True, null=True)
     pago_servicio = models.BigIntegerField(blank=True, null=True)
@@ -62,6 +71,7 @@ class Venta(models.Model):
 
     class Meta:
         managed = False
+        db_table = 'venta'
 
 class Factura(models.Model):
     id_factura = models.BigIntegerField(primary_key=True)

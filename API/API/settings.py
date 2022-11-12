@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'tipo_empresa',
     'usuario',
     'venta',
+    'factura',
 ]
 
 MIDDLEWARE = [
