@@ -118,7 +118,24 @@ class CarritoView(View):
             datos={'message':"ERROR: no se encuentra el carrito"}
         return JsonResponse(datos)
     
+class CarritoUserView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)    
     
+    def get(self, request, id_usuario):
+        try:
+            carritos=list(Carrito.objects.filter(id_usuario=id_usuario,estado_fila='1').order_by('id_carrito').values())
+            if len(carritos) > 0:
+                datos={'message':"Success",'carritos':carritos}
+            else:
+                datos={'message':"ERROR: carritos No Encontrados"}
+        except:
+            datos = {'message':'ERROR: Validar datos'}
+        return JsonResponse(datos)
+
+
+
 class CarritoViewset(viewsets.ModelViewSet):
     queryset = Carrito.objects.filter(estado_fila='1')
     serializer_class = CarritoSerializer

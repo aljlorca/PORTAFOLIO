@@ -175,6 +175,21 @@ def listado_ventas_locales(request):
         data={'error':'error de conexion'}
     return render(request, 'app/cliente_externo/listado_ventas.html',data)
 
+def ordenes(request):
+    data = get_session(request)
+    try:
+        if data['cargo']!='Cliente Interno':
+            return redirect(to="http://127.0.0.1:3000/")
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
+    
+    try:
+        data['carrito'] = carrito_get_id(str(data['id_user']))
+
+    except:
+        pass
+
+    return render(request, 'app/Cliente_Interno/listado_ordenes.html',data)
 
 ###########################
 ###Cliente Externo Views###

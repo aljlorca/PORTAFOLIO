@@ -331,3 +331,22 @@ def carrito_post(monto,id_usuario):
     if response.status_code == 200:
         content = json.loads(response.content)
         return content
+
+
+def carrito_get_id(id):
+    url = 'http://127.0.0.1:8000/api_carrito/carrito_user/'+str(id)
+    try: 
+     response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        try:
+            carrito=content['carritos']
+            return carrito
+        except:
+            return content
+    if response.status_code == 404:
+        data = 'ERROR: Usuario no encontrado'
+        return data
