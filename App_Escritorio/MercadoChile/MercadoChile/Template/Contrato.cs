@@ -104,11 +104,13 @@ namespace MercadoChile.Template
 
             string respuesta1 = await Get.GetHttp2();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
+            bool datoCorrecto = false;
 
             foreach (var list in lista)
             {
                 if (txtRut.Text == list.numero_identificacion_usuario)
                 {
+                    datoCorrecto = true;
                     string nombre = list.nombre_usuario;
                     string direccion = list.direccion_usuario;
                     
@@ -193,6 +195,10 @@ namespace MercadoChile.Template
                     }
  
                 }
+            }
+            if (datoCorrecto == false) 
+            {
+                MessageBox.Show("usuario ingreso no encontrado, Favor ingresar datos correctos");
             }
         }
         class HeaderFooter : PdfPageEventHelper
