@@ -117,6 +117,19 @@ class CargaView(View):
             datos={'message':"ERROR: No se encuentra la carga"}
         return JsonResponse(datos)
     
+class CargaSubastaView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, id_subasta):
+            cargas=list(Carga.objects.filter(id_subasta=id_subasta).order_by('id_carga').values())
+            if len(cargas) > 0:
+                carga = cargas[0]
+                datos={'carga':carga}
+            else:
+                datos={'message':"ERROR: carga No Encontrada"}
+            return JsonResponse(datos)
     
 class CargaViewset(viewsets.ModelViewSet):
     queryset = Carga.objects.all()

@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from requests import Response
 from .models import Producto
-from .serializers import ProductoSerializer,ProductoHistoricoSerializer
+from .serializers import ProductoSerializer
 from django.http import HttpResponse
 from rest_framework import viewsets
 import json
@@ -182,5 +182,5 @@ class ProductoViewset(viewsets.ModelViewSet):
         return HttpResponse(datos, status=200)
 
 class ProductoHistoricoViewset(viewsets.ModelViewSet):
-    queryset = Producto.objects.filter(estado_fila = '1')
-    serializer_class = ProductoHistoricoSerializer
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer

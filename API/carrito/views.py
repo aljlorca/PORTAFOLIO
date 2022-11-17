@@ -134,8 +134,6 @@ class CarritoUserView(View):
             datos = {'message':'ERROR: Validar datos'}
         return JsonResponse(datos)
 
-
-
 class CarritoViewset(viewsets.ModelViewSet):
     queryset = Carrito.objects.filter(estado_fila='1')
     serializer_class = CarritoSerializer

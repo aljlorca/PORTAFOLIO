@@ -56,7 +56,7 @@ class SubastaView(View):
             subastas=list(Subasta.objects.filter(id_subasta=id_subasta).values())
             if len(subastas) > 0:
                 subasta = subastas[0]
-                datos={'message':"Success","subasta":subasta}
+                datos={"subasta":subasta}
             else:
                 datos={'message':"ERROR: subasta No Encontrada"}
             return JsonResponse(datos)
