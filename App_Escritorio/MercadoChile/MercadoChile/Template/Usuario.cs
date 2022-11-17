@@ -350,7 +350,7 @@ namespace MercadoChile
                     }
                     foreach (var fila1 in lista1)
                     {
-                        if (Convert.ToInt32(fila.Cells["cnCargo"].Value) == fila1.id_cargo)
+                        if (Convert.ToString(fila.Cells["cnCargo"].Value) == fila1.id_cargo)
                         {
                             fila.Cells["cnCargo"].Value = fila1.nombre_cargo;
                             break;

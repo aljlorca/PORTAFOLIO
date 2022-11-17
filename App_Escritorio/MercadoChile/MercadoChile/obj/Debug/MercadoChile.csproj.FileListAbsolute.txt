@@ -1305,3 +1305,9 @@ D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Google.Protobuf
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Google.Protobuf.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Http.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\GoogleMapsApi.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Google.Protobuf.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\GoogleMapsApi.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Http.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Google.Protobuf.pdb
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Google.Protobuf.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\Microsoft.Extensions.Http.xml

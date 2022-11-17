@@ -40,7 +40,7 @@ namespace MercadoChile.Template
             cmb_TipoEmpresa.ValueMember = "id_empresa";
 
         }
-       
+
         private async void Crear_Contrato_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -50,7 +50,7 @@ namespace MercadoChile.Template
             string id = cmb_TipoEmpresa.Text + "_" + dateTimePicker1.Value.ToString();
             Console.WriteLine(id);
             Console.WriteLine(theDate);
-            
+
             if (ofd.ShowDialog().Equals(DialogResult.OK))
             {
                 string mensajeRespuesta = "";
@@ -69,7 +69,7 @@ namespace MercadoChile.Template
                     {
                         string nombreArchivo = Path.GetFileName(nombreCompletoArchivo);
                         MultipartFormDataContent frm = new MultipartFormDataContent();
-                        frm.Add(new StringContent(id),"id_contrato");
+                        frm.Add(new StringContent(id), "id_contrato");
                         frm.Add(new ByteArrayContent(arrContenido), "documento_contrato", nombreArchivo);
                         frm.Add(new StringContent(theDate), "fecha_contrato");
                         frm.Add(new StringContent(txt_TipoContrato.Text), "tipo_contrato");
@@ -97,78 +97,111 @@ namespace MercadoChile.Template
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream(@"C:\Users\MiniBalto\Desktop\duoc\Contrato MercadoChile.pdf", FileMode.Create);
-            Document doc = new Document(iTextSharp.text.PageSize.LETTER, 30f, 20f, 50f, 40f);
-            PdfWriter pw = PdfWriter.GetInstance(doc, fs);
-            pw.PageEvent = new HeaderFooter();
+            string respuesta = await Get.GetHttp1();
+            List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
-            doc.SetMargins(85f, 85f, 85f, 85f);
-            doc.Open();
+            string respuesta1 = await Get.GetHttp2();
+            List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
+            bool datoCorrecto = false;
 
-            doc.AddAuthor("WireBox");
-            doc.AddTitle("PDF Generad");
-            iTextSharp.text.Image firma = iTextSharp.text.Image.GetInstance(@"C:\Users\MiniBalto\Desktop\duoc\fima.jpg");
+            foreach (var list in lista)
+            {
+                if (txtRut.Text == list.numero_identificacion_usuario)
+                {
+                    datoCorrecto = true;
+                    string nombre = list.nombre_usuario;
+                    string direccion = list.direccion_usuario;
+                    
 
-            firma.ScaleAbsoluteWidth(100);
-            firma.ScaleAbsoluteHeight(100);
-
-
-
-            PdfPTable table = new PdfPTable(1);
-
-            PdfPCell _cell = new PdfPCell();
-
-            _cell = new PdfPCell(new Paragraph("Contrato Mercado Chile"));
-            _cell.HorizontalAlignment = Element.ALIGN_CENTER;
-            table.AddCell(_cell);
-            doc.Add(table);
-
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph("En Santiago a 14/10/2022 Entre Mercado Chile Rut 99.999.999-9 Represantada  por Homero Simsomp en su calidad de gerente general " +
-                "Cedula de identidad N° 22.222.222-2 ambos domiciliados en avenida siempre viva N°666 comuna de Sprinfield ciudad de Santiago que en adelante se denomina el mandante" +
-                " y don " + txtNombreCliente.Text + " de nacionalidad "+txtNacionalidad.Text+" cedula de identidad " + txtRut.Text + " domiciliado en " + txtDireccionCliente.Text + 
-                " han acordado el contrato de prestacion de servicios que consta de las siguiente clausulas que a continuación se exponen")
-            { Alignment = Element.ALIGN_JUSTIFIED });
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph("PRIMERO. En virtud del presente contrato de prestacion de servicios, el mandatario se compromete a ejecutar el siguiente cargo: "+ txtCargo.Text+" de productos" +
-                " de la empresa Mercado Chile ")
-            { Alignment = Element.ALIGN_JUSTIFIED });
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph("Las partes dejan expresa constancia que en el desempeño del encargo señalado en el parrafo precedente, el mandatario se desempeñara como trabjador" +
-                " independiente, no existiendo vinculo de subordinación o dependencia con el mandante. Por lo tanto, el Encargo o servicio que se le a encomendado lo afectuara" +
-                " en el horario y condiciones convenidas")
-            { Alignment = Element.ALIGN_JUSTIFIED });
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph("SEGUNDO. Toda colaboracion que en el mandatario solicite a otras personas, a cualquier titulo sera de su exclusiva responsabilidad, no generandose" +
-                "obligacion alguna para el mandate en relacion con dichas personas")
-            { Alignment = Element.ALIGN_JUSTIFIED });
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph("TERCERO. Las partes podrán desahuciar el presente contrato dando aviso anticipado de 30 dias, que deberá constar por escrito, que en este" +
-                " caso se da por enterada que es con fecha 15/10/2022")
-            { Alignment = Element.ALIGN_JUSTIFIED });
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph("Asimismo, el contrato terminara por las causales de extincion del mandato prescritas por el articulo 2.163 del codigo civil.") { Alignment = Element.ALIGN_JUSTIFIED });
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph("CUARTO. Para las custiones a que dé lugar este contrato, las partes fijan domicilio en la ciudad, y se someten a la jurisdicción de sus Tribunales") { Alignment = Element.ALIGN_JUSTIFIED });
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph("QUINTO. El Presente contrato se suscribe en duplicado, quedando una copia en poder de cada parte.") { Alignment = Element.ALIGN_JUSTIFIED });
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph(" "));
-            doc.Add(firma);
-            doc.Add(new Paragraph("FIRMA MANDANTE                                           FIRMA DEL MANDATARIO"));
-            doc.Add(new Paragraph("RUT: 99.999.999-9                                             RUT: "+ txtRut.Text ));
-
-            doc.Close();
+                    foreach (var list1 in lista1)
+                    {
+                        if (list.id_cargo == list1.id_cargo)
+                        {
+                            string cargo = list1.nombre_cargo;
+                            
 
 
-            MessageBox.Show("Documento generado con Exito");
+                            FileStream fs = new FileStream(@"C:\Users\MiniBalto\Desktop\duoc\Contrato MercadoChile "+nombre+".pdf", FileMode.Create);
+                            Document doc = new Document(iTextSharp.text.PageSize.LETTER, 30f, 20f, 50f, 40f);
+                            PdfWriter pw = PdfWriter.GetInstance(doc, fs);
+                            pw.PageEvent = new HeaderFooter();
+
+                            doc.SetMargins(85f, 85f, 85f, 85f);
+                            doc.Open();
+
+                            doc.AddAuthor("WireBox");
+                            doc.AddTitle("PDF Generad");
+                            iTextSharp.text.Image firma = iTextSharp.text.Image.GetInstance(@"C:\Users\MiniBalto\Desktop\duoc\fima.jpg");
+
+                            firma.ScaleAbsoluteWidth(100);
+                            firma.ScaleAbsoluteHeight(100);
 
 
+
+                            PdfPTable table = new PdfPTable(1);
+
+                            PdfPCell _cell = new PdfPCell();
+
+                            _cell = new PdfPCell(new Paragraph("Contrato Mercado Chile"));
+                            _cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                            table.AddCell(_cell);
+                            doc.Add(table);
+
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph("En Santiago a 14/10/2022 Entre Mercado Chile Rut 99.999.999-9 Represantada  por Homero Simsomp en su calidad de gerente general " +
+                                "Cedula de identidad N° 22.222.222-2 ambos domiciliados en avenida siempre viva N°666 comuna de Sprinfield ciudad de Santiago que en adelante se denomina el mandante" +
+                                " y don " + nombre + " de cedula de identidad " + txtRut.Text + " domiciliado en " + direccion +
+                                " han acordado el contrato de prestacion de servicios que consta de las siguiente clausulas que a continuación se exponen")
+                            { Alignment = Element.ALIGN_JUSTIFIED });
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph("PRIMERO. En virtud del presente contrato de prestacion de servicios, el mandatario se compromete a ejecutar el siguiente cargo: " + cargo + " de productos" +
+                                " de la empresa Mercado Chile ")
+                            { Alignment = Element.ALIGN_JUSTIFIED });
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph("Las partes dejan expresa constancia que en el desempeño del encargo señalado en el parrafo precedente, el mandatario se desempeñara como trabjador" +
+                                " independiente, no existiendo vinculo de subordinación o dependencia con el mandante. Por lo tanto, el Encargo o servicio que se le a encomendado lo afectuara" +
+                                " en el horario y condiciones convenidas")
+                            { Alignment = Element.ALIGN_JUSTIFIED });
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph("SEGUNDO. Toda colaboracion que en el mandatario solicite a otras personas, a cualquier titulo sera de su exclusiva responsabilidad, no generandose" +
+                                "obligacion alguna para el mandate en relacion con dichas personas")
+                            { Alignment = Element.ALIGN_JUSTIFIED });
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph("TERCERO. Las partes podrán desahuciar el presente contrato dando aviso anticipado de 30 dias, que deberá constar por escrito, que en este" +
+                                " caso se da por enterada que es con fecha 15/10/2022")
+                            { Alignment = Element.ALIGN_JUSTIFIED });
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph("Asimismo, el contrato terminara por las causales de extincion del mandato prescritas por el articulo 2.163 del codigo civil.") { Alignment = Element.ALIGN_JUSTIFIED });
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph("CUARTO. Para las custiones a que dé lugar este contrato, las partes fijan domicilio en la ciudad, y se someten a la jurisdicción de sus Tribunales") { Alignment = Element.ALIGN_JUSTIFIED });
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph("QUINTO. El Presente contrato se suscribe en duplicado, quedando una copia en poder de cada parte.") { Alignment = Element.ALIGN_JUSTIFIED });
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(new Paragraph(" "));
+                            doc.Add(firma);
+                            doc.Add(new Paragraph("FIRMA MANDANTE                                           FIRMA DEL MANDATARIO"));
+                            doc.Add(new Paragraph("RUT: 99.999.999-9                                             RUT: " + txtRut.Text));
+
+                            doc.Close();
+
+
+                            MessageBox.Show("Documento generado con Exito");
+
+                        }
+                        
+                    }
+ 
+                }
+            }
+            if (datoCorrecto == false) 
+            {
+                MessageBox.Show("usuario ingreso no encontrado, Favor ingresar datos correctos");
+            }
         }
-        class HeaderFooter : PdfPageEventHelper 
+        class HeaderFooter : PdfPageEventHelper
         {
             public override void OnEndPage(PdfWriter writer, Document document)
             {
@@ -246,84 +279,6 @@ namespace MercadoChile.Template
             }
         }
 
-        private void nombreClienteEnter(object sender, EventArgs e)
-        {
-            if (txtNombreCliente.Text == "Nombre Cliente")
-            {
-                txtNombreCliente.Text = "";
-                txtNombreCliente.ForeColor = System.Drawing.Color.Black;
 
-            }
-        }
-
-        private void nombreClienteLeave(object sender, EventArgs e)
-        {
-            if (txtNombreCliente.Text == "")
-            {
-                txtNombreCliente.Text = "Nombre Cliente";
-                txtNombreCliente.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void DireccionEnter(object sender, EventArgs e)
-        {
-            if (txtDireccionCliente.Text == "Direccion")
-            {
-                txtDireccionCliente.Text = "";
-                txtDireccionCliente.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void DireccionLeave(object sender, EventArgs e)
-        {
-            if (txtDireccionCliente.Text == "")
-            {
-                txtDireccionCliente.Text = "Direccion";
-                txtDireccionCliente.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void NacionalidadEnter(object sender, EventArgs e)
-        {
-            if (txtNacionalidad.Text == "Nacionalidad")
-            {
-                txtNacionalidad.Text = "";
-                txtNacionalidad.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void txtNacionalidad_Leave(object sender, EventArgs e)
-        {
-            if (txtNacionalidad.Text == "")
-            {
-                txtNacionalidad.Text = "Nacionalidad";
-                txtNacionalidad.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void CargoEnter(object sender, EventArgs e)
-        {
-            if (txtCargo.Text == "Cargo")
-            {
-                txtCargo.Text = "";
-                txtCargo.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-
-        private void Cargo(object sender, EventArgs e)
-        {
-            if (txtCargo.Text == "")
-            {
-                txtCargo.Text = "Cargo";
-                txtCargo.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-    }
+    }  
 }
