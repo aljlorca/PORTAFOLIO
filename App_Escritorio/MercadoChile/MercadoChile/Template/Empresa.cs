@@ -80,6 +80,7 @@ namespace MercadoChile.Template
                         if (MessageBox.Show("Desea Eliminar" + txtDunsEdit, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             await httpClient.SendAsync(request);
+                            MessageBox.Show("Empresa Eliminada con exito");
                             this.Hide();
                         }
                         else
@@ -133,9 +134,7 @@ namespace MercadoChile.Template
                             var httpResponse = await client.PutAsync(myUri, content);
                             if (httpResponse.IsSuccessStatusCode)
                             {
-                                var result = await httpResponse.Content.ReadAsStringAsync();
-                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                                MessageBox.Show(postResult.ToString());
+                                MessageBox.Show("Empresa Modificada");
                                 this.Hide();
                             }
                         }
@@ -179,9 +178,7 @@ namespace MercadoChile.Template
                         if (httpResponse.IsSuccessStatusCode)
 
                         {
-
-                            var result = await httpResponse.Content.ReadAsStringAsync();
-                            var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                            MessageBox.Show("Empresa Agregada con exito");
                             this.Hide();
 
                         }

@@ -217,6 +217,7 @@ namespace MercadoChile.Template
                                    + DgvPostulacion.CurrentRow.Cells[4].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 await httpClient.SendAsync(request);
+                                MessageBox.Show("Publicado con Exito");
                                 this.Hide();
                             }
                         }
@@ -255,6 +256,7 @@ namespace MercadoChile.Template
                                + DgvPostulacion.CurrentRow.Cells[6].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             await httpClient.SendAsync(request);
+                            MessageBox.Show("Postulacion eliminada con exito");
                             this.Hide();
                         }
                     }

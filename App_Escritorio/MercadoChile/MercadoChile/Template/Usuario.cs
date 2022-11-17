@@ -133,6 +133,7 @@ namespace MercadoChile
                         if (MessageBox.Show("Desea Eliminar" + txtCorEdit, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             await httpClient.SendAsync(request);
+                            MessageBox.Show("Eliminado con Exito");
                             this.Hide();
                         }
                         else
@@ -220,9 +221,7 @@ namespace MercadoChile
                                 var httpResponse = await client.PutAsync(myUri, content);
                                 if (httpResponse.IsSuccessStatusCode)
                                 {
-                                    var result = await httpResponse.Content.ReadAsStringAsync();
-                                    var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                                    MessageBox.Show(postResult.ToString());
+                                    MessageBox.Show("Usuario Modificado");
                                     this.Hide();
                                 }
                             }
@@ -236,9 +235,7 @@ namespace MercadoChile
                             var httpResponse = await client.PutAsync(myUri, content);
                             if (httpResponse.IsSuccessStatusCode)
                             {
-                                var result = await httpResponse.Content.ReadAsStringAsync();
-                                var postResult = JsonSerializer.Deserialize<Usuarios>(result);
-                                MessageBox.Show(postResult.ToString());
+                                MessageBox.Show("Usuario Modificado");
                                 this.Hide();
                             }
                         }
@@ -286,9 +283,7 @@ namespace MercadoChile
                         var httpResponse = await client.PostAsync(baseUri, content);
                         if (httpResponse.IsSuccessStatusCode)
                         {
-                            var result = await httpResponse.Content.ReadAsStringAsync();
-                            Console.WriteLine(result);
-                            var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                            MessageBox.Show("Usuario Creado");
                             this.Hide();
 
                         }
@@ -303,9 +298,7 @@ namespace MercadoChile
                     var httpResponse = await client.PostAsync(baseUri, content);
                     if (httpResponse.IsSuccessStatusCode)
                     {
-                        var result = await httpResponse.Content.ReadAsStringAsync();
-                        Console.WriteLine(result);
-                        var postResult = JsonSerializer.Deserialize<Usuarios>(result);
+                        MessageBox.Show("Usuario Creado");
                         this.Hide();
 
                     }
