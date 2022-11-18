@@ -127,11 +127,10 @@ class SubastaVentaView(View):
     def get(self, request, id_venta):
         subastas=list(Subasta.objects.filter(id_venta=id_venta).values())
         if len(subastas) > 0:
-            subasta = subastas[0]
-            datos=subasta
+            datos=subastas
         else:
             datos={'message':"ERROR: subasta No Encontrada"}
-        return JsonResponse(datos)
+        return JsonResponse(datos,safe=False)
 
 class SubastaViewset(viewsets.ModelViewSet):
     queryset = Subasta.objects.filter(estado_fila='1')
