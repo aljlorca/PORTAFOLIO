@@ -31,25 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Procesos));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtBusVenta = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnListar = new System.Windows.Forms.Button();
             this.DgvPostulacion = new System.Windows.Forms.DataGridView();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.DgvProducto = new System.Windows.Forms.DataGridView();
-            this.cnImagen = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cnNomProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCantProduc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnCalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.cnIdP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnDesrip = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,9 +44,24 @@
             this.cnProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnEstadoF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnBoton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtBusVenta = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DgvProducto = new System.Windows.Forms.DataGridView();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cnImagen = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cnNomProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCantProduc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvPostulacion)).BeginInit();
@@ -100,6 +101,33 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Proceso Postulacion";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(749, 142);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(259, 13);
+            this.label4.TabIndex = 119;
+            this.label4.Text = "---------------------------------------------------------------";
+            // 
+            // txtBusVenta
+            // 
+            this.txtBusVenta.Location = new System.Drawing.Point(782, 158);
+            this.txtBusVenta.Name = "txtBusVenta";
+            this.txtBusVenta.Size = new System.Drawing.Size(193, 20);
+            this.txtBusVenta.TabIndex = 118;
+            this.txtBusVenta.TextChanged += new System.EventHandler(this.txtBusVenta_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(806, 123);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 19);
+            this.label5.TabIndex = 117;
+            this.label5.Text = "Buscador Venta";
+            // 
             // btnListar
             // 
             this.btnListar.FlatAppearance.BorderSize = 0;
@@ -134,6 +162,58 @@
             this.DgvPostulacion.Size = new System.Drawing.Size(664, 520);
             this.DgvPostulacion.TabIndex = 104;
             this.DgvPostulacion.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_Aceptar);
+            // 
+            // cnIdP
+            // 
+            this.cnIdP.DataPropertyName = "id_postulacion";
+            this.cnIdP.HeaderText = "ID";
+            this.cnIdP.Name = "cnIdP";
+            this.cnIdP.Visible = false;
+            // 
+            // cnDesrip
+            // 
+            this.cnDesrip.DataPropertyName = "descripcion_postulacion";
+            this.cnDesrip.HeaderText = "Descripcion Postulacion";
+            this.cnDesrip.Name = "cnDesrip";
+            // 
+            // cnEstado
+            // 
+            this.cnEstado.DataPropertyName = "estado_postulacion";
+            this.cnEstado.HeaderText = "Estado Postulacion";
+            this.cnEstado.Name = "cnEstado";
+            // 
+            // cnVenta
+            // 
+            this.cnVenta.DataPropertyName = "id_venta";
+            this.cnVenta.HeaderText = "Venta";
+            this.cnVenta.Name = "cnVenta";
+            // 
+            // cnCliente
+            // 
+            this.cnCliente.DataPropertyName = "id_usuario";
+            this.cnCliente.HeaderText = "Cliente";
+            this.cnCliente.Name = "cnCliente";
+            // 
+            // cnProduto
+            // 
+            this.cnProduto.DataPropertyName = "id_producto";
+            this.cnProduto.HeaderText = "Nombre Producto";
+            this.cnProduto.Name = "cnProduto";
+            // 
+            // cnEstadoF
+            // 
+            this.cnEstadoF.DataPropertyName = "estado_fila";
+            this.cnEstadoF.HeaderText = "Estado Fila";
+            this.cnEstadoF.Name = "cnEstadoF";
+            this.cnEstadoF.Visible = false;
+            // 
+            // cnBoton
+            // 
+            this.cnBoton.HeaderText = "";
+            this.cnBoton.Name = "cnBoton";
+            this.cnBoton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cnBoton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.cnBoton.Text = "";
             // 
             // btnEliminar
             // 
@@ -202,6 +282,7 @@
             this.DgvProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cnImagen,
             this.cnNomProd,
+            this.cnDescripcion,
             this.cnCantProduc,
             this.cnPrecio,
             this.cnSaldo,
@@ -216,6 +297,30 @@
             this.DgvProducto.TabIndex = 94;
             this.DgvProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProducto_CellClick);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(359, 4);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(338, 25);
+            this.label8.TabIndex = 93;
+            this.label8.Text = "Eliminacion de Productos rechazados";
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(38, 131);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(10, 10);
+            this.button1.TabIndex = 95;
+            this.button1.Tag = "";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // cnImagen
             // 
             this.cnImagen.HeaderText = "Imagen Produto";
@@ -229,6 +334,12 @@
             this.cnNomProd.DataPropertyName = "nombre_producto";
             this.cnNomProd.HeaderText = "Nombre Produto";
             this.cnNomProd.Name = "cnNomProd";
+            // 
+            // cnDescripcion
+            // 
+            this.cnDescripcion.DataPropertyName = "descripcion_producto";
+            this.cnDescripcion.HeaderText = "Descripcion Producto";
+            this.cnDescripcion.Name = "cnDescripcion";
             // 
             // cnCantProduc
             // 
@@ -274,109 +385,6 @@
             this.cnUrl.Name = "cnUrl";
             this.cnUrl.Visible = false;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(359, 4);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(338, 25);
-            this.label8.TabIndex = 93;
-            this.label8.Text = "Eliminacion de Productos rechazados";
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(38, 131);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(10, 10);
-            this.button1.TabIndex = 95;
-            this.button1.Tag = "";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // cnIdP
-            // 
-            this.cnIdP.DataPropertyName = "id_postulacion";
-            this.cnIdP.HeaderText = "ID";
-            this.cnIdP.Name = "cnIdP";
-            this.cnIdP.Visible = false;
-            // 
-            // cnDesrip
-            // 
-            this.cnDesrip.DataPropertyName = "descripcion_postulacion";
-            this.cnDesrip.HeaderText = "Descripcion Postulacion";
-            this.cnDesrip.Name = "cnDesrip";
-            // 
-            // cnEstado
-            // 
-            this.cnEstado.DataPropertyName = "estado_postulacion";
-            this.cnEstado.HeaderText = "Estado Postulacion";
-            this.cnEstado.Name = "cnEstado";
-            // 
-            // cnVenta
-            // 
-            this.cnVenta.DataPropertyName = "id_venta";
-            this.cnVenta.HeaderText = "Venta";
-            this.cnVenta.Name = "cnVenta";
-            // 
-            // cnCliente
-            // 
-            this.cnCliente.DataPropertyName = "id_usuario";
-            this.cnCliente.HeaderText = "Cliente";
-            this.cnCliente.Name = "cnCliente";
-            // 
-            // cnProduto
-            // 
-            this.cnProduto.DataPropertyName = "id_producto";
-            this.cnProduto.HeaderText = "Nombre Producto";
-            this.cnProduto.Name = "cnProduto";
-            // 
-            // cnEstadoF
-            // 
-            this.cnEstadoF.DataPropertyName = "estado_fila";
-            this.cnEstadoF.HeaderText = "Estado Fila";
-            this.cnEstadoF.Name = "cnEstadoF";
-            this.cnEstadoF.Visible = false;
-            // 
-            // cnBoton
-            // 
-            this.cnBoton.HeaderText = "";
-            this.cnBoton.Name = "cnBoton";
-            this.cnBoton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cnBoton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cnBoton.Text = "";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(749, 142);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(259, 13);
-            this.label4.TabIndex = 119;
-            this.label4.Text = "---------------------------------------------------------------";
-            // 
-            // txtBusVenta
-            // 
-            this.txtBusVenta.Location = new System.Drawing.Point(782, 158);
-            this.txtBusVenta.Name = "txtBusVenta";
-            this.txtBusVenta.Size = new System.Drawing.Size(193, 20);
-            this.txtBusVenta.TabIndex = 118;
-            this.txtBusVenta.TextChanged += new System.EventHandler(this.txtBusVenta_TextChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(806, 123);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(131, 19);
-            this.label5.TabIndex = 117;
-            this.label5.Text = "Buscador Venta";
-            // 
             // Procesos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,15 +416,6 @@
         private System.Windows.Forms.DataGridView DgvProducto;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewImageColumn cnImagen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnNomProd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnCantProduc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnSaldo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnCalidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnProveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnUrl;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView DgvPostulacion;
         private System.Windows.Forms.Button btnListar;
@@ -431,5 +430,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtBusVenta;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewImageColumn cnImagen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnNomProd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnCantProduc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnPrecio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnSaldo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnCalidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnUrl;
     }
 }

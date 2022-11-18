@@ -188,7 +188,7 @@ namespace MercadoChile.Template
                             doc.Close();
 
 
-                            MessageBox.Show("Documento generado con Exito");
+                            MessageBox.Show("Documento "+ nombre +" generado con Exito");
 
                         }
                         
