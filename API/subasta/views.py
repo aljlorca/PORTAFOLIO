@@ -119,6 +119,20 @@ class SubastaView(View):
             datos={'message':"ERROR: no se encuentra la subasta"}
         return JsonResponse(datos)
 
+class SubastaVentaView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get(self, request, id_venta):
+        subastas=list(Subasta.objects.filter(id_venta=id_venta).values())
+        if len(subastas) > 0:
+            subasta = subastas[0]
+            datos=subasta
+        else:
+            datos={'message':"ERROR: subasta No Encontrada"}
+        return JsonResponse(datos)
+
 class SubastaViewset(viewsets.ModelViewSet):
     queryset = Subasta.objects.filter(estado_fila='1')
     serializer_class = SubastaSerializer
