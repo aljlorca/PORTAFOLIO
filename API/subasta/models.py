@@ -81,6 +81,7 @@ class Subasta(models.Model):
     fecha_subasta = models.DateField()
     estado_fila = models.CharField(max_length=1)
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
+    estado_subasta = models.CharField(max_length=20)
 
     class Meta:
         managed = False
