@@ -104,34 +104,6 @@ D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj
 D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.dll
 D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.pdb
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.dll.config
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.pdb
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Datos.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Microsoft.Extensions.Primitives.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Newtonsoft.Json.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Buffers.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Memory.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Net.Http.Formatting.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Web.Http.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\RestSharp.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Datos.pdb
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Datos.dll.config
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Microsoft.Extensions.Primitives.xml
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Newtonsoft.Json.xml
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Buffers.xml
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Memory.xml
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Net.Http.Formatting.xml
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Web.Http.xml
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CopyComplete
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.dll
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.pdb
 C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.dll.config
 C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.dll
 C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.pdb
@@ -160,3 +132,31 @@ C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile
 C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.dll
 C:\Users\PC Gaming\Desktop\actualizable\PORTAFOLIO-2\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.pdb
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.dll.config
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Negocio.pdb
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Datos.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Newtonsoft.Json.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Buffers.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Memory.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Web.Http.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\RestSharp.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Datos.pdb
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Datos.dll.config
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\Newtonsoft.Json.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Buffers.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Memory.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\System.Web.Http.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.pdb
