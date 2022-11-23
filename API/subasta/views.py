@@ -67,6 +67,10 @@ def subasta_carga():
     cont=0
     for dato in lista:
         fila=lista[cont]
+        if fila[8] =='1':
+            carga='Si'
+        else:
+            carga='No'
         jd = {'id_subasta':fila[0],
         'monto_subasta':fila[1],
         'id_venta':fila[2],
@@ -75,7 +79,7 @@ def subasta_carga():
         'estado_subasta':fila[5],
         'id_carga':fila[6],
         'capacidad_carga':fila[7],
-        'refrigeracion_carga':fila[8],
+        'refrigeracion_carga':carga,
         'tamano_carga':fila[9]}
         lista_json.append(jd)
         cont=cont+1
