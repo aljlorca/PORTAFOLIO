@@ -178,7 +178,7 @@ class SubastaAceptarView(View):
     def get(self, request):
             subastas = subasta_carga()
             if len(subastas) > 0:
-                datos={'message':"Success","subasta":subastas}
+                return JsonResponse(subastas,safe=False)
             else:
                 datos={'message':"ERROR: subastas de venta No encontradas"}
             return JsonResponse(datos)
