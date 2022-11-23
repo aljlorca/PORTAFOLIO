@@ -14,6 +14,8 @@ urlpatterns = [
     path('subasta_old/<int:id_subasta>',SubastaView.as_view(),name='subasta_update'),
     path('subasta_venta/<int:id_venta>',SubastaVentaView.as_view(),name='subasta_venta'),
     path('subasta_aceptar/<str:id_subasta>',SubastaAceptarView.as_view(),name='subasta_aceptar'),
+    path('subasta_aceptar/',SubastaAceptarView.as_view(),name='subasta_carga'),
+
     
 ]
 
