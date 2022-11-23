@@ -36,6 +36,13 @@ def eliminar_subasta(id_subasta):
     cursor.callproc('SUBASTA_ELIMINAR',[id_subasta,salida])
     return round(salida.getvalue())
 
+def aceptar_subasta(id_subasta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SUBASTA_ACEPTAR',[id_subasta,salida])
+    return round(salida.getvalue())
+
 def lista_subasta():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -133,6 +140,31 @@ class SubastaVentaView(View):
             datos={'message':"ERROR: subasta No Encontrada"}
         return JsonResponse(datos,safe=False)
 
+
+
+class SubastaAceptarView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+        
+    def put(self, request,id_subasta):
+        try:
+            subasteas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
+            if len(subasteas) > 0:
+                try:
+                    salida = aceptar_subasta(id_subasta)
+                    if salida == 0:
+                        datos = {'message':'ERORR: no fue posible aceptar la subasta'}
+                    else:
+                        datos = {'message':'Success'}
+                except:
+                    datos = {'message':'ERROR: Validar datos'}
+            else:
+                datos={'message':"ERROR: No se encuentra la subasta"}
+        except:
+            datos = {'message':'ERORR: tenemos problemas en estos momentos'}
+        return JsonResponse(datos)
+    
 class SubastaViewset(viewsets.ModelViewSet):
     queryset = Subasta.objects.filter(estado_fila='1')
     serializer_class = SubastaSerializer
