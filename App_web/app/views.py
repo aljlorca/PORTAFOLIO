@@ -407,7 +407,7 @@ def detalle_subasta(request,id_venta):
             refrigeracion_carga = carga['refrigeracion_carga']
             try:
                 data['venta']=Ventas_get_id(id_venta)
-                data['subasta']=subasta_get()
+                data['subasta']=subasta_get_venta(id_venta)
             except:
                 data['error']='Tenemos problemas en estos momentos'
         except:

@@ -130,6 +130,17 @@ def subasta_get_id(id):
         content = json.loads(response.content)
         return content
 
+def subasta_get_venta(id):
+    url='http://127.0.0.1:8000/api_subasta/subasta_venta/'+str(id)
+    try: 
+        response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+
 def subasta_delete(id):
     url='http://127.0.0.1:8000/api_subasta/subasta_old/'+str(id)
     try: 
