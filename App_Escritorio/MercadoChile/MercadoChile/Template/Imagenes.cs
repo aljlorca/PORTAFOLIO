@@ -58,8 +58,7 @@ namespace MercadoChile.Template
                         if (httpResponse.IsSuccessStatusCode)
                         {
                             var result = await httpResponse.Content.ReadAsStringAsync();
-                            var postResult = JsonSerializer.Deserialize<Producto>(result);
-                            MessageBox.Show(postResult.ToString());
+                            MessageBox.Show("Producto distribuido correctamente");
                             this.Hide();
 
                         }

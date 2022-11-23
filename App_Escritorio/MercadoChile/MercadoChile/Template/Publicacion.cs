@@ -117,6 +117,7 @@ namespace MercadoChile.Template
                             {
                                 var result = await httpResponse.Content.ReadAsStringAsync();
                                 var postResult = JsonSerializer.Deserialize<Venta>(result);
+                                MessageBox.Show("Publicado con exito");
                                 this.Hide();
                             }
                         }

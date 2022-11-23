@@ -1,5 +1,6 @@
 {% extends 'app/Base.html' %}
 {% load static %}
+{% load humanize %}
 {% block contenido %}
 
 <div id="productos" class="container-xxl py-5">
@@ -31,7 +32,7 @@
                                 <tr>
                                     <td>{{c.id_carrito}}</td>
                                     <td>{{c.fecha_carrito}}</td>
-                                    <td>{{c.monto_carrito}}</td>
+                                    <td>$ {{c.monto_carrito | intcomma}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
