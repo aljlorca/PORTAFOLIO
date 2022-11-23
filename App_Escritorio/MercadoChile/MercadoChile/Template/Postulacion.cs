@@ -65,7 +65,6 @@ namespace MercadoChile.Template
                         fila.Cells["cnTransportista"].Value = fila1.nombre_usuario;
                         break;
                     }
-                    DgvCarga.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
                 }
             }
             catch (Exception ex)
@@ -76,7 +75,8 @@ namespace MercadoChile.Template
 
         private async void btnListar_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 string respuesta2 = await Get.GetHttp();
                 List<Subasta> lista2 = JsonConvert.DeserializeObject<List<Subasta>>(respuesta2);
                 string respuesta3 = await Get.GetHttp3();
@@ -84,8 +84,12 @@ namespace MercadoChile.Template
                 DgvSubastas.DataSource = lista2;
                 CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvSubastas.DataSource];
                 currencyManager1.SuspendBinding();
+                foreach (DataGridViewRow fila in DgvSubastas.Rows)
+                {
+                    DgvSubastas.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
