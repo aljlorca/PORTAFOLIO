@@ -1315,3 +1315,7 @@ C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Merc
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\MercadoChile.application
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe.manifest
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.application
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\MercadoChile.exe.manifest
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\MercadoChile.application
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe.manifest
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.application

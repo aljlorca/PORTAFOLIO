@@ -15,16 +15,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          Opciones del manifiesto de Control de cuentas de usuario
-          Si quiere cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el
-          nodo requestedExecutionLevel por alguno de los siguientes.
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         Si desea usar la virtualización de archivos y del Registro para la
-         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -86,7 +86,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iduT0k2hAxn/eXgMjjqcgaCi63clrfZEIt2EDtQ1R+A=</dsig:DigestValue>
+        <dsig:DigestValue>meKLv7+cWnZ5/+/bVcolF5zN6hiM+zsTiUH2g+Odo04=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -259,14 +259,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MercadoChile.exe" size="334328">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MercadoChile.exe" size="333304">
       <assemblyIdentity name="MercadoChile" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>LinhkjK+vu38XS+cPShSJuAj8+CbQuGgRLPHPOfjjEk=</dsig:DigestValue>
+        <dsig:DigestValue>HD6eyXlqvNHVVJ1zN7MPBYr+LZYNjv3fRp1JwrNjbO4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -650,7 +650,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>o2jkf0cZuoIf9NgKMBJAUevZ80nHkcNqk9UuuNsufrc=</dsig:DigestValue>
+        <dsig:DigestValue>6DOEX6x0G2Upql0ztG6CLpzuP+25PIkNB8WosOeWJMQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
