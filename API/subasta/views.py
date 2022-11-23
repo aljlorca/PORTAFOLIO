@@ -71,7 +71,7 @@ def subasta_carga():
             carga='Si'
         else:
             carga='No'
-        fecha = fila[3]
+        fecha = str(fila[3])
         jd = {'id_subasta':fila[0],
         'monto_subasta':fila[1],
         'id_venta':fila[2],
