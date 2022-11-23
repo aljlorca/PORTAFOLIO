@@ -21,6 +21,7 @@ def logout_controller(request):
         del request.session['cargo']
         del request.session['email']
         del request.session['company']
+        del request.session['carga']
 
     except KeyError:
         pass
