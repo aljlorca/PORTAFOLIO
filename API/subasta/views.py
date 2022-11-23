@@ -17,15 +17,16 @@ def agregar_subasta(monto_subasta,id_venta,id_usuario):
     salida = cursor.var(cx_Oracle.NUMBER)
     fecha_subasta = datetime.date.today()
     estado_fila = '1'
-    cursor.callproc('SUBASTA_AGREGAR',[monto_subasta,id_venta,id_usuario,fecha_subasta,estado_fila,salida])
+    estado_subasta = 'postulada'
+    cursor.callproc('SUBASTA_AGREGAR',[monto_subasta,id_venta,id_usuario,fecha_subasta,estado_fila,estado_subasta,salida])
     return round(salida.getvalue())
 
-def modificar_subasta(id_subasta,monto_subasta,id_venta,id_usuario):
+def modificar_subasta(id_subasta,monto_subasta,id_venta,id_usuario,estado_subasta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     fecha_subasta = datetime.date.today()
-    cursor.callproc('SUBASTA_MODIFICAR',[id_subasta,monto_subasta,id_venta,fecha_subasta,id_usuario,salida])
+    cursor.callproc('SUBASTA_MODIFICAR',[id_subasta,monto_subasta,id_venta,fecha_subasta,id_usuario,estado_subasta,salida])
     return round(salida.getvalue())
 
 def eliminar_subasta(id_subasta):
@@ -90,7 +91,7 @@ class SubastaView(View):
             subasteas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
             if len(subasteas) > 0:
                 try:
-                    salida = modificar_subasta(id_subasta=jd['id_subasta'],monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
+                    salida = modificar_subasta(id_subasta=jd['id_subasta'],monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'],estado_subasta=jd['estado_subasta'])
                     if salida == 0:
                         datos = {'message':'ERORR: no fue posible modificar la subasta'}
                     else:
