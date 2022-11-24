@@ -57,16 +57,18 @@ class VentaView(View):
             if len(ventas) > 0:
                 venta = ventas[0]
                 datos={'message':"Success","venta":venta}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: venta No Encontrada"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             ventas = list(Venta.objects.values())
             if len(ventas) > 0:
                 datos={'message':"Success","venta":ventas}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: ventas de ventas No encontradas"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -81,18 +83,16 @@ class VentaView(View):
                 cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
                 if salida == 1:
                     datos = {'message':'Success'}
-                    print(datos)
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible agregar la venta'}
-                    print(datos)
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
-                print(datos)
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-            print(datos)
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
         
 
     def put(self, request,id_venta):
@@ -104,16 +104,19 @@ class VentaView(View):
                     salida = modificar_venta(id_venta=jd['id_venta'],descripcion_venta=jd['descripcion_venta'],estado_venta=jd['estado_venta'],monto_bruto_venta=jd['monto_bruto_venta'],iva=jd['iva'],monto_neto_venta=jd['monto_neto_venta'],tipo_venta=jd['tipo_venta'],id_usuario=jd['id_usuario'],cantidad_venta=jd['cantidad_venta'],monto_transporte=jd['monto_transporte'],monto_aduanas=jd['monto_aduanas'],pago_servicio=jd['pago_servicio'],comision_venta=jd['comision_venta'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERORR: no fue posible modificar la venta'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra la venta"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_venta):
         try:
@@ -124,21 +127,23 @@ class VentaView(View):
                     salida = eliminar_venta(id_venta=jd['id_venta'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERORR: no fue posible elimiar la venta'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: no se encuentra la venta"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
 class VentaViewset(viewsets.ModelViewSet):
     queryset = Venta.objects.filter(estado_fila='1')
     serializer_class = VentaSerializer
-
 
 class VentaHistoricoViewset(viewsets.ModelViewSet):
     queryset = Venta.objects.all()

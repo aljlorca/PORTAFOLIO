@@ -55,16 +55,18 @@ class ContratoView(View):
             if len(contratos) > 0:
                 contrato = contratos[0]
                 datos={'message':'Success','Contrato':contrato}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':'Error: Contrato NO Encontrado'}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             contratos = list(Contrato.objects.values())
             if len(contratos)>0:
                 datos={'message':'Success','Contratos':contratos}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':'Error: Contratos NO Encontrados'}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
     
     def post(self,request):
         try:
@@ -73,15 +75,17 @@ class ContratoView(View):
                 salida = agregar_contrato(documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
                 if salida == 1:
                     datos={'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos={'message':'ERROR: no fue posible agregar el contrato'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
+            return JsonResponse(datos, status=500)
 
-        return JsonResponse(datos)
-    
     def put(self,request,id_contrato):
         try:
             jd = json.loads(request.body)
@@ -91,14 +95,19 @@ class ContratoView(View):
                     salida = modificar_contrato(id_contrato=jd['id_contrato'],documento_contrato=jd['documento_contrato'],fecha_contrato=jd['fecha_contrato'],tipo_contrato=jd['tipo_contrato'],id_empresa=jd['id_empresa'])
                     if salida == 1:
                         datos={'message':'Success'}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos={'message':'ERROR: no fue posible modificar el contrato'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':'ERROR: Contrato NO encontrado'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
+            return JsonResponse(datos, status=500)
         
         return JsonResponse(datos)
     
@@ -109,13 +118,16 @@ class ContratoView(View):
                 salida = eliminar_contrato(id_contrato)
                 if salida == 1:
                     datos={'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos={'message':'ERROR: no fue posible eliminar el contrato'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         else:
-            datos={'message':'ERROR: NO fue posible eliminar el Contrato'}
-        return JsonResponse(datos)
+            datos={'message':'ERROR: No se encontro el Contrato'}
+            return JsonResponse(datos, status=404)
 
 
 class ContratoViewset(viewsets.ModelViewSet):
@@ -136,10 +148,10 @@ class ContratoViewset(viewsets.ModelViewSet):
             estado_fila = '1'
             Contrato.objects.create(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
             datos = {'message': 'Success'}
+            return JsonResponse(datos, status=201)
         except:
             datos = {'message':'ERROR: Validar datos'}
-
-        return HttpResponse(datos, status=200)
+            return JsonResponse(datos, status=404)
 
     def put(self, request, *args, **kwargs):
         try:
@@ -151,10 +163,10 @@ class ContratoViewset(viewsets.ModelViewSet):
             estado_fila = '1'
             Contrato.objects.update(id_contrato=id_contrato, documento_contrato=documento_contrato,fecha_contrato=fecha_contrato,tipo_contrato=tipo_contrato,id_empresa=id_empresa,estado_fila=estado_fila)
             datos = {'message': 'Success'}
+            return JsonResponse(datos, status=201)
         except:
             datos = {'message':'ERROR: Validar datos'}
-        
-        return HttpResponse(datos, status=200)
+            return JsonResponse(datos, status=404)
 
     def delete(self, request, *args, **kwargs):
         try:
@@ -162,11 +174,13 @@ class ContratoViewset(viewsets.ModelViewSet):
             salida = eliminar_contrato(id_contrato)
             if salida == 1:
                 datos = {'message':'Success'}
+                return JsonResponse(datos, status=201)
             elif salida == 0:
                 datos = {'message':'ERROR: no fue posible eliminar el contrato'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERROR: Validar datos'}
-        return HttpResponse(datos, status=200)
+            return JsonResponse(datos, status=404)
 
 class ContratoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Contrato.objects.all()

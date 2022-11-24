@@ -35,15 +35,16 @@ class UsuarioAuthView(View):
                 if len(usuarios) > 0:
                     usuario = usuarios[0]
                     datos={'message':"Success",'usuario':usuario}
+                    return JsonResponse(datos, status=200)
                 else:
                     datos={'message':"ERROR: usuario No Encontrado"}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
 class UsuarioHistoricoViewset(viewsets.ModelViewSet):
     queryset = Usuario.objects.filter(administrador_usuario = '1')

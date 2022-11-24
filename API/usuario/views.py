@@ -56,16 +56,18 @@ class UsuarioView(View):
             if len(usuarios) > 0:
                 usuario = usuarios[0]
                 datos={'message':"Success","usuario":usuario}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: Cargo No Encontrado"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             usuarios = list(Usuario.objects.values())
             if len(usuarios) > 0:
                 datos={'message':"Success","usuarios":usuarios}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: usuarios No encontrados"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -74,15 +76,16 @@ class UsuarioView(View):
                 salida = agregar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible agregar al usuario'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
-        
+            return JsonResponse(datos, status=500)
 
     def put(self, request,id_usuario):
         try:
@@ -93,16 +96,19 @@ class UsuarioView(View):
                     salida = modificar_usuario(numero_identificacion_usuario=jd['numero_identificacion_usuario'],nombre_usuario=jd['nombre_usuario'],direccion_usuario=jd['direccion_usuario'],telefono_usuario=jd['telefono_usuario'],correo_usuario=jd['correo_usuario'],contrasena_usuario=jd['contrasena_usuario'],administrador_usuario=jd['administrador_usuario'],id_cargo=jd['id_cargo'],id_empresa=jd['id_empresa'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERORR: no fue posible modificar al usuario'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra el usuario"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_usuario):
         try:
@@ -113,21 +119,23 @@ class UsuarioView(View):
                     salida = eliminar_usuario(id_usuario,correo_usuario=jd['correo_usuario'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERORR: no fue posible elminar el usuario'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: no se encuentra el usuario"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
 class UsuarioViewset(viewsets.ModelViewSet):
     queryset = Usuario.objects.filter(usuario_vigente='1')
     serializer_class = UsuarioSerializer
-
 
 class UsuarioHistoricoViewset(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()

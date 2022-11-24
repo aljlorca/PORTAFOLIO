@@ -55,16 +55,18 @@ class PostulacionView(View):
             if len(postulaciones) > 0:
                 postulacion = postulaciones[0]
                 datos={'message':"Success","postulacion":postulacion}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: postulacion No Encontrada"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             postulaciones = list(Postulacion.objects.values())
             if len(postulaciones) > 0:
                 datos={'message':"Success","postulaciones":postulaciones}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: postulaciones No encontrados"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -73,15 +75,16 @@ class PostulacionView(View):
                 salida = agregar_postulacion(descripcion_postulacion=jd['descripcion_postulacion'],estado_postulacion=jd['estado_postulacion'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'],id_producto=jd['id_producto'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERROR: no fue posible agregar la postulacion'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
-        
+            return JsonResponse(datos, status=500)
 
     def put(self, request,id_postulacion):
         try:
@@ -92,15 +95,19 @@ class PostulacionView(View):
                     salida = modificar_postulacion(id_postulacion=jd['id_postulacion'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos={'message':'ERROR: no fue posible modificar la postulacion'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra la postulacion"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_postulacion):
         try:
@@ -111,16 +118,19 @@ class PostulacionView(View):
                     salida = eliminar_postulacion(id_postulacion=jd['id_postulacion'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERORR: no fue posible elimiar la postulacion'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: no fue posible eliminar la postulacion"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-        
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
 class PostulacionesViewset(viewsets.ModelViewSet):
     queryset = Postulacion.objects.filter(estado_fila='1')

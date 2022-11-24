@@ -54,16 +54,18 @@ class ReporteView(View):
             if len(reportes) > 0:
                 reporte = reportes[0]
                 datos={'message':"Success","reporte":reporte}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: reporte No Encontrado"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             reportes = list(Reporte.objects.values())
             if len(reportes) > 0:
                 datos={'message':"Success","reportes":reportes}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: reportes No encontrados"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -72,15 +74,16 @@ class ReporteView(View):
                 salida = agregar_reporte(descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible agregar el reporte'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
-        
+            return JsonResponse(datos, status=500)        
 
     def put(self, request,id_reporte):
         try:
@@ -91,16 +94,19 @@ class ReporteView(View):
                     salida  = modificar_reporte(id_reporte=jd['id_reporte'],descripcion_reporte=jd['descripcion_reporte'],productos_entregados_reporte=jd['productos_entregados_reporte'],productos_perdidos_reporte=jd['productos_perdidos_reporte'],productos_restantes_reporte=jd['productos_restantes_reporte'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERORR: no fue posible modificar el reporte'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra el reporte"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_reporte):
         reportes = list(Reporte.objects.filter(id_reporte=id_reporte).values())
@@ -109,18 +115,20 @@ class ReporteView(View):
                 salida = eliminar_reporte(id_reporte)
                 if salida == 1:
                     datos={'message':"Success"}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible elimiar el reporte'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         else:
-            datos={'message':"ERROR: no fue posible eliminar el reporte"}
-        return JsonResponse(datos)
+            datos={'message':"ERROR: No se encontro el reporte"}
+            return JsonResponse(datos, status=404)
 
 class ReporteViewset(viewsets.ModelViewSet):
     queryset = Reporte.objects.filter(estado_fila='1')
     serializer_class = ReporteSerializer
-
 
 class ReporteHistoricoViewset(viewsets.ModelViewSet):
     queryset = Reporte.objects.all()

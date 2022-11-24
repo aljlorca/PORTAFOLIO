@@ -55,16 +55,18 @@ class CargaView(View):
             if len(cargas) > 0:
                 carga = cargas[0]
                 datos={'message':"Success",'carga':carga}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: carga No Encontrada"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             cargas = list(Carga.objects.values())
             if len(cargas) > 0:
                 datos={'message':"Success",'cargas':cargas}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: cargas No encontrados"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -73,14 +75,16 @@ class CargaView(View):
                 salida = agregar_carga(capacidad_carga=jd['capacidad_carga'],refrigeracion_carga=jd['refrigeracion_carga'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERROR: No fue posible registrar la carga'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=500)
         except:
             datos = {'message':'ERORR: Json invalido'}
-        return JsonResponse(datos)
-        
+            return JsonResponse(datos, status=500)        
 
     def put(self, request,id_carga):
         try:
@@ -91,16 +95,19 @@ class CargaView(View):
                     salida = modificar_carga(id_carga=jd['id_carga'],capacidad_carga=jd['capacidad_carga'],refrigeracion=jd['refrigeracion'],tamano_carga=jd['tamano_carga'],id_subasta=jd['id_subasta'],id_usuario=jd['id_usuario'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERROR: No fue posible actualizar la carga'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else: 
                 datos={'message':"ERROR: No se encuentra la carga"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_carga):
         cargas = list(Carga.objects.filter(id_carga=id_carga).values())
@@ -109,14 +116,17 @@ class CargaView(View):
                 salida = eliminar_carga(id_carga)
                 if salida == 1:
                     datos={'message':"Success"}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0: 
                     datos={'message':"ERROR: no fue posible eliminar la carga"}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         else:
             datos={'message':"ERROR: No se encuentra la carga"}
-        return JsonResponse(datos)
-    
+            return JsonResponse(datos, status=404)
+
 class CargaSubastaView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -127,9 +137,10 @@ class CargaSubastaView(View):
             if len(cargas) > 0:
                 carga = cargas[0]
                 datos={'carga':carga}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: carga No Encontrada"}
-            return JsonResponse(datos)
+            return JsonResponse(datos, status=404)
     
 class CargaViewset(viewsets.ModelViewSet):
     queryset = Carga.objects.all()

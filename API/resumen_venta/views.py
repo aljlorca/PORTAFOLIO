@@ -54,16 +54,18 @@ class ResumenVentaView(View):
             if len(resumenes) > 0:
                 resumen = resumenes[0]
                 datos={'message':"Success","resumen_venta":resumen}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: reporte No Encontrado"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             resumenes = list(ResumenVenta.objects.values())
             if len(resumenes) > 0:
                 datos={'message':"Success","resumen_venta":resumenes}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: resumenes de venta No encontrados"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -72,14 +74,16 @@ class ResumenVentaView(View):
                 salida = agregar_resumen_venta(monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta=jd['id_venta'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible agregar el resumen de venta'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-        return JsonResponse(datos)
-        
+            return JsonResponse(datos, status=500)        
 
     def put(self, request,id_resumen):
         try:
@@ -90,16 +94,19 @@ class ResumenVentaView(View):
                     salida = modificar_resumen_venta(id_resumen=jd['id_resumen'],monto_neto_venta=jd['monto_neto_venta'],descripcion_resumen=jd['descripcion_resumen'],id_venta=jd['id_venta'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERORR: error no fue posible modificar el resumen de la venta'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra el resumen de venta"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_resumen):
         resumenes = list(ResumenVenta.objects.filter(id_resumen=id_resumen).values())
@@ -108,18 +115,20 @@ class ResumenVentaView(View):
                 salida = eliminar_resumen_venta(id_resumen)
                 if salida == 1:
                     datos={'message':"Success"}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible eliminar el resumen de venta'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         else:
             datos={'message':"ERROR: No se encuentra el resumen de venta"}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
 class ResumenVentaViewset(viewsets.ModelViewSet):
     queryset = ResumenVenta.objects.filter(estado_fila='1')
     serializer_class = ResumenVentaSerializer
-
 
 class ResumenVentaHistoricoViewset(viewsets.ModelViewSet):
     queryset = ResumenVenta.objects.all()

@@ -9,7 +9,6 @@ from .serializers import CalidadSerializer
 from rest_framework import viewsets
 import json
 import cx_Oracle
-# Create your views here.
 
 
 def agregar_calidad(descripcion_calidad):
@@ -56,16 +55,18 @@ class CalidadView(View):
             if len(calidades) > 0:
                 calidad = calidades[0]
                 datos={'message':"Success",'calidad':calidad}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: calidad No Encontrada"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             calidades = list(Calidad.objects.values())
             if len(calidades) > 0:
                 datos={'message':"Success",'calidades':calidades}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: calidades No encontrados"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=500)
 
     def post(self, request):
         try:
@@ -74,15 +75,16 @@ class CalidadView(View):
                 salida = agregar_calidad(descripcion_calidad=jd['descripcion_calidad'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERROR: no fue posible agregar la calidad'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
         
 
     def put(self, request,id_calidad):
@@ -94,15 +96,19 @@ class CalidadView(View):
                     salida=modificar_calidad(id_calidad=jd['id_calidad'],descripcion_calidad=jd['descripcion_calidad'])
                     if salida == 1:
                         datos = {'message':'Success'}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERROR: no fue posible actualizar la calidad'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra la calidad"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_calidad):
         calidades = list(Calidad.objects.filter(id_calidad=id_calidad).values())
@@ -111,13 +117,16 @@ class CalidadView(View):
                 salida = eliminar_calidad(id_calidad)
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERROR: no fue posible eliminar la calidad'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=500)
         else:
             datos={'message':"ERROR: no fue posible eliminar el cargo"}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
     
     
 class CalidadViewset(viewsets.ModelViewSet):

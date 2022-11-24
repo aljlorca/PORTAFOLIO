@@ -52,8 +52,6 @@ def lista_subasta():
     for fila in out_cur:
         lista.append(fila)
     return lista
-    
-#
 
 def subasta_carga():
     django_cursor = connection.cursor()
@@ -98,16 +96,19 @@ class SubastaView(View):
             if len(subastas) > 0:
                 subasta = subastas[0]
                 datos={"subasta":subasta}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: subasta No Encontrada"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             subastas = list(Subasta.objects.values())
             if len(subastas) > 0:
                 datos={'message':"Success","subasta":subastas}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: subastas de venta No encontradas"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
+            
 
     def post(self, request):
         try:
@@ -116,14 +117,17 @@ class SubastaView(View):
                 salida = agregar_subasta(monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
                 if salida == 0:
                     datos = {'message':'ERORR: no fue posible agregar la subasta'}
+                    return JsonResponse(datos, status=500)
                 else:
                     datos = {'message':'Success','id_subasta':salida}
+                    return JsonResponse(datos, status=200)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=500)
         except:
             datos = {'message':'ERORR: Json invalido'}
+            return JsonResponse(datos, status=500)
 
-        return JsonResponse(datos)
 
     def put(self, request,id_subasta):
         try:
@@ -134,16 +138,19 @@ class SubastaView(View):
                     salida = modificar_subasta(id_subasta=jd['id_subasta'],monto_subasta=jd['monto_subasta'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'],estado_subasta=jd['estado_subasta'])
                     if salida == 0:
                         datos = {'message':'ERORR: no fue posible modificar la subasta'}
+                        return JsonResponse(datos, status=404)
                     else:
                         datos = {'message':'Success'}
+                        return JsonResponse(datos, status=201)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra la subasta"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_subasta):
         subastas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
@@ -152,13 +159,16 @@ class SubastaView(View):
                 salida = eliminar_subasta(id_subasta)
                 if salida == 1:
                     datos={'message':"Success"}
+                    return JsonResponse(datos, status=200)
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible eliminar la subasta'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=500)
         else:
             datos={'message':"ERROR: no se encuentra la subasta"}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=404)
 
 class SubastaVentaView(View):
     @method_decorator(csrf_exempt)
@@ -169,10 +179,10 @@ class SubastaVentaView(View):
         subastas=list(Subasta.objects.filter(id_venta=id_venta).values())
         if len(subastas) > 0:
             datos=subastas
+            return JsonResponse(datos, status=200,safe=False)
         else:
             datos={'message':"ERROR: subasta No Encontrada"}
-        return JsonResponse(datos,safe=False)
-
+            return JsonResponse(datos, status=404)
 
 
 class SubastaAceptarView(View):
@@ -183,11 +193,11 @@ class SubastaAceptarView(View):
     def get(self, request):
             subastas = subasta_carga()
             if len(subastas) > 0:
-                return JsonResponse(subastas,safe=False)
+                return JsonResponse(subastas,safe=False,status=200)
             else:
                 datos={'message':"ERROR: subastas de venta No encontradas"}
-            return JsonResponse(datos)
-        
+                return JsonResponse(datos, status=404)
+
     def put(self, request,id_subasta):
         try:
             subasteas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
@@ -196,16 +206,21 @@ class SubastaAceptarView(View):
                     salida = aceptar_subasta(id_subasta)
                     if salida == 0:
                         datos = {'message':'ERORR: no fue posible aceptar la subasta'}
+                        return JsonResponse(datos, status=404)
                     else:
                         datos = {'message':'Success'}
+                        return JsonResponse(datos, status=201)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra la subasta"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: tenemos problemas en estos momentos'}
-        return JsonResponse(datos)
-    
+            return JsonResponse(datos, status=500)    
+
+
 class SubastaViewset(viewsets.ModelViewSet):
     queryset = Subasta.objects.filter(estado_fila='1')
     serializer_class = SubastaSerializer

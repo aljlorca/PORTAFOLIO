@@ -57,16 +57,18 @@ class CarritoView(View):
             if len(carritos) > 0:
                 carrito = carritos[0]
                 datos={'message':"Success",'carrito':carrito}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: carrito No Encontrado"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             carritos = list(Carrito.objects.values())
             if len(carritos) > 0:
                 datos={'message':"Success",'carritos':carritos}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: carritos No encontrados"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -75,13 +77,16 @@ class CarritoView(View):
                 salida = agregar_carrito(monto_carrito=jd['monto_carrito'],id_usuario=jd['id_usuario'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERROR: No fue posible registrar el carrito'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
         
 
     def put(self, request,id_carrito):
@@ -93,15 +98,19 @@ class CarritoView(View):
                     salida = modificar_carrito(id_carrito=jd['id_carrito'],fecha_carrito=jd['fecha_carrito'],monto_carrito=jd['monto_carrito'],id_producto=jd['id_producto'],id_usuario=jd['id_usuario'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos={'message':'ERROR: No fue posible modificar el carrito'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra el carrito"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_carrito):
         carritos = list(Carrito.objects.filter(id_carrito=id_carrito).values())
@@ -110,13 +119,16 @@ class CarritoView(View):
                 salida = eliminar_carrito(id_carrito)
                 if salida == 1:
                     datos={'message':"Success"}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos={'message':'ERROR: no fue posible eliminar el carrito'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         else:
             datos={'message':"ERROR: no se encuentra el carrito"}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
     
 class CarritoUserView(View):
     @method_decorator(csrf_exempt)
@@ -128,12 +140,14 @@ class CarritoUserView(View):
             carritos=list(Carrito.objects.filter(id_usuario=id_usuario,estado_fila='1').order_by('id_carrito').values())
             if len(carritos) > 0:
                 datos={'message':"Success",'carritos':carritos}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: carritos No Encontrados"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERROR: Validar datos'}
-        return JsonResponse(datos)
-
+            return JsonResponse(datos, status=500)
+            
 class CarritoViewset(viewsets.ModelViewSet):
     queryset = Carrito.objects.filter(estado_fila='1')
     serializer_class = CarritoSerializer

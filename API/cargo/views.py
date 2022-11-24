@@ -55,16 +55,18 @@ class CargoView(View):
             if len(cargos) > 0:
                 cargo = cargos[0]
                 datos={'message':"Success",'cargo':cargo}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: Cargo No Encontrado"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             cargos = list(Cargo.objects.values())
             if len(cargos) > 0:
                 datos={'message':"Success",'cargos':cargos}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: Cargos No encontrados"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -73,15 +75,16 @@ class CargoView(View):
                 salida = agregar_cargo(nombre=jd['nombre_cargo'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos={'message':"ERROR: no fue posible agregar el cargo"}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
-        
+            return JsonResponse(datos, status=500)        
 
     def put(self, request,id_cargo):
         try:
@@ -92,15 +95,19 @@ class CargoView(View):
                     salida = modificar_cargo(id_cargo=jd['id_cargo'],nombre=jd['nombre_cargo'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos={'message':"ERROR: no fue posible modificar el cargo"}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra el cargo"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_cargo):
         cargos = list(Cargo.objects.filter(id_cargo=id_cargo).values())
@@ -109,13 +116,16 @@ class CargoView(View):
                 salida = eliminar_cargo(id_cargo)
                 if salida == 1:
                     datos={'message':"Success"}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERROR: No fue posible eliminar el cargo'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         else:
-            datos={'message':"ERROR: no fue posible eliminar el cargo"}
-        return JsonResponse(datos)
+            datos={'message':"ERROR: no fue posible encontrar el cargo"}
+            return JsonResponse(datos, status=404)
     
     
 class CargoViewset(viewsets.ModelViewSet):

@@ -58,16 +58,18 @@ class ProductoView(View):
             if len(productos) > 0:
                 producto = productos[0]
                 datos={'message':'Success','Producto':producto}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':'Error: producto NO Encontrado'}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             productos = list(Producto.objects.values())
             if len(productos)>0:
                 datos={'message':'Success','Productos':productos}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':'Error: Productos NO Encontrados'}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
     
     def post(self, request, *args, **kwargs):
         try: 
@@ -82,9 +84,10 @@ class ProductoView(View):
             id_usuario = request.body['id_usuario']
             Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario)
             datos={'message':'Success'}
+            return JsonResponse(datos, status=201)
         except:
             datos = {'message':'ERROR: Validar datos'}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=404)
     
     def put(self,request,id_producto):
         try:
@@ -95,16 +98,19 @@ class ProductoView(View):
                     salida = modificar_producto(id_producto=jd['id_producto'],saldo_producto=jd['saldo_producto'])
                     if salida == 1:
                         datos={'message':'Success'}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERORR: no fue posible eliminar el producto'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':'ERROR: Producto NO encontrado'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
     
     def delete(self,request,id_producto):
         productos = list(Producto.objects.filter(id_producto=id_producto).values())
@@ -113,13 +119,16 @@ class ProductoView(View):
                 salida = eliminar_producto(id_producto)
                 if salida == 1:
                     datos={'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible eliminar el producto'}
+                    return JsonResponse(datos, status=404)
             except:
-                datos = {'message':'ERORR: Json invalido'}
+                datos = {'message':'ERORR: Validar datos'}
+                return JsonResponse(datos, status=404)
         else:
             datos={'message':'ERROR: No se encuentra el producto'}
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=404)
 
 
 
@@ -145,10 +154,10 @@ class ProductoViewset(viewsets.ModelViewSet):
             descripcion_producto = request.data['descripcion_producto']
             Producto.objects.create(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario,descripcion_producto=descripcion_producto)
             datos={'message':'Success'}
+            return JsonResponse(datos, status=201)
         except:
             datos = {'message':'ERROR: Validar datos'}
-
-        return HttpResponse(datos, status=200)
+            return JsonResponse(datos, status=404)
 
     def put(self, request, *args, **kwargs):
         try:
@@ -164,9 +173,10 @@ class ProductoViewset(viewsets.ModelViewSet):
             descripcion_producto = request.data['descripcion_producto']
             Producto.objects.update(id_producto=id_producto, nombre_producto=nombre_producto,cantidad_producto=cantidad_producto,precio_producto=precio_producto,imagen_producto=imagen_producto,id_calidad=id_calidad,saldo_producto=saldo_producto,estado_fila=estado_fila,id_usuario=id_usuario,descripcion_producto=descripcion_producto)
             datos = {'message': 'Success'}
+            return JsonResponse(datos, status=201)
         except: 
             datos = {'message':'ERROR: Validar datos'}
-        return HttpResponse(datos, status=201)
+            return JsonResponse(datos, status=404)
 
     def delete(self, request, *args, **kwargs):
         id_producto = request.data['id_producto']
@@ -174,12 +184,13 @@ class ProductoViewset(viewsets.ModelViewSet):
             salida = eliminar_producto(id_producto)
             if salida == 1:
                 datos={'message':'Success'}
+                return JsonResponse(datos, status=201)
             elif salida == 0:
                 datos={'message':'ERROR: no fue posible eliminar el contrato'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERROR: Validar datos'}
-
-        return HttpResponse(datos, status=200)
+            return JsonResponse(datos, status=404)
 
 class ProductoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Producto.objects.all()

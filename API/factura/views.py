@@ -54,16 +54,18 @@ class FacturaView(View):
             if len(facturas) > 0:
                 factura = facturas[0]
                 datos={'message':"Success","factura":factura}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: factura No Encontrada"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             facturas = list(Factura.objects.values())
             if len(facturas) > 0:
                 datos={'message':"Success","facturas":facturas}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: facturas No encontradas"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -72,14 +74,16 @@ class FacturaView(View):
                 salida = agregar_factura(fecha_factura=jd['fecha_factura'],monto_factura=jd['monto_factura'],id_usuario=jd['id_usuario'],id_venta=jd['id_venta'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERROR: no fue posible registrar la factura'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
         
 
     def put(self, request,id_factura):
@@ -91,16 +95,19 @@ class FacturaView(View):
                     salida = modificar_factura(id_factura=jd['id_factura'],fecha_factura=jd['fecha_factura'],monto_factura=jd['monto_factura'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos={'message':'ERROR: no fue posible modificar la factura'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra la factura"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_factura):
         facturas = list(Factura.objects.filter(id_factura=id_factura).values())
@@ -109,14 +116,17 @@ class FacturaView(View):
                 salida = eliminar_factura(id_factura)
                 if salida == 1:
                     datos={'message':"Success"}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos={'message':'ERROR: no fue posible eliminar la factura'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         else:
             datos={'message':"ERROR: no se encuentra la factura"}
-        return JsonResponse(datos)
-
+            return JsonResponse(datos, status=500)
+            
 class FacturaViewset(viewsets.ModelViewSet):
     queryset = Factura.objects.filter(estado_fila='1')
     serializer_class = FacturaSerializer

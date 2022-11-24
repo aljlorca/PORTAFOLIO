@@ -54,16 +54,18 @@ class PedidoView(View):
             if len(pedidos) > 0:
                 pedido = pedidos[0]
                 datos={'message':"Success","pedido":pedido}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: Pedido No Encontrado"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
         else:
             pedidos = list(Pedido.objects.values())
             if len(pedidos) > 0:
                 datos={'message':"Success","pedidos":pedidos}
+                return JsonResponse(datos, status=200)
             else:
                 datos={'message':"ERROR: pedidos No encontrados"}
-            return JsonResponse(datos)
+                return JsonResponse(datos, status=404)
 
     def post(self, request):
         try:
@@ -72,15 +74,16 @@ class PedidoView(View):
                 salida = agregar_pedido(descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
                 if salida == 1:
                     datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message': 'ERROR: no fue posible agregar el pedido'}
+                    return JsonResponse(datos, status=404)
             except:
                 datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
-        
+            return JsonResponse(datos, status=500)
 
     def put(self, request,id_pedido):
         try:
@@ -91,16 +94,19 @@ class PedidoView(View):
                     salida = modificar_pedido(id_pedido=jd['id_pedido'],descripcion_pedido=jd['descripcion_pedido'],fecha_sla_pedido=jd['fecha_sla_pedido'],id_usuario=jd['id_usuario'])
                     if salida == 1:
                         datos={'message':"Success"}
+                        return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos={'message':'ERROR: no fue posible modificar el pedido'}
+                        return JsonResponse(datos, status=404)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
             else:
                 datos={'message':"ERROR: No se encuentra el pedido"}
+                return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
-
-        return JsonResponse(datos)
+            return JsonResponse(datos, status=500)
 
     def delete(self, request,id_pedido):
         pedidos = list(Pedido.objects.filter(id_pedido=id_pedido).values())
@@ -109,15 +115,16 @@ class PedidoView(View):
                 salida  = eliminar_pedido(id_pedido)
                 if salida == 1:
                     datos={'message':"Success"}
+                    return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERROR: no fue posible eliminar el pedido'}
+                    return JsonResponse(datos, status=404)
             except:
                     datos = {'message':'ERROR: Validar datos'}
+                    return JsonResponse(datos, status=404)
         else:
-            datos={'message':"ERROR: no fue posible eliminar el pedido"}
-
-
-        return JsonResponse(datos)
+            datos={'message':"ERROR: No se encontro el pedido"}
+            return JsonResponse(datos, status=404)
 
 class PedidoViewset(viewsets.ModelViewSet):
     queryset = Pedido.objects.filter(estado_fila='1')
