@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    public class Postul
+    public class Postulacion
     {
         public string id_postulacion { get; set; }
         public string descripcion_postulacion { get; set; }

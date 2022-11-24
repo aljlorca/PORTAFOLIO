@@ -102,7 +102,7 @@ namespace MercadoChile.Template
             try
             {
                 string respuesta = await Get.GetHttp5();
-                List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
+                List<Negocio.Postulacion> lista = JsonConvert.DeserializeObject<List<Negocio.Postulacion>>(respuesta);
                 string respuesta2 = await Get.GetHttp();
                 List<Producto> lista2 = JsonConvert.DeserializeObject<List<Producto>>(respuesta2);
                 string respuesta3 = await Get.GetHttp3();
@@ -160,7 +160,7 @@ namespace MercadoChile.Template
             try
             {
                 string respuesta = await Get.GetHttp5();
-                List<Postul> lista = JsonConvert.DeserializeObject<List<Postul>>(respuesta);
+                List<Negocio.Postulacion> lista = JsonConvert.DeserializeObject<List<Negocio.Postulacion>>(respuesta);
                 DgvPostulacion.CurrentCell = null;
                 CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvPostulacion.DataSource];
                 currencyManager1.SuspendBinding();
@@ -201,11 +201,11 @@ namespace MercadoChile.Template
                         {
                             string id = fila.Cells["cnIdP"].Value.ToString();
                             Console.WriteLine(id);
-                            Postul post = new Postul()
+                            Negocio.Postulacion post = new Negocio.Postulacion()
                             {
                                 id_postulacion = id,
                             };
-                            var data = JsonSerializer.Serialize<Postul>(post);
+                            var data = JsonSerializer.Serialize<Negocio.Postulacion>(post);
                             HttpRequestMessage request = new HttpRequestMessage
                             {
                                 Content = new StringContent(data, Encoding.UTF8, "application/json"),
@@ -240,11 +240,11 @@ namespace MercadoChile.Template
                     {
                         string id = fila.Cells["cnIdP"].Value.ToString();
                         Console.WriteLine(id);
-                        Postul post = new Postul()
+                        Negocio.Postulacion post = new Negocio.Postulacion()
                         {
                             id_postulacion = id,
                         };
-                        var data = JsonSerializer.Serialize<Postul>(post);
+                        var data = JsonSerializer.Serialize<Negocio.Postulacion>(post);
                         HttpRequestMessage request = new HttpRequestMessage
                         {
                             Content = new StringContent(data, Encoding.UTF8, "application/json"),
