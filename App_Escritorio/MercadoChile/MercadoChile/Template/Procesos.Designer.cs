@@ -50,8 +50,6 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.DgvProducto = new System.Windows.Forms.DataGridView();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.cnImagen = new System.Windows.Forms.DataGridViewImageColumn();
             this.cnNomProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +60,8 @@
             this.cnProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvPostulacion)).BeginInit();
@@ -297,30 +297,6 @@
             this.DgvProducto.TabIndex = 94;
             this.DgvProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProducto_CellClick);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(359, 4);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(338, 25);
-            this.label8.TabIndex = 93;
-            this.label8.Text = "Eliminacion de Productos rechazados";
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(38, 131);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(10, 10);
-            this.button1.TabIndex = 95;
-            this.button1.Tag = "";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // cnImagen
             // 
             this.cnImagen.HeaderText = "Imagen Produto";
@@ -385,6 +361,30 @@
             this.cnUrl.Name = "cnUrl";
             this.cnUrl.Visible = false;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(359, 4);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(338, 25);
+            this.label8.TabIndex = 93;
+            this.label8.Text = "Eliminacion de Productos rechazados";
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(38, 131);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(10, 10);
+            this.button1.TabIndex = 95;
+            this.button1.Tag = "";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Procesos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,6 +394,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Procesos";
             this.Text = "Procesos";
+            this.Load += new System.EventHandler(this.btnListar_Click);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

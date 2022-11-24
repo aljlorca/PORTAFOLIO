@@ -24,47 +24,44 @@ namespace MercadoChile.Template
     public partial class Postulacion : Form
     {
         private string url = "http://127.0.0.1:8000/api_carga/carga_old/";
-        private string url2 = "http://127.0.0.1:8000/api_subasta/subasta_old/";
+        Uri baseUri = new Uri("http://127.0.0.1:8000/api_subasta/subasta_aceptar/");
         getPostulacion Get = new getPostulacion();
         public Postulacion()
         {
             InitializeComponent();
         }
-        private async void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        
+        private async void btnListar_Click(object sender, EventArgs e)
         {
             try
             {
-                string respuesta = await Get.GetHttp4();
-                List<Carga> lista = JsonConvert.DeserializeObject<List<Carga>>(respuesta);
-                string respuesta2 = await Get.GetHttp();
-                List<Subasta> lista2 = JsonConvert.DeserializeObject<List<Subasta>>(respuesta2);
+                string respuesta = await Get.GetHttp();
+                List<Subasta> lista = JsonConvert.DeserializeObject<List<Subasta>>(respuesta);
+                string respuesta2 = await Get.GetHttp2();
+                List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
                 string respuesta3 = await Get.GetHttp3();
-                List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
-                DgvCarga.DataSource = lista;
-
-                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvCarga.DataSource];
+                List<Venta> lista3 = JsonConvert.DeserializeObject<List<Venta>>(respuesta3);
+                DgvSubastas.DataSource = lista;
+                DgvSubastas.DataSource = (from p in lista
+                                          orderby p.id_venta descending
+                                          select p).ToList();
+                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvSubastas.DataSource];
                 currencyManager1.SuspendBinding();
-                foreach (DataGridViewRow fila in DgvCarga.Rows)
+                foreach (DataGridViewRow fila in DgvSubastas.Rows)
                 {
-                    foreach (var fila1 in lista)
-                    {
-                        if (Convert.ToInt32(fila.Cells["cnEstadoFila"].Value) == 0)
-                        {
-                            fila.Visible = false;
-                            currencyManager1.ResumeBinding();
-                            break;
-                        }
-                    }
+
                     foreach (var fila1 in lista2)
                     {
-                        fila.Cells["cnSubasta"].Value = fila1.monto_subasta;
+                        fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
                         break;
                     }
                     foreach (var fila1 in lista3)
                     {
-                        fila.Cells["cnTransportista"].Value = fila1.nombre_usuario;
+                        fila.Cells["cnVenta"].Value = fila1.descripcion_venta;
+                        
                         break;
                     }
+                    DgvSubastas.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
                 }
             }
             catch (Exception ex)
@@ -72,21 +69,39 @@ namespace MercadoChile.Template
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private async void btnListar_Click(object sender, EventArgs e)
+        private async void Click_Aceptar(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                string respuesta2 = await Get.GetHttp();
-                List<Subasta> lista2 = JsonConvert.DeserializeObject<List<Subasta>>(respuesta2);
-                string respuesta3 = await Get.GetHttp3();
-                List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
-                DgvSubastas.DataSource = lista2;
-                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvSubastas.DataSource];
-                currencyManager1.SuspendBinding();
-                foreach (DataGridViewRow fila in DgvSubastas.Rows)
+                if (DgvSubastas.CurrentCell.ColumnIndex == 0)
                 {
-                    DgvSubastas.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
+                    foreach (DataGridViewRow fila in DgvSubastas.Rows)
+                    {
+                        if (fila.Cells["cnIdS"].Value == DgvSubastas.CurrentRow.Cells["cnIdS"].Value)
+                        {
+                            string id = fila.Cells["cnIdS"].Value.ToString();
+                            Console.WriteLine(id);
+                            Subasta post = new Subasta()
+                            {
+                                id_subasta = id,
+                            };
+                            var data = JsonSerializer.Serialize<Subasta>(post);
+                            HttpRequestMessage request = new HttpRequestMessage
+                            {
+                                Content = new StringContent(data, Encoding.UTF8, "application/json"),
+                                Method = HttpMethod.Put,
+                                RequestUri = new Uri(baseUri, id),
+                            };
+                            var httpClient = new HttpClient();
+                            if (MessageBox.Show("Desea Publicar esta postulacion para la Venta "
+                                   + DgvSubastas.CurrentRow.Cells["cnVenta"].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                await httpClient.SendAsync(request);
+                                MessageBox.Show("Publicado con Exito");
+                                this.OnLoad(e);
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)

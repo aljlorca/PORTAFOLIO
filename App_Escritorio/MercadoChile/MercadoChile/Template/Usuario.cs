@@ -283,7 +283,9 @@ namespace MercadoChile
                         var httpResponse = await client.PostAsync(baseUri, content);
                         if (httpResponse.IsSuccessStatusCode)
                         {
-                            MessageBox.Show("Usuario Creado");
+                            var result = await httpResponse.Content.ReadAsStringAsync();
+                            var postResult = JsonSerializer.Deserialize<RegistrarUsuario>(result);
+                            MessageBox.Show(postResult.ToString());
                             this.Hide();
 
                         }
@@ -298,7 +300,8 @@ namespace MercadoChile
                     var httpResponse = await client.PostAsync(baseUri, content);
                     if (httpResponse.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Usuario Creado");
+                        var result = await httpResponse.Content.ReadAsStringAsync();
+                        MessageBox.Show(result);
                         this.Hide();
 
                     }

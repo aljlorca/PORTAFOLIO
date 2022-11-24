@@ -86,7 +86,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>meKLv7+cWnZ5/+/bVcolF5zN6hiM+zsTiUH2g+Odo04=</dsig:DigestValue>
+        <dsig:DigestValue>C905+LTZiFxy322YETh9G3iHvckJreKjxQIGCaMNa00=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -259,14 +259,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MercadoChile.exe" size="333304">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MercadoChile.exe" size="330232">
       <assemblyIdentity name="MercadoChile" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HD6eyXlqvNHVVJ1zN7MPBYr+LZYNjv3fRp1JwrNjbO4=</dsig:DigestValue>
+        <dsig:DigestValue>p32yFQb3f6zGtAfPMwKhfxj/7C2xAtqFs6sm843whdY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -643,14 +643,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Negocio.dll" size="16384">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Negocio.dll" size="16896">
       <assemblyIdentity name="Negocio" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6DOEX6x0G2Upql0ztG6CLpzuP+25PIkNB8WosOeWJMQ=</dsig:DigestValue>
+        <dsig:DigestValue>XlKqWTd/mk5+yaW7hF6MVj1ZanLMiD26/B8RJnI+hJg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
