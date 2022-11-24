@@ -87,7 +87,7 @@ def producto_delete(id):
     except:
         data = 'error de conexion'
         return data
-    if response.status_code == 200:
+    if response.status_code == 201:
         content = json.loads(response.content)
         return content
     if response.status_code == 404:
@@ -104,7 +104,7 @@ def subasta_post(monto,id_venta,id_usuario):
         data = 'error de conexion'
         return data
 
-    if response.status_code == 200:
+    if response.status_code == 201:
         content = json.loads(response.content)
         return content['id_subasta']
 
@@ -148,7 +148,7 @@ def subasta_delete(id):
     except:
         data = 'error de conexion'
         return data
-    if response.status_code == 200:
+    if response.status_code == 201:
         content = json.loads(response.content)
         return content
 
@@ -172,7 +172,7 @@ def pedido_post(descripcion, fecha_sla,id_usuario):
     except:
         data = {'message':'error de conexion'}
         return data
-    if response.status_code == 200:
+    if response.status_code == 201:
         content = json.loads(response.content)
         return content
 
@@ -189,51 +189,7 @@ def usuario_get_id(id):
         return content
     if response.status_code == 404:
         data = 'ERROR: Usuario no encontrado'
-        return data
-
-#PAIS CONTROLLER
-def get_pais_id(id):
-    url = 'http://127.0.0.1:8000/api_pais/pais/'+str(id)
-    try: 
-     response = requests.get(url)
-    except:
-        data = 'error de conexion'
-        return data
-    if response.status_code == 200:
-        content = json.loads(response.content)
-        return content
-    if response.status_code == 404:
-        data = 'ERROR: Pais no encontrado'
-        return data
-    
-#Ciudad CONTROLLER
-def get_ciudad_id(id):
-    url = 'http://127.0.0.1:8000/api_ciudad/ciudad/'+str(id)
-    try: 
-     response = requests.get(url)
-    except:
-        data = 'error de conexion'
-        return data
-    if response.status_code == 200:
-        content = json.loads(response.content)
-        return content
-    if response.status_code == 404:
-        data = 'ERROR: Ciudad no encontrada'
-        return data
-#Region CONTROLLER
-def get_region_id(id):
-    url = 'http://127.0.0.1:8000/api_region/region/'+str(id)
-    try: 
-     response = requests.get(url)
-    except:
-        data = 'error de conexion'
-        return data
-    if response.status_code == 200:
-        content = json.loads(response.content)
-        return content
-    if response.status_code == 404:
-        data = 'ERROR: Region no encontrada'
-        return data   
+        return data 
 
 #Postulacion POST CONTROLLER
 def Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto):
@@ -276,7 +232,7 @@ def carga_post(capacidad,tamano,refrigeracion,id_usuario,id_subasta):
     except:
         data = {'message':'error de conexion'}
         return data
-    if response.status_code == 200:
+    if response.status_code == 201:
         content = json.loads(response.content)
         return content
 
@@ -340,7 +296,7 @@ def carrito_post(monto,id_usuario):
     except:
         data = {'message':'error de conexion'}
         return data
-    if response.status_code == 200:
+    if response.status_code == 201:
         content = json.loads(response.content)
         return content
 
