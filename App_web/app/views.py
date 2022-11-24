@@ -349,6 +349,7 @@ def ingreso_postulacion(request,id_venta):
             ruta_proyecto = os.getcwd()+'/media/'
             ruta = ruta_proyecto+buscar
             crear_producto(id_producto,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario,descripcion_producto)
+            time.sleep(0.5)
             Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto)
             messages.success(request,"Postulacion Creada Correctamente")
     return render(request, 'app/proveedor/Ingreso_postulacion.html',data)

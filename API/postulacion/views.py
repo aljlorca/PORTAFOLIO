@@ -72,7 +72,7 @@ class PostulacionView(View):
         try:
             jd = json.loads(request.body)
             try:
-                salida = agregar_postulacion(descripcion_postulacion=jd['descripcion_postulacion'],estado_postulacion=jd['estado_postulacion'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'],id_producto=jd['id_producto'])
+                salida = agregar_postulacion(descripcion_postulacion=jd['descripcion_postulacion'],id_venta=jd['id_venta'],id_usuario=jd['id_usuario'],id_producto=jd['id_producto'])
                 if salida == 1:
                     datos = {'message':'Success'}
                     return JsonResponse(datos, status=201)
