@@ -445,9 +445,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="shop_icon-icons.com_51010.ico" />
   </ItemGroup>

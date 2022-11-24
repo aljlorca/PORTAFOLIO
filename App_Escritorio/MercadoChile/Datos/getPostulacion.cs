@@ -10,7 +10,7 @@ namespace Datos
 {
     public class getPostulacion
     {
-        private string url = "http://127.0.0.1:8000/api_subasta/subasta/";
+        private string url = "http://127.0.0.1:8000/api_subasta/subasta_aceptar/";
         private string url2 = "http://127.0.0.1:8000/api_usuario/usuario/";
         private string url3 = "http://127.0.0.1:8000/api_venta/venta/";
         private string url4 = "http://127.0.0.1:8000/api_carga/carga/";

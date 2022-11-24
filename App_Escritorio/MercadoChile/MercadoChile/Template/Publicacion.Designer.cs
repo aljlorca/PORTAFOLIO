@@ -98,7 +98,7 @@
             this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListar.Image = ((System.Drawing.Image)(resources.GetObject("btnListar.Image")));
             this.btnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListar.Location = new System.Drawing.Point(451, 469);
+            this.btnListar.Location = new System.Drawing.Point(539, 318);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(250, 40);
             this.btnListar.TabIndex = 99;
@@ -218,12 +218,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnListar);
             this.Controls.Add(this.DgvProducto);
+            this.Controls.Add(this.btnListar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Publicacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Publiacion";
+            this.Load += new System.EventHandler(this.btnListar_Click);
             ((System.ComponentModel.ISupportInitialize)(this.DgvProducto)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
