@@ -1,0 +1,59 @@
+{% extends 'app/Base.html' %}
+{% load static %}
+{% block contenido %}
+
+<div id="productos" class="container-xxl py-5">
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-0 gx-5 align-items-end">
+                <div class="col-lg-6">
+                    <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                        <h1 class="display-5 mb-3">Ventas</h1>
+                        <p>Resumen de tus ventas </p>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        <table class="table table-light table-borderless table-hover text-center mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID subasta</th>
+                                    <th>Monto Subasta</th>
+                                    <th>Fecha Subasta</th>
+                                    <th>ID Venta</th>
+                                    <th>Descripcion Venta</th>
+                                    <th>Estado Venta</th>
+                                    <th>Reportar Entrega</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle">
+                                {% for r in reporte %}
+                                <tr>
+                                    <td>{{r.id_subasta}}</td>
+                                    <td>{{r.monto_subasta}}</td>
+                                    <td>{{r.fecha_subasta}}</td>
+                                    <td>{{r.id_venta}}</td>
+                                    <td>{{r.descripcion_venta}}</td>
+                                    <td>{{r.estado_venta}}</td>
+                                    <td><a type="button" class="btn btn-primary" href="{% url 'reporte' r.id_venta%}">Reportar</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% if error == 'error de conexion' %} 
+                            <p>Tenemos problemas en estos momentos</p>
+                            <img class="img-fluid w-75" src="https://reygif.com/media/5/hombre-pico-62712.gif" alt="">
+                        {% endif %}
+                        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                            <a class="btn btn-primary rounded-pill py-3 px-5" href="">Cargar Más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

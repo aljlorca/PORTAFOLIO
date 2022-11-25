@@ -152,6 +152,17 @@ def subasta_delete(id):
         content = json.loads(response.content)
         return content
 
+def subasta_venta_usuario(id):
+    url='http://127.0.0.1:8000/api_subasta/subasta_venta_usuario/'+str(id)
+    try: 
+        response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+
 #PEDIDO CONTROLLERS
 def pedido_get():
     url = 'http://127.0.0.1:8000/api_pedido/pedido/'
@@ -287,7 +298,7 @@ def get_statusTBK(token):
     except: 
         return "Tenemos problemas en estos momentos"
 
-
+#CARRITO CONTROLLER
 def carrito_post(monto,id_usuario):
     url = 'http://127.0.0.1:8000/api_carrito/carrito_old/'
     body = {"monto_carrito": monto,"id_producto": None,"id_usuario": id_usuario}
@@ -318,3 +329,5 @@ def carrito_get_id(id):
     if response.status_code == 404:
         data = 'ERROR: Usuario no encontrado'
         return data
+
+#REPORTE
