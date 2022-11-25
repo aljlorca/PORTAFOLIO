@@ -456,6 +456,23 @@ def carga(request):
             
     return render(request, 'app/transportista/ingreso_carga.html',data)
 
+def listado_reportes(request):
+    data = get_session(request)
+    try:
+        if data['cargo']!='Transportista':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
+    
+    id_usuario = request.session['id_user']
+    data['reporte']=subasta_venta_usuario(id_usuario)
+
+    return render(request,'app/transportista/reporte_entrega.html',data)
+
+
+
+
 #########################
 ###Transportista TBK###
 #########################
