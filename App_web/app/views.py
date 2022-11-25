@@ -470,12 +470,34 @@ def listado_reportes(request):
 
     return render(request,'app/transportista/reporte_entrega.html',data)
 
+@csrf_exempt
+def reporte(request,id_venta):
+    data = get_session(request)
+    try:
+        if data['cargo']!='Transportista':
+            return redirect(to="http://127.0.0.1:3000/")
+
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
+    
+    if request.method == 'POST':
+        descripcion = request.POST.get('descripcion-reporte')
+        entregados = request.POST.get('productos-entregados')
+        perdidos = request.POST.get('productos-perdidos')
+        restantes = request.POST.get('productos-restantes')
+        id_usuario = request.session['id_user']
+        reporte_post(descripcion,entregados,perdidos,restantes,id_venta,id_usuario)
+        messages.success(request,"Reporte Generado Correctamente")
+        return redirect(to="http://127.0.0.1:3000/listado_reportes/")
+
+    return render(request,'app/transportista/reporte.html',data)
 
 
 
-#########################
-###Transportista TBK###
-#########################
+
+#############
+### TBK #####
+#############
 
 @csrf_exempt
 def tbk_respuesta(request):

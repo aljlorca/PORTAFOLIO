@@ -15,7 +15,7 @@ def agregar_reporte(descripcion_reporte,productos_entregados_reporte,productos_p
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     estado_fila = '1'
-    cursor.callproc('REPORTE_AGREGAR',[descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,estado_fila,id_venta,id_usuario,salida])
+    cursor.callproc('REPORTE_AGREGAR',[descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta,id_usuario,estado_fila,salida])
     return round(salida.getvalue())
 
 def modificar_reporte(id_reporte,descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta,id_usuario):

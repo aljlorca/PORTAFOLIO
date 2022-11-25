@@ -35,7 +35,7 @@ urlpatterns = [
     path("detalle_subasta/<int:id_venta>", detalle_subasta, name="detalle_subasta"),
     path("carga/", carga, name="carga"),
     path("listado_reportes/",listado_reportes, name="listado_reportes"),
-    path("reporte/<str:id_venta>",reporte, name="reporte")
+    path("reporte/<str:id_venta>",reporte, name="reporte"),
 
     #tbk
     path('tbk_respuesta/',tbk_respuesta,name='tbk_respuesta')

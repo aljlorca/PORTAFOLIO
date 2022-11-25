@@ -331,3 +331,14 @@ def carrito_get_id(id):
         return data
 
 #REPORTE
+def reporte_post(descripcion_reporte,productos_entregados_reporte,productos_perdidos_reporte,productos_restantes_reporte,id_venta,id_usuario):
+    url = 'http://127.0.0.1:8000/api_reporte/reporte_old/'
+    body = {"descripcion_reporte": descripcion_reporte,"productos_entregados_reporte": productos_entregados_reporte,"productos_perdidos_reporte": productos_perdidos_reporte,"productos_restantes_reporte":productos_restantes_reporte,"id_venta":id_venta,"id_usuario":id_usuario}
+    try: 
+        response = requests.post(url,json=body)
+    except:
+        data = {'message':'error de conexion'}
+        return data
+    if response.status_code == 201:
+        content = json.loads(response.content)
+        return content

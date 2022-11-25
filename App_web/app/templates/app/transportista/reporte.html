@@ -1,0 +1,52 @@
+{% extends 'app/Base.html' %}
+{% load static %}
+{% block contenido %}
+
+<br>
+
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Registrar reporte</h1>
+            
+        </div>
+        <div class="col-lg7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+            <span class=" display-7 me-2 animated slideInDown">{{error}}</span>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="descripcion-reporte" placeholder="descripcion reporte">
+                            <label for="descripcion-reporte">Descripcion Reporte</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="productos-entregados" placeholder="productos entregados">
+                            <label for="productos-entregados">Productos Entregados</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="productos-perdidos" placeholder="productos perdidos">
+                            <label for="productos-perdidos">Productos Perdidos</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" name="productos-restantes" placeholder="productos restantes">
+                            <label for="productos-restantes">Productos Restantes</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input class="btn btn-primary rounded-pill py-3 px-5" type="submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
