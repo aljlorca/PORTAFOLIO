@@ -92,7 +92,8 @@ def subasta_venta_user(id_usuario):
     lista = []
     for fila in out_cur:
         lista.append(fila)
-        lista_json=[]
+
+    lista_json=[]
     cont=0
     for dato in lista:
         fila=lista[cont]
