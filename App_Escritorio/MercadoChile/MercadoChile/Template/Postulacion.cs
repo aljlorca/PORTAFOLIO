@@ -43,24 +43,33 @@ namespace MercadoChile.Template
                 List<Venta> lista3 = JsonConvert.DeserializeObject<List<Venta>>(respuesta3);
                 DgvSubastas.DataSource = lista;
                 DgvSubastas.DataSource = (from p in lista
-                                          orderby p.id_venta descending
+                                          orderby p.id_venta ascending
                                           select p).ToList();
                 CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvSubastas.DataSource];
                 currencyManager1.SuspendBinding();
+                List<string> idVentas = new List<string>();
                 foreach (DataGridViewRow fila in DgvSubastas.Rows)
                 {
-
+                    if (Convert.ToString(fila.Cells["cnEstadoS"].Value) == "Aceptada")
+                    {
+                        string idventa = Convert.ToString(fila.Cells["cnVenta"].Value);
+                        idVentas.Add(idventa);
+                        fila.Visible = false;
+                    }
+                    else if (idVentas.Contains(Convert.ToString(fila.Cells["cnVenta"].Value)))
+                    {
+                        fila.Visible = false;
+                    }          
                     foreach (var fila1 in lista2)
                     {
                         fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
                         break;
                     }
-                    foreach (var fila1 in lista3)
+                    /*foreach (var fila1 in lista3)
                     {
                         fila.Cells["cnVenta"].Value = fila1.descripcion_venta;
-                        
                         break;
-                    }
+                    }*/
                     DgvSubastas.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
                 }
             }

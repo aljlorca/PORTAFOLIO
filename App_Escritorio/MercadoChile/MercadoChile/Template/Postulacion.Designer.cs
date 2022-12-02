@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.DgvSubastas = new System.Windows.Forms.DataGridView();
-            this.btnListar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.cnCapaCarga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnRefrigeracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnTamanoCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +40,9 @@
             this.cnBoton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.cnIdS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnIdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnListar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubastas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,46 +63,11 @@
             this.cnBoton,
             this.cnIdS,
             this.cnIdC});
-            this.DgvSubastas.Location = new System.Drawing.Point(18, 72);
+            this.DgvSubastas.Location = new System.Drawing.Point(43, 66);
             this.DgvSubastas.Name = "DgvSubastas";
             this.DgvSubastas.Size = new System.Drawing.Size(943, 520);
             this.DgvSubastas.TabIndex = 109;
             this.DgvSubastas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_Aceptar);
-            // 
-            // btnListar
-            // 
-            this.btnListar.FlatAppearance.BorderSize = 0;
-            this.btnListar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnListar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListar.Location = new System.Drawing.Point(808, 292);
-            this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(58, 40);
-            this.btnListar.TabIndex = 107;
-            this.btnListar.Text = "Listar";
-            this.btnListar.UseVisualStyleBackColor = true;
-            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(229, 50);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(412, 13);
-            this.label3.TabIndex = 108;
-            this.label3.Text = "---------------------------------------------------------------------------------" +
-    "------------------------------------------------------";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(276, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(288, 23);
-            this.label1.TabIndex = 105;
-            this.label1.Text = "Control de Proceso Subastas";
             // 
             // cnCapaCarga
             // 
@@ -173,6 +138,41 @@
             this.cnIdC.HeaderText = "IDc";
             this.cnIdC.Name = "cnIdC";
             this.cnIdC.Visible = false;
+            // 
+            // btnListar
+            // 
+            this.btnListar.FlatAppearance.BorderSize = 0;
+            this.btnListar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnListar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListar.Location = new System.Drawing.Point(808, 292);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(58, 40);
+            this.btnListar.TabIndex = 107;
+            this.btnListar.Text = "Listar";
+            this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(229, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(412, 13);
+            this.label3.TabIndex = 108;
+            this.label3.Text = "---------------------------------------------------------------------------------" +
+    "------------------------------------------------------";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(276, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(288, 23);
+            this.label1.TabIndex = 105;
+            this.label1.Text = "Control de Proceso Subastas";
             // 
             // Postulacion
             // 
