@@ -427,6 +427,8 @@ def detalle_subasta(request,id_venta):
         try: 
             salida = carga_post(capacidad_carga,tamano_carga,refrigeracion_carga,id_usuario,id_subasta)
             messages.success(request,"Subasta Creada Correctamente")
+            url = 'http://127.0.0.1:3000/detalle_subasta/'+str(id_venta)
+            return redirect(to=url)
         except: 
             data['error']='error al registrar su carga'
             try:
