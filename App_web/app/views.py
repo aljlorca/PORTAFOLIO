@@ -26,7 +26,6 @@ def logout(request):
     messages.success(request,'Has cerrado session')
     return redirect(to="http://127.0.0.1:3000/")
 
-@csrf_exempt
 def login(request):
     try:
         if request.method == 'POST':
@@ -75,7 +74,7 @@ def cliente_interno(request):
         return redirect(to="http://127.0.0.1:3000/")
 
     return render(request, 'app/Cliente_Interno/menu.html',data)
-@csrf_exempt
+
 def carrito(request):
     data = get_session(request)
     try:
@@ -108,7 +107,6 @@ def detalle_producto(request, id_producto):
     data['calidad'] = calidad_get()
     return render(request, 'app/Cliente_Interno/ver_producto.html', data)
 
-@csrf_exempt
 def checkout(request):
     data = get_session(request)
     try:
@@ -131,7 +129,6 @@ def detalle_venta(request,id_venta):
     id_venta=request.session["id_venta"]
     return render(request, 'app/proveedor/Ver_ventas.html', data)
 
-@csrf_exempt
 def pedido_cliente_interno(request):
     data = get_session(request)
     try:
@@ -205,7 +202,6 @@ def cliente_externo(request):
 
     return render(request, 'app/cliente_externo/menu.html',data)
 
-@csrf_exempt
 def pedido(request):
     data = get_session(request)
     try:
@@ -256,7 +252,7 @@ def proveedor(request):
         return redirect(to="http://127.0.0.1:3000/")
     return render(request, 'app/proveedor/menu.html',data)
 
-@csrf_exempt
+
 def productores(request):
     data = get_session(request)
     try:
@@ -311,7 +307,6 @@ def postulaciones(request):
         data['error']='error de conexion'
     return render(request, 'app/proveedor/Postulaciones.html',data)
 
-@csrf_exempt
 def ingreso_postulacion(request,id_venta):
     data = get_session(request)
     try:
@@ -394,7 +389,6 @@ def subasta(request):
         data['error'] ='error de conexion'
         return render(request, 'app/transportista/listado_subastas.html',data)
 
-@csrf_exempt
 def detalle_subasta(request,id_venta):
     try:
         data = get_session(request)
@@ -437,7 +431,6 @@ def detalle_subasta(request,id_venta):
                 data['error']='favor ingrese un monto'
     return render(request, 'app/transportista/Ingreso_subasta.html',data)
 
-@csrf_exempt
 def carga(request):
     data = get_session(request)
     try:
@@ -472,7 +465,7 @@ def listado_reportes(request):
 
     return render(request,'app/transportista/reporte_entrega.html',data)
 
-@csrf_exempt
+
 def reporte(request,id_venta):
     data = get_session(request)
     try:
@@ -501,7 +494,6 @@ def reporte(request,id_venta):
 ### TBK #####
 #############
 
-@csrf_exempt
 def tbk_respuesta(request):
     data = get_session(request)
     token=request.get_full_path()

@@ -78,6 +78,7 @@
                         </div>
                     </div>
                     <form method="POST" enctype="multipart/form-data" action="{{resultado.url}}?token_ws={{resultado.token}}">
+                        {% csrf_token %}
                         <button class="btn btn-outline-primary border-2 py-2 px-5 rounded-pill">Pago</button>       
                     </form>
                 </div>

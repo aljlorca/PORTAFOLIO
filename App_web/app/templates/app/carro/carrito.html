@@ -47,6 +47,7 @@
                                 <h5 name="precio_total">$ {{importe_total_carro | intcomma}}</h5>
                             </div>
                             <form method="POST" enctype="multipart/form-data" action="http://127.0.0.1:3000/checkout/{{resultado.url}}?token_ws={{resultado.token}}">
+                                {% csrf_token %}
                                 <input type="hidden" name="token_ws" value="{{resultado.token}}" disabled>
                                 <input type="hidden" name="precio_total" value="{{importe_total_carro}}">
                                 <input type="submit" value="Realizar Compra" class="btn btn-success">      
