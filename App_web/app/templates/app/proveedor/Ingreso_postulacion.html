@@ -10,6 +10,12 @@
         
         <div class="col-lg7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
             {{error}}
+            {% if error == 'error de conexion' %} 
+                <p>Tenemos problemas en estos momentos</p>
+                <img class="img-fluid w-75" src="https://reygif.com/media/5/hombre-pico-62712.gif" alt="">
+            {% elif venta.estado_venta != 'licitacion' %}
+                <h1>Esta Venta ya no esta disponible</h1>
+            {% else %}
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row g-3">
@@ -66,6 +72,7 @@
                     </div>
                 </div>
             </form>
+            {% endif %}
         </div>
     </div>
 </div>
