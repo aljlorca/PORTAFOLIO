@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.8": {
+      "BouncyCastle/1.8.9": {
+        "type": "package",
+        "compile": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        },
+        "runtime": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        }
+      },
       "Castle.Core/4.2.1": {
         "type": "package",
         "frameworkAssemblies": [
@@ -16,6 +25,30 @@
           "lib/net45/Castle.Core.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "iTextSharp/5.5.13.3": {
+        "type": "package",
+        "dependencies": {
+          "BouncyCastle": "1.8.9"
+        },
+        "compile": {
+          "lib/itextsharp.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.dll": {}
+        }
+      },
+      "itextsharp.xmlworker/5.5.13.3": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.13.3"
+        },
+        "compile": {
+          "lib/itextsharp.xmlworker.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.xmlworker.dll": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -412,6 +445,15 @@
       }
     },
     ".NETFramework,Version=v4.8/win": {
+      "BouncyCastle/1.8.9": {
+        "type": "package",
+        "compile": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        },
+        "runtime": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        }
+      },
       "Castle.Core/4.2.1": {
         "type": "package",
         "frameworkAssemblies": [
@@ -426,6 +468,30 @@
           "lib/net45/Castle.Core.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "iTextSharp/5.5.13.3": {
+        "type": "package",
+        "dependencies": {
+          "BouncyCastle": "1.8.9"
+        },
+        "compile": {
+          "lib/itextsharp.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.dll": {}
+        }
+      },
+      "itextsharp.xmlworker/5.5.13.3": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.13.3"
+        },
+        "compile": {
+          "lib/itextsharp.xmlworker.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.xmlworker.dll": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -822,6 +888,15 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
+      "BouncyCastle/1.8.9": {
+        "type": "package",
+        "compile": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        },
+        "runtime": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        }
+      },
       "Castle.Core/4.2.1": {
         "type": "package",
         "frameworkAssemblies": [
@@ -836,6 +911,30 @@
           "lib/net45/Castle.Core.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "iTextSharp/5.5.13.3": {
+        "type": "package",
+        "dependencies": {
+          "BouncyCastle": "1.8.9"
+        },
+        "compile": {
+          "lib/itextsharp.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.dll": {}
+        }
+      },
+      "itextsharp.xmlworker/5.5.13.3": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.13.3"
+        },
+        "compile": {
+          "lib/itextsharp.xmlworker.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.xmlworker.dll": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -1232,6 +1331,15 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
+      "BouncyCastle/1.8.9": {
+        "type": "package",
+        "compile": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        },
+        "runtime": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        }
+      },
       "Castle.Core/4.2.1": {
         "type": "package",
         "frameworkAssemblies": [
@@ -1246,6 +1354,30 @@
           "lib/net45/Castle.Core.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "iTextSharp/5.5.13.3": {
+        "type": "package",
+        "dependencies": {
+          "BouncyCastle": "1.8.9"
+        },
+        "compile": {
+          "lib/itextsharp.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.dll": {}
+        }
+      },
+      "itextsharp.xmlworker/5.5.13.3": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.13.3"
+        },
+        "compile": {
+          "lib/itextsharp.xmlworker.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.xmlworker.dll": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -1643,6 +1775,19 @@
     }
   },
   "libraries": {
+    "BouncyCastle/1.8.9": {
+      "sha512": "axnBgvdD5n+FnEG6efk/tfKuMFru7R/EoISH9zjh319yb3HD24TEHSAbNN/lTRT2ulOGRxDgOsCjkuk08iwWPg==",
+      "type": "package",
+      "path": "bouncycastle/1.8.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "bouncycastle.1.8.9.nupkg.sha512",
+        "bouncycastle.nuspec",
+        "lib/BouncyCastle.Crypto.dll"
+      ]
+    },
     "Castle.Core/4.2.1": {
       "sha512": "XSNA0Gc1Zu33L+8+/3Tqt+aFu8QWS8UenVHZ7RenIP5wJfhoLrA4PnNscpxReeo5aBq8PDoGnV8rNaOzIOUo/w==",
       "type": "package",
@@ -1664,6 +1809,36 @@
         "lib/netstandard1.3/Castle.Core.dll",
         "lib/netstandard1.3/Castle.Core.xml",
         "readme.txt"
+      ]
+    },
+    "iTextSharp/5.5.13.3": {
+      "sha512": "vtnMhTEJdZFCkLqaQLjD8aqTBIVKHPrSFuSXnxbLEJlvE/j/l88fvG9wtsejXTmhtErMo0lA9T2LdfdfbwplYw==",
+      "type": "package",
+      "path": "itextsharp/5.5.13.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "gnu-agpl-v3.0.md",
+        "itextsharp.5.5.13.3.nupkg.sha512",
+        "itextsharp.nuspec",
+        "lib/iTextSharp.xml",
+        "lib/itextsharp.dll",
+        "notice.txt"
+      ]
+    },
+    "itextsharp.xmlworker/5.5.13.3": {
+      "sha512": "tRxeolUZl5863E/IHVb+5riZwsHw8uNiP0uku0gO1nktR2M9DCJS+U9EoLV3CFr0VuxoxQF/sLOffa8BP0hJzg==",
+      "type": "package",
+      "path": "itextsharp.xmlworker/5.5.13.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "gnu-agpl-v3.0.md",
+        "itextsharp.xmlworker.5.5.13.3.nupkg.sha512",
+        "itextsharp.xmlworker.nuspec",
+        "lib/itextsharp.xmlworker.dll"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -2203,29 +2378,25 @@
     ".NETFramework,Version=v4.8": [
       "Moq.Contrib.HttpClient >= 1.4.0",
       "Newtonsoft.Json >= 13.0.1",
-      "RestSharp >= 105.0.0"
+      "RestSharp >= 105.0.0",
+      "itextsharp.xmlworker >= 5.5.13.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alan\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\sebac\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+      "projectUniqueName": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
       "projectName": "Datos",
-      "projectPath": "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
-      "packagesPath": "C:\\Users\\Alan\\.nuget\\packages\\",
-      "outputPath": "D:\\DUOC\\Semestre 8\\Portafolio\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
+      "projectPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\Datos.csproj",
+      "packagesPath": "C:\\Users\\sebac\\.nuget\\packages\\",
+      "outputPath": "D:\\PORTAFOLIO\\App_Escritorio\\MercadoChile\\Datos\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Alan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\sebac\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2255,6 +2426,10 @@
           "RestSharp": {
             "target": "Package",
             "version": "[105.0.0, )"
+          },
+          "itextsharp.xmlworker": {
+            "target": "Package",
+            "version": "[5.5.13.3, )"
           }
         }
       }
