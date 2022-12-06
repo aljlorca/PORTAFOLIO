@@ -317,6 +317,7 @@ def ingreso_postulacion(request,id_venta):
         return redirect(to="http://127.0.0.1:3000/")
     
     data['calidad']=calidad_get()
+    data['venta']= Ventas_get_id(id_venta)
     if request.method == 'POST':
             company=request.session['company']
             company=company.replace(' ','_')
