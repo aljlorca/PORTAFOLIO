@@ -62,7 +62,6 @@ namespace MercadoChile.Template
                     
                         else if (idVentas.Contains(fila.Cells["cnVenta"].Value))
                         {
-                        
                             fila.Visible = false;
                         }
                     }        
@@ -95,11 +94,13 @@ namespace MercadoChile.Template
                         if (fila.Cells["cnIdS"].Value == DgvSubastas.CurrentRow.Cells["cnIdS"].Value)
                         {
                             string id = fila.Cells["cnIdS"].Value.ToString();
-                            Console.WriteLine(id);
                             Subasta post = new Subasta()
                             {
                                 id_subasta = id,
                             };
+                            if (MessageBox.Show("Desea Publicar esta postulacion para la Venta "
+                                   + DgvSubastas.CurrentRow.Cells["cnVenta"].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
                             var data = JsonSerializer.Serialize<Subasta>(post);
                             HttpRequestMessage request = new HttpRequestMessage
                             {
@@ -108,9 +109,7 @@ namespace MercadoChile.Template
                                 RequestUri = new Uri(baseUri, id),
                             };
                             var httpClient = new HttpClient();
-                            if (MessageBox.Show("Desea Publicar esta postulacion para la Venta "
-                                   + DgvSubastas.CurrentRow.Cells["cnVenta"].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
+                            
                                 await httpClient.SendAsync(request);
                                 MessageBox.Show("Publicado con Exito");
                                 this.OnLoad(e);

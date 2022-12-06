@@ -1319,3 +1319,4 @@ D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\MercadoChile.ex
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\MercadoChile.application
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe.manifest
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.application
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Reporte.resources

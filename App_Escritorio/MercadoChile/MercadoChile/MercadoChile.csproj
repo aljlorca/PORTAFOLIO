@@ -350,6 +350,12 @@
     <Compile Include="Template\Publicacion.Designer.cs">
       <DependentUpon>Publicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Template\Reporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Template\Reporte.Designer.cs">
+      <DependentUpon>Reporte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Template\Usuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -393,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Template\Publicacion.resx">
       <DependentUpon>Publicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\Reporte.resx">
+      <DependentUpon>Reporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Template\Usuario.resx">
       <DependentUpon>Usuario.cs</DependentUpon>
