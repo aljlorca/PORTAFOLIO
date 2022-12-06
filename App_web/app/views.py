@@ -157,7 +157,6 @@ def pedido_cliente_interno(request):
 
 def listado_ventas_locales(request):
     data = get_session(request)
-    print(data)
     try:
         if data['cargo']!='Cliente Interno' and data['empresa']!='Persona Natural':
             return redirect(to="http://127.0.0.1:3000/")
@@ -274,18 +273,15 @@ def productores(request):
                 saldo_producto = '1'
                 estado_fila= '1'
                 id_usuario = request.session['id_user']
-                print(id,nombre_producto,cantidad_producto,precio_producto,imagen_producto,descripcion_producto,id_calidad,id_usuario)
                 try: 
                     producto=Producto.objects.get(id_producto=id,imagen_producto=imagen_producto)
                 except Producto.DoesNotExist:
                     producto = Producto(id_producto=id,imagen_producto=imagen_producto)
                     producto.save()
-
                 buscar = str(producto)
                 ruta_proyecto = os.getcwd()+'/media/'
                 ruta = ruta_proyecto+buscar
                 res = crear_producto(id,nombre_producto,cantidad_producto,precio_producto,ruta,id_calidad,saldo_producto,estado_fila,id_usuario,descripcion_producto)
-                print(res)
                 messages.success(request,"Producto Creado Correctamente")
         return render(request, 'app/proveedor/productores.html',data)
     except:
@@ -504,7 +500,6 @@ def tbk_respuesta(request):
     try:
         if res['status']=='AUTHORIZED':
             salida = carrito_post(res['amount'],str(data['id_user']))
-            print(str(data['id_user']))
             diccionario=carro.Carro.listar_carro(request)
             productos = productos_get()
             c = 0

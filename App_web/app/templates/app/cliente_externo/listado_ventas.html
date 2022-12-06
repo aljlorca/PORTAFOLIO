@@ -31,6 +31,7 @@
                                     <th>Monto Aduanas</th>
                                     <th>Costo Servicio</th>
                                     <th>Comision</th>
+                                    <th>Aceptar Venta</th>
 
                                 </tr>
                             </thead>
@@ -51,9 +52,15 @@
                                     <td>{{v.monto_aduanas}}</td>
                                     <td>{{v.pago_servicio}}</td>
                                     <td>{{v.comision_venta}}</td>
+                                    {% if v.estado_venta == 'Entregada' %}
+                                        <td><a type="button" class="btn btn-primary" href="#">IR</a></td>
+                                    {% else %}
+                                        <td> La venta aun no es entregada</td>
+                                    {% endif %}
+
+                                {% endif %}
 
                                 </tr>
-                                {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
