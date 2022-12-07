@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import PostulacionesViewset,PostulacionesHistoricoViewset,PostulacionView
+from .views import PostulacionesViewset,PostulacionesHistoricoViewset,PostulacionView,PostulacionAceptada
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -12,6 +12,8 @@ urlpatterns = [
     path('',include(router.urls)),
     path('postulacion_old/',PostulacionView.as_view(),name='postulacion_list'),
     path('postulacion_old/<int:id_postulacion>',PostulacionView.as_view(),name='postulacion_update'),
+    path('postulacion_aceptada/<str:id_venta>',PostulacionAceptada.as_view(),name='postulacion_aceptada'),
+
     
 ]
 

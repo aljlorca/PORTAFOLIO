@@ -1,0 +1,31 @@
+{% extends 'app/Base.html' %}
+{% load static %}
+{% load humanize %}
+{% block contenido %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container-fluid py-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-7 pb-5">
+            <h3 class="font-weight-semi-bold">{{producto.nombre_producto}}</h3>
+            <h3 class="font-weight-semi-bold mb-4">${{producto.precio_producto | intcomma}}</h3>
+            <h3 class="font-weight-semi-bold mb-4">Peso del Producto: {{producto.cantidad_producto}}    TN</h3>
+            <p class="mb-4">{{producto.descripcion_producto}}</p>
+            {% for c in calidad %}
+                {% if c.id_calidad == producto.id_calidad %}
+                <p class="mb-4 ">Calidad: {{c.descripcion_calidad}}</p>
+                {% endif %}
+            {% endfor %}
+            <div class="d-flex align-items-center mb-4 pt-2">
+                <a class="btn btn-primary px-3" href="{% url 'venta_resumen' producto.id_producto %}"><i class="fa fa-shopping-cart mr-1"></i>Añadir al Carrito</a>
+            </div>
+        
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -43,6 +43,28 @@ def lista_postulacion():
         lista.append(fila)
     return lista
     
+def postulacion_aceptada(id_venta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc('POSTULACION_ACEPTADA', [id_venta,out_cur])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    lista_json=[]
+    cont=0
+    for dato in lista:
+        fila=lista[cont]
+        jd = {'id_postulacion':fila[0],
+        'descripcion_postulacion':fila[1],
+        'estado_postulacion':fila[2],
+        'id_producto':fila[3],}
+        lista_json.append(jd)
+        cont=cont+1
+    return lista_json
+
+
 
 class PostulacionView(View):
     @method_decorator(csrf_exempt)
@@ -130,6 +152,19 @@ class PostulacionView(View):
                 return JsonResponse(datos, status=404)
         except:
             datos = {'message':'ERORR: Json invalido'}
+            return JsonResponse(datos, status=500)
+
+class PostulacionAceptada(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get(self, request, id_venta):
+        try:
+            salida = postulacion_aceptada(id_venta)
+            return JsonResponse(salida,status=200,safe=False)
+        except:
+            datos = {'message':'ERROR: Validar datos'}
             return JsonResponse(datos, status=500)
 
 class PostulacionesViewset(viewsets.ModelViewSet):

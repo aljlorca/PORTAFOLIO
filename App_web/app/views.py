@@ -187,6 +187,26 @@ def ordenes(request):
 
     return render(request, 'app/Cliente_Interno/listado_ordenes.html',data)
 
+def venta_resumen(request, id_venta):
+    data = get_session(request)
+    try:
+        if data['cargo']!='Cliente Interno':
+            return redirect(to="http://127.0.0.1:3000/")
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
+
+    data['venta']=Ventas_get_id(id_venta)
+    data['subasta']=subasta_aceptada(id_venta)
+    data['postulacion']=postulacion_aceptada(id_venta)
+    postulacion = data['postulacion']
+    postulacionjson = postulacion[0]
+    data['producto']=producto_get_id(postulacionjson['id_producto'])
+    data['calidad']=calidad_get()
+
+
+    return render(request,'app/cliente_externo/venta_resumen.html',data)
+    
+
 ###########################
 ###Cliente Externo Views###
 ###########################

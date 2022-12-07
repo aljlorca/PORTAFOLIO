@@ -163,6 +163,17 @@ def subasta_venta_usuario(id):
         content = json.loads(response.content)
         return content
 
+def subasta_aceptada(id):
+    url='http://127.0.0.1:8000/api_subasta/subasta_aceptada/'+str(id)
+    try: 
+        response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+
 #PEDIDO CONTROLLERS
 def pedido_get():
     url = 'http://127.0.0.1:8000/api_pedido/pedido/'
@@ -199,10 +210,10 @@ def usuario_get_id(id):
         content = json.loads(response.content)
         return content
     if response.status_code == 404:
-        data = 'ERROR: Usuario no encontrado'
+        content = json.loads(response.content)
         return data 
 
-#Postulacion POST CONTROLLER
+#Postulacion CONTROLLERS
 def Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto):
     url = 'http://127.0.0.1:8000/api_postulacion/postulacion_old/'
     body = {"descripcion_postulacion": descripcion_postulacion,"estado_postulacion":estado_postulacion,"id_venta":id_venta,"id_usuario":id_usuario,"id_producto":id_producto}
@@ -212,6 +223,16 @@ def Postulacion_controller(descripcion_postulacion,estado_postulacion,id_venta,i
         response = {'error':'Tenemos problemas en estos momentos'}
     return response
 
+def postulacion_aceptada(id):
+    url='http://127.0.0.1:8000/api_postulacion/postulacion_aceptada/'+str(id)
+    try: 
+        response = requests.get(url)
+    except:
+        data = 'error de conexion'
+        return data
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
 #Venta Controllers       
 def ventas_get():
     url='http://127.0.0.1:8000/api_venta/venta/'
@@ -231,8 +252,22 @@ def Ventas_get_id(id):
         content = json.loads(response.content)
         return content
     if response.status_code == 404:
-        data = 'ERROR: Usuario no encontrado'
-        return data
+        content = json.loads(response.content)
+        return content
+
+def venta_cliente(id,estado_venta):
+    url = 'http://127.0.0.1:8000/api_venta/venta_cliente/'+str(id)
+    body = {'estado_venta':estado_venta}
+    try:
+        response = requests.post(url,body)
+    except:
+        return 'error de conexion'
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
+        content = json.loads(response.content)
+        return content
 
 #CARGA CONTROLLERS 
 def carga_post(capacidad,tamano,refrigeracion,id_usuario,id_subasta):

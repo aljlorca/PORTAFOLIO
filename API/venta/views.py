@@ -36,6 +36,13 @@ def eliminar_venta(id_venta):
     cursor.callproc('VENTA_ELIMINAR',[id_venta,salida])
     return round(salida.getvalue())
 
+def venta_cliente(id_venta,estado_venta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('VENTA_CLIENTE',[id_venta,estado_venta,salida])
+    return round(salida.getvalue())
+
 def lista_venta():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -140,6 +147,32 @@ class VentaView(View):
         except:
             datos = {'message':'ERORR: Json invalido'}
             return JsonResponse(datos, status=500)
+
+class VentaCliente(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def put(self, request,id_venta):
+        try:
+            jd = json.loads(request.body)
+            try:
+                salida = venta_cliente(id_venta,estado_venta=jd['estado_venta'],)
+                if salida == 1:
+                    datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible agregar la venta'}
+                    return JsonResponse(datos, status=404)
+            except:
+                datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+            return JsonResponse(datos, status=500)
+            
+    
+
 
 class VentaViewset(viewsets.ModelViewSet):
     queryset = Venta.objects.filter(estado_fila='1')

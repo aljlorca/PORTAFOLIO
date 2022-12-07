@@ -108,7 +108,27 @@ def subasta_venta_user(id_usuario):
         cont=cont+1
     return lista_json
 
-    
+def subasta_aceptada(id_venta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc('SUBASTA_ACEPTADA', [id_venta,out_cur])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    lista_json=[]
+    cont=0
+    for dato in lista:
+        fila=lista[cont]
+        fecha = str(fila[2])
+        jd = {'id_subasta':fila[0],
+        'monto_subasta':fila[1],
+        'fecha_subasta':fecha[:-9],
+        'estado_subasta':fila[3],}
+        lista_json.append(jd)
+        cont=cont+1
+    return lista_json
 
 class SubastaView(View):
     @method_decorator(csrf_exempt)
@@ -259,6 +279,18 @@ class SubastaAceptarView(View):
             datos = {'message':'ERORR: tenemos problemas en estos momentos'}
             return JsonResponse(datos, status=500)    
 
+class SubastaAceptada(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get(self, request, id_venta):
+        try:
+            salida = subasta_aceptada(id_venta)
+            return JsonResponse(salida,status=200,safe=False)
+        except:
+            datos = {'message':'ERROR: Validar datos'}
+            return JsonResponse(datos, status=500)
 
 class SubastaViewset(viewsets.ModelViewSet):
     queryset = Subasta.objects.filter(estado_fila='1')

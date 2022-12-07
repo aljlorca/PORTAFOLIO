@@ -22,6 +22,8 @@ urlpatterns = [
     path("cliente_externo/", cliente_externo, name="cliente_externo"),
     path('pedido/', pedido , name="pedido"),
     path("listado_ventas/", listado_ventas, name="listado_ventas"),
+    path("venta_resumen/<str:id_venta>/", venta_resumen, name="venta_resumen"),
+
 
     #Proveedor
     path("productores/", productores, name="productores"),
