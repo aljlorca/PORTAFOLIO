@@ -21,17 +21,10 @@
                                 <tr>
                                     <th>Id venta</th>
                                     <th>Descripcion</th>
-                                    <th>Estado</th>
-                                    <th>Monto Bruto</th>
-                                    <th>IVA</th>
-                                    <th>Monto Neto</th>
+                                    <th>Estado</th>                                    
                                     <th>Fecha</th>
-                                    <th>Cantidad</th>
-                                    <th>Monto Transporte</th>
-                                    <th>Monto Aduanas</th>
-                                    <th>Costo Servicio</th>
-                                    <th>Comision</th>
-                                    <th>Aceptar Venta</th>
+
+                                    <th>Detalle Venta</th>
 
                                 </tr>
                             </thead>
@@ -42,21 +35,9 @@
                                 <tr>
                                     <td>{{v.id_venta}}</td>
                                     <td>{{v.descripcion_venta}}</td>
-                                    <td>{{v.estado_venta}}</td>
-                                    <td>{{v.monto_bruto_venta}}</td>
-                                    <td>{{v.iva}}</td>
-                                    <td>{{v.monto_neto_venta}}</td>
+                                    <td>{{v.estado_venta}}</td>                                    
                                     <td>{{v.fecha_venta}}</td>
-                                    <td>{{v.cantidad_venta}}</td>
-                                    <td>{{v.monto_transporte}}</td>
-                                    <td>{{v.monto_aduanas}}</td>
-                                    <td>{{v.pago_servicio}}</td>
-                                    <td>{{v.comision_venta}}</td>
-                                    {% if v.estado_venta == 'Entregada' %}
-                                        <td><a type="button" class="btn btn-primary" href="{% url 'venta_resumen' v.id_venta %}">IR</a></td>
-                                    {% else %}
-                                        <td> La venta aun no es entregada</td>
-                                    {% endif %}
+                                    <td><a type="button" class="btn btn-primary" href="{% url 'venta_resumen' v.id_venta %}">Ver</a></td>
 
                                 {% endif %}
 

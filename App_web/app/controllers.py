@@ -256,10 +256,9 @@ def Ventas_get_id(id):
         return content
 
 def venta_cliente_aceptar(id):
-    url = 'http://127.0.0.1:8000/api_venta/venta_cliente/'+str(id)
-    body = {"estado_venta":"Aceptada"}
+    url = 'http://127.0.0.1:8000/api_venta/venta_cliente_aceptar/'+str(id)
     try:
-        response = requests.put(url,body)
+        response = requests.put(url)
     except:
         return 'error de conexion'
     if response.status_code == 200:
@@ -273,10 +272,9 @@ def venta_cliente_aceptar(id):
         return content
 
 def venta_cliente_rechazar(id):
-    url = 'http://127.0.0.1:8000/api_venta/venta_cliente/'+str(id)
-    body = {"estado_venta":"Rechazada"}
+    url = 'http://127.0.0.1:8000/api_venta/venta_cliente_rechazar/'+str(id)
     try:
-        response = requests.put(url,body)
+        response = requests.put(url)
     except:
         return 'error de conexion'
     if response.status_code == 200:

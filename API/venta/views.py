@@ -148,28 +148,43 @@ class VentaView(View):
             datos = {'message':'ERORR: Json invalido'}
             return JsonResponse(datos, status=500)
 
-class VentaCliente(View):
+class VentaClienteAceptar(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
     def put(self, request,id_venta):
         try:
-            jd = json.loads(request.body)
-            try:
-                salida = venta_cliente(id_venta,estado_venta=jd['estado_venta'],)
-                if salida == 1:
-                    datos = {'message':'Success'}
-                    return JsonResponse(datos, status=201)
-                elif salida == 0:
-                    datos = {'message':'ERORR: no fue posible agregar la venta'}
-                    return JsonResponse(datos, status=404)
-            except:
-                datos = {'message':'ERROR: Validar datos'}
+            salida = venta_cliente(id_venta,estado_venta='aceptada')
+            if salida == 1:
+                datos = {'message':'Success'}
+                return JsonResponse(datos, status=201)
+            elif salida == 0:
+                datos = {'message':'ERORR: no fue posible agregar la venta'}
                 return JsonResponse(datos, status=404)
         except:
-            datos = {'message':'ERORR: Json invalido'}
-            return JsonResponse(datos, status=500)
+            datos = {'message':'ERROR: Validar datos'}
+            return JsonResponse(datos, status=404)
+
+
+class VentaClienteRechazar(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def put(self, request,id_venta):
+        try:
+            salida = venta_cliente(id_venta,estado_venta='rechazada')
+            if salida == 1:
+                datos = {'message':'Success'}
+                return JsonResponse(datos, status=201)
+            elif salida == 0:
+                datos = {'message':'ERORR: no fue posible agregar la venta'}
+                return JsonResponse(datos, status=404)
+        except:
+            datos = {'message':'ERROR: Validar datos'}
+            return JsonResponse(datos, status=404)
+
             
     
 

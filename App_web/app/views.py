@@ -190,27 +190,40 @@ def ordenes(request):
 def venta_resumen(request, id_venta):
     data = get_session(request)
     try:
-        if data['cargo']!='Cliente Interno':
+        if data['cargo']!='Cliente Interno' and 'Cliente Externo':
             return redirect(to="http://127.0.0.1:3000/")
     except:
         return redirect(to="http://127.0.0.1:3000/")
 
-    data['venta']=Ventas_get_id(id_venta)
-    data['subasta']=subasta_aceptada(id_venta)
-    data['postulacion']=postulacion_aceptada(id_venta)
-    postulacion = data['postulacion']
-    data['producto']=producto_get_id(postulacion['id_producto'])
-    data['calidad']=calidad_get()
+    try:
+        data['venta']=Ventas_get_id(id_venta)
+    except:
+        data['venta']='no encontrada'
+    try:
+        data['subasta']=subasta_aceptada(id_venta)
+    except:
+        data['subasta']='no encontrada'
+    try:
+        data['postulacion']=postulacion_aceptada(id_venta)
+        postulacion = data['postulacion']
+    except:
+        data['postulacion']='no encontrada'
+    try:
+        data['producto']=producto_get_id(postulacion['id_producto'])
+        data['calidad']=calidad_get()
+    except:
+        data['producto']='no encontrado'
+
 
     try:
         if request.method == 'POST':
             aceptada = request.POST.get('Aceptada')
             rechazada = request.POST.get('Rechazada')
             if aceptada == 'Aceptar':
-                venta_cliente_aceptar(id_venta)
+                res=venta_cliente_aceptar(id_venta)
                 print(res)
             elif rechazada == 'Rechazar':
-                res=venta_cliente_rechazar(id_venta)
+                res=res=venta_cliente_rechazar(id_venta)
                 print(res)
             return redirect(to="http://127.0.0.1:3000/listado_ventas_locales/")
 

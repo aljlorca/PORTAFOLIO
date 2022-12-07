@@ -113,11 +113,13 @@
                 </table>
             </div>
         </div>
+        {% if v.estado_venta == 'Entregada' %}
         <form method="POST">
             {% csrf_token %}
             <input class="btn btn-success float-right" type="submit" value="Aceptar" name="Aceptada" href="http://127.0.0.1:3000/listado_ventas_locales/">
             <input class="btn btn-danger float-right" type="submit" value="Rechazar" name="Rechazada"  href="http://127.0.0.1:3000/listado_ventas_locales/">
         </form>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
