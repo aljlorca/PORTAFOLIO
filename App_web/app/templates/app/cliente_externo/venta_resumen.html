@@ -113,7 +113,7 @@
                 </table>
             </div>
         </div>
-        {% if v.estado_venta == 'Entregada' %}
+        {% if venta.estado_venta == 'Entregada' %}
         <form method="POST">
             {% csrf_token %}
             <input class="btn btn-success float-right" type="submit" value="Aceptar" name="Aceptada" href="http://127.0.0.1:3000/listado_ventas_locales/">

@@ -540,6 +540,11 @@ def reporte(request,id_venta):
 
 def tbk_respuesta(request):
     data = get_session(request)
+    try:
+        if data['cargo']!='Cliente Interno':
+            return redirect(to="http://127.0.0.1:3000/")
+    except:
+        return redirect(to="http://127.0.0.1:3000/")
     token=request.get_full_path()
     token=token[-64:]
     res=get_statusTBK(token)
