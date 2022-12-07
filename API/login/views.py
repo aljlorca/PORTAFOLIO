@@ -3,9 +3,6 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from .models import Usuario
-from .serializers import UsuarioDesktopAuthSerializer
-from rest_framework import viewsets
 import json
 import cx_Oracle
 
@@ -46,7 +43,4 @@ class UsuarioAuthView(View):
             datos = {'message':'ERORR: Json invalido'}
             return JsonResponse(datos, status=500)
 
-class UsuarioHistoricoViewset(viewsets.ModelViewSet):
-    queryset = Usuario.objects.filter(administrador_usuario = '1')
-    serializer_class = UsuarioDesktopAuthSerializer
 
