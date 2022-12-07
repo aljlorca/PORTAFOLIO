@@ -546,7 +546,11 @@ def tbk_respuesta(request):
     data['response']=res
     try:
         if res['status']=='AUTHORIZED':
+            id_usuario = request.session['id_user']
+            usuario = usuario_get_id(id_usuario)
             salida = carrito_post(res['amount'],str(data['id_user']))
+            respuesta = wsp_confirmation(str(usuario['telefono_usuario']))
+            print(respuesta)
             diccionario=carro.Carro.listar_carro(request)
             productos = productos_get()
             c = 0
@@ -559,6 +563,7 @@ def tbk_respuesta(request):
                     producto_delete(str(producto_carrito['id_producto'])) 
                 except:
                     pass
+
     except:
         pass
     carro.Carro.limpiar_carro(request)

@@ -390,8 +390,36 @@ def reporte_post(descripcion_reporte,productos_entregados_reporte,productos_perd
     try: 
         response = requests.post(url,json=body)
     except:
-        data = {'message':'error de conexion'}
-        return data
+        return {'message':'error de conexion'}
     if response.status_code == 201:
         content = json.loads(response.content)
         return content
+
+
+#WSP Controller
+
+def wsp_confirmation(numero):
+    headers = {
+        "Authorization": f"Bearer EAAP4pO8KcIEBAEANXYE7R3W4rbuWZAXfGvK7I0ZAII6OZCFgeDjIUe5ofCAWJthJVLwEZA7h8CavsyahcPuziZAmdPgrS0kXMh6gamDVb3sLgZAZBar2OPxcNA1DpU4qQkOtvEIz97RijiwZCxTxUmopWmbLSEiZAeEY0PMCTa7k9KaDcbXzWxgmsZB6ZAvMmagTwYc2VJW4UN0vAZDZD",
+        'Content-Type': 'application/json'
+    }
+    url = 'https://graph.facebook.com/v15.0/109720815314379/messages'
+    body = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": numero,
+            "type": "template",
+            "template": {
+                "name": "compra",
+                "language": {
+                    "code": "es"
+                }
+            }
+        }
+    try:
+        response = requests.post(url,data=json.dumps(body),headers=headers)
+        content = json.loads(response.content)
+        return content
+
+    except:
+        return {'message':'error de conexion'}
