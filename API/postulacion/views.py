@@ -62,7 +62,7 @@ def postulacion_aceptada(id_venta):
         'id_producto':fila[3],}
         lista_json.append(jd)
         cont=cont+1
-    return lista_json
+    return jd
 
 
 

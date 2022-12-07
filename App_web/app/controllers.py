@@ -255,17 +255,37 @@ def Ventas_get_id(id):
         content = json.loads(response.content)
         return content
 
-def venta_cliente(id,estado_venta):
+def venta_cliente_aceptar(id):
     url = 'http://127.0.0.1:8000/api_venta/venta_cliente/'+str(id)
-    body = {'estado_venta':estado_venta}
+    body = {"estado_venta":"Aceptada"}
     try:
-        response = requests.post(url,body)
+        response = requests.put(url,body)
     except:
         return 'error de conexion'
     if response.status_code == 200:
         content = json.loads(response.content)
         return content
     if response.status_code == 404:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 500:
+        content = json.loads(response.content)
+        return content
+
+def venta_cliente_rechazar(id):
+    url = 'http://127.0.0.1:8000/api_venta/venta_cliente/'+str(id)
+    body = {"estado_venta":"Rechazada"}
+    try:
+        response = requests.put(url,body)
+    except:
+        return 'error de conexion'
+    if response.status_code == 200:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 500:
         content = json.loads(response.content)
         return content
 

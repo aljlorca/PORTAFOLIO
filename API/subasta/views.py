@@ -128,7 +128,7 @@ def subasta_aceptada(id_venta):
         'estado_subasta':fila[3],}
         lista_json.append(jd)
         cont=cont+1
-    return lista_json
+    return jd
 
 class SubastaView(View):
     @method_decorator(csrf_exempt)

@@ -9,23 +9,115 @@
 <br>
 <br>
 <div class="container-fluid py-5">
-    <div class="row px-xl-5">
-        <div class="col-lg-7 pb-5">
-            <h3 class="font-weight-semi-bold">{{producto.nombre_producto}}</h3>
-            <h3 class="font-weight-semi-bold mb-4">${{producto.precio_producto | intcomma}}</h3>
-            <h3 class="font-weight-semi-bold mb-4">Peso del Producto: {{producto.cantidad_producto}}    TN</h3>
-            <p class="mb-4">{{producto.descripcion_producto}}</p>
-            {% for c in calidad %}
-                {% if c.id_calidad == producto.id_calidad %}
-                <p class="mb-4 ">Calidad: {{c.descripcion_calidad}}</p>
-                {% endif %}
-            {% endfor %}
-            <div class="d-flex align-items-center mb-4 pt-2">
-                <a class="btn btn-primary px-3" href="{% url 'venta_resumen' producto.id_producto %}"><i class="fa fa-shopping-cart mr-1"></i>Añadir al Carrito</a>
+    <div><h1>Resumen de Proceso de Venta</h1></div>
+    <div class="container-fluid">
+        <div>
+            <h2>Venta</h1>
+            <div class="table-responsive" >
+                <table class="table table-bordered">    
+                    <tbody>
+                    <tr>
+                        <th scope="row">Descripcion</th>
+                        <td>{{venta.descripcion_venta}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Estado</th>
+                        <td>{{venta.estado_venta}}</td>
+            
+                    </tr>
+                    <tr>
+                        <th scope="row">Fecha</th>
+                        <td>{{venta.fecha_venta}}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-        
         </div>
+        <div>
+            <h2>Subasta</h1>
+            <div class="table-responsive" >
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Monto</th>
+                        <td>{{subasta.monto_subasta}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Estado</th>
+                        <td>{{subasta.estado_subasta}}</td>
+            
+                    </tr>
+                    <tr>
+                        <th scope="row">Fecha</th>
+                        <td>{{subasta.fecha_subasta}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <h2>Postulacion</h1>
+            <div class="table-responsive" >
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th scope="row">Descripcion</th>
+                        <td>{{postulacion.descripcion_postulacion}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Estado</th>
+                        <td>{{postulacion.estado_postulacion}}</td>
+            
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <h2>Producto</h1>
+            <div class="table-responsive" >
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Nombre</th>
+                        <td>{{producto.nombre_producto}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Descripción</th>
+                        <td>{{producto.descripcion_producto}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cantidad</th>
+                        <td>{{producto.cantidad_producto}}</td>
+            
+                    </tr>
+                    <tr>
+                        <th scope="row">Precio</th>
+                        <td>{{producto.precio_producto}}</td>
+            
+                    </tr>
+                    <tr>
+                        <th scope="row">Imagen</th>
+                        <td><img class="img-fluid" src="{{producto.imagen_producto}}" height="20" alt=""></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Calidad</th>
+                        <td>{% for c in calidad %}
+                            {% if c.id_calidad == producto.id_calidad %}
+                                {{c.descripcion_calidad}}
+                            {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <input class="btn btn-success float-right" type="submit" value="Aceptar" name="Aceptada" href="http://127.0.0.1:3000/listado_ventas_locales/">
+            <input class="btn btn-danger float-right" type="submit" value="Rechazar" name="Rechazada"  href="http://127.0.0.1:3000/listado_ventas_locales/">
+        </form>
     </div>
-
-
+</div>
 {% endblock %}

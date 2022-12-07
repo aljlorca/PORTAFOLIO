@@ -199,9 +199,23 @@ def venta_resumen(request, id_venta):
     data['subasta']=subasta_aceptada(id_venta)
     data['postulacion']=postulacion_aceptada(id_venta)
     postulacion = data['postulacion']
-    postulacionjson = postulacion[0]
-    data['producto']=producto_get_id(postulacionjson['id_producto'])
+    data['producto']=producto_get_id(postulacion['id_producto'])
     data['calidad']=calidad_get()
+
+    try:
+        if request.method == 'POST':
+            aceptada = request.POST.get('Aceptada')
+            rechazada = request.POST.get('Rechazada')
+            if aceptada == 'Aceptar':
+                venta_cliente_aceptar(id_venta)
+                print(res)
+            elif rechazada == 'Rechazar':
+                res=venta_cliente_rechazar(id_venta)
+                print(res)
+            return redirect(to="http://127.0.0.1:3000/listado_ventas_locales/")
+
+    except:
+        data={'error':'Error intente nuevamente'}
 
 
     return render(request,'app/cliente_externo/venta_resumen.html',data)
