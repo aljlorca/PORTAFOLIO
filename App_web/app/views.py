@@ -554,7 +554,8 @@ def tbk_respuesta(request):
             id_usuario = request.session['id_user']
             usuario = usuario_get_id(id_usuario)
             carrito_post(res['amount'],str(data['id_user']))
-            wsp_confirmation(str(usuario['telefono_usuario']))
+            res=wsp_confirmation(str(usuario['telefono_usuario']))
+            print(res)
             diccionario=carro.Carro.listar_carro(request)
             productos = productos_get()
             c = 0

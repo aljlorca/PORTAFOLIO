@@ -329,14 +329,14 @@ def get_initTrxTBK(monto, id_usuario):
     orden= id_usuario+'_'+fecha
     session = id_usuario+'_'+fecha_session
     body = json.dumps({"buy_order": orden, "session_id": session, "amount": monto , "return_url": "http://127.0.0.1:3000/tbk_respuesta/"})
-    url = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions"
+    url = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.3/transactions"
     response = generate_request_tbk(url, body)
     if response:
         return response
 
 def get_statusTBK(token):
     header = {'Tbk-Api-Key-Id': '597055555532','Tbk-Api-Key-Secret': '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C','Content-Type': 'application/json'}
-    url = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions/"+token
+    url = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.3/transactions/"+token
     try: 
         autorizar = requests.put(url,headers=header).json()
         try:    
@@ -400,7 +400,7 @@ def reporte_post(descripcion_reporte,productos_entregados_reporte,productos_perd
 
 def wsp_confirmation(numero):
     headers = {
-        "Authorization": f"Bearer EAAP4pO8KcIEBAEANXYE7R3W4rbuWZAXfGvK7I0ZAII6OZCFgeDjIUe5ofCAWJthJVLwEZA7h8CavsyahcPuziZAmdPgrS0kXMh6gamDVb3sLgZAZBar2OPxcNA1DpU4qQkOtvEIz97RijiwZCxTxUmopWmbLSEiZAeEY0PMCTa7k9KaDcbXzWxgmsZB6ZAvMmagTwYc2VJW4UN0vAZDZD",
+        "Authorization": f"Bearer EAAP4pO8KcIEBAF28JcL6ZA9vjnaYB2pIfvvZCZB7d6OWLYdwLX0uvdxHi0v87jLeENx76naAYTpBh5VGQFtDgOYgRUZC0g3JVZCTtpg2bJ1QAO8G6Et7InOeNPSZCNtDs9uq7vRSJHt5gaIP37v5ZBmZAcUdPODN26MTmJkZCcbhQBxitrpcDMQkoDCv4ztuNSlmQ3r2DdZARtAwZDZD",
         'Content-Type': 'application/json'
     }
     url = 'https://graph.facebook.com/v15.0/109720815314379/messages'

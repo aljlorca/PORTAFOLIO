@@ -160,3 +160,7 @@ C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Nego
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.dll
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\obj\Debug\Negocio.pdb
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\BouncyCastle.Crypto.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.xmlworker.dll
+D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.xml
