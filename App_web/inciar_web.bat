@@ -1,1 +1,1 @@
-Python .\manage.py runserver 3000
+Python .\manage.py runserver 3000 --insecure
