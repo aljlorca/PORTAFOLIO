@@ -397,10 +397,9 @@ def reporte_post(descripcion_reporte,productos_entregados_reporte,productos_perd
 
 
 #WSP Controller
-
 def wsp_confirmation(numero):
     headers = {
-        "Authorization": f"Bearer EAAP4pO8KcIEBAF28JcL6ZA9vjnaYB2pIfvvZCZB7d6OWLYdwLX0uvdxHi0v87jLeENx76naAYTpBh5VGQFtDgOYgRUZC0g3JVZCTtpg2bJ1QAO8G6Et7InOeNPSZCNtDs9uq7vRSJHt5gaIP37v5ZBmZAcUdPODN26MTmJkZCcbhQBxitrpcDMQkoDCv4ztuNSlmQ3r2DdZARtAwZDZD",
+        "Authorization": f"Bearer EAAP4pO8KcIEBALQ1z7wxb8cGKrFZC8O7b9yZA5xCuwQUwZA0TuVxxNmF8GtJRiRKuNZC9f3irfTe1b9bs2X9UkzpT71bcOoQFpeg7mcpS1aqOIrMId3xci4Eeu7oqA4WgjZB0z5VXMgxkKlZCCeBaHFa7aZBGvZALuZC2amBCXg0hZAc4ZCg7pFJNjSMdNx2z8OreIdMdrsw5H7XQZDZD",
         'Content-Type': 'application/json'
     }
     url = 'https://graph.facebook.com/v15.0/109720815314379/messages'

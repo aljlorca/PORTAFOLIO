@@ -13,58 +13,58 @@
 <br>
 <br>
 {% if response.status == 'AUTHORIZED'  %}
-<h1>Resultado de la autenticación: {{response.vci}}</h1>
-<h1>Total: ${{response.amount | intcomma}}</h1>
-<h1>Estado: {{response.status}}</h1>
-<h1>Orden: {{response.buy_order}}</h1>
-<h1>Tarjeta: XXXX XXXX XXXX {{response.card_detail.card_number}}</h1>
-<h1>Código de autorización: {{response.authorization_code}}</h1>
-    {% if response.payment_type_code == 'VD' %}
-        <h1>Tipo de Pago: Venta Débito</h1>
-    {% elif response.payment_type_code == 'VC' %}
-        <h1>Tipo de Pago: Venta en cuotas</h1>
-    {% elif response.payment_type_code == 'VN' %}
-        <h1>Tipo de Pago: Venta Normal</h1>
-    {% elif response.payment_type_code == 'SI' %}
-        <h1>Tipo de Pago: 3 cuotas sin interés</h1>
-    {% elif response.payment_type_code == 'S2' %}
-        <h1>Tipo de Pago: 2 cuotas sin interés</h1> 
-    {% elif response.payment_type_code == 'NC' %}
-        <h1>Tipo de Pago:  N Cuotas sin interés</h1>
-    {% elif response.payment_type_code == 'VP' %}
-        <h1>Tipo de Pago: Venta Prepago</h1>
-    {% endif %}
-<h1>Código de respuesta: {{response.response_code}}</h1>
-<h1>Monto de las cuotas: {{response.installments_amount}}</h1>
-<h1>Cantidad de cuotas: {{response.installments_number}}</h1>
+    <h1>Resultado de la autenticación: {{response.vci}}</h1>
+    <h1>Total: ${{response.amount | intcomma}}</h1>
+    <h1>Estado: {{response.status}}</h1>
+    <h1>Orden: {{response.buy_order}}</h1>
+    <h1>Tarjeta: XXXX XXXX XXXX {{response.card_detail.card_number}}</h1>
+    <h1>Código de autorización: {{response.authorization_code}}</h1>
+        {% if response.payment_type_code == 'VD' %}
+            <h1>Tipo de Pago: Venta Débito</h1>
+        {% elif response.payment_type_code == 'VC' %}
+            <h1>Tipo de Pago: Venta en cuotas</h1>
+        {% elif response.payment_type_code == 'VN' %}
+            <h1>Tipo de Pago: Venta Normal</h1>
+        {% elif response.payment_type_code == 'SI' %}
+            <h1>Tipo de Pago: 3 cuotas sin interés</h1>
+        {% elif response.payment_type_code == 'S2' %}
+            <h1>Tipo de Pago: 2 cuotas sin interés</h1> 
+        {% elif response.payment_type_code == 'NC' %}
+            <h1>Tipo de Pago:  N Cuotas sin interés</h1>
+        {% elif response.payment_type_code == 'VP' %}
+            <h1>Tipo de Pago: Venta Prepago</h1>
+        {% endif %}
+    <h1>Código de respuesta: {{response.response_code}}</h1>
+    <h1>Monto de las cuotas: {{response.installments_amount}}</h1>
+    <h1>Cantidad de cuotas: {{response.installments_number}}</h1>
 
 {% elif response.status == 'FAILED'  %}
-<h1>Resultado de la autenticación: {{response.vci}}</h1>
-<h1>Total: ${{response.amount | intcomma}}</h1>
-<h1>Estado: Rechazada</h1>
-<h1>Orden: {{response.buy_order}}</h1>
-<h1>Tarjeta: XXXX XXXX XXXX {{response.card_detail.card_number}}</h1>
-<h1>Código de autorización: N/A</h1>
-    {% if response.payment_type_code == 'VD' %}
-    <h1>Tipo de Pago: Venta Débito</h1>
-    {% elif response.payment_type_code == 'VC' %}
-    <h1>Tipo de Pago: Venta en cuotas</h1>
-    {% elif response.payment_type_code == 'VN' %}
-    <h1>Tipo de Pago: Venta Normal</h1>
-    {% elif response.payment_type_code == 'SI' %}
-    <h1>Tipo de Pago: 3 cuotas sin interés</h1>
-    {% elif response.payment_type_code == 'S2' %}
-    <h1>Tipo de Pago: 2 cuotas sin interés</h1> 
-    {% elif response.payment_type_code == 'NC' %}
-    <h1>Tipo de Pago:  N Cuotas sin interés</h1>
-    {% elif response.payment_type_code == 'VP' %}
-    <h1>Tipo de Pago: Venta Prepago</h1>
-    {% endif %}
-<h1>Código de respuesta: {{response.response_code}}</h1>
-<h1>Monto de las cuotas: {{response.installments_amount}}</h1>
-<h1>Cantidad de cuotas: {{response.installments_number}}</h1>
+    <h1>Resultado de la autenticación: {{response.vci}}</h1>
+    <h1>Total: ${{response.amount | intcomma}}</h1>
+    <h1>Estado: Rechazada</h1>
+    <h1>Orden: {{response.buy_order}}</h1>
+    <h1>Tarjeta: XXXX XXXX XXXX {{response.card_detail.card_number}}</h1>
+    <h1>Código de autorización: N/A</h1>
+        {% if response.payment_type_code == 'VD' %}
+        <h1>Tipo de Pago: Venta Débito</h1>
+        {% elif response.payment_type_code == 'VC' %}
+        <h1>Tipo de Pago: Venta en cuotas</h1>
+        {% elif response.payment_type_code == 'VN' %}
+        <h1>Tipo de Pago: Venta Normal</h1>
+        {% elif response.payment_type_code == 'SI' %}
+        <h1>Tipo de Pago: 3 cuotas sin interés</h1>
+        {% elif response.payment_type_code == 'S2' %}
+        <h1>Tipo de Pago: 2 cuotas sin interés</h1> 
+        {% elif response.payment_type_code == 'NC' %}
+        <h1>Tipo de Pago:  N Cuotas sin interés</h1>
+        {% elif response.payment_type_code == 'VP' %}
+        <h1>Tipo de Pago: Venta Prepago</h1>
+        {% endif %}
+    <h1>Código de respuesta: {{response.response_code}}</h1>
+    <h1>Monto de las cuotas: {{response.installments_amount}}</h1>
+    <h1>Cantidad de cuotas: {{response.installments_number}}</h1>
 {% else %}
-<h1>Hubo un problema durante el pago</h1>
+    <h1>Hubo un problema durante el pago</h1>
 {% endif %}
 
 
