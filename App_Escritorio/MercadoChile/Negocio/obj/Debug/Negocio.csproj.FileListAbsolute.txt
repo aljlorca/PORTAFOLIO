@@ -164,3 +164,7 @@ D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin
 D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.dll
 D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.xmlworker.dll
 D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.xml
