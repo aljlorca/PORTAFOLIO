@@ -69,9 +69,9 @@ def cliente_interno(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Interno':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
 
     return render(request, 'app/Cliente_Interno/menu.html',data)
 
@@ -79,9 +79,9 @@ def carrito(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Interno':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     total = request.POST.get('precio_total')
     data['resultado']=get_initTrxTBK(total,str(data['id_user']))
     return render(request, 'app/carro/carrito.html',data)
@@ -89,7 +89,7 @@ def carrito(request):
 def cliente_ecomerce(request):
     data = get_session(request)
     if data['cargo']!='Cliente Interno':
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     data['producto'] = productos_get()
     data['calidad'] = calidad_get()
     return render(request, 'app/Cliente_Interno/listado_productos.html',data)
@@ -98,10 +98,10 @@ def detalle_producto(request, id_producto):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Interno':
-            return redirect(to="http://127.0.0.1:3000/")
+           return render(request, '404.html',data)
 
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
 
     data['producto']=producto_get_id(id_producto)
     data['calidad'] = calidad_get()
@@ -111,10 +111,10 @@ def checkout(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Interno':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
 
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     
     data['user'] =  usuario_get_id(str(data['id_user']))
     total = request.POST.get('precio_total')
@@ -124,7 +124,7 @@ def checkout(request):
 def detalle_venta(request,id_venta):
     data = get_session(request)
     if data['cargo']!='Cliente Interno':
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     data['ventas'] = Ventas_get_id(id_venta)
     id_venta=request.session["id_venta"]
     return render(request, 'app/proveedor/Ver_ventas.html', data)
@@ -133,9 +133,9 @@ def pedido_cliente_interno(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Interno' and data['empresa']!='Persona Natural':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
 
     try:
         if request.method == 'POST':
@@ -159,10 +159,10 @@ def listado_ventas_locales(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Interno' and data['empresa']!='Persona Natural':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
         
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
 
     try:
         data['venta'] = ventas_get()
@@ -175,9 +175,9 @@ def ordenes(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Interno':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     
     try:
         data['carrito'] = carrito_get_id(str(data['id_user']))
@@ -191,9 +191,9 @@ def venta_resumen(request, id_venta):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Interno' and 'Cliente Externo':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
 
     try:
         data['venta']=Ventas_get_id(id_venta)
@@ -242,9 +242,9 @@ def cliente_externo(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Externo':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
 
     return render(request, 'app/cliente_externo/menu.html',data)
 
@@ -252,9 +252,9 @@ def pedido(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Externo':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     try:
         if request.method == 'POST':
             descripcion = request.POST.get('descripcion')
@@ -276,10 +276,10 @@ def listado_ventas(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Externo':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
         
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
 
     try:
         data['venta'] = ventas_get()
@@ -295,7 +295,7 @@ def listado_ventas(request):
 def proveedor(request):
     data = get_session(request)
     if data['cargo']!='Proveedor':
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     return render(request, 'app/proveedor/menu.html',data)
 
 
@@ -304,7 +304,7 @@ def productores(request):
     try:
         data['calidad']=calidad_get()
         if data['cargo']!='Proveedor':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
         if request.method == 'POST':
                 company=request.session['company']
                 company=company.replace(' ','_')
@@ -340,10 +340,10 @@ def postulaciones(request):
     data = get_session(request)
     try:
         if data['cargo']!='Proveedor':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
 
     except:
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
     try:
         data['ventas']=ventas_get()
     except:
@@ -354,10 +354,10 @@ def ingreso_postulacion(request,id_venta):
     data = get_session(request)
     try:
         if data['cargo']!='Proveedor':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
 
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     
     data['calidad']=calidad_get()
     data['venta']= Ventas_get_id(id_venta)
@@ -401,10 +401,10 @@ def transportista(request):
     data = get_session(request)
     try:
         if data['cargo']!='Transportista':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
 
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
 
     return render(request, 'app/transportista/menu.html',data)
 
@@ -414,10 +414,10 @@ def subasta(request):
         try:
             cargo=request.session['cargo']
             if cargo!='Transportista':
-                return redirect(to="http://127.0.0.1:3000/")
+                return render(request, '404.html',data)
 
         except:
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
         data = {
             'ventas':ventas_get(),
             'subasta':subasta_get(),
@@ -437,7 +437,7 @@ def detalle_subasta(request,id_venta):
     try:
         data = get_session(request)
         if data['cargo']!='Transportista':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
         try:
             id_usuario = request.session['id_user']
             carga=request.session['carga'] 
@@ -453,7 +453,7 @@ def detalle_subasta(request,id_venta):
             data['error']='Favor llenar los datos de carga'
             return redirect(to="http://127.0.0.1:3000/carga/")
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     
     if request.method == 'POST':
         monto = request.POST.get('monto')
@@ -479,10 +479,10 @@ def carga(request):
     data = get_session(request)
     try:
         if data['cargo']!='Transportista':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
 
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
 
     if request.method == 'POST':
         capacidad = request.POST.get('capacidad-carga')
@@ -499,10 +499,10 @@ def listado_reportes(request):
     data = get_session(request)
     try:
         if data['cargo']!='Transportista':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
 
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     
     id_usuario = request.session['id_user']
     data['reporte']=subasta_venta_usuario(id_usuario)
@@ -514,10 +514,10 @@ def reporte(request,id_venta):
     data = get_session(request)
     try:
         if data['cargo']!='Transportista':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
 
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     
     if request.method == 'POST':
         descripcion = request.POST.get('descripcion-reporte')
@@ -542,9 +542,9 @@ def tbk_respuesta(request):
     data = get_session(request)
     try:
         if data['cargo']!='Cliente Interno':
-            return redirect(to="http://127.0.0.1:3000/")
+            return render(request, '404.html',data)
     except:
-        return redirect(to="http://127.0.0.1:3000/")
+        return render(request, '404.html',data)
     token=request.get_full_path()
     token=token[-64:]
     res=get_statusTBK(token)
