@@ -2,72 +2,183 @@
 {% load static %}
 {% load humanize %}
 {% block contenido %}
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-{% if response.status == 'AUTHORIZED'  %}
-    <h1>Resultado de la autenticación: {{response.vci}}</h1>
-    <h1>Total: ${{response.amount | intcomma}}</h1>
-    <h1>Estado: {{response.status}}</h1>
-    <h1>Orden: {{response.buy_order}}</h1>
-    <h1>Tarjeta: XXXX XXXX XXXX {{response.card_detail.card_number}}</h1>
-    <h1>Código de autorización: {{response.authorization_code}}</h1>
-        {% if response.payment_type_code == 'VD' %}
-            <h1>Tipo de Pago: Venta Débito</h1>
-        {% elif response.payment_type_code == 'VC' %}
-            <h1>Tipo de Pago: Venta en cuotas</h1>
-        {% elif response.payment_type_code == 'VN' %}
-            <h1>Tipo de Pago: Venta Normal</h1>
-        {% elif response.payment_type_code == 'SI' %}
-            <h1>Tipo de Pago: 3 cuotas sin interés</h1>
-        {% elif response.payment_type_code == 'S2' %}
-            <h1>Tipo de Pago: 2 cuotas sin interés</h1> 
-        {% elif response.payment_type_code == 'NC' %}
-            <h1>Tipo de Pago:  N Cuotas sin interés</h1>
-        {% elif response.payment_type_code == 'VP' %}
-            <h1>Tipo de Pago: Venta Prepago</h1>
-        {% endif %}
-    <h1>Código de respuesta: {{response.response_code}}</h1>
-    <h1>Monto de las cuotas: {{response.installments_amount}}</h1>
-    <h1>Cantidad de cuotas: {{response.installments_number}}</h1>
 
-{% elif response.status == 'FAILED'  %}
-    <h1>Resultado de la autenticación: {{response.vci}}</h1>
-    <h1>Total: ${{response.amount | intcomma}}</h1>
-    <h1>Estado: Rechazada</h1>
-    <h1>Orden: {{response.buy_order}}</h1>
-    <h1>Tarjeta: XXXX XXXX XXXX {{response.card_detail.card_number}}</h1>
-    <h1>Código de autorización: N/A</h1>
-        {% if response.payment_type_code == 'VD' %}
-        <h1>Tipo de Pago: Venta Débito</h1>
-        {% elif response.payment_type_code == 'VC' %}
-        <h1>Tipo de Pago: Venta en cuotas</h1>
-        {% elif response.payment_type_code == 'VN' %}
-        <h1>Tipo de Pago: Venta Normal</h1>
-        {% elif response.payment_type_code == 'SI' %}
-        <h1>Tipo de Pago: 3 cuotas sin interés</h1>
-        {% elif response.payment_type_code == 'S2' %}
-        <h1>Tipo de Pago: 2 cuotas sin interés</h1> 
-        {% elif response.payment_type_code == 'NC' %}
-        <h1>Tipo de Pago:  N Cuotas sin interés</h1>
-        {% elif response.payment_type_code == 'VP' %}
-        <h1>Tipo de Pago: Venta Prepago</h1>
-        {% endif %}
-    <h1>Código de respuesta: {{response.response_code}}</h1>
-    <h1>Monto de las cuotas: {{response.installments_amount}}</h1>
-    <h1>Cantidad de cuotas: {{response.installments_number}}</h1>
-{% else %}
-    <h1>Hubo un problema durante el pago</h1>
-{% endif %}
+    <div class="container-xxl py-6">
+        {% if response.status == 'AUTHORIZED'  %}
+            <div class="container mt-5">
+                <div><h1 class="invoice-header">Detalles de compra: </h1></div>
+
+                
+                <div>
+                    <table class="table">
+                        <tr>
+                            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">
+                                Código de respuesta: {{response.response_code}}
+                            </td>
+                        </tr>
+                        <tr>
+                             <!--VALIDACION TIPO DE PAGO-->
+                            {% if response.payment_type_code == 'VD' %}
+                            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: Venta Débito</td>
+                            {% elif response.payment_type_code == 'VC' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: Venta en cuotas</td>
+                            {% elif response.payment_type_code == 'VN' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: Venta Normal</td>
+                            {% elif response.payment_type_code == 'SI' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: 3 cuotas sin interés</td>
+                            {% elif response.payment_type_code == 'S2' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: 2 cuotas sin interés</td> 
+                            {% elif response.payment_type_code == 'NC' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago:  N Cuotas sin interés</td>
+                            {% elif response.payment_type_code == 'VP' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: Venta Prepago</td>
+                            {% endif %}
+                        </tr>
+
+                        <tr>
+                            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">
+                                Tarjeta: XXXX XXXX XXXX {{response.card_detail.card_number}}
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">
+                                Estado: {{response.status}}
+                            </td>
+                        </tr>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        width="34%" height="32" align="center">N° Orden</td>
+                     
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        width="34%" height="32" align="center">Resultado</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        width="30%" align="center">Cantidad de Cuotas</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        width="30%" align="center">Monto</td>
+                </tr>
+                <tr>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                    height="32" align="center">{{response.buy_order}}</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        height="32" align="center">Pago: {{response.status}}</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        align="center">{{response.installments_amount}}</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        align="center">${{response.amount | intcomma}}</td>
+                </tr>
+                <tr>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        width="34%" height="32" align="center">Autorizacion</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        width="30%" align="center" colspan="2">Código de autorización: {{response.authorization_code}}</td>
+                </tr>
+            </table>
+
+            <!--
+                ### TERMINO DE ACEPTADO
+            -->
 
 
-<a href="http://127.0.0.1:3000/mercado/" class="btn btn-primary">Aceptar</a>
 
+
+
+            {% elif response.status == 'FAILED'  %}
+            <div class="container mt-5">
+                <div><h1 class="invoice-header">Detalles de compra: </h1></div>
+
+                
+                <div>
+                    <table class="table">
+                        <tr>
+                            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">
+                                Código de respuesta: {{response.response_code}}
+                            </td>
+                        </tr>
+                        <tr>
+                             <!--VALIDACION TIPO DE PAGO-->
+                            {% if response.payment_type_code == 'VD' %}
+                            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: Venta Débito</td>
+                            {% elif response.payment_type_code == 'VC' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: Venta en cuotas</td>
+                            {% elif response.payment_type_code == 'VN' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: Venta Normal</td>
+                            {% elif response.payment_type_code == 'SI' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: 3 cuotas sin interés</td>
+                            {% elif response.payment_type_code == 'S2' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: 2 cuotas sin interés</td> 
+                            {% elif response.payment_type_code == 'NC' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago:  N Cuotas sin interés</td>
+                            {% elif response.payment_type_code == 'VP' %}
+                                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Tipo de Pago: Venta Prepago</td>
+                            {% endif %}
+                        </tr>
+
+                        <tr>
+                            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">
+                                Tarjeta: XXXX XXXX XXXX {{response.card_detail.card_number}}
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">
+                                Estado: {{response.status}}
+                            </td>
+                        </tr>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        width="34%" height="32" align="center">N° Orden</td>
+                     
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        width="34%" height="32" align="center">Resultado</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        width="30%" align="center">Cantidad de Cuotas</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        width="30%" align="center">Monto</td>
+                </tr>
+                <tr>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                    height="32" align="center">{{response.buy_order}}</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        height="32" align="center">Pago: {{response.status}}</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        align="center">{{response.installments_amount}}</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        align="center">${{response.amount | intcomma}}</td>
+                </tr>
+                <tr>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        width="34%" height="32" align="center">Autorizacion</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        width="30%" align="center" colspan="2">Código de autorización: N/A</td>
+                </tr>
+            </table>
+            <!--
+                ### TERMINO DE RECHAZADO
+            -->
+            {% else %}
+            <div class="container-xxl py-6">
+                <h1>Hubo un problema durante el pago</h1>
+                <img class="img-fluid w-50" src="https://media.tenor.com/JIS_KDKKsgYAAAAd/guaton-computadora.gif" alt="">
+            </div>
+            {% endif %}
+            
+        </div>
+    
+
+        <a href="http://127.0.0.1:3000/mercado/" class="btn btn-primary">Aceptar</a>
+        
+    </div>
 {% endblock %}
