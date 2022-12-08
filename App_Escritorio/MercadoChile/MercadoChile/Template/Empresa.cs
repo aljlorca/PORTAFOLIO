@@ -37,7 +37,7 @@ namespace MercadoChile.Template
 
 
         DBApi DBApi = new DBApi();
-        getEmpresa Get = new getEmpresa();
+        getApi Get = new getApi();
 
         Uri baseUri = new Uri("http://127.0.0.1:8000/api_empresa/empresa_old/");
         
@@ -45,10 +45,10 @@ namespace MercadoChile.Template
         
         private async void  Empresa_Carga(object sender, EventArgs e)
         {
-            string respuesta5 = await Get.GetHttp2();
-            List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
-            lista5.RemoveAt(0);
-            cmbEmpresa.DataSource = lista5;;
+            string respuesta = await Get.GetHttpTipoEmpresa();
+            List<tipoEmpresa> lista = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta);
+            lista.RemoveAt(0);
+            cmbEmpresa.DataSource = lista;;
             cmbEmpresa.DisplayMember = "tipo_empresa";
             cmbEmpresa.ValueMember = "id_tipo_empresa";
         }      
@@ -58,7 +58,7 @@ namespace MercadoChile.Template
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
             try { 
-            string respuesta = await Get.GetHttp();
+            string respuesta = await Get.GetHttpUsuario();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
                 foreach (var list in lista)
@@ -104,7 +104,7 @@ namespace MercadoChile.Template
             try
             {
             
-            string respuesta = await Get.GetHttp();
+            string respuesta = await Get.GetHttpUsuario();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
                 foreach (var list in lista)
@@ -200,7 +200,7 @@ namespace MercadoChile.Template
             {
                 dynamic response = DBApi.Get("http://127.0.0.1:8000/api_empresa/empresa/?format=json");
                 DgvEmpresa.DataSource = response;
-                string respuesta5 = await Get.GetHttp2();
+                string respuesta5 = await Get.GetHttpTipoEmpresa();
                 List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
                 this.DgvEmpresa.Columns[0].Visible = false;
                 this.DgvEmpresa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -226,7 +226,7 @@ namespace MercadoChile.Template
                 txtDunsEdit.Text = DgvEmpresa.CurrentRow.Cells["cnDunsEmpresa"].Value.ToString();
                 txtRazonEdit.Text = DgvEmpresa.CurrentRow.Cells["cnRazonSocial"].Value.ToString();
                 cmbDireEdit.Text = DgvEmpresa.CurrentRow.Cells["cnDireccion"].Value.ToString();
-                string respuesta5 = await Get.GetHttp2();
+                string respuesta5 = await Get.GetHttpTipoEmpresa();
                 List<tipoEmpresa> lista5 = JsonConvert.DeserializeObject<List<tipoEmpresa>>(respuesta5);
                 cmbTipoEmpEdit.DataSource = lista5;
                 cmbTipoEmpEdit.DisplayMember = "tipo_empresa";

@@ -26,7 +26,7 @@ namespace MercadoChile.Template
     {
         private string url = "http://127.0.0.1:8000/api_carga/carga_old/";
         Uri baseUri = new Uri("http://127.0.0.1:8000/api_subasta/subasta_aceptar/");
-        getPostulacion Get = new getPostulacion();
+        getApi Get = new getApi();
         public Postulacion()
         {
             InitializeComponent();
@@ -36,11 +36,11 @@ namespace MercadoChile.Template
         {
             try
             {
-                string respuesta = await Get.GetHttp();
+                string respuesta = await Get.GetHttpSubasta();
                 List<Subasta> lista = JsonConvert.DeserializeObject<List<Subasta>>(respuesta);
-                string respuesta2 = await Get.GetHttp2();
+                string respuesta2 = await Get.GetHttpUsuario();
                 List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
-                string respuesta3 = await Get.GetHttp3();
+                string respuesta3 = await Get.GetHttpVenta();
                 List<Venta> lista3 = JsonConvert.DeserializeObject<List<Venta>>(respuesta3);
                 DgvSubastas.DataSource = lista;
                 DgvSubastas.DataSource = (from p in lista

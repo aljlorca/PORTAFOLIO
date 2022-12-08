@@ -21,7 +21,7 @@ namespace MercadoChile.Template
     
     public partial class Imagenes : Form
     {
-        getProcesos Get = new getProcesos();
+        getApi Get = new getApi();
         Uri baseUri = new Uri("http://127.0.0.1:8000/api_producto/producto_old/");
         public Imagenes(string name, Image img)
         {
@@ -35,7 +35,7 @@ namespace MercadoChile.Template
         private async void btnEdit_Click(object sender, EventArgs e)
         {
             try { 
-            string respuesta = await Get.GetHttp();
+            string respuesta = await Get.GetHttpProducto();
             List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
             foreach (var list in lista)
             {

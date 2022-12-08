@@ -24,7 +24,7 @@ namespace MercadoChile.Template
 {
     public partial class Publicacion : Form
     {
-        getPublicacion Get = new getPublicacion();
+        getApi Get = new getApi();
         private string url = "http://127.0.0.1:8000/api_venta/venta_old/";
         public Publicacion()
         {
@@ -34,11 +34,11 @@ namespace MercadoChile.Template
         {
             try
             {
-                string respuesta = await Get.GetHttp();
+                string respuesta = await Get.GetHttpPedido();
                 List<Pedido> lista = JsonConvert.DeserializeObject<List<Pedido>>(respuesta);
-                string respuesta2 = await Get.GetHttp2();
+                string respuesta2 = await Get.GetHttpUsuario();
                 List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
-                string respuesta3 = await Get.GetHttp3();
+                string respuesta3 = await Get.GetHttpVenta();
                 List<Venta> lista3 = JsonConvert.DeserializeObject<List<Venta>>(respuesta3);
                 DgvProducto.DataSource = lista;
                 CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvProducto.DataSource];
@@ -82,7 +82,7 @@ namespace MercadoChile.Template
         {
             try
             {
-                string respuesta = await Get.GetHttp();
+                string respuesta = await Get.GetHttpPedido();
                 List<Pedido> lista = JsonConvert.DeserializeObject<List<Pedido>>(respuesta);
                 foreach (var list in lista)
                 {

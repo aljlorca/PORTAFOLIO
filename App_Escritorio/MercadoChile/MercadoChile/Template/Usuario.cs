@@ -25,7 +25,7 @@ namespace MercadoChile
     public partial class Usuario : Form
     {
         DBApi DBApi = new DBApi();
-        getUsuario Get = new getUsuario();
+        getApi Get = new getApi();
         #region Validadores
         public static bool IsValidEmail(string email)
         {
@@ -80,9 +80,9 @@ namespace MercadoChile
         #region ComboBox
         private async void Clientes_Carga(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp();
-            string respuesta1 = await Get.GetHttp1();
-            string respuesta5 = await Get.GetHttp2();
+            string respuesta = await Get.GetHttpUsuario();
+            string respuesta1 = await Get.GetHttpCargo();
+            string respuesta5 = await Get.GetHttpEmpresa();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
             List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
@@ -104,7 +104,7 @@ namespace MercadoChile
         {
             try
             {
-                string respuesta = await Get.GetHttp();
+                string respuesta = await Get.GetHttpUsuario();
                 List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
                 foreach (var list in lista)
@@ -183,7 +183,7 @@ namespace MercadoChile
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             try { 
-            string respuesta = await Get.GetHttp();
+            string respuesta = await Get.GetHttpUsuario();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
                 foreach (var list in lista)
@@ -323,11 +323,11 @@ namespace MercadoChile
             {
                 dynamic response = DBApi.Get("http://127.0.0.1:8000/api_usuario/usuario/?format=json");
                 DgvClientes.DataSource = response;
-                string respuesta1 = await Get.GetHttp1();
+                string respuesta1 = await Get.GetHttpCargo();
                 List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
-                string respuesta5 = await Get.GetHttp2();
+                string respuesta5 = await Get.GetHttpEmpresa();
                 List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
-                string respuesta = await Get.GetHttp();
+                string respuesta = await Get.GetHttpUsuario();
                 List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
                 DgvClientes.DataSource = (from p in lista
                                           orderby p.id_cargo descending
@@ -376,8 +376,8 @@ namespace MercadoChile
                 cmbDireEdit.Text = DgvClientes.CurrentRow.Cells["cnDireccion"].Value.ToString();
                 txtTeleEdit.Text = DgvClientes.CurrentRow.Cells["cnTelefono"].Value.ToString();
                 txtCorEdit.Text = DgvClientes.CurrentRow.Cells["cnCorreo"].Value.ToString();
-                string respuesta1 = await Get.GetHttp1();
-                string respuesta5 = await Get.GetHttp2();
+                string respuesta1 = await Get.GetHttpCargo();
+                string respuesta5 = await Get.GetHttpEmpresa();
                 List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
                 List<Empresas> lista5 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta5);
                 lista1.RemoveAt(0);

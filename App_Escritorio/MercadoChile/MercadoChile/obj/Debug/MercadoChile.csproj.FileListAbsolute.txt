@@ -936,7 +936,6 @@ D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWat
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\AWSSDK.CloudWatchEvents.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.pdb
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\AWSSDK.Core.xml
-D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\BouncyCastle.Crypto.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\itext.barcodes.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\itext.commons.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\itext.forms.xml
@@ -1322,3 +1321,5 @@ D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Te
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\itextsharp.xmlworker.dll
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\itextsharp.xml
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Reporte.resources
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\itextsharp.xmlworker.dll
+D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\bin\Debug\itextsharp.xml

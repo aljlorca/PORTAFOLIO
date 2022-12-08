@@ -27,7 +27,7 @@ namespace MercadoChile.Template
 {
     public partial class Reporte : Form
     {
-        getPostulacion Get = new getPostulacion();
+        getApi Get = new getApi();
         public Reporte()
         {
             InitializeComponent();
@@ -94,7 +94,7 @@ namespace MercadoChile.Template
 
         private async void Reporte_Load(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp3();
+            string respuesta = await Get.GetHttpVenta();
             List<Venta> lista1 = JsonConvert.DeserializeObject<List<Venta>>(respuesta);
             DgvReporte.DataSource = lista1;
             
