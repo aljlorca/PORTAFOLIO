@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from requests import Response
 from .models import Producto
 from .serializers import ProductoSerializer
+from .algoritmo import get_mejor_producto
 from django.http import HttpResponse
 from rest_framework import viewsets
 import json
@@ -234,3 +235,18 @@ class ProductoVentaView(View):
             
             return JsonResponse({'message':'Error: Debes ingresar una id para la petición'}, status=500)
     
+class ProductoBest(View):
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get(self,request,id_venta):
+        if(id_venta!=0):
+            try:
+                productos = get_mejor_producto(id_venta)
+                return JsonResponse(productos, status=200,safe=False)
+            except:
+                return JsonResponse({'message':'Error: no se encontraron productos'}, status=404)
+        else:
+            return JsonResponse({'message':'Error: Debes ingresar una id para la petición'}, status=500)
