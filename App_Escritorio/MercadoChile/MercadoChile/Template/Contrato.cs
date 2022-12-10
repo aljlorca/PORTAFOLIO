@@ -25,7 +25,7 @@ namespace MercadoChile.Template
     public partial class Contrato : Form
     {
         private string url = "http://127.0.0.1:8000/api_contrato/contrato/";
-        getContrato Get = new getContrato();
+        getApi Get = new getApi();
         public Contrato()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace MercadoChile.Template
 
         private async void Cargar_Empresa(object sender, EventArgs e)
         {
-            string respuesta2 = await Get.GetHttp();
+            string respuesta2 = await Get.GetHttpEmpresa();
             List<Empresas> lista2 = JsonConvert.DeserializeObject<List<Empresas>>(respuesta2);
             cmb_TipoEmpresa.DataSource = lista2;
             cmb_TipoEmpresa.DisplayMember = "razon_social_empresa";
@@ -99,10 +99,10 @@ namespace MercadoChile.Template
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            string respuesta = await Get.GetHttp1();
+            string respuesta = await Get.GetHttpUsuario();
             List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
 
-            string respuesta1 = await Get.GetHttp2();
+            string respuesta1 = await Get.GetHttpCargo();
             List<Cargo> lista1 = JsonConvert.DeserializeObject<List<Cargo>>(respuesta1);
             bool datoCorrecto = false;
 

@@ -26,7 +26,7 @@ namespace MercadoChile.Template
     public partial class Procesos : Form
     {
         Uri baseUri = new Uri("http://127.0.0.1:8000/api/postulacion_old/");
-        getProcesos Get = new getProcesos();
+        getApi Get = new getApi();
         public Procesos()
         {
             InitializeComponent();
@@ -36,11 +36,11 @@ namespace MercadoChile.Template
         {
             try
             {
-                string respuesta = await Get.GetHttp();
+                string respuesta = await Get.GetHttpProducto();
                 List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
-                string respuesta2 = await Get.GetHttp2();
+                string respuesta2 = await Get.GetHttpCalidad();
                 List<Calidad> lista2 = JsonConvert.DeserializeObject<List<Calidad>>(respuesta2);
-                string respuesta3 = await Get.GetHttp3();
+                string respuesta3 = await Get.GetHttpUsuario();
                 List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
                 DgvProducto.DataSource = lista;
                 this.DgvProducto.Columns[7].Visible = false;
@@ -101,13 +101,13 @@ namespace MercadoChile.Template
         {
             try
             {
-                string respuesta = await Get.GetHttp5();
+                string respuesta = await Get.GetHttpPostulacion();
                 List<Negocio.Postulacion> lista = JsonConvert.DeserializeObject<List<Negocio.Postulacion>>(respuesta);
-                string respuesta2 = await Get.GetHttp();
+                string respuesta2 = await Get.GetHttpProducto();
                 List<Producto> lista2 = JsonConvert.DeserializeObject<List<Producto>>(respuesta2);
-                string respuesta3 = await Get.GetHttp3();
+                string respuesta3 = await Get.GetHttpUsuario();
                 List<Usuarios> lista3 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta3);
-                string respuesta4 = await Get.GetHttp4();
+                string respuesta4 = await Get.GetHttpVenta();
                 List<Venta> lista4 = JsonConvert.DeserializeObject<List<Venta>>(respuesta4);
                 DgvPostulacion.DataSource = lista;
                 DgvPostulacion.DataSource = (from p in lista
@@ -159,7 +159,7 @@ namespace MercadoChile.Template
         {
             try
             {
-                string respuesta = await Get.GetHttp5();
+                string respuesta = await Get.GetHttpPostulacion();
                 List<Negocio.Postulacion> lista = JsonConvert.DeserializeObject<List<Negocio.Postulacion>>(respuesta);
                 DgvPostulacion.CurrentCell = null;
                 CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvPostulacion.DataSource];
