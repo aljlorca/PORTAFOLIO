@@ -44,6 +44,27 @@ def listar_producto():
         lista.append(fila)
     return lista
 
+def producto_venta(id_venta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc('PRODUCTO_VENTA', [id_venta,out_cur])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    lista_json=[]
+    cont=0
+    for dato in lista:
+        fila=lista[cont]
+        jd = {'id_producto':fila[0],
+        'cantidad_producto':fila[1],
+        'precio_producto':fila[2],
+        'descripcion_calidad':fila[3],}
+        lista_json.append(jd)
+        cont=cont+1
+    return lista_json
+
 
 class ProductoView(View):
     
@@ -54,7 +75,6 @@ class ProductoView(View):
     def get(self,request,id_producto='0'):
         if(id_producto!='0'):
             productos=list(Producto.objects.filter(id_producto=id_producto).values().order_by('id_calidad'))
-            print(productos)
             if len(productos) > 0:
                 producto = productos[0]
                 datos={'message':'Success','Producto':producto}
@@ -195,3 +215,22 @@ class ProductoViewset(viewsets.ModelViewSet):
 class ProductoHistoricoViewset(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+
+class ProductoVentaView(View):
+    
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get(self,request,id_venta):
+        if(id_venta!=0):
+            try:
+                productos = producto_venta(id_venta)
+                return JsonResponse(productos, status=200,safe=False)
+            except:
+                return JsonResponse({'message':'Error: no se encontraron productos'}, status=404)
+            
+        else:
+            
+            return JsonResponse({'message':'Error: Debes ingresar una id para la petición'}, status=500)
+    

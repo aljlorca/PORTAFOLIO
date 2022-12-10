@@ -4,3 +4,5 @@ virtualenv
 djangorestframework
 requests
 pillow
+pandas
+numpy
