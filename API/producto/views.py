@@ -140,7 +140,7 @@ class ProductoView(View):
             try:
                 salida = eliminar_producto(id_producto)
                 if salida == 1:
-                    datos={'message':'Success'}
+                    datos={'message':'Success'+str(id_producto)}
                     return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos = {'message':'ERORR: no fue posible eliminar el producto'}
