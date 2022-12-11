@@ -14,6 +14,5 @@ urlpatterns = [
     path('postulacion_old/<int:id_postulacion>',PostulacionView.as_view(),name='postulacion_update'),
     path('postulacion_aceptada/<str:id_venta>',PostulacionAceptada.as_view(),name='postulacion_aceptada'),
 
-    
 ]
 

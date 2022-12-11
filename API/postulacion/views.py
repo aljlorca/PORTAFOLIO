@@ -43,11 +43,11 @@ def lista_postulacion():
         lista.append(fila)
     return lista
     
-def postulacion_aceptada(id_venta):
+def postulacion_aceptada(id_postulacion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
-    cursor.callproc('POSTULACION_ACEPTADA', [id_venta,out_cur])
+    cursor.callproc('POSTULACION_ACEPTADA', [id_postulacion,out_cur])
     lista = []
     for fila in out_cur:
         lista.append(fila)
@@ -159,9 +159,9 @@ class PostulacionAceptada(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
-    def get(self, request, id_venta):
+    def get(self, request, id_postulacion):
         try:
-            salida = postulacion_aceptada(id_venta)
+            salida = postulacion_aceptada(id_postulacion)
             return JsonResponse(salida,status=200,safe=False)
         except:
             datos = {'message':'ERROR: Validar datos'}

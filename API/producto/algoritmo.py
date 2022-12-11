@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import numpy as np
 import json
 
 def import_data(id_venta):
@@ -29,6 +28,10 @@ def get_mejor_producto(id_venta):
     df_best_precio['cantidad_producto'] = df_best_precio['cantidad_producto'].str.replace('.', ',')
     resultado=df_best_precio.to_json(orient="records")
     producto = json.loads(resultado)
+    producto=producto[0]
+    df = df[df["id_producto"].str.contains(producto['id_producto']) == False]
+    resultado_restantes=df.to_json(orient="records")
+    restantes = json.loads(resultado_restantes)
 
-    return producto[0]
 
+    return({"producto_aceptado":producto,"productos_rechazados":restantes})
