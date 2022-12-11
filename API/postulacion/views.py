@@ -19,11 +19,18 @@ def agregar_postulacion(descripcion_postulacion,id_venta,id_usuario,id_producto)
     cursor.callproc('POSTULACION_AGREGAR',[descripcion_postulacion,estado_postulacion,id_venta,id_usuario,id_producto,estado_fila,salida])
     return round(salida.getvalue())
 
-def modificar_postulacion(id_postulacion):
+def aceptar_postulacion(id_postulacion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('POSTULACION_ACEPTAR',[id_postulacion,salida])
+    return round(salida.getvalue())
+
+def rechazar_postulacion(id_postulacion):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('POSTULACION_RECHAZAR',[id_postulacion,salida])
     return round(salida.getvalue())
 
 def eliminar_postulacion(id_postulacion):
@@ -43,11 +50,11 @@ def lista_postulacion():
         lista.append(fila)
     return lista
     
-def postulacion_aceptada(id_postulacion):
+def postulacion_aceptada(id_venta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
-    cursor.callproc('POSTULACION_ACEPTADA', [id_postulacion,out_cur])
+    cursor.callproc('POSTULACION_ACEPTADA', [id_venta,out_cur])
     lista = []
     for fila in out_cur:
         lista.append(fila)
@@ -109,27 +116,22 @@ class PostulacionView(View):
             return JsonResponse(datos, status=500)
 
     def put(self, request,id_postulacion):
-        try:
-            jd = json.loads(request.body)
-            postulaciones = list(Postulacion.objects.filter(id_postulacion=id_postulacion).values())
-            if len(postulaciones) > 0:
-                try:
-                    salida = modificar_postulacion(id_postulacion=jd['id_postulacion'])
-                    if salida == 1:
-                        datos={'message':"Success"}
-                        return JsonResponse(datos, status=201)
-                    elif salida == 0:
-                        datos={'message':'ERROR: no fue posible modificar la postulacion'}
-                        return JsonResponse(datos, status=404)
-                except:
-                    datos = {'message':'ERROR: Validar datos'}
+        postulaciones = list(Postulacion.objects.filter(id_postulacion=id_postulacion).values())
+        if len(postulaciones) > 0:
+            try:
+                salida = aceptar_postulacion(id_postulacion)
+                if salida == 1:
+                    datos={'message':"Success"}
+                    return JsonResponse(datos, status=201)
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible modificar la postulacion'}
                     return JsonResponse(datos, status=404)
-            else:
-                datos={'message':"ERROR: No se encuentra la postulacion"}
+            except:
+                datos = {'message':'ERROR: Validar datos'}
                 return JsonResponse(datos, status=404)
-        except:
-            datos = {'message':'ERORR: Json invalido'}
-            return JsonResponse(datos, status=500)
+        else:
+            datos={'message':"ERROR: No se encuentra la postulacion"}
+            return JsonResponse(datos, status=404)
 
     def delete(self, request,id_postulacion):
         try:
@@ -159,13 +161,37 @@ class PostulacionAceptada(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
-    def get(self, request, id_postulacion):
+    def get(self, request, id_venta):
         try:
-            salida = postulacion_aceptada(id_postulacion)
+            salida = postulacion_aceptada(id_venta)
             return JsonResponse(salida,status=200,safe=False)
         except:
             datos = {'message':'ERROR: Validar datos'}
             return JsonResponse(datos, status=500)
+
+class PostulacionRechazar(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def put(self, request,id_postulacion):
+        postulaciones = list(Postulacion.objects.filter(id_postulacion=id_postulacion).values())
+        if len(postulaciones) > 0:
+            try:
+                salida = rechazar_postulacion(id_postulacion)
+                if salida == 1:
+                    datos={'message':"Success"}
+                    return JsonResponse(datos, status=201)
+                elif salida == 0:
+                    datos={'message':'ERROR: no fue posible modificar la postulacion'}
+                    return JsonResponse(datos, status=404)
+            except:
+                datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
+        else:
+            datos={'message':"ERROR: No se encuentra la postulacion"}
+            return JsonResponse(datos, status=404)
+
 
 class PostulacionesViewset(viewsets.ModelViewSet):
     queryset = Postulacion.objects.filter(estado_fila='1')
