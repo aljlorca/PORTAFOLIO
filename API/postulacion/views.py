@@ -180,7 +180,7 @@ class PostulacionRechazar(View):
             try:
                 salida = rechazar_postulacion(id_postulacion)
                 if salida == 1:
-                    datos={'message':"Success"}
+                    datos={'message':"Postulacion elminada: "+str(id_postulacion)}
                     return JsonResponse(datos, status=201)
                 elif salida == 0:
                     datos={'message':'ERROR: no fue posible modificar la postulacion'}

@@ -62,7 +62,4 @@ def get_mejor_producto(id_venta):
 
         cont = cont+1
 
-
-
-
     return({"producto_aceptado":producto,"productos_rechazados":restantes, "respuestas_postulacion":respt_postulacion,"respuesta_productos":respt_productos})
