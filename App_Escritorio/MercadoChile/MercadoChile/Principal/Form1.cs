@@ -89,12 +89,7 @@ namespace MercadoChile
             iconMaximizar.Visible = false;
         }
 
-        private void iconRestaurar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Normal;
-            iconRestaurar.Visible = false;
-            iconMaximizar.Visible = true;
-        }
+        
 
         private void iconMinimizar_Click(object sender, EventArgs e)
         {
@@ -168,6 +163,13 @@ namespace MercadoChile
         private void btnReporte_Click(object sender, EventArgs e)
         {
             AbrirForm(new Reporte());
+        }
+
+        private void iconRestaurar_Click_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            iconRestaurar.Visible = false;
+            iconMaximizar.Visible = true;
         }
     }
 }

@@ -86,9 +86,10 @@ namespace MercadoChile.Template
         private void DgvProducto_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try {
+                string id = DgvProducto.SelectedRows[0].Cells["cnId"].Value.ToString();
                 string name = DgvProducto.SelectedRows[0].Cells["cnNomProd"].Value.ToString();
                 Image img = (Image)DgvProducto.SelectedRows[0].Cells["cnImagen"].Value;
-                Imagenes i = new Imagenes(name, img);
+                Imagenes i = new Imagenes(id,name, img);
                 this.Hide();
                 i.Show();
             }

@@ -23,9 +23,10 @@ namespace MercadoChile.Template
     {
         getApi Get = new getApi();
         Uri baseUri = new Uri("http://127.0.0.1:8000/api_producto/producto_old/");
-        public Imagenes(string name, Image img)
+        public Imagenes(string id,string name, Image img)
         {
             InitializeComponent ();
+            txtId.Text = id;
             txtNomProd.Text = name;
             txtNomProd.Enabled = false;
             txtSaldo.Enabled = false;
@@ -39,7 +40,7 @@ namespace MercadoChile.Template
             List<Producto> lista = JsonConvert.DeserializeObject<List<Producto>>(respuesta);
             foreach (var list in lista)
             {
-                    if (list.nombre_producto == txtNomProd.Text)
+                    if (list.id_producto == txtId.Text)
                     {
                         string id = list.id_producto;
                         Uri myUri = new Uri(baseUri, id);
@@ -68,6 +69,16 @@ namespace MercadoChile.Template
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void iconCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void iconMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

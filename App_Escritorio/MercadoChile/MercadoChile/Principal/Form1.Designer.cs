@@ -44,20 +44,20 @@ namespace MercadoChile
             this.btnClientes = new System.Windows.Forms.Button();
             this.BarraTitulo = new System.Windows.Forms.Panel();
             this.iconMinimizar = new System.Windows.Forms.PictureBox();
-            this.iconRestaurar = new System.Windows.Forms.PictureBox();
             this.iconMaximizar = new System.Windows.Forms.PictureBox();
             this.iconCerrar = new System.Windows.Forms.PictureBox();
             this.btnslide = new System.Windows.Forms.PictureBox();
             this.PanelContenedor = new System.Windows.Forms.Panel();
+            this.iconRestaurar = new System.Windows.Forms.PictureBox();
             this.MenuVertical.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconMinimizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconMaximizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnslide)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconRestaurar)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuVertical
@@ -246,11 +246,11 @@ namespace MercadoChile
             // BarraTitulo
             // 
             this.BarraTitulo.BackColor = System.Drawing.SystemColors.ControlText;
-            this.BarraTitulo.Controls.Add(this.iconMinimizar);
-            this.BarraTitulo.Controls.Add(this.iconRestaurar);
             this.BarraTitulo.Controls.Add(this.iconMaximizar);
+            this.BarraTitulo.Controls.Add(this.iconMinimizar);
             this.BarraTitulo.Controls.Add(this.iconCerrar);
             this.BarraTitulo.Controls.Add(this.btnslide);
+            this.BarraTitulo.Controls.Add(this.iconRestaurar);
             this.BarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.BarraTitulo.Location = new System.Drawing.Point(266, 0);
             this.BarraTitulo.Name = "BarraTitulo";
@@ -272,24 +272,9 @@ namespace MercadoChile
             this.iconMinimizar.TabStop = false;
             this.iconMinimizar.Click += new System.EventHandler(this.iconMinimizar_Click);
             // 
-            // iconRestaurar
-            // 
-            this.iconRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconRestaurar.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.iconRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("iconRestaurar.Image")));
-            this.iconRestaurar.Location = new System.Drawing.Point(976, 12);
-            this.iconRestaurar.Name = "iconRestaurar";
-            this.iconRestaurar.Size = new System.Drawing.Size(20, 20);
-            this.iconRestaurar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.iconRestaurar.TabIndex = 3;
-            this.iconRestaurar.TabStop = false;
-            this.iconRestaurar.Visible = false;
-            this.iconRestaurar.Click += new System.EventHandler(this.iconRestaurar_Click);
-            // 
             // iconMaximizar
             // 
-            this.iconMaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconMaximizar.BackColor = System.Drawing.SystemColors.HighlightText;
             this.iconMaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconMaximizar.Image = ((System.Drawing.Image)(resources.GetObject("iconMaximizar.Image")));
             this.iconMaximizar.Location = new System.Drawing.Point(976, 12);
@@ -336,6 +321,21 @@ namespace MercadoChile
             this.PanelContenedor.Size = new System.Drawing.Size(1034, 600);
             this.PanelContenedor.TabIndex = 2;
             // 
+            // iconRestaurar
+            // 
+            this.iconRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconRestaurar.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.iconRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("iconRestaurar.Image")));
+            this.iconRestaurar.Location = new System.Drawing.Point(976, 12);
+            this.iconRestaurar.Name = "iconRestaurar";
+            this.iconRestaurar.Size = new System.Drawing.Size(20, 20);
+            this.iconRestaurar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconRestaurar.TabIndex = 5;
+            this.iconRestaurar.TabStop = false;
+            this.iconRestaurar.Visible = false;
+            this.iconRestaurar.Click += new System.EventHandler(this.iconRestaurar_Click_1);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1300, 650);
@@ -350,10 +350,10 @@ namespace MercadoChile
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.BarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconMinimizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconRestaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconMaximizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnslide)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconRestaurar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -370,7 +370,6 @@ namespace MercadoChile
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox btnslide;
         private System.Windows.Forms.PictureBox iconMinimizar;
-        private System.Windows.Forms.PictureBox iconRestaurar;
         private System.Windows.Forms.PictureBox iconMaximizar;
         private System.Windows.Forms.PictureBox iconCerrar;
         private System.Windows.Forms.Button btnClientes;
@@ -383,6 +382,7 @@ namespace MercadoChile
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button btnReporte;
+        private System.Windows.Forms.PictureBox iconRestaurar;
     }
 }
 

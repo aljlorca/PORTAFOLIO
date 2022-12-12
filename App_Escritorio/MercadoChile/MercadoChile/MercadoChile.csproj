@@ -429,7 +429,6 @@
       <DependentUpon>Contrato.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="MercadoChile_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
