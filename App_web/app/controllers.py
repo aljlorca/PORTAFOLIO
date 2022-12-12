@@ -291,12 +291,16 @@ def venta_cliente_rechazar(id):
 def carga_post(capacidad,tamano,refrigeracion,id_usuario,id_subasta):
     url="http://127.0.0.1:8000/api_carga/carga_old/"
     body ={"capacidad_carga": str(capacidad),"refrigeracion_carga": str(refrigeracion),"tamano_carga": str(tamano),"id_subasta":id_subasta ,"id_usuario": id_usuario}
+    print(body)
     try: 
         response = requests.post(url,json=body)
     except:
         data = {'message':'error de conexion'}
         return data
     if response.status_code == 201:
+        content = json.loads(response.content)
+        return content
+    if response.status_code == 404:
         content = json.loads(response.content)
         return content
 
