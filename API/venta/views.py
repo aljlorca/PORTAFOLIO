@@ -155,7 +155,7 @@ class VentaClienteAceptar(View):
     
     def put(self, request,id_venta):
         try:
-            salida = venta_cliente(id_venta,estado_venta='aceptada')
+            salida = venta_cliente(id_venta,estado_venta='Aceptada')
             if salida == 1:
                 datos = {'message':'Success'}
                 return JsonResponse(datos, status=201)
@@ -174,7 +174,7 @@ class VentaClienteRechazar(View):
     
     def put(self, request,id_venta):
         try:
-            salida = venta_cliente(id_venta,estado_venta='rechazada')
+            salida = venta_cliente(id_venta,estado_venta='Rechazada')
             if salida == 1:
                 datos = {'message':'Success'}
                 return JsonResponse(datos, status=201)
@@ -186,7 +186,7 @@ class VentaClienteRechazar(View):
             return JsonResponse(datos, status=404)
 
             
-    
+
 
 
 class VentaViewset(viewsets.ModelViewSet):
