@@ -460,20 +460,21 @@ def detalle_subasta(request,id_venta):
         monto = request.POST.get('monto')
         try: 
             id_subasta=subasta_post(monto,id_venta,id_usuario)
+            time.sleep(1)
+            try: 
+                carga_post(capacidad_carga,tamano_carga,refrigeracion_carga,id_usuario,id_subasta)
+                messages.success(request,"Subasta Creada Correctamente")
+                url = 'http://127.0.0.1:3000/detalle_subasta/'+str(id_venta)
+                return redirect(to=url)
+            except: 
+                data['error']='error al registrar su carga'
+                try:
+                    subasta_delete(id_subasta)
+                except:
+                    data['error']='favor ingrese un monto'
         except:
             data['error']='favor ingrese un monto'
-        time.sleep(1)
-        try: 
-            salida = carga_post(capacidad_carga,tamano_carga,refrigeracion_carga,id_usuario,id_subasta)
-            messages.success(request,"Subasta Creada Correctamente")
-            url = 'http://127.0.0.1:3000/detalle_subasta/'+str(id_venta)
-            return redirect(to=url)
-        except: 
-            data['error']='error al registrar su carga'
-            try:
-                subasta_delete(id_subasta)
-            except:
-                data['error']='favor ingrese un monto'
+        
     return render(request, 'app/transportista/Ingreso_subasta.html',data)
 
 def carga(request):

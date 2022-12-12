@@ -53,11 +53,11 @@ def lista_subasta():
         lista.append(fila)
     return lista
 
-def subasta_carga():
+def subasta_carga(id_venta):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
-    cursor.callproc('SUBASTA_CARGA', [out_cur])
+    cursor.callproc('SUBASTA_CARGA', [id_venta,out_cur])
     lista = []
     for fila in out_cur:
         lista.append(fila)
@@ -70,16 +70,14 @@ def subasta_carga():
         else:
             carga='No'
         fecha = str(fila[3])
-        jd = {'id_subasta':fila[0],
+        jd = {'id_venta':fila[2],
+        'id_subasta':fila[0],
         'monto_subasta':fila[1],
-        'id_venta':fila[2],
         'fecha_subasta':fecha[:-9],
-        'id_usuario':fila[4],
-        'estado_subasta':fila[5],
         'id_carga':fila[6],
         'capacidad_carga':fila[7],
-        'refrigeracion_carga':carga,
-        'tamano_carga':fila[9]}
+        'tamano_carga':fila[9],
+        'refrigeracion_carga':carga,}
         lista_json.append(jd)
         cont=cont+1
     return lista_json
@@ -165,7 +163,7 @@ class SubastaView(View):
                     return JsonResponse(datos, status=500)
                 else:
                     datos = {'message':'Success','id_subasta':salida}
-                    return JsonResponse(datos, status=200)
+                    return JsonResponse(datos, status=201)
             except:
                 datos = {'message':'ERROR: Validar datos'}
                 return JsonResponse(datos, status=500)
@@ -242,21 +240,24 @@ class SubastaVentaUserView(View):
             datos = {'message':'ERROR: Validar datos'}
             return JsonResponse(datos, status=500)
 
-    
+class SubastaCargaView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request,id_venta):
+        subastas = subasta_carga(id_venta)
+        if len(subastas) > 0:
+            return JsonResponse(subastas,safe=False,status=200)
+        else:
+            datos={'message':"ERROR: subastas de venta No encontradas"}
+            return JsonResponse(datos, status=404)
 
 class SubastaAceptarView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
-    def get(self, request):
-            subastas = subasta_carga()
-            if len(subastas) > 0:
-                return JsonResponse(subastas,safe=False,status=200)
-            else:
-                datos={'message':"ERROR: subastas de venta No encontradas"}
-                return JsonResponse(datos, status=404)
-
     def put(self, request,id_subasta):
         try:
             subasteas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
