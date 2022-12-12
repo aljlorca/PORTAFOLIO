@@ -31,6 +31,7 @@ namespace MercadoChile
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MenuVertical = new System.Windows.Forms.Panel();
+            this.btnReporte = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@ namespace MercadoChile
             this.iconCerrar = new System.Windows.Forms.PictureBox();
             this.btnslide = new System.Windows.Forms.PictureBox();
             this.PanelContenedor = new System.Windows.Forms.Panel();
-            this.btnReporte = new System.Windows.Forms.Button();
             this.MenuVertical.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,8 +76,24 @@ namespace MercadoChile
             this.MenuVertical.Dock = System.Windows.Forms.DockStyle.Left;
             this.MenuVertical.Location = new System.Drawing.Point(0, 0);
             this.MenuVertical.Name = "MenuVertical";
-            this.MenuVertical.Size = new System.Drawing.Size(258, 650);
+            this.MenuVertical.Size = new System.Drawing.Size(266, 650);
             this.MenuVertical.TabIndex = 0;
+            // 
+            // btnReporte
+            // 
+            this.btnReporte.FlatAppearance.BorderSize = 0;
+            this.btnReporte.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnReporte.Image")));
+            this.btnReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReporte.Location = new System.Drawing.Point(8, 539);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(250, 40);
+            this.btnReporte.TabIndex = 10;
+            this.btnReporte.Text = "     Reportes";
+            this.btnReporte.UseVisualStyleBackColor = true;
+            this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click);
             // 
             // button8
             // 
@@ -87,7 +103,7 @@ namespace MercadoChile
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(8, 585);
+            this.button8.Location = new System.Drawing.Point(2, 585);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(250, 40);
             this.button8.TabIndex = 9;
@@ -134,7 +150,7 @@ namespace MercadoChile
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 169);
+            this.panel1.Size = new System.Drawing.Size(266, 169);
             this.panel1.TabIndex = 6;
             // 
             // pictureBox1
@@ -171,7 +187,7 @@ namespace MercadoChile
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(12, 355);
+            this.button5.Location = new System.Drawing.Point(6, 355);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(246, 40);
             this.button5.TabIndex = 4;
@@ -236,9 +252,9 @@ namespace MercadoChile
             this.BarraTitulo.Controls.Add(this.iconCerrar);
             this.BarraTitulo.Controls.Add(this.btnslide);
             this.BarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BarraTitulo.Location = new System.Drawing.Point(258, 0);
+            this.BarraTitulo.Location = new System.Drawing.Point(266, 0);
             this.BarraTitulo.Name = "BarraTitulo";
-            this.BarraTitulo.Size = new System.Drawing.Size(1042, 50);
+            this.BarraTitulo.Size = new System.Drawing.Size(1034, 50);
             this.BarraTitulo.TabIndex = 1;
             this.BarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BarraTitulo_MouseDown);
             // 
@@ -248,7 +264,7 @@ namespace MercadoChile
             this.iconMinimizar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.iconMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("iconMinimizar.Image")));
-            this.iconMinimizar.Location = new System.Drawing.Point(958, 12);
+            this.iconMinimizar.Location = new System.Drawing.Point(950, 12);
             this.iconMinimizar.Name = "iconMinimizar";
             this.iconMinimizar.Size = new System.Drawing.Size(20, 20);
             this.iconMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -262,7 +278,7 @@ namespace MercadoChile
             this.iconRestaurar.BackColor = System.Drawing.SystemColors.HighlightText;
             this.iconRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("iconRestaurar.Image")));
-            this.iconRestaurar.Location = new System.Drawing.Point(984, 12);
+            this.iconRestaurar.Location = new System.Drawing.Point(976, 12);
             this.iconRestaurar.Name = "iconRestaurar";
             this.iconRestaurar.Size = new System.Drawing.Size(20, 20);
             this.iconRestaurar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -276,7 +292,7 @@ namespace MercadoChile
             this.iconMaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconMaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconMaximizar.Image = ((System.Drawing.Image)(resources.GetObject("iconMaximizar.Image")));
-            this.iconMaximizar.Location = new System.Drawing.Point(984, 12);
+            this.iconMaximizar.Location = new System.Drawing.Point(976, 12);
             this.iconMaximizar.Name = "iconMaximizar";
             this.iconMaximizar.Size = new System.Drawing.Size(20, 20);
             this.iconMaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -290,7 +306,7 @@ namespace MercadoChile
             this.iconCerrar.BackColor = System.Drawing.SystemColors.ControlLight;
             this.iconCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconCerrar.Image = ((System.Drawing.Image)(resources.GetObject("iconCerrar.Image")));
-            this.iconCerrar.Location = new System.Drawing.Point(1010, 12);
+            this.iconCerrar.Location = new System.Drawing.Point(1002, 12);
             this.iconCerrar.Name = "iconCerrar";
             this.iconCerrar.Size = new System.Drawing.Size(20, 20);
             this.iconCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -315,26 +331,10 @@ namespace MercadoChile
             // 
             this.PanelContenedor.BackColor = System.Drawing.SystemColors.Control;
             this.PanelContenedor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelContenedor.Location = new System.Drawing.Point(258, 50);
+            this.PanelContenedor.Location = new System.Drawing.Point(266, 50);
             this.PanelContenedor.Name = "PanelContenedor";
-            this.PanelContenedor.Size = new System.Drawing.Size(1042, 600);
+            this.PanelContenedor.Size = new System.Drawing.Size(1034, 600);
             this.PanelContenedor.TabIndex = 2;
-            // 
-            // btnReporte
-            // 
-            this.btnReporte.FlatAppearance.BorderSize = 0;
-            this.btnReporte.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnReporte.Image")));
-            this.btnReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReporte.Location = new System.Drawing.Point(8, 539);
-            this.btnReporte.Name = "btnReporte";
-            this.btnReporte.Size = new System.Drawing.Size(250, 40);
-            this.btnReporte.TabIndex = 10;
-            this.btnReporte.Text = "     Reportes";
-            this.btnReporte.UseVisualStyleBackColor = true;
-            this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click);
             // 
             // Form1
             // 

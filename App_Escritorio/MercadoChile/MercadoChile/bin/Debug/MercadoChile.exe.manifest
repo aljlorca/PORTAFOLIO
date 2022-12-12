@@ -271,14 +271,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MercadoChile.exe" size="357368">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MercadoChile.exe" size="342008">
       <assemblyIdentity name="MercadoChile" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Nrp+0kzlgMiVOngSVbcb7GXb+iBdor75C2nk4x/WRi4=</dsig:DigestValue>
+        <dsig:DigestValue>g1+OfkrzC91UjbOXYZAT5/OYdg61sgffkt1Q0DniYus=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
