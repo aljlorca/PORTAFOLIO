@@ -20,9 +20,9 @@ def rechazar_postulacion(id_postulacion):
     content = json.loads(response.content)
     return content
 
-def eliminar_producto(id_producto):
+def saldo_producto(id_producto):
     url = 'http://127.0.0.1:8000/api_producto/producto_old/'+str(id_producto)
-    response = requests.delete(url)
+    response = requests.put(url)
     content = json.loads(response.content)
     return content
 
@@ -56,7 +56,7 @@ def get_mejor_producto(id_venta):
     for i in restantes:
         fila=restantes[cont]
         res=rechazar_postulacion(fila['id_postulacion'])
-        res_pr=eliminar_producto(fila['id_producto'])
+        res_pr=saldo_producto(fila['id_producto'])
         respt_postulacion.append(res)
         respt_productos.append(res_pr)
 

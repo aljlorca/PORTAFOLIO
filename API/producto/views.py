@@ -21,11 +21,11 @@ def agregar_producto(nombre_producto,cantidad_producto,precio_producto,imagen_pr
     cursor.callproc('PRODUCTO_AGREGAR',[nombre_producto,cantidad_producto,precio_producto,imagen_producto,id_calidad,saldo_producto,estado_fila,id_usuario,descripcion_producto,salida])
     return round(salida.getvalue())
 
-def modificar_producto(id_producto,saldo_producto):
+def modificar_producto(id_producto):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('PRODUCTO_SALDO',[id_producto,saldo_producto,salida])
+    cursor.callproc('PRODUCTO_SALDO',[id_producto,salida])
     return round(salida.getvalue())
 
 def eliminar_producto(id_producto):
@@ -112,14 +112,13 @@ class ProductoView(View):
             return JsonResponse(datos, status=404)
     
     def put(self,request,id_producto):
-        try:
-            jd = json.loads(request.body)
+
             productos = list(Producto.objects.filter(id_producto=id_producto).values())
             if len(productos)>0:
                 try:
-                    salida = modificar_producto(id_producto=jd['id_producto'],saldo_producto=jd['saldo_producto'])
+                    salida = modificar_producto(id_producto)
                     if salida == 1:
-                        datos={'message':'Success'}
+                        datos={'message':'Producto cambiado a saldo: '+str(id_producto)}
                         return JsonResponse(datos, status=201)
                     elif salida == 0:
                         datos = {'message':'ERORR: no fue posible eliminar el producto'}
@@ -130,9 +129,6 @@ class ProductoView(View):
             else:
                 datos={'message':'ERROR: Producto NO encontrado'}
                 return JsonResponse(datos, status=404)
-        except:
-            datos = {'message':'ERORR: Json invalido'}
-            return JsonResponse(datos, status=500)
     
     def delete(self,request,id_producto):
         productos = list(Producto.objects.filter(id_producto=id_producto).values())
