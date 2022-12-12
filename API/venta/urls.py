@@ -14,5 +14,5 @@ urlpatterns = [
     path('venta_old/<int:id_venta>',VentaView.as_view(),name='venta_update'),
     path('venta_cliente_aceptar/<str:id_venta>',VentaClienteAceptar.as_view(),name='venta_cliente_aceptar'),
     path('venta_cliente_rechazar/<str:id_venta>',VentaClienteRechazar.as_view(),name='venta_cliente_rechazar'),
-
+    
 ]

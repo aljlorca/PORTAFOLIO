@@ -221,10 +221,8 @@ def venta_resumen(request, id_venta):
             rechazada = request.POST.get('Rechazada')
             if aceptada == 'Aceptar':
                 res=venta_cliente_aceptar(id_venta)
-                print(res)
             elif rechazada == 'Rechazar':
                 res=res=venta_cliente_rechazar(id_venta)
-                print(res)
             return redirect(to="http://127.0.0.1:3000/listado_ventas_locales/")
 
     except:
@@ -460,7 +458,7 @@ def detalle_subasta(request,id_venta):
         monto = request.POST.get('monto')
         try: 
             id_subasta=subasta_post(monto,id_venta,id_usuario)
-            time.sleep(1)
+            time.sleep(0.2)
             try: 
                 carga_post(capacidad_carga,tamano_carga,refrigeracion_carga,id_usuario,id_subasta)
                 messages.success(request,"Subasta Creada Correctamente")
@@ -557,7 +555,6 @@ def tbk_respuesta(request):
             usuario = usuario_get_id(id_usuario)
             carrito_post(res['amount'],str(data['id_user']))
             res=wsp_confirmation(str(usuario['telefono_usuario']))
-            print(res)
             diccionario=carro.Carro.listar_carro(request)
             productos = productos_get()
             c = 0
