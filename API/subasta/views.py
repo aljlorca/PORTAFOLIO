@@ -10,6 +10,7 @@ from .algoritmo import rechazar_restantes
 import json
 import cx_Oracle
 import datetime
+import time
 
 # Create your views here.
 def agregar_subasta(monto_subasta,id_venta,id_usuario):
@@ -302,15 +303,17 @@ class SubastaAceptarView(View):
     def put(self, request,id_subasta):
         try:
             subastas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
+            print(subastas)
             if len(subastas) > 0:
                 try:
                     salida = aceptar_subasta(id_subasta)
-                    rechazar_restantes(id_subasta)
+                    time.sleep(0.2)
                     if salida == 0:
                         datos = {'message':'ERORR: no fue posible aceptar la subasta'}
                         return JsonResponse(datos, status=404)
                     else:
                         subasta=subastas[0]
+                        rechazar_restantes(subasta['id_venta_id'])
                         return JsonResponse(subasta, status=201,safe=False)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
