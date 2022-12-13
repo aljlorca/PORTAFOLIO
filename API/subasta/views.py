@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Subasta
 from .serializers import SubastaSerializer,SubastaHistoricoSerializer
 from rest_framework import viewsets
+from .algoritmo import rechazar_restantes
 import json
 import cx_Oracle
 import datetime
@@ -300,16 +301,17 @@ class SubastaAceptarView(View):
     
     def put(self, request,id_subasta):
         try:
-            subasteas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
-            if len(subasteas) > 0:
+            subastas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
+            if len(subastas) > 0:
                 try:
                     salida = aceptar_subasta(id_subasta)
+                    rechazar_restantes(id_subasta)
                     if salida == 0:
                         datos = {'message':'ERORR: no fue posible aceptar la subasta'}
                         return JsonResponse(datos, status=404)
                     else:
-                        datos = {'message':'Success'}
-                        return JsonResponse(datos, status=201)
+                        subasta=subastas[0]
+                        return JsonResponse(subasta, status=201,safe=False)
                 except:
                     datos = {'message':'ERROR: Validar datos'}
                     return JsonResponse(datos, status=404)
