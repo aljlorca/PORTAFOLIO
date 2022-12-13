@@ -51,6 +51,13 @@ def venta_cliente(id_venta,estado_venta):
     cursor.callproc('VENTA_CLIENTE',[id_venta,estado_venta,salida])
     return round(salida.getvalue())
 
+def venta_producto_aceptado(id_venta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('VENTA_PRODUCTO_ACEPTADO',[id_venta,salida])
+    return round(salida.getvalue())
+
 def lista_venta():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -200,31 +207,49 @@ class VentaReporte(View):
         return super().dispatch(request, *args, **kwargs)
 
     def post(self,request,id_venta):
-       # try:
+        try:
             jd = llenado_venta(id_venta)
-            #try:
-            salida = reporte_venta(id_venta,
-            monto_bruto_venta=jd['monto_bruto_venta'],
-            iva=jd['iva'],
-            monto_neto_venta=jd['monto_neto_venta'],
-            cantidad_venta=jd['cantidad_venta'],
-            monto_transporte=jd['monto_transporte'],
-            monto_aduanas=jd['monto_aduanas'],
-            pago_servicio=jd['pago_servicio'],
-            comision_venta=jd['comision_venta'])
+            try:
+                salida = reporte_venta(id_venta,
+                monto_bruto_venta=jd['monto_bruto_venta'],
+                iva=jd['iva'],
+                monto_neto_venta=jd['monto_neto_venta'],
+                cantidad_venta=jd['cantidad_venta'],
+                monto_transporte=jd['monto_transporte'],
+                monto_aduanas=jd['monto_aduanas'],
+                pago_servicio=jd['pago_servicio'],
+                comision_venta=jd['comision_venta'])
+                if salida == 1:
+                    datos = {'message':'Success'}
+                    return JsonResponse(datos, status=201)
+                elif salida == 0:
+                    datos = {'message':'ERORR: no fue posible agregar la venta'}
+                    return JsonResponse(datos, status=404)
+            except:
+                datos = {'message':'ERROR: Validar datos'}
+                return JsonResponse(datos, status=404)
+        except:
+            datos = {'message':'ERORR: Json invalido'}
+            return JsonResponse(datos, status=500)
+            
+class VentaPostulacionAceptada(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def put(self, request,id_venta):
+        try:
+            salida = venta_producto_aceptado(id_venta)
             if salida == 1:
                 datos = {'message':'Success'}
                 return JsonResponse(datos, status=201)
             elif salida == 0:
-                datos = {'message':'ERORR: no fue posible agregar la venta'}
+                datos = {'message':'ERORR: no fue posible aceptar la venta'}
                 return JsonResponse(datos, status=404)
-            #except:
-                #datos = {'message':'ERROR: Validar datos'}
-                #return JsonResponse(datos, status=404)
-        #except:
-         #   datos = {'message':'ERORR: Json invalido'}
-          #  return JsonResponse(datos, status=500)
-            
+        except:
+            datos = {'message':'ERROR: Validar datos'}
+            return JsonResponse(datos, status=404)
+
 
 class VentaViewset(viewsets.ModelViewSet):
     queryset = Venta.objects.filter(estado_fila='1')

@@ -26,6 +26,12 @@ def saldo_producto(id_producto):
     content = json.loads(response.content)
     return content
 
+def update_estado_venta(id_venta):
+    url = 'http://127.0.0.1:8000/api_venta/venta_producto_aceptar/'+str(id_venta)
+    response = requests.put(url)
+    content = json.loads(response.content)
+    return content
+
 def get_mejor_producto(id_venta):
     pd.options.mode.chained_assignment = None
     data = import_data(id_venta)
@@ -50,6 +56,7 @@ def get_mejor_producto(id_venta):
     resultado_restantes=df.to_json(orient="records")
     restantes = json.loads(resultado_restantes)
     res=aceptar_postulacion(producto['id_postulacion'])
+    vnt=update_estado_venta(id_venta)
     respt_postulacion=[]
     respt_productos=[]
     cont = 0
@@ -62,4 +69,4 @@ def get_mejor_producto(id_venta):
 
         cont = cont+1
 
-    return({"producto_aceptado":producto,"productos_rechazados":restantes, "respuestas_postulacion":respt_postulacion,"respuesta_productos":respt_productos})
+    return({"venta":vnt,"producto_aceptado":producto,"productos_rechazados":restantes, "respuestas_postulacion":respt_postulacion,"respuesta_productos":respt_productos})
