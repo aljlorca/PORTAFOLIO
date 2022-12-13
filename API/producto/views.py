@@ -240,10 +240,10 @@ class ProductoBest(View):
     
     def get(self,request,id_venta):
         if(id_venta!=0):
-            #try:
+            try:
                 productos = get_mejor_producto(id_venta)
                 return JsonResponse(productos, status=200,safe=False)
-            #except:
+            except:
                 return JsonResponse({'message':'Error: no se encontraron productos'}, status=404)
         else:
             return JsonResponse({'message':'Error: Debes ingresar una id para la petición'}, status=500)
