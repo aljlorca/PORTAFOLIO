@@ -64,11 +64,11 @@ class Venta(models.Model):
     fecha_venta = models.DateField()
     tipo_venta = models.CharField(max_length=1)
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
-    cantidad_venta = models.FloatField()
+    cantidad_venta = models.CharField(max_length=20)
     monto_transporte = models.BigIntegerField(blank=True, null=True)
     monto_aduanas = models.BigIntegerField(blank=True, null=True)
     pago_servicio = models.BigIntegerField(blank=True, null=True)
-    comision_venta = models.BigIntegerField(blank=True, null=True)
+    comision_venta = models.CharField(max_length=20)
     estado_fila = models.CharField(max_length=1)
 
     class Meta:

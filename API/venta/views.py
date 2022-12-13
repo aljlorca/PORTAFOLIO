@@ -5,6 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.response import Response
+from .reporte import llenado_venta
 from .models import Venta
 from .serializers import VentaSerializer,VentaHistoricoSerializer
 from rest_framework import viewsets
@@ -27,6 +28,13 @@ def modificar_venta(id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iv
     salida = cursor.var(cx_Oracle.NUMBER)
     fecha_venta = datetime.date.today()
     cursor.callproc('VENTA_MODIFICAR',[id_venta,descripcion_venta,estado_venta,monto_bruto_venta,iva,monto_neto_venta,fecha_venta,tipo_venta,id_usuario,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta,salida])
+    return round(salida.getvalue())
+
+def reporte_venta(id_venta,monto_bruto_venta,iva,monto_neto_venta,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('VENTA_REPORTE',[id_venta,monto_bruto_venta,iva,monto_neto_venta,cantidad_venta,monto_transporte,monto_aduanas,pago_servicio,comision_venta,salida])
     return round(salida.getvalue())
 
 def eliminar_venta(id_venta):
@@ -186,8 +194,37 @@ class VentaClienteRechazar(View):
             return JsonResponse(datos, status=404)
 
             
+class VentaReporte(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
-
+    def post(self,request,id_venta):
+       # try:
+            jd = llenado_venta(id_venta)
+            #try:
+            salida = reporte_venta(id_venta,
+            monto_bruto_venta=jd['monto_bruto_venta'],
+            iva=jd['iva'],
+            monto_neto_venta=jd['monto_neto_venta'],
+            cantidad_venta=jd['cantidad_venta'],
+            monto_transporte=jd['monto_transporte'],
+            monto_aduanas=jd['monto_aduanas'],
+            pago_servicio=jd['pago_servicio'],
+            comision_venta=jd['comision_venta'])
+            if salida == 1:
+                datos = {'message':'Success'}
+                return JsonResponse(datos, status=201)
+            elif salida == 0:
+                datos = {'message':'ERORR: no fue posible agregar la venta'}
+                return JsonResponse(datos, status=404)
+            #except:
+                #datos = {'message':'ERROR: Validar datos'}
+                #return JsonResponse(datos, status=404)
+        #except:
+         #   datos = {'message':'ERORR: Json invalido'}
+          #  return JsonResponse(datos, status=500)
+            
 
 class VentaViewset(viewsets.ModelViewSet):
     queryset = Venta.objects.filter(estado_fila='1')
