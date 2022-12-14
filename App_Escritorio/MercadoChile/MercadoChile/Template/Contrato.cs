@@ -48,9 +48,6 @@ namespace MercadoChile.Template
             ofd.Filter = "Archivos permitidos|*.pdf";
             string theDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string id = cmb_TipoEmpresa.Text + "_" + dateTimePicker1.Value.ToString();
-            Console.WriteLine(id);
-            Console.WriteLine(theDate);
-
             if (ofd.ShowDialog().Equals(DialogResult.OK))
             {
                 string mensajeRespuesta = "";
