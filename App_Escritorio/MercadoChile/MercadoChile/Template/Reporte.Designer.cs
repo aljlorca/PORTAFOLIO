@@ -33,6 +33,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnReporte = new System.Windows.Forms.Button();
+            this.cnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnEstadoVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CnMontoNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnIva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnMontoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnTipoVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvReporte)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,6 +48,14 @@
             this.DgvReporte.AllowUserToAddRows = false;
             this.DgvReporte.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.DgvReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvReporte.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cnID,
+            this.cnDescripcion,
+            this.cnEstadoVenta,
+            this.CnMontoNeto,
+            this.cnIva,
+            this.cnMontoTotal,
+            this.cnTipoVenta});
             this.DgvReporte.Location = new System.Drawing.Point(70, 71);
             this.DgvReporte.Name = "DgvReporte";
             this.DgvReporte.Size = new System.Drawing.Size(821, 355);
@@ -82,6 +97,48 @@
             this.btnReporte.UseVisualStyleBackColor = true;
             this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click);
             // 
+            // cnID
+            // 
+            this.cnID.DataPropertyName = "id_venta";
+            this.cnID.HeaderText = "Id Venta";
+            this.cnID.Name = "cnID";
+            // 
+            // cnDescripcion
+            // 
+            this.cnDescripcion.DataPropertyName = "descripcion_venta";
+            this.cnDescripcion.HeaderText = "Descripcion Venta ";
+            this.cnDescripcion.Name = "cnDescripcion";
+            // 
+            // cnEstadoVenta
+            // 
+            this.cnEstadoVenta.DataPropertyName = "estado_venta";
+            this.cnEstadoVenta.HeaderText = "Estado Venta";
+            this.cnEstadoVenta.Name = "cnEstadoVenta";
+            // 
+            // CnMontoNeto
+            // 
+            this.CnMontoNeto.DataPropertyName = "monto_bruto_venta";
+            this.CnMontoNeto.HeaderText = "Monto Neto";
+            this.CnMontoNeto.Name = "CnMontoNeto";
+            // 
+            // cnIva
+            // 
+            this.cnIva.DataPropertyName = "iva";
+            this.cnIva.HeaderText = "IVA";
+            this.cnIva.Name = "cnIva";
+            // 
+            // cnMontoTotal
+            // 
+            this.cnMontoTotal.DataPropertyName = "monto_neto_venta";
+            this.cnMontoTotal.HeaderText = "Monto Total";
+            this.cnMontoTotal.Name = "cnMontoTotal";
+            // 
+            // cnTipoVenta
+            // 
+            this.cnTipoVenta.DataPropertyName = "tipo_venta";
+            this.cnTipoVenta.HeaderText = "Tipo Venta ";
+            this.cnTipoVenta.Name = "cnTipoVenta";
+            // 
             // Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -107,5 +164,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnReporte;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnEstadoVenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CnMontoNeto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnIva;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnMontoTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnTipoVenta;
     }
 }

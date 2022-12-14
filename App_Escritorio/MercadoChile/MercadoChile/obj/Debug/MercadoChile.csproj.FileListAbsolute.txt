@@ -1294,7 +1294,6 @@ C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Merc
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.AssemblyReference.cache
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Cargos.resources
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Empresa.resources
-C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Imagenes.resources
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Postulacion.resources
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Procesos.resources
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Publicacion.resources

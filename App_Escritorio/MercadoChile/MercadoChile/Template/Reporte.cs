@@ -47,12 +47,13 @@ namespace MercadoChile.Template
             foreach (DataGridViewRow row in DgvReporte.Rows) 
             {
                 filas += "<tr>";
-                filas += "<td>" + row.Cells["id_venta"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["descripcion_venta"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["cnID"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["cnDescripcion"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["fecha_venta"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["monto_bruto_venta"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["id_usuario"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["cnMontoTotal"].Value.ToString() + "</td>";
                 filas += "</tr>";
-                total += decimal.Parse(row.Cells["monto_bruto_venta"].Value.ToString());
+                total += decimal.Parse(row.Cells["cnMontoTotal"].Value.ToString());
 
             }
 
@@ -97,7 +98,20 @@ namespace MercadoChile.Template
             string respuesta = await Get.GetHttpVenta();
             List<Venta> lista1 = JsonConvert.DeserializeObject<List<Venta>>(respuesta);
             DgvReporte.DataSource = lista1;
-            
+
+            string respuesta2 = await Get.GetHttpUsuario();
+            List<Usuarios> lista2 = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta2);
+
+            foreach (DataGridViewRow fila in DgvReporte.Rows) 
+            {
+                foreach (var list in lista2) 
+                {
+                    if (Convert.ToString(fila.Cells["id_usuario"].Value) == list.id_usuario) 
+                    {
+                        fila.Cells["id_usuario"].Value = list.nombre_usuario;
+                    }
+                }
+            }
         }
     }
 }

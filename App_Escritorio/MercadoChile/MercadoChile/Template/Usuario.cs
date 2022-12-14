@@ -112,7 +112,7 @@ namespace MercadoChile
                     if (list.correo_usuario == txtCorEdit.Text)
                     {
 
-                        int id = list.id_usuario;
+                        string id = list.id_usuario;
 
                         Usuarios post = new Usuarios()
                         {
@@ -190,7 +190,7 @@ namespace MercadoChile
                 {
                     if (list.numero_identificacion_usuario == txtRutEdit.Text)
                     {
-                        int id = list.id_usuario;
+                        string id = list.id_usuario;
 
                         string cargo = cmbCargoEdit.SelectedValue.ToString();
                         string empresa = cmbEmpresaEdit.SelectedValue.ToString();

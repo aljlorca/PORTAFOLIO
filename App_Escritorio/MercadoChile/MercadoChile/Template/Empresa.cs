@@ -66,7 +66,7 @@ namespace MercadoChile.Template
                     if (list.correo_usuario == txtDunsEdit.Text)
                     {
 
-                        int id = list.id_usuario;
+                         string id = list.id_usuario;
 
 
 
@@ -113,7 +113,7 @@ namespace MercadoChile.Template
                     {
 
 
-                        int id = list.id_usuario;
+                        string id = list.id_usuario;
 
                         int empresa = (int)cmbTipoEmpEdit.SelectedValue;
                         Uri myUri = new Uri(baseUri, id.ToString());

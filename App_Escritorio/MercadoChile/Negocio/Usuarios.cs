@@ -9,7 +9,7 @@ namespace MercadoChile.Modelos
 {
     public class Usuarios
     {
-        public int id_usuario { get; set; }
+        public string id_usuario { get; set; }
         public string numero_identificacion_usuario { get; set; }
         public string nombre_usuario { get; set; }
         public string direccion_usuario { get; set; }
