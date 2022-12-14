@@ -15,6 +15,13 @@ def subasta_delete(id_subasta):
     content = json.loads(response.content)
     return content
 
+def venta_reporte(id_venta):
+    url = 'http://127.0.0.1:8000/api_venta/venta_reporte/'+str(id_venta)
+    response = requests.post(url)
+    content = json.loads(response.content)
+    return content
+
+
 
 def rechazar_restantes(id_venta):
     try:
@@ -28,5 +35,7 @@ def rechazar_restantes(id_venta):
             subasta_delete(subasta['id_subasta'])
             
             cont = cont+1
+        venta_reporte(id_venta)
+
     except:
         pass
