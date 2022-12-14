@@ -15,16 +15,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          UAC Manifest Options
-          If you want to change the Windows User Account Control level replace the
-          requestedExecutionLevel node with one of the following.
+          Opciones del manifiesto de Control de cuentas de usuario
+          Si quiere cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el
+          nodo requestedExecutionLevel por alguno de los siguientes.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         If you want to utilize File and Registry Virtualization for backward
-         compatibility then delete the requestedExecutionLevel node.
+         Si desea usar la virtualización de archivos y del Registro para la
+         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -86,7 +86,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>G/2qS+DV+LtHSmHju0sW6hkaWIZL/eGeOjT+8GfZgzo=</dsig:DigestValue>
+        <dsig:DigestValue>GyZB1Nuwim5aj2DPUSyfM2VEfAqhtj9Df6XKTof18LI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -271,14 +271,22 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+<<<<<<< HEAD
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MercadoChile.exe" size="327672">
+=======
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MercadoChile.exe" size="349688">
+>>>>>>> f14628162f7e6fa1a23396d1f896c2c9d6cd3a3c
       <assemblyIdentity name="MercadoChile" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< HEAD
         <dsig:DigestValue>H+NUsXVE0DlfZOJVUElNnWF5CzVZg3MdyA0o61FPujI=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>ETSs21HYVXT7YUcKuP6ZtfLnpUNGV8toCuOC0m2NUms=</dsig:DigestValue>
+>>>>>>> f14628162f7e6fa1a23396d1f896c2c9d6cd3a3c
       </hash>
     </dependentAssembly>
   </dependency>
@@ -662,7 +670,11 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< HEAD
         <dsig:DigestValue>Di4n/mTHyS16ND5LuKdyBwNisrxyTlRX+WAhbQKDKTU=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>eVUGRFsSB4qtqxd66uiFDtovE4jnTQfQZDWCFVk9vzg=</dsig:DigestValue>
+>>>>>>> f14628162f7e6fa1a23396d1f896c2c9d6cd3a3c
       </hash>
     </dependentAssembly>
   </dependency>

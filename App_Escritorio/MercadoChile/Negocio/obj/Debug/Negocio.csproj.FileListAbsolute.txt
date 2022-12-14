@@ -173,3 +173,4 @@ D:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.dll
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.xmlworker.dll
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\itextsharp.xml
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\RestSharp.xml
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Negocio\bin\Debug\RestSharp.xml

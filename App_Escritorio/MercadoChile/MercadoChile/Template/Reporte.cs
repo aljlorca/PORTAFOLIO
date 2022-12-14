@@ -36,29 +36,29 @@ namespace MercadoChile.Template
         private void btnReporte_Click(object sender, EventArgs e)
         {
             SaveFileDialog guardar = new SaveFileDialog();
-            guardar.FileName = DateTime.Now.ToString("ddMMyy") + ".pdf";
+            guardar.FileName = DateTime.Now.ToString("ddMMyyyy") + ".pdf";
 
             string paginahtml_texto = Properties.Resources.Plantilla.ToString();
 
             string filas = string.Empty;
+            decimal total = 0;
 
+            string fecha = DateTime.Now.ToString("dd-MM-yyyy");
             foreach (DataGridViewRow row in DgvReporte.Rows) 
             {
                 filas += "<tr>";
                 filas += "<td>" + row.Cells["id_venta"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["descripcion_venta"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["estado_venta"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["fecha_venta"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["monto_bruto_venta"].Value.ToString() + "</td>";
                 filas += "</tr>";
+                total += decimal.Parse(row.Cells["monto_bruto_venta"].Value.ToString());
 
             }
 
+            paginahtml_texto = paginahtml_texto.Replace("@FECHA", fecha);
             paginahtml_texto = paginahtml_texto.Replace("@FILAS", filas);
-
-
-
-
-
+            paginahtml_texto = paginahtml_texto.Replace("@TOTAL", total.ToString());
 
             if (guardar.ShowDialog() == DialogResult.OK) 
             {
