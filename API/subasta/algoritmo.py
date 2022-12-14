@@ -26,9 +26,7 @@ def venta_reporte(id_venta):
 def rechazar_restantes(id_venta):
     try:
         subastas = subasta_venta(id_venta)
-        print(subastas)
         cont = 0
-
         for i in subastas:
 
             subasta = subastas[cont]
