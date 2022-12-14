@@ -48,7 +48,7 @@ namespace MercadoChile.Template
                                           select p).ToList();
                 CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvSubastas.DataSource];
                 currencyManager1.SuspendBinding();
-                bool Usuario = false;
+                
                 List<string> idVentas = new List<string>();
                 foreach (DataGridViewRow fila in DgvSubastas.Rows)
                 {
@@ -75,10 +75,14 @@ namespace MercadoChile.Template
                             break;
                         }
                     }
-
-
-
-
+                    foreach (var fila1 in lista3)
+                    {
+                        if (Convert.ToString(fila.Cells["cnVenta"].Value) == fila1.id_venta)
+                        {
+                            fila.Cells["cnVentaa"].Value = fila1.descripcion_venta;
+                            break;
+                        }
+                    }
                     DgvSubastas.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
                 }
                 
