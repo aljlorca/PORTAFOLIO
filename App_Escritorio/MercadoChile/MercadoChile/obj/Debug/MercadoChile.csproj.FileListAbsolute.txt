@@ -1006,7 +1006,6 @@ C:\Users\PC Gaming\Desktop\actualizable\3\PORTAFOLIO-main\App_Escritorio\Mercado
 C:\Users\PC Gaming\Desktop\actualizable\3\PORTAFOLIO-main\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe
 C:\Users\PC Gaming\Desktop\actualizable\3\PORTAFOLIO-main\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.pdb
 D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Procesos.resources
-D:\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.Template.Imagenes.resources
 D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.AssemblyReference.cache
 D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.csproj.SuggestedBindingRedirects.cache
 D:\DUOC\Semestre 8\Portafolio\PORTAFOLIO\App_Escritorio\MercadoChile\MercadoChile\obj\Debug\MercadoChile.exe

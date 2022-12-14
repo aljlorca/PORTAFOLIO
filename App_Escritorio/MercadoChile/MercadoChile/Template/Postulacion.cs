@@ -24,7 +24,7 @@ namespace MercadoChile.Template
 {
     public partial class Postulacion : Form
     {
-        private string url = "http://127.0.0.1:8000/api_carga/carga_old/";
+        Uri Venta = new Uri("http://127.0.0.1:8000/api_venta/venta_reporte/");
         Uri baseUri = new Uri("http://127.0.0.1:8000/api_subasta/subasta_aceptar/");
         getApi Get = new getApi();
         public Postulacion()
@@ -57,9 +57,9 @@ namespace MercadoChile.Template
                         {
                             string idventa = Convert.ToString(fila2.Cells["cnVenta"].Value);
                             idVentas.Add(idventa);
+                            Console.WriteLine(idventa);
                             fila2.Visible = false;
                         }
-                    
                         else if (idVentas.Contains(fila.Cells["cnVenta"].Value))
                         {
                             fila.Visible = false;
@@ -70,12 +70,9 @@ namespace MercadoChile.Template
                         fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
                         break;
                     }
-                    /*foreach (var fila1 in lista3)
-                    {
-                        fila.Cells["cnVenta"].Value = fila1.descripcion_venta;
-                        break;
-                    }*/
+                    
                     DgvSubastas.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
+                    
                 }
             }
             catch (Exception ex)
@@ -94,23 +91,29 @@ namespace MercadoChile.Template
                         if (fila.Cells["cnIdS"].Value == DgvSubastas.CurrentRow.Cells["cnIdS"].Value)
                         {
                             string id = fila.Cells["cnIdS"].Value.ToString();
-                            Subasta post = new Subasta()
-                            {
-                                id_subasta = id,
-                            };
+                            string idVenta = fila.Cells["cnVenta"].Value.ToString();
                             if (MessageBox.Show("Desea Publicar esta postulacion para la Venta "
                                    + DgvSubastas.CurrentRow.Cells["cnVenta"].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                            var data = JsonSerializer.Serialize<Subasta>(post);
-                            HttpRequestMessage request = new HttpRequestMessage
-                            {
-                                Content = new StringContent(data, Encoding.UTF8, "application/json"),
-                                Method = HttpMethod.Put,
-                                RequestUri = new Uri(baseUri, id),
-                            };
-                            var httpClient = new HttpClient();
-                            
+                                HttpRequestMessage request = new HttpRequestMessage
+                                {
+                                    Method = HttpMethod.Put,
+                                    RequestUri = new Uri(baseUri, id),
+                                };
+                                Venta post = new Venta()
+                                {
+                                    id_venta = idVenta,
+                                };
+                                var data = JsonSerializer.Serialize<Venta>(post);
+                                HttpRequestMessage requestVenta = new HttpRequestMessage
+                                {
+                                    Content = new StringContent(data, Encoding.UTF8, "application/json"),
+                                    Method = HttpMethod.Post,
+                                    RequestUri = new Uri(Venta, idVenta),
+                                };                              
+                                var httpClient = new HttpClient();
                                 await httpClient.SendAsync(request);
+                                await httpClient.SendAsync(requestVenta);
                                 MessageBox.Show("Publicado con Exito");
                                 this.OnLoad(e);
                             }

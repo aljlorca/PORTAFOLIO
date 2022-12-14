@@ -52,7 +52,7 @@ namespace MercadoChile.Template
                     }
                     foreach (var fila1 in lista3)
                     {
-                        if (Convert.ToInt32(fila.Cells["cnId"].Value) == fila1.id_venta)
+                        if (fila.Cells["cnId"].Value.ToString() == fila1.id_venta)
                         {
                             fila.Visible = false;
                             currencyManager1.ResumeBinding();
@@ -88,7 +88,7 @@ namespace MercadoChile.Template
                 {
                     if (list.descripcion_pedido == txtDescrip.Text)
                     {
-                        int id = list.id_pedido;
+                        string id = list.id_pedido.ToString();
                         var client = new HttpClient();
                         Venta post2 = new Venta()
                         {
@@ -100,7 +100,7 @@ namespace MercadoChile.Template
                             monto_neto_venta = 0,
                             fecha_venta = txtFecha.Text,
                             tipo_venta = "1",
-                            id_usuario = Convert.ToInt32(list.id_usuario),
+                            id_usuario = list.id_usuario.ToString(),
                             cantidad_venta = null,
                             monto_transporte = null,
                             monto_aduanas = null,

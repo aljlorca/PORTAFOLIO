@@ -32,6 +32,7 @@
             this.btnListar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cnBoton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.cnCapaCarga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnRefrigeracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnTamanoCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,7 +43,6 @@
             this.cnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnIdS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnIdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnBoton = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubastas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,6 +52,7 @@
             this.DgvSubastas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.DgvSubastas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvSubastas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cnBoton,
             this.cnCapaCarga,
             this.cnRefrigeracion,
             this.cnTamanoCa,
@@ -61,11 +62,10 @@
             this.cnVenta,
             this.cnCliente,
             this.cnIdS,
-            this.cnIdC,
-            this.cnBoton});
+            this.cnIdC});
             this.DgvSubastas.Location = new System.Drawing.Point(43, 66);
             this.DgvSubastas.Name = "DgvSubastas";
-            this.DgvSubastas.Size = new System.Drawing.Size(943, 520);
+            this.DgvSubastas.Size = new System.Drawing.Size(946, 520);
             this.DgvSubastas.TabIndex = 109;
             this.DgvSubastas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_Aceptar);
             // 
@@ -103,6 +103,14 @@
             this.label1.Size = new System.Drawing.Size(288, 23);
             this.label1.TabIndex = 105;
             this.label1.Text = "Control de Proceso Subastas";
+            // 
+            // cnBoton
+            // 
+            this.cnBoton.HeaderText = "";
+            this.cnBoton.Name = "cnBoton";
+            this.cnBoton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cnBoton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.cnBoton.Text = "";
             // 
             // cnCapaCarga
             // 
@@ -166,14 +174,6 @@
             this.cnIdC.Name = "cnIdC";
             this.cnIdC.Visible = false;
             // 
-            // cnBoton
-            // 
-            this.cnBoton.HeaderText = "";
-            this.cnBoton.Name = "cnBoton";
-            this.cnBoton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cnBoton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cnBoton.Text = "";
-            // 
             // Postulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,6 +199,7 @@
         private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewButtonColumn cnBoton;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCapaCarga;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnRefrigeracion;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnTamanoCa;
@@ -209,6 +210,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnIdS;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnIdC;
-        private System.Windows.Forms.DataGridViewButtonColumn cnBoton;
     }
 }

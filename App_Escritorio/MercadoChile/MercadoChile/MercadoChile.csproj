@@ -334,12 +334,6 @@
     <Compile Include="Template\Empresa.Designer.cs">
       <DependentUpon>Empresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Template\Imagenes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Template\Imagenes.Designer.cs">
-      <DependentUpon>Imagenes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Template\Postulacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -395,9 +389,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Template\Empresa.resx">
       <DependentUpon>Empresa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Template\Imagenes.resx">
-      <DependentUpon>Imagenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Template\Postulacion.resx">
       <DependentUpon>Postulacion.cs</DependentUpon>
