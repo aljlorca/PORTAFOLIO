@@ -206,3 +206,4 @@ C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Dato
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.CopyComplete
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.dll
 C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.pdb
+C:\Users\MiniBalto\Desktop\portafoli\PORTAFOLIO\App_Escritorio\MercadoChile\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
