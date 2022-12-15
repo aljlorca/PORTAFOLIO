@@ -7,14 +7,18 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="MercadoChile.exe.manifest" size="50391">
+    <dependentAssembly dependencyType="install" codebase="MercadoChile.exe.manifest" size="50319">
       <assemblyIdentity name="MercadoChile.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< HEAD
         <dsig:DigestValue>7GoLDHfrJgJP7BzD3x+LJq+6CbO5CYQB3OUtRB47jTg=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>mWQuElps8WVliJWmsTFUnKJ/3Xqf7ZZA//inHRMkBOI=</dsig:DigestValue>
+>>>>>>> 10fd554944639603dbcf0079edcf5ee83fd38eec
       </hash>
     </dependentAssembly>
   </dependency>

@@ -41,6 +41,7 @@
             this.cnEstadoS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnVentaa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnIdS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnIdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubastas)).BeginInit();
@@ -61,6 +62,7 @@
             this.cnEstadoS,
             this.cnVenta,
             this.cnCliente,
+            this.cnVentaa,
             this.cnIdS,
             this.cnIdC});
             this.DgvSubastas.Location = new System.Drawing.Point(43, 66);
@@ -153,12 +155,18 @@
             this.cnVenta.DataPropertyName = "id_venta";
             this.cnVenta.HeaderText = "Venta";
             this.cnVenta.Name = "cnVenta";
+            this.cnVenta.Visible = false;
             // 
             // cnCliente
             // 
             this.cnCliente.DataPropertyName = "id_usuario";
             this.cnCliente.HeaderText = "Cliente";
             this.cnCliente.Name = "cnCliente";
+            // 
+            // cnVentaa
+            // 
+            this.cnVentaa.HeaderText = "Ventas";
+            this.cnVentaa.Name = "cnVentaa";
             // 
             // cnIdS
             // 
@@ -208,6 +216,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnEstadoS;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnVentaa;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnIdS;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnIdC;
     }

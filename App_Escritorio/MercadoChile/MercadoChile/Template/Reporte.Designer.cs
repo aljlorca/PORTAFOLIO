@@ -102,6 +102,7 @@
             this.cnID.DataPropertyName = "id_venta";
             this.cnID.HeaderText = "Id Venta";
             this.cnID.Name = "cnID";
+            this.cnID.Visible = false;
             // 
             // cnDescripcion
             // 
@@ -114,6 +115,7 @@
             this.cnEstadoVenta.DataPropertyName = "estado_venta";
             this.cnEstadoVenta.HeaderText = "Estado Venta";
             this.cnEstadoVenta.Name = "cnEstadoVenta";
+            this.cnEstadoVenta.Visible = false;
             // 
             // CnMontoNeto
             // 

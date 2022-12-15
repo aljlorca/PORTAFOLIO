@@ -50,9 +50,13 @@ namespace MercadoChile.Template
                 foreach (DataGridViewRow fila in DgvProducto.Rows)
                 {
                     foreach (var usuario in listaUsuario)
-                    {
-                        fila.Cells["cnClientee"].Value = usuario.nombre_usuario;
-                    }
+
+                        if (Convert.ToString(fila.Cells["cnClientee"].Value) == usuario.id_usuario)
+                        {
+                            fila.Cells["cnClientee"].Value = usuario.nombre_usuario;
+                            break;
+                        }
+                        
                     if (fila.Cells["cnEstadoV"].Value.ToString() != "licitacion") 
                     { 
                         fila.Visible = false;

@@ -303,7 +303,6 @@ class SubastaAceptarView(View):
     def put(self, request,id_subasta):
         try:
             subastas = list(Subasta.objects.filter(id_subasta=id_subasta).values())
-            print(subastas)
             if len(subastas) > 0:
                 try:
                     salida = aceptar_subasta(id_subasta)

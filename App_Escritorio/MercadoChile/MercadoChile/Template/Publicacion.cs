@@ -45,11 +45,13 @@ namespace MercadoChile.Template
                 currencyManager1.SuspendBinding();
                 foreach (DataGridViewRow fila in DgvProducto.Rows)
                 {
-                    foreach (var fila1 in lista2)
-                    {
-                        fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
-                        break;
-                    }
+                    foreach (var usuario in lista2)
+
+                        if (Convert.ToString(fila.Cells["cnCliente"].Value) == usuario.id_usuario)
+                        {
+                            fila.Cells["cnCliente"].Value = usuario.nombre_usuario;
+                            break;
+                        }
                     foreach (var fila1 in lista3)
                     {
                         if (fila.Cells["cnId"].Value.ToString() == fila1.id_venta)

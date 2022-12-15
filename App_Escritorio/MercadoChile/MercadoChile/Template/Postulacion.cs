@@ -48,32 +48,29 @@ namespace MercadoChile.Template
                                           select p).ToList();
                 CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DgvSubastas.DataSource];
                 currencyManager1.SuspendBinding();
+                
                 List<string> idVentas = new List<string>();
                 foreach (DataGridViewRow fila in DgvSubastas.Rows)
                 {
-                    foreach (DataGridViewRow fila2 in DgvSubastas.Rows)
-                    {
-                        if (Convert.ToString(fila2.Cells["cnEstadoS"].Value) == "Aceptada")
-                        {
-                            string idventa = Convert.ToString(fila2.Cells["cnVenta"].Value);
-                            idVentas.Add(idventa);
-                            Console.WriteLine(idventa);
-                            fila2.Visible = false;
-                        }
-                        else if (idVentas.Contains(fila.Cells["cnVenta"].Value))
-                        {
-                            fila.Visible = false;
-                        }
-                    }        
                     foreach (var fila1 in lista2)
                     {
-                        fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
-                        break;
+                        if (Convert.ToString(fila.Cells["cnCliente"].Value) == fila1.id_usuario)
+                        {
+                            fila.Cells["cnCliente"].Value = fila1.nombre_usuario;
+                            break;
+                        }
                     }
-                    
+                    foreach (var fila1 in lista3)
+                    {
+                        if (Convert.ToString(fila.Cells["cnVenta"].Value) == fila1.id_venta)
+                        {
+                            fila.Cells["cnVentaa"].Value = fila1.descripcion_venta;
+                            break;
+                        }
+                    }
                     DgvSubastas.Rows[fila.Index].Cells["cnBoton"].Value = "Aceptar";
-                    
                 }
+                
             }
             catch (Exception ex)
             {
@@ -93,7 +90,7 @@ namespace MercadoChile.Template
                             string id = fila.Cells["cnIdS"].Value.ToString();
                             string idVenta = fila.Cells["cnVenta"].Value.ToString();
                             if (MessageBox.Show("Desea Publicar esta postulacion para la Venta "
-                                   + DgvSubastas.CurrentRow.Cells["cnVenta"].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                   + DgvSubastas.CurrentRow.Cells["cnVentaa"].Value, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 HttpRequestMessage request = new HttpRequestMessage
                                 {
