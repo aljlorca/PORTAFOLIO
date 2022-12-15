@@ -130,7 +130,7 @@ namespace MercadoChile
                         };
                         var httpClient = new HttpClient();
 
-                        if (MessageBox.Show("Desea Eliminar" + txtCorEdit, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show("Desea Eliminar" + txtCorEdit.Text, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             await httpClient.SendAsync(request);
                             MessageBox.Show("Eliminado con Exito");
@@ -290,7 +290,7 @@ namespace MercadoChile
                         {
                             var result = await httpResponse.Content.ReadAsStringAsync();
                             var postResult = JsonSerializer.Deserialize<RegistrarUsuario>(result);
-                            MessageBox.Show(postResult.ToString());
+                            MessageBox.Show("Usuario creado");
                             this.Hide();
 
                         }
@@ -306,7 +306,7 @@ namespace MercadoChile
                     if (httpResponse.IsSuccessStatusCode)
                     {
                         var result = await httpResponse.Content.ReadAsStringAsync();
-                        MessageBox.Show(result);
+                        MessageBox.Show("Usuario creado");
                         this.Hide();
 
                     }

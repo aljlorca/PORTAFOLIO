@@ -34,15 +34,38 @@ namespace MercadoChile.Template
         {
             InitializeComponent();
         }
-
-
         DBApi DBApi = new DBApi();
         getApi Get = new getApi();
 
         Uri baseUri = new Uri("http://127.0.0.1:8000/api_empresa/empresa_old/");
-        
 
-        
+        public bool validarRut(string rut)
+        {
+            bool validacion = false;
+            try
+            {
+                rut = rut.ToUpper();
+
+                int rutAux = int.Parse(rut.Substring(0, rut.Length - 1));
+
+                char dv = char.Parse(rut.Substring(rut.Length - 1, 1));
+
+                int m = 0, s = 1;
+                for (; rutAux != 0; rutAux /= 10)
+                {
+                    s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+                }
+                if (dv == (char)(s != 0 ? s + 47 : 75))
+                {
+                    validacion = true;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return validacion;
+        }
+
         private async void  Empresa_Carga(object sender, EventArgs e)
         {
             string respuesta = await Get.GetHttpTipoEmpresa();
@@ -77,7 +100,7 @@ namespace MercadoChile.Template
                         };
                         var httpClient = new HttpClient();
 
-                        if (MessageBox.Show("Desea Eliminar" + txtDunsEdit, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show("Desea Eliminar" + txtRazonEdit.Text, "Si o No", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             await httpClient.SendAsync(request);
                             MessageBox.Show("Empresa Eliminada con exito");
@@ -172,20 +195,38 @@ namespace MercadoChile.Template
                     var data = JsonSerializer.Serialize<Empresas>(post2);
                     HttpContent content =
                         new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    if (cmbDire.DropDownStyle == ComboBoxStyle.DropDownList)
+                    if (cmbDire.DropDownStyle == ComboBoxStyle.DropDownList && cmbDire.Text.Contains("Chile") == true)
+                    {
+                        var valido = validarRut(txtDunsEmp.Text);
+                        if (valido == true)
+                        {
+                            var httpResponse = await client.PostAsync(baseUri, content);
+                            if (httpResponse.IsSuccessStatusCode)
+
+                            {
+                                MessageBox.Show("Empresa Agregada con exito");
+                                this.Hide();
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Rut incorrecto");
+                        }
+                    }
+                    else if (cmbDire.DropDownStyle == ComboBoxStyle.DropDownList)
                     {
                         var httpResponse = await client.PostAsync(baseUri, content);
                         if (httpResponse.IsSuccessStatusCode)
-
                         {
                             MessageBox.Show("Empresa Agregada con exito");
                             this.Hide();
-
                         }
                     }
                     else
                     {
-                        MessageBox.Show("ingrese una direccion");
+                        MessageBox.Show("ingrese una direccion ");
+
                     }
                 }
             }
