@@ -451,6 +451,7 @@
   <ItemGroup>
     <None Include="Resources\Plantilla.html" />
     <None Include="Resources\unknown.png" />
+    <None Include="Resources\fima.jpg" />
     <Content Include="shop_icon-icons.com_51010.ico" />
   </ItemGroup>
   <ItemGroup>
