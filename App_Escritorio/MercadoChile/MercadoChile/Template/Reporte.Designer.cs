@@ -40,6 +40,13 @@
             this.cnIva = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnMontoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnTipoVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnAduana = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnComision = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvReporte)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,10 +62,17 @@
             this.CnMontoNeto,
             this.cnIva,
             this.cnMontoTotal,
-            this.cnTipoVenta});
+            this.cnTipoVenta,
+            this.cnCliente,
+            this.cnFecha,
+            this.cnCantidad,
+            this.cnMonto,
+            this.cnAduana,
+            this.cnPago,
+            this.cnComision});
             this.DgvReporte.Location = new System.Drawing.Point(70, 71);
             this.DgvReporte.Name = "DgvReporte";
-            this.DgvReporte.Size = new System.Drawing.Size(821, 355);
+            this.DgvReporte.Size = new System.Drawing.Size(774, 355);
             this.DgvReporte.TabIndex = 95;
             // 
             // label3
@@ -141,6 +155,53 @@
             this.cnTipoVenta.HeaderText = "Tipo Venta ";
             this.cnTipoVenta.Name = "cnTipoVenta";
             // 
+            // cnCliente
+            // 
+            this.cnCliente.DataPropertyName = "id_usuario";
+            this.cnCliente.HeaderText = "Cliente";
+            this.cnCliente.Name = "cnCliente";
+            // 
+            // cnFecha
+            // 
+            this.cnFecha.DataPropertyName = "fecha_venta";
+            this.cnFecha.HeaderText = "Fecha de la Venta";
+            this.cnFecha.Name = "cnFecha";
+            // 
+            // cnCantidad
+            // 
+            this.cnCantidad.DataPropertyName = "cantidad_venta";
+            this.cnCantidad.HeaderText = "Cantidad Venta";
+            this.cnCantidad.Name = "cnCantidad";
+            this.cnCantidad.Visible = false;
+            // 
+            // cnMonto
+            // 
+            this.cnMonto.DataPropertyName = "monto_transporte";
+            this.cnMonto.HeaderText = "Monto Transporte";
+            this.cnMonto.Name = "cnMonto";
+            this.cnMonto.Visible = false;
+            // 
+            // cnAduana
+            // 
+            this.cnAduana.DataPropertyName = "monto_aduanas";
+            this.cnAduana.HeaderText = "Aduana";
+            this.cnAduana.Name = "cnAduana";
+            this.cnAduana.Visible = false;
+            // 
+            // cnPago
+            // 
+            this.cnPago.DataPropertyName = "pago_servicio";
+            this.cnPago.HeaderText = "Pago Servicio";
+            this.cnPago.Name = "cnPago";
+            this.cnPago.Visible = false;
+            // 
+            // cnComision
+            // 
+            this.cnComision.DataPropertyName = "comision_venta";
+            this.cnComision.HeaderText = "Comision Venta";
+            this.cnComision.Name = "cnComision";
+            this.cnComision.Visible = false;
+            // 
             // Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,5 +234,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cnIva;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnMontoTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn cnTipoVenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnFecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnMonto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnAduana;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnPago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnComision;
     }
 }

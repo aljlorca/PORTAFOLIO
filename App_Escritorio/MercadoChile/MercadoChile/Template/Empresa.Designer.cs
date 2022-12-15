@@ -254,7 +254,7 @@
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificar Empresa";
-            //
+            // 
             // cmbDireEdit
             // 
             this.cmbDireEdit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -289,9 +289,9 @@
             this.btnLimpiarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarDire.Image")));
             this.btnLimpiarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiarDire.Location = new System.Drawing.Point(30, 232);
+            this.btnLimpiarDire.Location = new System.Drawing.Point(30, 215);
             this.btnLimpiarDire.Name = "btnLimpiarDire";
-            this.btnLimpiarDire.Size = new System.Drawing.Size(174, 40);
+            this.btnLimpiarDire.Size = new System.Drawing.Size(183, 40);
             this.btnLimpiarDire.TabIndex = 108;
             this.btnLimpiarDire.Text = "      Limpiar direccion";
             this.btnLimpiarDire.UseVisualStyleBackColor = true;
@@ -305,9 +305,9 @@
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(0, 392);
+            this.btnEliminar.Location = new System.Drawing.Point(6, 261);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(220, 40);
+            this.btnEliminar.Size = new System.Drawing.Size(207, 40);
             this.btnEliminar.TabIndex = 98;
             this.btnEliminar.Text = "Eliminar Empresa";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -321,9 +321,9 @@
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(4, 312);
+            this.btnEdit.Location = new System.Drawing.Point(6, 307);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(216, 40);
+            this.btnEdit.Size = new System.Drawing.Size(214, 40);
             this.btnEdit.TabIndex = 68;
             this.btnEdit.Text = "Editar Empresa";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -336,11 +336,11 @@
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(6, 358);
+            this.btnModificar.Location = new System.Drawing.Point(0, 467);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(216, 40);
             this.btnModificar.TabIndex = 97;
-            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Text = "Seleccione una Empresa";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 

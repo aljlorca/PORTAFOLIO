@@ -93,7 +93,7 @@ namespace MercadoChile.Template
                             if (result.IsSuccessStatusCode)
                             {
                                 MessageBox.Show("Mejor Producto Aceptado");
-                                this.Hide();
+                                this.OnLoad(e);
                             }
                         }
                         

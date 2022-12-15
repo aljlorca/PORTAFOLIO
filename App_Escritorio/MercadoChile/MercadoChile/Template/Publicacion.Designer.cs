@@ -118,7 +118,7 @@
             this.groupBox1.Size = new System.Drawing.Size(394, 397);
             this.groupBox1.TabIndex = 101;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Productos";
+            this.groupBox1.Text = "Pedido";
             // 
             // txtCliente
             // 
@@ -144,7 +144,7 @@
             this.btnPublicar.Name = "btnPublicar";
             this.btnPublicar.Size = new System.Drawing.Size(216, 40);
             this.btnPublicar.TabIndex = 68;
-            this.btnPublicar.Text = "Publicar";
+            this.btnPublicar.Text = "Publicar Venta";
             this.btnPublicar.UseVisualStyleBackColor = true;
             this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
             // 
@@ -180,11 +180,11 @@
             this.btnSelProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelProd.Image = ((System.Drawing.Image)(resources.GetObject("btnSelProd.Image")));
             this.btnSelProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelProd.Location = new System.Drawing.Point(707, 469);
+            this.btnSelProd.Location = new System.Drawing.Point(549, 442);
             this.btnSelProd.Name = "btnSelProd";
-            this.btnSelProd.Size = new System.Drawing.Size(207, 40);
+            this.btnSelProd.Size = new System.Drawing.Size(208, 40);
             this.btnSelProd.TabIndex = 85;
-            this.btnSelProd.Text = "        Selccione un Producto";
+            this.btnSelProd.Text = "    Selccione un Pedido";
             this.btnSelProd.UseVisualStyleBackColor = true;
             this.btnSelProd.Click += new System.EventHandler(this.btnSelProd_Click);
             // 

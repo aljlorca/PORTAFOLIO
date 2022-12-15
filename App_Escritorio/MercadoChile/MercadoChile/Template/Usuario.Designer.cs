@@ -437,7 +437,7 @@ namespace MercadoChile
             this.btnBuscarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarDire.Image")));
             this.btnBuscarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscarDire.Location = new System.Drawing.Point(21, 311);
+            this.btnBuscarDire.Location = new System.Drawing.Point(25, 311);
             this.btnBuscarDire.Name = "btnBuscarDire";
             this.btnBuscarDire.Size = new System.Drawing.Size(183, 40);
             this.btnBuscarDire.TabIndex = 111;
@@ -464,9 +464,9 @@ namespace MercadoChile
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(6, 520);
+            this.button2.Location = new System.Drawing.Point(6, 440);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(250, 40);
+            this.button2.Size = new System.Drawing.Size(226, 40);
             this.button2.TabIndex = 98;
             this.button2.Text = "Eliminar Cliente";
             this.button2.UseVisualStyleBackColor = true;
@@ -480,9 +480,9 @@ namespace MercadoChile
             this.btnLimpiarDire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiarDire.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarDire.Image")));
             this.btnLimpiarDire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiarDire.Location = new System.Drawing.Point(21, 357);
+            this.btnLimpiarDire.Location = new System.Drawing.Point(25, 357);
             this.btnLimpiarDire.Name = "btnLimpiarDire";
-            this.btnLimpiarDire.Size = new System.Drawing.Size(174, 40);
+            this.btnLimpiarDire.Size = new System.Drawing.Size(183, 40);
             this.btnLimpiarDire.TabIndex = 110;
             this.btnLimpiarDire.Text = "       Limpiar Direccion";
             this.btnLimpiarDire.UseVisualStyleBackColor = true;
@@ -496,9 +496,9 @@ namespace MercadoChile
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(10, 437);
+            this.btnEdit.Location = new System.Drawing.Point(6, 403);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(216, 40);
+            this.btnEdit.Size = new System.Drawing.Size(226, 40);
             this.btnEdit.TabIndex = 68;
             this.btnEdit.Text = "Editar Cliente";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -510,12 +510,13 @@ namespace MercadoChile
             this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(6, 474);
+            this.btnModificar.Location = new System.Drawing.Point(6, 495);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(216, 40);
+            this.btnModificar.Size = new System.Drawing.Size(221, 40);
             this.btnModificar.TabIndex = 97;
-            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Text = "        Seleccione un Usuario";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 

@@ -43,26 +43,28 @@ namespace MercadoChile
             this.button3 = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
             this.BarraTitulo = new System.Windows.Forms.Panel();
-            this.iconMinimizar = new System.Windows.Forms.PictureBox();
             this.iconMaximizar = new System.Windows.Forms.PictureBox();
+            this.iconMinimizar = new System.Windows.Forms.PictureBox();
             this.iconCerrar = new System.Windows.Forms.PictureBox();
-            this.btnslide = new System.Windows.Forms.PictureBox();
-            this.PanelContenedor = new System.Windows.Forms.Panel();
             this.iconRestaurar = new System.Windows.Forms.PictureBox();
+            this.PanelContenedor = new System.Windows.Forms.Panel();
+            this.btnslide = new System.Windows.Forms.PictureBox();
             this.MenuVertical.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.BarraTitulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconMaximizar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCerrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnslide)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconRestaurar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnslide)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuVertical
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.Transparent;
+            this.MenuVertical.Controls.Add(this.button4);
+            this.MenuVertical.Controls.Add(this.button3);
             this.MenuVertical.Controls.Add(this.btnReporte);
             this.MenuVertical.Controls.Add(this.button8);
             this.MenuVertical.Controls.Add(this.button7);
@@ -70,8 +72,6 @@ namespace MercadoChile
             this.MenuVertical.Controls.Add(this.panel1);
             this.MenuVertical.Controls.Add(this.button2);
             this.MenuVertical.Controls.Add(this.button5);
-            this.MenuVertical.Controls.Add(this.button4);
-            this.MenuVertical.Controls.Add(this.button3);
             this.MenuVertical.Controls.Add(this.btnClientes);
             this.MenuVertical.Dock = System.Windows.Forms.DockStyle.Left;
             this.MenuVertical.Location = new System.Drawing.Point(0, 0);
@@ -87,9 +87,9 @@ namespace MercadoChile
             this.btnReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnReporte.Image")));
             this.btnReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReporte.Location = new System.Drawing.Point(8, 539);
+            this.btnReporte.Location = new System.Drawing.Point(5, 543);
             this.btnReporte.Name = "btnReporte";
-            this.btnReporte.Size = new System.Drawing.Size(250, 40);
+            this.btnReporte.Size = new System.Drawing.Size(255, 40);
             this.btnReporte.TabIndex = 10;
             this.btnReporte.Text = "     Reportes";
             this.btnReporte.UseVisualStyleBackColor = true;
@@ -103,9 +103,9 @@ namespace MercadoChile
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(2, 585);
+            this.button8.Location = new System.Drawing.Point(5, 589);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(250, 40);
+            this.button8.Size = new System.Drawing.Size(255, 40);
             this.button8.TabIndex = 9;
             this.button8.Text = "     Cerrar Sesion";
             this.button8.UseVisualStyleBackColor = true;
@@ -119,11 +119,11 @@ namespace MercadoChile
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(5, 493);
+            this.button7.Location = new System.Drawing.Point(5, 451);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(250, 40);
+            this.button7.Size = new System.Drawing.Size(255, 40);
             this.button7.TabIndex = 8;
-            this.button7.Text = "     Procesos Producto";
+            this.button7.Text = "          Procesos Producto";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -135,9 +135,9 @@ namespace MercadoChile
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(5, 447);
+            this.button6.Location = new System.Drawing.Point(5, 497);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(250, 40);
+            this.button6.Size = new System.Drawing.Size(255, 40);
             this.button6.TabIndex = 7;
             this.button6.Text = "     Postulacion";
             this.button6.UseVisualStyleBackColor = true;
@@ -171,9 +171,9 @@ namespace MercadoChile
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(8, 401);
+            this.button2.Location = new System.Drawing.Point(5, 359);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(250, 40);
+            this.button2.Size = new System.Drawing.Size(255, 40);
             this.button2.TabIndex = 5;
             this.button2.Text = "     Cargos";
             this.button2.UseVisualStyleBackColor = true;
@@ -187,9 +187,9 @@ namespace MercadoChile
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(6, 355);
+            this.button5.Location = new System.Drawing.Point(5, 313);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(246, 40);
+            this.button5.Size = new System.Drawing.Size(255, 40);
             this.button5.TabIndex = 4;
             this.button5.Text = "     Contrato";
             this.button5.UseVisualStyleBackColor = true;
@@ -203,7 +203,7 @@ namespace MercadoChile
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(3, 309);
+            this.button4.Location = new System.Drawing.Point(5, 405);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(255, 40);
             this.button4.TabIndex = 3;
@@ -219,7 +219,7 @@ namespace MercadoChile
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(3, 263);
+            this.button3.Location = new System.Drawing.Point(5, 221);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(255, 40);
             this.button3.TabIndex = 2;
@@ -235,7 +235,7 @@ namespace MercadoChile
             this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClientes.Location = new System.Drawing.Point(3, 217);
+            this.btnClientes.Location = new System.Drawing.Point(5, 267);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(255, 40);
             this.btnClientes.TabIndex = 1;
@@ -258,6 +258,19 @@ namespace MercadoChile
             this.BarraTitulo.TabIndex = 1;
             this.BarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BarraTitulo_MouseDown);
             // 
+            // iconMaximizar
+            // 
+            this.iconMaximizar.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.iconMaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconMaximizar.Image = ((System.Drawing.Image)(resources.GetObject("iconMaximizar.Image")));
+            this.iconMaximizar.Location = new System.Drawing.Point(976, 12);
+            this.iconMaximizar.Name = "iconMaximizar";
+            this.iconMaximizar.Size = new System.Drawing.Size(20, 20);
+            this.iconMaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconMaximizar.TabIndex = 2;
+            this.iconMaximizar.TabStop = false;
+            this.iconMaximizar.Click += new System.EventHandler(this.iconMaximizar_Click);
+            // 
             // iconMinimizar
             // 
             this.iconMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -272,19 +285,6 @@ namespace MercadoChile
             this.iconMinimizar.TabStop = false;
             this.iconMinimizar.Click += new System.EventHandler(this.iconMinimizar_Click);
             // 
-            // iconMaximizar
-            // 
-            this.iconMaximizar.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.iconMaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconMaximizar.Image = ((System.Drawing.Image)(resources.GetObject("iconMaximizar.Image")));
-            this.iconMaximizar.Location = new System.Drawing.Point(976, 12);
-            this.iconMaximizar.Name = "iconMaximizar";
-            this.iconMaximizar.Size = new System.Drawing.Size(20, 20);
-            this.iconMaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.iconMaximizar.TabIndex = 2;
-            this.iconMaximizar.TabStop = false;
-            this.iconMaximizar.Click += new System.EventHandler(this.iconMaximizar_Click);
-            // 
             // iconCerrar
             // 
             this.iconCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -298,28 +298,6 @@ namespace MercadoChile
             this.iconCerrar.TabIndex = 1;
             this.iconCerrar.TabStop = false;
             this.iconCerrar.Click += new System.EventHandler(this.iconCerrar_Click);
-            // 
-            // btnslide
-            // 
-            this.btnslide.BackColor = System.Drawing.SystemColors.Control;
-            this.btnslide.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnslide.Image = ((System.Drawing.Image)(resources.GetObject("btnslide.Image")));
-            this.btnslide.Location = new System.Drawing.Point(5, 7);
-            this.btnslide.Name = "btnslide";
-            this.btnslide.Size = new System.Drawing.Size(35, 35);
-            this.btnslide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnslide.TabIndex = 0;
-            this.btnslide.TabStop = false;
-            this.btnslide.Click += new System.EventHandler(this.btnslide_Click);
-            // 
-            // PanelContenedor
-            // 
-            this.PanelContenedor.BackColor = System.Drawing.SystemColors.Control;
-            this.PanelContenedor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelContenedor.Location = new System.Drawing.Point(266, 50);
-            this.PanelContenedor.Name = "PanelContenedor";
-            this.PanelContenedor.Size = new System.Drawing.Size(1034, 600);
-            this.PanelContenedor.TabIndex = 2;
             // 
             // iconRestaurar
             // 
@@ -336,6 +314,28 @@ namespace MercadoChile
             this.iconRestaurar.Visible = false;
             this.iconRestaurar.Click += new System.EventHandler(this.iconRestaurar_Click_1);
             // 
+            // PanelContenedor
+            // 
+            this.PanelContenedor.BackColor = System.Drawing.SystemColors.Control;
+            this.PanelContenedor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelContenedor.Location = new System.Drawing.Point(266, 50);
+            this.PanelContenedor.Name = "PanelContenedor";
+            this.PanelContenedor.Size = new System.Drawing.Size(1034, 600);
+            this.PanelContenedor.TabIndex = 2;
+            // 
+            // btnslide
+            // 
+            this.btnslide.BackColor = System.Drawing.SystemColors.Control;
+            this.btnslide.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnslide.Image = ((System.Drawing.Image)(resources.GetObject("btnslide.Image")));
+            this.btnslide.Location = new System.Drawing.Point(5, 7);
+            this.btnslide.Name = "btnslide";
+            this.btnslide.Size = new System.Drawing.Size(35, 35);
+            this.btnslide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnslide.TabIndex = 0;
+            this.btnslide.TabStop = false;
+            this.btnslide.Click += new System.EventHandler(this.btnslide_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1300, 650);
@@ -349,11 +349,11 @@ namespace MercadoChile
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.BarraTitulo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconMaximizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCerrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnslide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconRestaurar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnslide)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,7 +368,6 @@ namespace MercadoChile
         private System.Windows.Forms.Panel BarraTitulo;
         private System.Windows.Forms.Panel PanelContenedor;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox btnslide;
         private System.Windows.Forms.PictureBox iconMinimizar;
         private System.Windows.Forms.PictureBox iconMaximizar;
         private System.Windows.Forms.PictureBox iconCerrar;
@@ -383,6 +382,7 @@ namespace MercadoChile
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button btnReporte;
         private System.Windows.Forms.PictureBox iconRestaurar;
+        private System.Windows.Forms.PictureBox btnslide;
     }
 }
 

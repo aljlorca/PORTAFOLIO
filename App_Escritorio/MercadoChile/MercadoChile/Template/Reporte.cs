@@ -50,7 +50,7 @@ namespace MercadoChile.Template
                 filas += "<td>" + row.Cells["cnID"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["cnDescripcion"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["fecha_venta"].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells["id_usuario"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["cnCliente"].Value.ToString() + "</td>";
                 filas += "<td>" + row.Cells["cnMontoTotal"].Value.ToString() + "</td>";
                 filas += "</tr>";
                 total += decimal.Parse(row.Cells["cnMontoTotal"].Value.ToString());
@@ -106,9 +106,9 @@ namespace MercadoChile.Template
             {
                 foreach (var list in lista2) 
                 {
-                    if (Convert.ToString(fila.Cells["id_usuario"].Value) == list.id_usuario) 
+                    if (Convert.ToString(fila.Cells["cnCliente"].Value) == list.id_usuario) 
                     {
-                        fila.Cells["id_usuario"].Value = list.nombre_usuario;
+                        fila.Cells["cnCliente"].Value = list.nombre_usuario;
                     }
                 }
             }
