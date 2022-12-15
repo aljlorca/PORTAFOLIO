@@ -172,7 +172,7 @@ namespace MercadoChile.Template
                     var data = JsonSerializer.Serialize<Empresas>(post2);
                     HttpContent content =
                         new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                    if (cmbDireEdit.DropDownStyle == ComboBoxStyle.DropDownList)
+                    if (cmbDire.DropDownStyle == ComboBoxStyle.DropDownList)
                     {
                         var httpResponse = await client.PostAsync(baseUri, content);
                         if (httpResponse.IsSuccessStatusCode)
