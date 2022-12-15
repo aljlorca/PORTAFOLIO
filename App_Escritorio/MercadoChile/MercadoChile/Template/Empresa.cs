@@ -58,15 +58,15 @@ namespace MercadoChile.Template
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
             try { 
-            string respuesta = await Get.GetHttpUsuario();
-            List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
+            string respuesta = await Get.GetHttpEmpresa();
+            List<Empresas> lista = JsonConvert.DeserializeObject<List<Empresas>>(respuesta);
 
                 foreach (var list in lista)
                 {
-                    if (list.correo_usuario == txtDunsEdit.Text)
+                    if (list.duns_empresa == txtDunsEdit.Text)
                     {
 
-                         string id = list.id_usuario;
+                         int id = list.id_empresa;
 
 
 
@@ -103,17 +103,17 @@ namespace MercadoChile.Template
         {
             try
             {
-            
-            string respuesta = await Get.GetHttpUsuario();
-            List<Usuarios> lista = JsonConvert.DeserializeObject<List<Usuarios>>(respuesta);
+
+                string respuesta = await Get.GetHttpEmpresa();
+                List<Empresas> lista = JsonConvert.DeserializeObject<List<Empresas>>(respuesta);
 
                 foreach (var list in lista)
                 {
-                    if (list.numero_identificacion_usuario == txtDunsEdit.Text)
+                    if (list.duns_empresa == txtDunsEdit.Text)
                     {
 
 
-                        string id = list.id_usuario;
+                        int id = list.id_empresa;
 
                         int empresa = (int)cmbTipoEmpEdit.SelectedValue;
                         Uri myUri = new Uri(baseUri, id.ToString());
@@ -142,10 +142,10 @@ namespace MercadoChile.Template
                         {
                             MessageBox.Show("ingrese una direccion");
                         }
-                    } 
+                    }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

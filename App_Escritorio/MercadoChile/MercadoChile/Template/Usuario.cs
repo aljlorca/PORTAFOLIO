@@ -238,6 +238,11 @@ namespace MercadoChile
                                 MessageBox.Show("Usuario Modificado");
                                 this.Hide();
                             }
+                            else
+                            {
+                                MessageBox.Show("hola");
+                            }
+                            
                         }
                         else
                         {
